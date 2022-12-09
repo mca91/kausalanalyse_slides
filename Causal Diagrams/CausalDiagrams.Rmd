@@ -94,7 +94,7 @@ Before going into all the technicalities of causality, we need to understand *wh
 ]
 
 ---
-## So What is Causality?
+## So what is causality?
 
 .vcenter[
 .blockquote[
@@ -105,13 +105,12 @@ We say that $X$ causes $Y$ when we interfere and change the value of $X$ without
 
 ]]
 
-
 ---
 ## Causality &mdash; Examples
 
 .vcenter[
 .blockquote[
-### A few examples of causality
+### Examples: a few causal relationships
 
 Obvious ones:
  - A light switch being set to on causes the light to be on
@@ -178,7 +177,7 @@ We can say $X$ causes $Y$ by saying:
 - $X$ causes $Y$
 - $X$ affects $Y$
 - The effect of $X$ on $Y$
-- ...
+- $X$ influences $Y$ 
 
 ---
 ##Why are Weasel words important?
