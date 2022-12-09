@@ -1,0 +1,15 @@
+.title-index {
+    background-image: url(../assets/signet_ude_rgb_neg.png), url(../assets/rlogo.png);
+    background-position: 90% 90%, 90% 10%;
+    background-size: 100px, 100px;
+    color: rgba(255, 255, 255, 0.68);
+}
+
+.title-slide a {
+    color: rgba(255, 255, 255, 0.68) !important;
+  }
+
+.title-index a:hover {
+    color: rgba(255, 255, 255, 1) !important;
+    font-weight: 600 !important;
+  }

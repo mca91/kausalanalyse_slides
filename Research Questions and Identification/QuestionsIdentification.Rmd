@@ -1,0 +1,789 @@
+---
+title: "Research Questions and Identification"
+author: "Prof. Dr. Christoph Hanck"
+date: "Sommer 2023"
+output:
+  xaringan::moon_reader:
+    css: ["default", "../assets/ude_fonts.css", "../assets/ude.css",  "../assets/custom.css"]
+    self_contained: false # if true, fonts will be stored locally
+    seal: true # show a title slide with YAML information
+    includes:
+      in_header: "../assets/mathjax-equation-numbers.html"
+    nature:
+      beforeInit: ["../assets/remark-zoom.js"]
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: '16:9' #alternatives '16:9' or '4:3' or others e.g. 13:9
+      navigation:
+        scroll: false #disable slide transitions by scrolling
+---
+
+```{r, load_refs, include = FALSE, echo=FALSE, cache=FALSE}
+library(RefManageR)
+BibOptions(check.entries = FALSE, 
+           bib.style = "authoryear", 
+           cite.style = 'authoryear', 
+           style = "markdown",
+           hyperlink = FALSE, 
+           dashed = FALSE)
+myBib <- ReadBib("../assets/example.bib", check = FALSE)
+
+# packages
+source('../assets/packages.R')
+
+library(kableExtra)
+
+counter <- function() {
+  i <- 0
+  function() {
+    i <<- i + 1
+    return(i)
+  }
+}
+
+tbl_counter <- counter()
+fig_counter <- counter()
+
+# transparent images
+library(tidyverse)
+library(lubridate)
+theme_set(theme_bw(base_size=12))
+theme_update(panel.background = element_rect(fill = "transparent", colour = NA),
+             plot.background = element_rect(fill = "transparent", colour = NA))
+
+opts_chunk$set(
+  dev.args=list(bg="transparent"),
+  message = F, echo = F
+  )
+```
+
+```{r xaringanExtra_progress-bar, echo = FALSE}
+xaringanExtra::use_progress_bar(color = "#004c93", location = "bottom")
+```
+
+```{r xaringanExtra-clipboard_2, echo=FALSE}
+# copy button styles mainly in ude.css 
+# https://github.com/gadenbuie/xaringanExtra
+htmltools::tagList(
+  xaringanExtra::use_clipboard(
+    button_text = "<i class=\"fa fa-clipboard\"></i>",
+    success_text = "<i class=\"fa fa-check\" style=\"color: #00ff00\"></i>",
+    error_text = "<i class=\"fa fa-times-circle\" style=\"color: #F94144\"></i>"
+  ),
+  rmarkdown::html_dependency_font_awesome()
+)
+```
+
+# Overview
+
+---
+class: center, middle, inverse
+# Research Questions
+
+---
+# What is a research question anyway?
+
+.vcenter[
+.blockquote[
+### Key Koncept: Research Question
+
+A **research question** is a question...
+
+1. that *can be answered* and
+2. for which having that answer will *improve our understanding of how the world works*
+
+A research questions takes us from a **theory** to an **hypothesis** that we can check using real world data. The data may provide **evidence** in favor or against our hypothesis.
+]]
+
+---
+# What is a research question anyway? &mdash; ctd.
+
+
+```{r, echo = F}
+knitr::include_graphics("researchquestion.png")
+```
+
+---
+# Research questions &mdash; Examples
+
+.vcenter[
+.blockquote[
+
+### Example: The influence of smartphone usage on children
+
+- Does heavy smartphone usage damage children's eyesight?
+
+- Does smartphone usage stimulate creative or intellectual activity?
+
+- Does smartphone usage reduce children's ability to concentrate?
+
+]]
+
+---
+# Why not simply look for patterns in the data?
+
+<br>
+
+- We are living in an information economy, surrounding us by an increasing amount of readily available data
+
+- Why not skip hassling with theories and research questions and simply look for *patterns* in the data?
+
+- A lot of people do &mdash; this commonly referred to as **data mining**
+
+.blockquote[
+### Definition: Data Mining
+Data mining is the systematic application of computer-aided methods to discover patterns, trends or correlations in (often large and connected) data sets. Algorithms based on statistical methods are frequently used for this purpose.
+]
+
+---
+# Data mining
+
+... is a useful toolkit if we care more about the *what* rather than the *why*: 
+
+- Data mining is often good at
+
+    - making *predictions under stability*.
+
+    -  finding patterns in the data. These may foster research questions that we can examine further in other data sources.
+    
+- Data mining is less good at
+
+    - helping to come up with a good theory or to improve an existing one. 
+    
+    - producing valid inference. It has a tendency to find **false positives**.<sup>1</sup>
+
+.footnote[
+<sup>1</sup> A false positive is a result that incorrectly indicates the presence of a condition under examination.
+]
+
+---
+# Data mining &mdash; Predictions under stability
+
+.vcenter[
+.blockquote[
+
+### Example: Predicting die roll outcomes
+
+- By a stable mechanism we mean that the process giving us the data does not change.
+
+- If the process is "rolling a six-sided die" data mining would based on a thousand rolls would be great at predicting that the probability of observing a 1 is 1/6. 
+
+- If the process switches to "rolling a twenty-sided", that data mining prediction will be bad. It will still predict a 1/6 chance of a 1 until it gets a lot more data. 
+
+- Probability theory will properly predict the switch to a 1/20 chance immediately.
+
+]]
+
+---
+# Data mining &mdash; the *what* vs. the *why*
+
+<br>
+<br>
+
+.content-box-red[
+
+Example on predicting ice cream sales / digression on the non-causal relation with the predictor (people wearing shorts)?
+
+]
+
+---
+# Data mining &mdash; Looking for Patterns 
+
+.vcenter[
+.blockquote[
+
+### Example: Viagra &mdash; Looking
+
+**To find a pattern can make you rich**
+
+- Pfizer scientists originally developed Viagra scientists to mitigate high blood pressure and angina.
+
+- Famous side effects have been found using data mining: instead of coming to the data with a theory, the scientists noticed an interesting pattern in the data.
+
+**Data mining is bad as a final step**
+
+- Taking a pattern found as given would be problematic 
+
+- Pfizer did clinical studies to *see if the pattern replicated*: they verified an hypothesis derived from their research question using experimental data.
+
+]]
+
+---
+# So what makes a research question a *good* one?
+
+**Simplicity**
+
+  - Do not bundle a bunch of research questions into one.
+    
+  - Consider potential answers&mdash; research question and theory probably do not align very well if we cannot place potential answers within the framework of our theory.
+
+**Feasibility / scalability **
+
+  - A good research question can be answered using the right data. 
+    
+  - Data acquisition is often subject to constraints. Think time, money, data protection laws.
+
+**Suitable research design**
+
+  - The research design must be suitable to investigate the derived hypothesis.
+  
+  - Thoughtful consideration must be given as to which statistical method is appropriate. We will deal with this aspect in particular in this course.
+
+---
+class: inverse, middle, center
+# Identification
+
+---
+# The data generating process
+
+- A general way how scientists think about reality is that there are regular laws that govern the way the universe works.
+
+- These laws are an example of a *data generating process* (DGP). The laws work behind the scenes, doing what they do whether we know about them or not. 
+
+- DGPs are unknown but we observe the data that result from them. 
+
+We have a two-part concept of DGPs&mdash;the characteristics we do know about (by combining everything we already know about a topic and its underlying laws) and those we do not know.
+
+- The parts we do not know are what we are hoping to learn about using research!
+
+
+---
+# DGPs &mdash; an example
+
+.vcenter[
+.blockquote[
+
+### Example: A DGP for Income
+
+Assume that we have [income data](https://observablehq.com/embed/a2046a4b2b3d459e?cells=viewof+radios_hc%2Cviewof+radios_degree%2Cplot) that has been generated from the following laws, but we have no idea what the laws are.
+
+- Income is log-normally distributed 
+- Being brown-haired gives you a 10% income boost
+- 20% of people are naturally brown-haired
+- Having a college degree gives you a 20% income boost
+- 30% of people have college degrees
+- 40% of people who don’t have brown hair or a college degree will choose to dye their hair brown
+
+]]
+
+
+---
+# DGPs &mdash; an example
+
+```{r, cache=T, echo=F}
+# DGP
+set.seed(1337)
+n <- 1e4
+rd <- data.frame(
+  haircolor = sample(c("brown", "other"), prob = c(.2,.8),size = n, replace = T),
+  degree = sample(c("college", "none"), prob = c(.3,.7),size = n, replace = T)
+)
+
+rd <- rd %>% 
+  mutate(
+    haircolor = map2_chr(rd$degree, rd$haircolor, 
+        ~ if(.x == "none" & .y == "other") {
+            sample(c("brown", "other"), size = 1, prob = c(.4,.6)) 
+        } else {
+            .y
+        }),
+   income = exp(rnorm(n, 
+                      mean = 5 + c(haircolor == "brown") * .1 + 
+                        c(degree == "college") * .2, 
+                      sd = .5)),
+   lincome = log(income)
+)
+```
+
+.vcenter[
+.blockquote[
+
+### Example: A DGP for Income
+
+What can we say about the effect of being brown-haired using *conditional distributions*?
+
+```{r, echo=F, cache=F, out.extra = 'style="color:black; display:block; margin-right:auto; margin-left:auto; margin-top:15px"', fig.height=5, out.width='45%', dpi=190, fig.cap=paste0(fig_counter(), ': log-income distributions')}
+ggplot(rd, aes(x = lincome, lty = haircolor)) + 
+  geom_density() +
+  theme_cowplot() +
+  theme(legend.position = c(.15, .7))
+```
+
+]]
+
+---
+# DGPs &mdash; an example
+
+.vcenter[
+.blockquote[
+
+### Example: A DGP for Income
+
+What can we say about the effect of being brown-haired using *conditional distributions*?
+
+```{r, echo = F}
+rd %>% 
+  group_by(haircolor) %>% 
+  summarise(`mean log income` = mean(lincome)) %>%
+  kbl(caption = paste0(tbl_counter(), ": log-income for all individuals"))
+```
+
+<br>
+
+]]
+
+---
+# DGPs &mdash; an example
+
+.vcenter[
+.blockquote[
+
+### Example: A DGP for Income
+
+- We find that being brown-haired gives you a pay-bump of about 5%:
+
+  We don’t see much effect of brown hair because many non-college people have brown hair, but those people don’t get the College wage bump, so it looks like brown hair doesn’t do much!
+
+- Where can we go from there in order to get the right answer? We have College information in our data, and need an idea of how it fits into the DGP:
+
+  If we know that it’s only non-college people who are dying their hair, and that College gives you a bump, we have some alternate explanations for our data. 
+
+]]
+
+---
+# DGPs &mdash; an example
+
+.vcenter[
+.blockquote[
+
+### Example: A DGP for Income
+
+Knowing about the DGP also lets us figure out what we need to do to the data to get the right answer. In this DGP, we can notice that among college students, nobody is dying their hair, and so there’s no reason we can see why brown hair and income might be related except for brown hair giving you an income boost.
+
+Limiting things just to college students, we see that brown-haired students get a bump of about 10%.
+
+```{r, echo = F}
+rd %>% 
+  group_by(haircolor) %>% 
+  filter(degree == "college") %>%
+  summarise(`mean log income` = mean(lincome)) %>%
+  kbl(caption = paste0(tbl_counter(), ": log-income for college students"))
+```
+
+<br>
+
+]]
+
+---
+# DGPs 
+
+What did we do?
+
+- **Looking for variation** 
+
+    The DGP comprises all mechanisms producing the observed data. We are interested in a part of the observed variation: the variation in income by hair color among college students. 
+    
+    How can we find the variation we need and focus just on that?
+
+- **Identification** 
+
+    How can we use the DGP to be sure that the variation we look at is the right variation? Figuring out what sorts of problems in the data you need to clear away&mdash;like how we noticed that the non-college students dying their hair was giving us problems&mdash;is the process of identification.
+
+---
+# Looking for Variation
+
+.blockquote[
+
+#### **Example: Avocado sales**
+
+```{r, echo=F, cache=F, out.extra = 'style="display:block; margin-right:auto; margin-left:auto;"', fig.height=4.5, out.width='55%', dpi=190, fig.cap=paste0(fig_counter(), ': Weekly Sales of Avocados in California, Jan 2015 &mdash; March 2018'), fig.align='center'}
+avocado <- read_csv("avocado.csv")
+
+avocado %>% 
+  filter(
+    region == "California", 
+    Date >= ymd("2015-01-01") & Date < ymd("2018-03-31"),
+    `Total Volume` > 3e6
+  ) %>%
+  ggplot(aes(x = AveragePrice, y = `Total Volume`/1e6)) +
+  xlab("Average price") +
+  ylab("Total volume sold (millions)") +
+  geom_point() +
+  theme_cowplot()
+```
+
+]
+
+---
+# Looking for Variation
+
+.blockquote[
+
+#### **Example: Avocado sales**
+
+- What conclusion can we draw from Figure 2? 
+
+    Avocado sales tend to be lower in weeks where the price of avocados is high and vice versa.
+
+- An interesting research question might be: 
+
+    What is the effect a 10% increase in price on the number of avocados people want to buy?
+
+- Can we answer our research question from using the data shown in Figure 2? Why or why not?
+
+]
+
+---
+# Looking for Variation
+
+.blockquote[
+
+#### **Example: Avocado sales**
+
+- We might be tempted to say something like ''an increase in the price of avocados drives down sales.'' But even that’s not actually on the graph!
+
+- All that we *can* see in the graph is the **covariation** or **correlation** between price and quantity of avocados&mdash;how they move together or apart. But these variables move around for *all sorts of reasons*!
+
+
+]
+
+---
+# Looking for Variation
+
+.blockquote[
+
+#### **Example: Avocado sales**
+
+```{r, echo=F, cache=F, out.extra = 'style="display:block; margin-right:auto; margin-left:auto;"', fig.height=4.5, out.width='55%', dpi=190, fig.cap=paste0(fig_counter(), ': Weekly Sales of Avocados in California, Jan 2015 &mdash; March 2018'), fig.align='center'}
+
+avocado_cal <- avocado %>% 
+  filter(
+    region == "California", 
+    Date >= ymd("2015-01-01") & Date < ymd("2018-03-31"),
+    `Total Volume` > 3e6
+  ) 
+
+avocado_cal %>%
+  ggplot(aes(x = AveragePrice, y = `Total Volume`/1e6)) +
+  xlab("Average price") +
+  ylab("Total volume sold (millions)") +
+  geom_point() +
+  geom_point(data = 
+               avocado_cal %>% 
+               filter(Date %in% ymd("2015-02-01", "2015-01-25")), col = "red", size = 2
+             ) +
+  ggrepel::geom_label_repel(data = 
+               avocado_cal %>% 
+               filter(Date %in% ymd("2015-02-01", "2015-01-25")), aes(label = as.character(Date))) +
+  theme_cowplot()
+```
+
+]
+
+---
+# Looking for Variation
+
+.blockquote[
+
+#### **Example: Avocado sales**
+
+We still see a negative relationship in Figure 3. But why did price drop and quantity rise from January to February that year? 
+
+- Is it because a drop in price made people buy more? 
+- Is it because the market was flooded with avocados so people wouldn’t pay as much for them? 
+- Is it because the high price in January made suppliers bring way more avocados to market in February?
+
+It’s probably a little bit of all of them: Variables move around for all sorts of reasons. Those reasons would be reflected in the DGP. But when we have a research question in mind, we are usually only interested in one of those reasons!
+
+]
+
+---
+# Looking for Variation
+
+.blockquote[
+
+#### **Example: Avocado sales**
+
+- How can we find the variation in the data that answers our question? 
+
+- We have to ask what is the variation that we want to find? If we want to figure out what the effect of the price is on how many avocados people want to buy, then we want variation in people buying avocados (rather than people selling them) that is driven by changes in the price (rather than, say, avocados becoming less popular).
+
+- We’re going to be hopeless at doing this if we don’t know anything about the DGP: 
+  
+  *We need to use what we know about the DGP to learn a little more*. 
+
+]
+
+---
+# Looking for Variation
+
+.blockquote[
+
+#### **Example: Avocado sales**
+
+- Assume that at the beginning of each month, avocado suppliers make a plan for what avocado prices will be each week in that month, and never change their plans until the next month.
+
+- If that’s true, then the “suppliers set prices” and “suppliers set quantities” explanations only matter between months. The variation in price and quantity from week to week in the same month will isolate variation in people buying avocados and get rid of variation from people selling avocados. 
+
+- Further, because the price is set by the sellers, the variation in quantity we’re looking at can only be driven by changes in the price.
+
+]
+
+---
+# Looking for Variation
+
+.blockquote[
+
+#### **Example: Avocado sales**
+
+- Our ability to find this answer is entirely based on that assumption we made about sellers making their choices between months. The reason I’ve made this particular assumption is that it helps us isolate (identify) only the variation on the part of consumers, conveniently getting rid of variation on the part of sellers and letting us just look at buyers.
+
+- This assumption, which works so much magic for us, is entirely a fiction made up for the convenience of writing this book. Hopefully you will not find all assumptions made for the purposes of digging out variation to be convenient fictions. Some probably are.
+
+]
+
+---
+# Looking for Variation
+
+.blockquote[
+
+#### **Example: Avocado sales**
+
+- By tossing out any variation between months, we’re digging through explanations that rely on that variation and tossing them out. Since sellers only change behavior between months (given our assumption), that explanation gets tossed out when we get rid of between-month variation, leaving us only with buyer behavior.
+
+- If we just look at changes within months, as in Figure 4, we can see that there’s still a negative relationship. Note that for each of the months, there’s a negative relationship, ignoring any differences between the months. So, given the data and what we know about how sellers operate, an increase in price does reduce how many avocados people want to buy.
+
+]
+
+---
+# Looking for Variation
+
+.blockquote[
+
+#### **Example: Avocado sales**
+
+```{r, echo=F, cache=F, out.extra = 'style="display:block; margin-right:auto; margin-left:auto;"', fig.height=5, out.width='55%', dpi=190, fig.cap=paste0(fig_counter(), ': Weekly Sales of Avocados in California, Feb. 2015 &mdash; March 2015'), fig.align='center'}
+
+avocado_cal <- avocado %>% 
+  filter(
+    region == "California", 
+    Date >= ymd("2015-02-01") & Date < ymd("2015-03-31"),
+    `Total Volume` > 3e6
+  ) %>%
+  mutate(
+    month =  month(Date, label = T),
+    lab = paste0(month, ". ", year)
+    ) %>%
+  arrange(Date)
+
+avocado_cal %>%
+  ggplot(aes(x = AveragePrice, y = `Total Volume`/1e6, group = lab, lty = lab)) +
+  xlab("Average price") +
+  ylab("Total volume sold (millions)") +
+  geom_point() +
+  geom_path(show.legend = F) +
+  ggrepel::geom_label_repel(
+    data = avocado_cal %>% group_by(month) %>% dplyr::slice_head(n=1), 
+    aes(label = lab)) +
+  theme_cowplot()
+```
+
+]
+
+---
+# Looking for Variation
+
+.blockquote[
+
+#### **Example: Avocado sales**
+
+- The task of figuring out how to answer our research question is really the task of figuring out where your variation is. It’s unlikely that the variation in the raw data answers the question you’re really interested in. So where is the variation that does answer your question? How can you find it and dig it out? What variation needs to be removed to unearth the good stuff underneath?
+
+- That process - finding where the variation you’re interested in is lurking and isolating just that part so you know that you’re answering your research question - is called identification.
+
+]
+
+---
+# Identification
+
+- Identification is the process of figuring out what part of the variation in your data answers your research question. 
+
+- A **research question takes us from theory to hypothesis**, making sure that the hypothesis we’re testing will actually tell us something about the theory. 
+
+- **Identification takes us from hypothesis to the data**, making sure that we have a way of testing that hypothesis in the data, and not accidentally testing some other hypothesis instead.
+
+.blockquote[
+#### **Example: Avocado sales &mdash; Identification**
+Having an idea of the DGP (the different ways that prices and quantities might be related), we know what work we need to do for identification: 
+
+We closed off undesirable explanations by getting rid of between-month variation driven by sellers. The only way for price to affect quantity at that point is through the consumers.
+]
+
+
+---
+# Identification
+
+Identification requires statistical procedures in order to isolate the variation we are interested in. Therefore, **identification critically relies on the theory and the assumptions about DGP**
+
+.blockquote[
+#### **Example: Avocado sales &mdash; Identification**
+  
+Consider again the avocado example:
+  
+- We used our knowledge about markets to realise that sellers might be setting price in response to the quantity&mdash;an alternate explanation we need to deal with in isolating the variation of interest. 
+
+- We then used an assumption about how sellers set prices to figure out how we can block out this alternate explanation by looking within-month.
+
+]
+
+---
+# Identification
+
+**Summary:** 
+
+If we want to identify the part of our data that gives the answer to our research question, we must:
+
+1. Using theory, paint the most accurate picture possible of what the DGP looks like
+2. Use that DGP to figure out the reasons our data might look the way it does that *do not* answer our research question
+3. Find ways to block out those alternate reasons and to isolate the variation we need
+
+This process is a lot more difficult than just “look at the data and see what it says.” But if we don’t go the extra mile of following these steps, we can end up with confusing, inconsistent, or just plain wrong results. 
+
+Let us see what may happen when we do not take identification seriously enough...
+
+
+---
+# Study: Alcohol an Mortality
+
+A. M. Wood et al. (2018) investigate the relationship between drinking and outcomes like mortality and cardiovascular disease among nearly 600,000 people.
+
+  - no benefit of small amounts of drinking. 
+    
+  - Amount of alcohol it took to start noticing increased risk for serious outcomes was at about 100 grams of alcohol per week (which is about a drink per day, and below current guidelines in some countries) 
+
+Figure 5 shows the relationship they found between weekly alcohol consumption and the chances of mortality. Mortality starts to rise at around 100 grams of alcohol per week, and goes up sharply from there.
+
+.footnote[
+Wood, Angela M, Stephen Kaptoge, Adam S Butterworth, and 239 more. 2018. “Risk Thresholds for Alcohol Consumption: Combined Analysis of Individual-Participant Data for 599,912 Current Drinkers in 83 Prospective Studies.” The Lancet 391 (10129): 1513–23. https://doi.org/10.1016/S0140-6736(18)30134-X.
+]
+
+---
+# Study: Alcohol an Mortality
+
+```{r, echo=F, cache=F, out.extra = 'style="display:block; margin-top:5%; margin-right:auto; margin-left:auto;"', fig.height=5, out.width='55%', dpi=190, fig.cap=paste0(fig_counter(), ': Alcohol Consumption and Mortality from Wood et al. (2018). Minor changes from original.'), fig.align='center'}
+
+alcohol_mort <- read_csv("alcohol_mortality_digitizer.csv")
+
+alcohol_mort %>% 
+  filter(row_number() %in% seq(1, 24, 3)) %>%
+  ggplot(aes(x = X, y = Y)) +
+  xlab("Usual Alcohol Consumption (Grams/week)") +
+  ylab("Hazard Ratio (1 = no effect)") +
+  geom_point() +
+  geom_hline(yintercept = 1, lty = 2) +
+  theme_cowplot()
+```
+
+---
+# Study: Alcohol an Mortality
+
+**Think about the DGP:**
+
+  - What leads us to observe people drinking?
+  - What leads us to observe them dying? 
+  - What reasons might there be for us to see an association between alcohol and mortality?
+  
+  **Think about determinants of drinking and mortality:**
+
+    - Tendency to take more risks may results in more drinking and other unhealthy activities, e.g., smoking
+    - Increased mortality risk may result from many bad-health indicators (including drinking and smoking)
+
+---
+# Study: Alcohol an Mortality
+
+**Think of alternate explanations**
+
+Smoking is likely related alcohol consumption and high mortality and thus may be an alternate explanation for the results.
+
+- Smokers could be more likely to drink:
+
+  The relationship between drinking and mortality might just be that smokers tend to drink, and also die earlier because of their smoking. 
+
+- Anything else that ends up on both lists is going to give us an alternate explanation.
+
+---
+# Study: Alcohol an Mortality
+
+**Would non-drinkers would have very low mortality rates?**
+
+Maybe, but people...
+
+- may choose not to drink at all because their health is too poor to handle it. 
+- wont't drink if they are recovering alcoholics. In these cases, we may actually see worse mortality for non-drinkers, but that relationship is almost certainly *not* because not-drinking is bad for them.
+
+---
+# Study: Alcohol an Mortality
+
+**Did Woods et al. (2018) manage to deal with some of these alternate explanations.**
+
+Yes:
+
+- Note that Figure 5 does not contain non-drinkers. They have been left out of the study to block out the too-sick-to-drink and ex-alcoholic alternate explanations. 
+
+    This is one reason why the study does not find a positive effect of a little alcohol while other studies do&mdash;those that leave in the non-drinkers!
+
+- Woods et al. (2018) also use statistical adjustment to account for further alternate explanations like smoking, age, gender, and a few health variables like BMI and diabetes indicators
+
+---
+# Study: Alcohol an Mortality
+
+**Did Woods et al. (2018) find the "true" effect of drinking on mortality**
+
+Not necessarily:
+
+- It is impossible to account for all conceivable alternate explanations related to risk-taking
+
+- Omission of all non-drinkers disregards non-drinkers who are neither sick nor ex-alcoholics.
+
+  What if some very sick people just choose to drink less rather than not at all?
+  
+Thus it might be a little premature to take these results, despite the hundreds of thousands of people they examined, and use them to conclude that we have now *identified* the effects of alcohol on mortality.
+
+ 
+If it feels like they did their part in addressing some of the alternate explanations and what’s left over feels trivial, keep in mind that these alternate explanations can lead us to very strange conclusions...
+
+---
+# Study: Alcohol an Mortality
+
+If the methods can give us Figure 6 by Auld (2018), then even if there is really an effect of alcohol on mortality, how close do we think Figure 5.5 is to identifying that effect?
+
+```{r, echo=F, cache=F, out.extra = 'style="display:block; margin-right:auto; margin-top:5%; margin-left:auto;"', fig.height=4, out.width='55%', dpi=190, fig.cap=paste0(fig_counter(), ': Alcohol Consumption and Being a Man'), fig.align='center'}
+
+alcohol_male <- read_csv("alcohol_male_digitizer.csv")
+
+alcohol_male %>% 
+  mutate(
+     Y = Y/(1-Y) # probs to odds ratio
+  ) %>% 
+  ggplot(aes(x = X, y = Y)) +
+  xlab("Drinks per Week") +
+  ylab("Odds Ratio of being a man (1 = no effect)") +
+  geom_point() +
+  geom_hline(yintercept = 1, lty = 2) +
+  theme_cowplot()
+```
+
+.footnote[
+  Auld, Chris. 2018. “Breaking News!” https://twitter.com/Chris_Auld/status/1035230771957485568.
+]
+
+---
+# Do we need to be *omniscient* ?
+
+No research project is perfect. We should try to...
+
+- Learn what we can about the context so that we don’t miss any hugely important part of the DGP
+- Be careful to acknowledge what assumptions we’re making, and think about how they might be wrong
+- Spot gaps in our knowledge about the data generating process, and make some realistic guesses about what might be in that gap
+- Not aim for perfection, but aim for getting as close as we can

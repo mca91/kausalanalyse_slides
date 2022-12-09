@@ -1,0 +1,96 @@
+.right-column {
+  width: 75%;
+  float: right;
+  padding-top: 0em;
+}
+
+.left-column{
+  margin-bottom: 0.5em;
+  margin-top: 0.5em;
+}
+
+.right-column ~ * {
+  clear: both;
+}
+
+.scaled {
+  LINE-HEIGHT:20px;
+  display: block;
+  margin-left: 0.1em;
+  float:left;
+}
+/*
+.scaled {
+  LINE-HEIGHT:20px;
+  transform: scale(0.7); 
+}
+*/
+
+
+a, a > code {
+    color: #0148A4;
+    text-decoration: none;
+}
+
+/* in  conflict to ude_fonts.css 
+.small {
+  font-size: 65%
+}
+
+.medium {
+  font-size: 80%
+}
+
+.smaller {
+  font-size: 90%
+}
+
+.center_img {
+  display: block;
+  margin: auto;
+}
+
+
+*/
+
+/* blockquote for exercises */
+/* to ensure that code font color is preserved in blockquote envorinments and child divs do not overflow */
+.exercise {
+  overflow: hidden;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  color: black;
+}
+
+
+
+.exercise .remark-code-line, .exercise p {
+    color: black;
+}
+
+strong {
+  color: #004c93;
+}
+
+/* for task boxes */
+.content-box-white {
+  background-color: #FFFFFF;
+  border-width: 3px;
+  border-color: #004c93;
+  border-style: solid;
+  box-shadow: 0 0 6px rgba(0,0,0,0.5);
+}
+
+.content-box-white strong {
+ color: #004c93;
+}
+
+/* */
+
+.row {
+  overflow:hidden;
+}
+
+.remark-slide-content strong {
+  color: #004c93;
+}

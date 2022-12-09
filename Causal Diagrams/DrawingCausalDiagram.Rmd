@@ -1,0 +1,280 @@
+---
+title: "Drawing causal diagram"
+subtitle: "In reference to NICK HUNTINGTON-KLEIN"
+author: "Abhisek Banerjee"
+institute: "University of Duisburg Essen"
+date: "`r Sys.Date()`"
+output:
+  xaringan::moon_reader:
+    css: ["default", "ude_fonts.css", "ude.css"]
+    self_contained: true # if true, fonts will be stored locally
+    seal: true # show a title slide with YAML information
+    includes:
+      in_header: "mathjax-equation-numbers.html"
+    nature:
+      beforeInit: ["remark-zoom.js", "https://platform.twitter.com/widgets.js"]
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: '16:9' #alternatives '16:9' or '4:3' or others e.g. 13:9
+      navigation:
+        scroll: TRUE #disable slide transitions by scrolling
+---
+##Recap of Causal Diagram
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
+
+```{r, include=FALSE}
+library(ggdag)
+library(ggplot2)
+```
+
+
+- Causal diagrams represent the data generating process that got us our data.
+- Drawing our own causal diagram will come down to putting our idea of what the data generating process is onto paper (or a computer screen).
+- Causal diagram helps to answering our research question
+
+---
+##Data Generating Process to Causal Diagram
+- **Idea**  that we’re trying to make a graph that mimics the data generating process relevant to our research question.
+-  First, we make a list of all relevant variables.
+ - A variable on a causal diagram is a measurement we could take that could result in different values.
+ - Every variable that causes the treatment or outcome, or causes something that causes something that causes the treatment or outcome, or causes something that causes something that causes something… is a good candidate for inclusion.
+- Filter the variables to the one that are causing (strongly) the outcomes.
+- Categorize the variables into treatment variables and outcomes.
+ - We must try to think about which variables cause which others.
+ 
+ 
+---
+
+##DGP contd.
+
+- Think about how those variables might cause each other, or perhaps be caused by the treatment or outcome. 
+ - We might also want to consider whether any of the variables are related but neither causes the other, in which case they must have some sort of common cause we can include.
+- Add the non-treatment and non-control variables.
+- Certain variables are related to each other without there necessarily being a clear causal arrow in either direction? In this case, we add on common causes we can just call U1, U2, etc., that cause both variables.
+- Creatre the causal diagram and think carefully about what’s both important and missing.
+
+---
+##Simplify Causal diagram
+We can control the needless complexity with some few simple tests:
+- **Unimportance**: We’ve already discussed this one - if the arrows coming in and out of a variable are likely to be tiny and unimportant effects, we can probably remove the variable.
+- **Redundancy**: If there are any variables on the diagram that occupy the same space - that is, they have the arrows coming in and going out of them from/to the same variables - we can probably combine them and describe them together.
+- **Mediators**: If one variable is only on the graph as a way for one variable to affect another (i.e. B in A → B → C) where nothing else connects to B, then we can probably remove it and just have A → C directly.
+- **Irrelevance**: Some variables are an important part of the data generating process but irrelevant to the research question at hand can be neglected.
+
+---
+##An Example:
+**Question**: What are some things that might cause people to take online classes? 
+- The preferences of student might be driven by background factors like Race, Gender, Age, and SocioeconomicStatus. 
+- Those same background factors might influence how much AvailableTime students have.
+- AvailableTime might be influenced by how many WorkHours the student is doing. 
+- Things that might cause people to drop out of community college are Race, Gender, SES (socioeconomic status), WorkHours, and previous performance in Academics.
+---
+##Example contd.
+Now, we must think which variables cause which others.
+- Online Class causes Dropout
+- Preferences causes OnlineClass
+- Race causes Dropout
+- Gender causes Dropout
+- Gender causes Dropout
+- InternetAccess causes OnlineClass
+- and so on  ………
+
+---
+##The Causal diagram
+The causal diagram becomes messy:
+
+```{r,eval=TRUE, echo=FALSE}
+coord_dag <- list(
+  x = c(a = 5, b = 3, c = 1, d = 1, e = 9, f = 5,g=3 ,h=3 ,i=5 ,j=5 ,k=7 ,l=7 ,m=9 ,n=11 ,o=9 ,p= 9,q=11 ),
+  y = c(a = 1, b = 1.3, c = 2, d = 3, e = 1, f = 2,g=3 ,h=4 ,i=3.5 ,j=4 ,k=3.3 ,l= 2,m=2 ,n=2 ,o= 3,p=4 ,q=4 )
+)
+dag_object <- ggdag::dagify(f ~ a,
+                            e ~ a,
+                            f ~ b,
+                            l ~ b,
+                            g ~ c,
+                            e ~ c,
+                            g ~ d,
+                            l ~ d,
+                            o ~ e,
+                            h ~ e,
+                            i ~ f,
+                            j ~ f,
+                            h ~ f,
+                            j ~ g,
+                            i ~ g,
+                            o ~ g,
+                            h ~ g,
+                            j ~ h,
+                            p ~ i,
+                            p ~ j,
+                            i ~ k,
+                            h ~ k,
+                            j ~ k,
+                            o ~ k,
+                            l ~ k,
+                            k ~ l,
+                            i ~ l,
+                            n ~ m,
+                            l ~ m,
+                            q ~ n,
+                            p ~ q,
+                            o ~ p,
+                            coords = coord_dag,
+                            labels=c("a"="U1",
+                                     "b"="U2",
+                                     "c"="PU3",
+                                     "d"="U4",
+                                     "e"="Acedemics",
+                                     "f"="Race",
+                                     "g"="Gender",
+                                     "h"="Working hours",
+                                     "i"="Preferences",
+                                     "j"="available Time",
+                                     "k"="Age",
+                                     "l"="SES",
+                                     "m"="U5",
+                                     "n"="Location",
+                                     "o"="Dropout",
+                                     "p"="Online Class",
+                                     "q"="Internet Access"))
+ggdag::ggdag(dag_object, # the dag object we created
+             text = FALSE, # this means the original names won't be shown
+             use_labels = "label") + # instead use the new names
+  theme_void()
+```
+
+
+
+---
+##Simplification of the Causal diagram:
+- Gender and Race have the exact same set of arrows coming in and going out. So we can combine those in to one, which we can call Demographics.
+- Instead of having Gender, Race, SES, and Age affect Preferences and then have Preferences affect OnlineClass, we can just have those four variables affect OnlineClass directly. _Mediators_
+- With the same logic, we can also strike out internet access.
+- Other variables besides WorkHours that cause AvailableTime also cause WorkHours. So if we got rid of AvailableTime and just had WorkHours affect OnlineClass directly, we’d still have all those same AvailableTime causes affecting WorkHours and wouldn’t lose anything. _Redundancy_
+
+
+---
+##The Causal diagram - Simplified
+
+After Simplification, the causal diagram looks like:
+
+```{r,eval=TRUE, echo=FALSE}
+coord_dag <- list(
+  x = c(a = 1, b = 1, c = 1, d = 1, e = 3, f = 5,g=7 ,h=7 ,i=9 ,j=7 ,k=5  ),
+  y = c(a = 1, b = 2, c = 3, d = 4, e = 1, f = 1,g=1 ,h=2 ,i=3 ,j=4 ,k=4 )
+)
+dag_object <- ggdag::dagify(b ~ a,
+                            e ~ a,
+                            f ~ b,
+                            k ~ b,
+                            i ~ b,
+                            h ~ b,
+                            b ~ c,
+                            d ~ c,
+                            k ~ d,
+                            i ~ d,
+                            h ~ e,
+                            e ~ f,
+                            g ~ f,
+                            h ~ g,
+                            i ~ h,
+                            h ~ j,
+                            k ~ j,
+                            h ~ k,
+                            i ~ h,
+                            
+                            coords = coord_dag,
+                            labels=c("a"="U4",
+                                     "b"="Demographics",
+                                     "c"="U3",
+                                     "d"="Acedemics",
+                                     "e"="SES",
+                                     "f"="U5",
+                                     "g"="Location",
+                                     "h"="Online Class",
+                                     "i"="Dropout",
+                                     "j"="Age",
+                                     "k"="working hours"))
+ggdag::ggdag(dag_object, # the dag object we created
+             text = FALSE, # this means the original names won't be shown
+             use_labels = "label") + # instead use the new names
+  theme_void() 
+```
+
+
+---
+##Avoiding cycles
+
+- A causal diagram cannot abide a cycles. 
+- Because if we do, that means a variable can cause itself, and then we cannot isolate the cause from effect.
+- In the true data generating process there can’t  be any cycles. That’s because of time.
+- Whenever we have a cycle in our diagram, we can get out of it by thinking about adding a time dimension.
+- Cycles can also be broken if you we find a source of random variation for one of the variables in the cycle. If we just focus on the part of the variable driven by randomness, the effect can’t loop back on itself. 
+ 
+---
+##Loops in causal diagram
+.pull-left[
+The following is like a loop in Causal diagrams:
+```{r,eval=TRUE, echo=FALSE,fig.height=4}
+coord_dag <- list(
+  x = c(a = 1, b = 3),
+  y = c(a = 1, b = 2)
+)
+dag_object <- ggdag::dagify(a ~ b,
+                            b ~ a,
+                            coords = coord_dag,
+                            labels=c("a"="You Punch You",
+                                     "b"="You Punch me"))
+ggdag::ggdag(dag_object, # the dag object we created
+             text = FALSE, # this means the original names won't be shown
+             use_labels = "label") + # instead use the new names
+  theme_void()
+
+```
+ ]
+ .pull-right[
+ Can be thought of as:
+
+
+```{r,eval=TRUE, echo=FALSE,fig.height=4}
+coord_dag <- list(
+  x = c(a = 4, b = 1, c = 4, d = 1),
+  y = c(a = 3, b = 1, c = 1, d = 3)
+)
+dag_object <- ggdag::dagify(a ~ b,
+                            c ~ d,
+                            coords = coord_dag,
+                            labels=c("a"="You Punch Me (t+1)",
+                                     "b"="I Punch You (t)",
+                                     "c"="I Punch You (t+1)",
+                                     "d"="You Punch Me (t)"))
+ggdag::ggdag(dag_object, # the dag object we created
+             text = FALSE, # this means the original names won't be shown
+             use_labels = "label") + # instead use the new names
+  theme_void()
+```
+ ]
+---
+##Assumptions for Causal Diagram
+- Assumptions are very important for Causal diagrams.
+- The quality of your research will hinge on how accurate those assumptions are. 
+- Think about whether our assumptions are reasonable, try to base them as much on well-established knowledge and prior research as possible. 
+- If we think there’s reason to be skeptical of them, ask what evidence would support the assumption and try to provide that evidence.
+---
+
+
+
+
+
+
+
+
+
+
+
+
+

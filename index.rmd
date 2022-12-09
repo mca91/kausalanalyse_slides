@@ -1,0 +1,28 @@
+---
+title: "Kausalanalyse"
+author: "Christoph Hanck"
+date: '`r Sys.Date()`'
+output:
+  xaringan::moon_reader:
+    seal: false
+    includes:
+      in_header: "assets/meta.html"
+    self_contained: false # if true, fonts will be stored locally
+    lib_dir: libs
+    css: ["default", "assets/ude_fonts.css", "assets/ude.css", "assets/custom.css", "assets/title_slides.css"]
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: "16:9"
+---
+class: title-slide title-index 
+.font80[
+# Kausalanalyse
+### Outline
+.pull-left[
+1. [Introduction]()
+2. [Research Questions and Identification](Research Questions and Identification/QuestionsIdentification.html)
+]]
+
+

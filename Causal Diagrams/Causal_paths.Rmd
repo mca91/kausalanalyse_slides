@@ -1,0 +1,333 @@
+---
+title: "Drawing causal diagram"
+subtitle: "In reference to NICK HUNTINGTON-KLEIN"
+author: "Abhisek Banerjee"
+institute: "University of Duisburg Essen"
+date: "`r Sys.Date()`"
+output:
+  xaringan::moon_reader:
+    css: ["default", "ude_fonts.css", "ude.css"]
+    self_contained: true # if true, fonts will be stored locally
+    seal: true # show a title slide with YAML information
+    includes:
+      in_header: "mathjax-equation-numbers.html"
+    nature:
+      beforeInit: ["remark-zoom.js", "https://platform.twitter.com/widgets.js"]
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: '16:9' #alternatives '16:9' or '4:3' or others e.g. 13:9
+      navigation:
+        scroll: TRUE #disable slide transitions by scrolling
+---
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
+
+```{r, include=FALSE}
+library(ggdag)
+library(ggplot2)
+```
+
+##Paths
+.content-box-red[
+A path between two variables on a causal diagram is a description of the set of arrows and nodes you visit when “walking” from one variable to another.]
+.pull-left[
+For example, consider the following diagram:
+]
+.pull-right[
+```{r,eval=TRUE, echo=FALSE, fig.height=4}
+coord_dag <- list(
+  x = c(a = 1, b = 2, c = 3, d = 3,e=2 ),
+  y = c(a = 1, b = 1, c = 1, d = 2,e=2 )
+)
+dag_object <- ggdag::dagify(b ~ a,
+                            c ~ b,
+                            c ~ d,
+                            e ~ d,
+                            a ~ e,
+                            b ~ e,
+                            coords = coord_dag,
+                            labels=c("a"="A",
+                                     "b"="B",
+                                     "c"="C",
+                                     "d"="D",
+                                     "e"="E"))
+ggdag::ggdag(dag_object, # the dag object we created
+             text = FALSE, # this means the original names won't be shown
+             use_labels = "label") + # instead use the new names
+  theme_void()
+```
+]
+---
+##A Note
+<br>
+
+- B and C are related. 
+ - One reason is that B causes C. After all, B →C is on the diagram - that’s one path between B and C.
+ - Another reason is that D causes both E and C, and E causes B. In other words, we have the path B ←E ←D →C. - If our research question is about the effect of B on C, then this second pathway - the one that D is responsible for, is another reason we would see B and C being related other than B → C. 
+- It’s an alternate explanation for why B and C might be related, other than the explanation that answers our research question of whether (and how much) B causes C.
+- The paths can tell us the road we want to walk on, and also the road we want to avoid.
+
+---
+##Finding all the paths
+<br>
+
+**Why is it important?**
+
+- We want to be able to write out every single path that starts with the treatment variable and ends with the outcome variable.
+- This is because, each path explains one way in which the treatment and outcome variables might be related. 
+- The alternative paths are alternate explanations for the causation.
+- If you want to really show how much your treatment causes your outcome, you have to be able to find those alternate explanations so you can account for them in your research and identify just the explanation you’re interested in.
+
+---
+##Finding all paths
+<br>
+
+**how can we find every path from treatment to outcome?**
+
+We can follow, the following steps:
+- Start at the treatment variable
+- Follow one of the arrows coming in or outof the treatment variable to find another variable
+- Then, follow one of the arrows coming in or out of that variable
+- Keep repeating step 3 until you either come to a variable you’ve already visited ( _A loop which is  not a path_ ), or find the outcome variable ( _Which is a path_ Write it down)
+- Every time you either find a path or a loop, back up one and try a different arrow in/out until you’ve tried them all. - - - Then, back up again and try all those arrows
+- Once you’ve tried all the ways out of the treatment variable and all the eventual paths, you’ve got all the paths!
+
+---
+#An Illustration
+Can you find all the paths:
+.pull-left[
+```{r,eval=TRUE, echo=FALSE}
+coord_dag <- list(
+  x = c(a = 2, b = 1, c = 3, d = 1,e=3 ),
+  y = c(a = 2, b = 3, c = 3, d = 1,e=1 )
+)
+dag_object <- ggdag::dagify(e ~ a,
+                            a ~ b,
+                            c ~ b,
+                            d ~ b,
+                            e ~ c,
+                            e ~ d,
+                            a ~ d,
+                            coords = coord_dag,
+                            labels=c("a"="A",
+                                     "b"="B",
+                                     "c"="C",
+                                     "d"="Treatment",
+                                     "e"="Outcome"))
+ggdag::ggdag(dag_object, # the dag object we created
+             text = FALSE, # this means the original names won't be shown
+             use_labels = "label") + # instead use the new names
+  theme_void()
+```
+
+]
+
+--
+.pull-right[
+<br>
+The list of paths are:
+The full list of paths is:
+
+- Treatment → Outcome
+- Treatment →A →Outcome
+- Treatment →A ←B →C →Outcome
+- Treatment ←B →A →Outcome
+- Treatment ←B →C →Outcome
+]
+
+---
+##Another Example:
+Consider the following causal diagram describing relationship between drinking wine and your lifespan:
+```{r,eval=TRUE, echo=FALSE}
+coord_dag <- list(
+  x = c(a = 2, b = 1, c = 3, d = 1,e=3,f=2 ),
+  y = c(a = 1, b = 2, c = 2, d = 3,e=3,f=4 )
+)
+dag_object <- ggdag::dagify(c ~ a,
+                            a ~ b,
+                            c ~ b,
+                            b ~ d,
+                            c ~ d,
+                            b ~ e,
+                            c ~ e,
+                            d ~ f,
+                            e ~ f,
+                            coords = coord_dag,
+                            labels=c("a"="Drugs",
+                                     "b"="Wine",
+                                     "c"="Lifespan",
+                                     "d"="Income",
+                                     "e"="Health",
+                                     "f"="U1"))
+ggdag::ggdag(dag_object, # the dag object we created
+             text = FALSE, # this means the original names won't be shown
+             use_labels = "label") + # instead use the new names
+  theme_void()
+```
+
+---
+#Steps you must follow:
+<br>
+- From Wine, we can go to Lifespan. Easy. Wine → Lifespan.
+- Now back to Wine. The next arrow out is Drugs, which only goes to Lifespan. Wine →Drugs →Lifespan.
+- From Income we can go to Lifespan: Wine ←Income →Lifespan.
+- Now back to Income. Here,  the only way is Lifespan. Wine ←Income ←U1 →Health →Lifespan.
+- The only arrow we haven’t been out of yet is Health. So we go to Health and can then go on to Lifespan. Wine ←Health →    Lifespan.
+- Back to Health. We can take the arrow to U1 out of Health, which goes to Income, which goes to Lifespan. Wine ←Health ← U1 → Income → Lifespan.
+
+
+---
+
+
+**Hence the full list of paths is :**
+<br>
+</br>
+
+- Wine → Lifespan
+- Wine → Drugs → Lifespan
+- Wine ← Income → Lifespan
+- Wine ← Income ← U1 → Health → Lifespan
+- Wine ← Health → Lifespan
+- Wine ← Health ← U1 → Income → Lifespan
+
+---
+##Good Paths - Bad Paths & Front Doors - Back Doors
+.content-box-red[
+Good Paths are the reasons why the treatment and outcome variables are related that you think should “count” for your research question. Bad paths are the paths that shouldn’t count, in other words the alternate explanations.
+]
+
+- Every path in which all the arrows face away from Treatment are Good Paths, and the rest are Bad Paths.
+
+.content-box-red[
+Paths where all the arrows face away from Treatment are also known as front door paths. The rest would then be “back door paths
+]
+
+- Paths with at least one arrow pointing towards Treatment are back door paths.
+
+- Usually, all the front door paths are good, and all the back door paths are bad.
+
+---
+##Examples:
+- In our example, there are two paths where all the arrows are going away from Wine:
+ - Wine → Lifespan 
+ - Wine → Drugs → Lifespan.
+- These are all the ways in which a change in Wine would cause a change in Lifespan. So these are our front door paths.
+
+- If our research question is “does Wine cause Lifespan?” then these front door paths are the Good Paths, and the other, back door paths are bad ones.
+
+---
+##Open and Closed Paths
+.content-box-red[
+ A path is Open if all of the variables along that paths are allowed to vary. It is instead Closed if at least one of the variables along that path has no variation.
+ ]
+ 
+ 
+--
+
+
+ 
+###An Example:
+- Wine → Drugs → Lifespan
+- If in our data set we have wine drinkers and non-wine drinkers, drug-users and non-drug users, and people with shorter and longer lifespans, then all the variables along this path have variation. They vary in value.
+- If we pick a data set in which nobody uses drugs. In this case, there’s no variation in Drugs, and thus none of the relationship between Wine and Lifespan can possibly be driven by Drugs. The path has Closed.
+
+---
+##The basic idea:
+- paths become Closed, and thus no longer a threat to our identification - if we can remove all the variation due to a variable along that path. 
+- If we can control for at least one variable on each of our Bad Paths without controlling for anything on one of our Good Paths, we have identified the answer to our research question.
+
+--
+
+**We can revise this Idea with our Wine-Drug Example:**
+
+- If we’re interested in the effect of Wine on Lifespan, we want all the ways in which Wine can cause Lifespan to change.
+- We want all the Front Door Paths. We can identify the answer to this research question by picking at least one variable along each Bad Path to control, without controlling for anything on a Good Path.
+- We have two Front Door Paths, which means we have two Good Paths:
+ - Wine  → Lifespan
+ - Wine → Drugs → Lifespan
+- The rest are Bad Paths.
+
+
+---
+##Colliders
+- So for we have said that, paths are Open as long as every variable along the path is allowed to vary, but removing the variation from a variable on the path (controlling/adjusting for it) Closes the path.
+- But that’s not always true if there is a collider on the path. 
+
+.content-box-red[
+A variable is a collider on a particular path if, on that path, both arrows point at it.
+]
+
+- For Example: For example, on the path Treatment ← A → B ← C → Outcome, B is a collider, since the arrows on either side of it on the path point towards it.
+
+- When there’s a collider on the path, that path is Closed by default.
+- If we’re looking for alternate explanations of why Treatment and Outcome might be related, the collider shuts that alternate explanation down.
+- Once you control for the collider, the two variables pointing to the collider become related
+- The alternate explanation returns.
+
+---
+##Dealing with Colliders:
+- We may not control for the colliders. However, two problems are associated with that:
+ - We need to figure out that a variable is a collider so we know not to control for it.
+ - one common way we control for colliders is by selecting a sample. Picking a sample with no variation in Z is one way of controlling for Z. So if we  do a study, say, of college students, then you’re controlling for college attendance whether we want to or not. However, colleege attendence can be a collider.
+- So, if we want to identify the answer to our research question, what we have to do is Close all the Bad Paths while leaving all the Good Paths Open.
+- Once we’ve done that, any remaining relationship between Treatment and Control can only be going through the Good Paths, and all of the Good Paths we want are included.
+- This is exactly what we want.
+
+---
+##Using Paths to Test Your Diagram
+- In our Causal diagram,  We can look for paths between any two variables.
+- It can help us determine whether we have the right diagram in the first place.
+
+--
+
+- The basic idea is this:
+ - We pick two variables on our diagram other than Treatment and Outcome. 
+ - Let’s call them A and B. 
+ - list all of the paths between A and B. Then, do what you need to do to make sure they’re all Closed.
+ - If A and B are still related to each other, that means there must be some other path you didn’t account for.
+ - our diagram is deficient, and perhaps in an important way.
+
+---
+##An Example
+- Let’s pick two variables on Our Wine-Lifespan 
+- Let’s try it with Income and Drugs.
+.pull-left[
+- We list all the path between wine and drugs,
+ - Drugs ← Wine ← Income
+ - Drugs ← Wine ← Health ← U1 → Income
+ - Drugs← Wine ← Health → Lifespan ← Income
+ - Drugs ← Wine → Lifespan ← Income
+ - Drugs← Wine → Lifespan ← Health ← U1 → Income
+ - Drugs → Lifespan ← IncomeDrugs → Lifespan ← Wine ← Income
+ ]
+ 
+ - Drugs → Lifespan ← Wine ← Health ←  U1 → Income
+ - Drugs → Lifespan ← Health → Wine ← Income
+ - Drugs → Lifespan ← Health ← U1 → Income
+
+<br>
+
+
+- list of Open Paths is much smaller, since Lifespan is a collider everywhere it turns up.
+ - Drugs ← Wine ← Income
+ - Drugs ← Wine ← Health ← U1 → Income
+
+---
+##Example contd.
+- If we can then control for Wine, both of these paths Close too. 
+- We learned that there’s no way that Income and Drugs are related to each other except through the amount of wine you drink. 
+- We can then check in the data to see if Income and Drugs are related after controlling for Wine. 
+- If they are (and they likely will be), our model is incomplete.
+- Here we come across Placebo tests.
+.content-box-red[
+Tests like these, where we expect that a relationship should be zero because our diagram says there are no Open Paths, and we see whether it’s actually zero, are called placebo tests. 
+]
+- Failing one of these tests  prove that your model is incorrect and incomplete.
+- If you find a small but nonzero relationship that, according to the diagram, shouldn’t be there, that might be a minor case for concern. 
+- if there’s an enormous and super-strong relationship that shouldn’t be there, that’s when you should really worry and maybe go back to the drawing board on your diagram.
+
+---
+
+
