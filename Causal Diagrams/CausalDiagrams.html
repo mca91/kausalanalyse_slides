@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>Causality</title>
+    <title>Causal Diagrams</title>
     <meta charset="utf-8" />
     <meta name="author" content="Christoph Hanck" />
     <meta name="date" content="2022-12-09" />
@@ -35,7 +35,7 @@
 class: center, middle, inverse, title-slide
 
 .title[
-# Causality
+# Causal Diagrams
 ]
 .author[
 ### Christoph Hanck
@@ -192,7 +192,9 @@ The key is that all the weasel phrases are equally true if you swap the position
 ]
 
 ---
+exclude: true
 ##The Problem of Causal Inference
+
 **Potential outcomes**
 
 Meet Angela with health status `\(Y\)` and consider the variable
@@ -207,6 +209,7 @@ Meet Angela with health status `\(Y\)` and consider the variable
 The other one, what Y would have been if we made X=0, is missing. We don’t know what it is! Could also be Y=10. Could be Y=9. Could be Y=1000!
 
 ---
+exclude: true
 ##A possible solution!
 
 - We can take someone who actually DOES have X=0 and compare their Y?
@@ -219,6 +222,7 @@ The other one, what Y would have been if we made X=0, is missing. We don’t kno
 &lt;/br&gt;
 
 ---
+exclude: true
 ##POTENTIAL OUTCOMES
 &lt;br&gt;
 The logic we just went through is the basis of the potential outcomes model, which is one way of thinking about causality.
@@ -227,9 +231,11 @@ The logic we just went through is the basis of the potential outcomes model, whi
 Figuring out that makes a good counterfactual estimate is a key part of causal inference!
 &lt;/br&gt;
 .footnote[
-counterfactual - counter to the fact of what actually happened]
+counterfactual - counter to the fact of what actually happened
+]
 
 ---
+exclude: true
 ##Experiments and Models
 - A common way to do causal inference in many fields is an experiment.
 - When we’re working with people/firms/countries, running experiments is often infeasible, impossible, or unethical.
@@ -240,6 +246,7 @@ counterfactual - counter to the fact of what actually happened]
 -The model can then tell us what kinds of things could give us wrong results so we can fix them and get the right counterfactual.
 
 ---
+exclude: true
 #Model Identification
 - We have “identified” a causal effect if the estimate that we generate gives us a causal effect.
 - In other words, when we see the estimate, we can claim that it’s isolating just the causal effect.
@@ -252,145 +259,183 @@ counterfactual - counter to the fact of what actually happened]
 ---
 ##Causal Diagrams
 
-.vcenter[
+Causal diagrams were developed in the mid-1990s by the computer scientist Judea Pearl&lt;sup&gt;1&lt;/sup&gt;   who was trying to develop a way for artificial intelligence to think about causality. 
+
+&lt;/br&gt;
+
 .blockquote[
-### Definition Causal Diagram
-A causal diagram is a graphical representation of a data generating process (DGP).
-]]
+### Definition: Causal Diagram
+A causal diagram is a graphical representation of a data generating process (DGP). Variables in the DGP are represented by nodes. The causal relationships in the DGP, each represented by an arrow from the cause variable to the caused variable.
+]
+
+.footnote[
+&lt;sup&gt;1&lt;/sup&gt; Pearl, Judea. 2009. Causality. 2nd ed. Cambridge, MA: Cambridge University Press.
+]
+
+
+---
+##Causal Diagrams &amp;mdash; A simple Example
+
+.blockquote[
+###Example: Flipping coins for cake
+
+Two people A and B flip a coin. If they get head, then person A gets a slice of cake. If they get tail, then person B gets the slice.
+
+&lt;/br&gt;
+
+We have...
+- two variables 
+ 1. the outcome of coin flip ( `\(X\)` )
+ 2. which person gets the cake ( `\(Y\)` )
+- one causal relationship: the outcome of the coin flip determines which person gets cake.
+
+]
+
+---
+##Causal Diagrams &amp;mdash; A simple Example
+
+.blockquote[
+###Example: Flipping coins for cake
+
+&lt;div class="figure"&gt;
+&lt;img src="CausalDiagrams_files/figure-html/unnamed-chunk-1-1.png" alt="1: A simple causal diagram" width="60%" style="color:black; display:block; margin-right:auto; margin-left:auto; margin-top:15px" /&gt;
+&lt;p class="caption"&gt;1: A simple causal diagram&lt;/p&gt;
+&lt;/div&gt;
+
+]
+ 
+---
+##Causal Diagrams
+**Some points to be noted**
+
+- Each variable on the graph may take multiple values. 
+- The arrow just tells us that one variable causes another. It does not say anything about whether that causal effect is positive or negative.
+- Other events that might effect the outcomes are ignores.
+- Outcomes of outcomes are not taken into consideration.
+- All (non-trivial) variables relevant to the DGP should be included, even if we cannot measure or see them.
+
+---
+##Causal Diagrams
+**Unmeasured Variables** (labelled U)
+
+Unmeasured Variables serve two purposes in causal diagrams:
+- they are the key parts of the data generating process
+- they can sometimes fill in for variables that we know must be there, but we have no idea what they are.
+
+**Latent variables** (labelled L) are an example of unmeasured variables: They explain *why* two variables that are correlated but neither of them causes the other 
 
 ---
 ##Causal Diagrams
 
-- Causal diagrams were developed in the mid-1990s by the computer scientist Judea Pearl (2009Pearl, Judea. 2009. Causality. 2nd ed. Cambridge, MA: Cambridge University Press.), who was trying to develop a way for artificial intelligence to think about causality. 
+.blockquote[
+###Example: Ice-cream sales revisited
 
-- A causal diagram contains only two things:
- - The variables in the DGP, each represented by a node on the diagram.
- - The causal relationships in the DGP, each represented by an arrow from the cause variable to the caused variable.
+Ice-cream sales (X) are high when people wear shorts (Y). However, there is no causal relationship between ice-cream sales and people wearing sorts: weather (U) is latent variable causes them both.
 
----
-##A simple Example
-- Two people flips a coin. 
-- If they get head, then person A gets a slice of cake. 
-- If thex get tail, then person B gets the slice.
-- Here, we have two variables 
- - the outcome of coin flip
- - which person gets the cake
-- We have one causal relationship
- - the outcome of the coin flip determines which person got cake.
-`
-
- 
-![](CausalDiagrams_files/figure-html/unnamed-chunk-2-1.png)&lt;!-- --&gt;
- 
----
-##Points to be noted:
-- Each variable on the graph may take multiple values. 
-
-- The arrow just tells us that one variable causes another. It doesn’t say anything about whether that causal effect is positive or negative.
-
-- Other events that might effect the outcomes are ignores.
-
-- Outcomes of outcomes are not taken into consideration.
-
-- All (non-trivial) variables relevant to the data generating process should be included, even if we can’t measure or see them.
-
----
-###Unmeasured Variables
-- Serve two purposes in causal diagrams:
- - they are the key parts of the data generating process
- - hey can sometimes fill in for variables that we know must be there, but we have no idea what they are.
-
-
-###Latent variables
-- They are an example of unmeasured variables.
-- Explains why two variables that are correlated but neither of them causes the other. 
-- We can put them in diagram lebelled as "L" or "U".
-
----
-##An Example:
-
-When people wear Shorts, there is a high sale of Ice-Cream. However, there is no correlation between , sales of Ice-cream and people wearing sorts.A latent variable doing causing them both.
-
-![](CausalDiagrams_files/figure-html/unnamed-chunk-3-1.png)&lt;!-- --&gt;
-
-
----
-
-##The Real World: On an Omission Mission
-.pull-left[
-- The following figure shows: Police Presence and Crime Rate by County, North Carolina 1981-1987.
-- The graph implies: Additional police presence is consistently associated with more crime.
-- The raw correlation is picking up the fact that high-crime areas get assigned lots of police.]
+&lt;div class="figure"&gt;
+&lt;img src="CausalDiagrams_files/figure-html/unnamed-chunk-2-1.png" alt="2: Unobserved variable" width="52%" style="color:black; display:block; margin-right:auto; margin-left:auto; margin-top:15px" /&gt;
+&lt;p class="caption"&gt;2: Unobserved variable&lt;/p&gt;
+&lt;/div&gt;
 
 ]
 
-.pull-right[
-![](CausalDiagrams_files/figure-html/unnamed-chunk-5-1.png)&lt;!-- --&gt;
+---
+
+
+##Causal Diagrams &amp;mdash; The Real World: On an Omission Mission
+
+&lt;div class="figure"&gt;
+&lt;img src="CausalDiagrams_files/figure-html/unnamed-chunk-4-1.png" alt="3:  Police Presence and Crime Rate by County, North Carolina 1981-1987" width="55%" style="color:black; display:block; margin-right:auto; margin-left:auto; margin-top:5%" /&gt;
+&lt;p class="caption"&gt;3:  Police Presence and Crime Rate by County, North Carolina 1981-1987&lt;/p&gt;
+&lt;/div&gt;
+
+.footnote[
+Cornwell, Christopher, and William N. Trumbull. 1994. "Estimating the Economic Model of Crime with Panel Data." The Review of Economics and Statistics 76: 360–66.
 ]
 
----
-##Causal diagram
+???
 
-- To make a causal diagram, we think of following latent varaibles:
- - The unobservable ExpectedCrimePayout
- - It is based on how many police there are and sentencing law
-- Sentencing laws and police per capita are also caused by LawAndOrderPolitics
-- Some assumptions are:
- - LaggedCrime doesn’t cause LawAndOrderPolitics
- - PovertyRate isn’t a part of the data generating process
- - LaggedPolicePerCapita doesn’t cause PolicePerCapita 
- - RecentPopularCrimeMovie doesn’t cause Crime 
+The raw correlation is picking up the fact that high-crime areas get assigned lots of police.
 
 ---
-##The Diagram:
-The causal diagram looks like:
+##Causal Diagrams &amp;mdash; The Real World: On an Omission Mission
 
-
-![](CausalDiagrams_files/figure-html/unnamed-chunk-6-1.png)&lt;!-- --&gt;
-]
----
-##Research Questions in Causal Diagrams
-- We should use our causal diagram to figure out how to identify the answer to our research question.
-
-For instance, let us consider the police-and-crime figure again.
-
-**Question** “does additional police presence reduce crime?”
-
-
-
-- Looking at this diagram, we should be able to see which parts of the diagram answer our research question of interest.(any parts of it that allow PolicePerCapita to cause Crime)
-- We have:
- - PolicePerCapita → Crime (direct effect) andExpectedCrimePayout → Crime (indirect effect)
-- Ask yourself: if the reason that police presence reduces crime is because criminals commit less crime when they expect to be caught 
-- The variation in our data that answers our research question has to do with PolicePerCapita causing Crime, and to do with PolicePerCapita causing ExpectedCrimePayout, which then affects Crime. 
-- To identify our answer, we have to dig out that part of the variation and block out the alternative explanations.
-
----
-##Moderators in Causal Diagrams
-.content-box-red[
-Moderators are variables that don’t necessarily cause another variable (although they might do that too). Instead, they modify the effect of one variable on another.
-] 
-- Example:consider the effect of a fertility drug (X) on the chances of getting pregnant (Y). The effect is moderated by the variable “having a uterus” (Z). If you don’t have a uterus, the drug can’t do much for you. But if you do have a uterus, it can increase your chances of conceiving.
+To make a causal diagram, we think of following latent variables:
+ - Expected crime payout (profitability of crime w.r.t. likelihood to get caught, sentencing law severity)
+ - Law and order politics (how tough the political system in the local area wants to be on crime)
  
----
-##Moderators on Causal Diagram:
-- Technically, the moderator effects are not shown on the causal diagram.
-Let us consider the causal diagram to the right:
-- It implies X → Y and Z → Y
-- However, this could be consistent with any of the following data generating processes:
- - Y = .2X + .3Z
- - Y= 2X + 3XZ , &amp; Infinite many more ..
-- Z has a moderating influence on the effect of X.
-
-![](CausalDiagrams_files/figure-html/unnamed-chunk-7-1.png)&lt;!-- --&gt;
+Some assumptions are:
+ - Lagged crime does not cause law and order politics
+ - The poverty rate is not a part of the DGP
+ - Lagged police per capita does not cause current police per capita 
 
 ---
+##Causal Diagrams &amp;mdash; The Real World: On an Omission Mission
 
+&lt;div class="figure"&gt;
+&lt;img src="CausalDiagrams_files/figure-html/unnamed-chunk-5-1.png" alt="4: Police presence and crime rate" style="color:black; display:block; margin-right:auto; margin-left:auto; margin-top:5%" /&gt;
+&lt;p class="caption"&gt;4: Police presence and crime rate&lt;/p&gt;
+&lt;/div&gt;
+
+---
+## Causal Diagrams and Research Questions
+
+**Does additional police presence reduce crime?**
+
+The causal diagram can be used to figure out how to identify the answer to our research question.
+
+We may identify parts of the diagram that indicate how police per capita to causes crime)
+- Police per capita → Crime (direct effect) 
+- Expected crime payout → Crime (indirect effect)
+
+The variation in our data that answers our research question thus relates to police per capita causing crime, and to police per capita causing expected crime payout, which *then* affects crime. 
+
+To get our answer, we have to dig out *that* part of the variation in crime and block out the alternative explanations.
+
+---
+## Causal Diagrams: Moderators
+
+- `\(X\)` → `\(Y\)` and `\(Z\)` → `\(Y\)`
+- However, this could be consistent with any of the following two DGPs:
+ - `\(Y = .2X + .3Z\)`
+ - `\(Y= 2X + 3XZ\)` 
+ 
+ ...and infinite many more!
+- We say that `\(Z\)` has a *moderating influence* on the effect of `\(X\)` on `\(Y\)`
+
+
+---
+## Causal Diagrams: Moderators
+
+.vcenter[
+.blockquote[
+### Definition: Moderators in causal diagrams
+Moderators are variables that do not necessarily cause another variable (although they might do that too). Instead, they *moderate the effect of one variable on another*.
+]]
+
+---
+## Causal Diagrams: Moderators
+
+**Moderator effects are *not* shown in the causal diagram.**
+
+&lt;div class="figure"&gt;
+&lt;img src="CausalDiagrams_files/figure-html/unnamed-chunk-6-1.png" alt="5: Z moderates X" width="55%" style="color:black; display:block; margin-right:auto; margin-left:auto; margin-top:1%" /&gt;
+&lt;p class="caption"&gt;5: Z moderates X&lt;/p&gt;
+&lt;/div&gt;
+
+---
+## Causal Diagrams: Moderators
+
+.vcenter[
+.blockquote[
+### Example: Fertility drug
+Consider the effect of a fertility drug (X) on the chances of getting pregnant (Y). The effect is *moderated* by the variable "having a uterus" (Z). If you don’t have a uterus, the drug cannot do much for you! But if you do have a uterus, it can increase your chances of conceiving.
+]] 
+ 
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
-<script src="../libs/remark-latest.min.js"></script>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script src="../assets/remark-zoom.js"></script>
-<script src="../libs/local.js"></script>
 <script>var slideshow = remark.create({
 "highlightStyle": "github",
 "highlightLines": true,
