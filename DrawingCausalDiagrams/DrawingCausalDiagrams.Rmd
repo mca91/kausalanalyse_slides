@@ -1,0 +1,396 @@
+---
+title: "Drawing Causal Diagrams"
+author: "Christoph Hanck"
+date: '`r Sys.Date()`'
+output:
+  xaringan::moon_reader:
+    css: ["default", "../assets/ude_fonts.css", "../assets/ude.css",  "../assets/custom.css"]
+    self_contained: false # if true, fonts will be stored locally
+    seal: true # show a title slide with YAML information
+    includes:
+      in_header: "../assets/mathjax-equation-numbers.html"
+    nature:
+      beforeInit: ["../assets/remark-zoom.js"]
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: '16:9' #alternatives '16:9' or '4:3' or others e.g. 13:9
+      navigation:
+        scroll: false #disable slide transitions by scrolling
+---
+
+```{r, load_refs, include = FALSE, echo=FALSE, cache=FALSE}
+library(RefManageR)
+BibOptions(check.entries = FALSE, 
+           bib.style = "authoryear", 
+           cite.style = 'authoryear', 
+           style = "markdown",
+           hyperlink = FALSE, 
+           dashed = FALSE)
+myBib <- ReadBib("../assets/example.bib", check = FALSE)
+
+# packages
+source('../assets/packages.R')
+library(ggdag)
+library(ggplot2)
+
+library(kableExtra)
+
+counter <- function() {
+  i <- 0
+  function() {
+    i <<- i + 1
+    return(i)
+  }
+}
+
+tbl_counter <- counter()
+fig_counter <- counter()
+
+# transparent images
+library(tidyverse)
+library(lubridate)
+library(ggdag)
+theme_set(theme_bw(base_size=12))
+theme_update(panel.background = element_rect(fill = "transparent", colour = NA),
+             plot.background = element_rect(fill = "transparent", colour = NA))
+
+opts_chunk$set(
+  dev.args=list(bg="transparent"),
+  message = F, echo = F
+  )
+```
+
+```{r xaringanExtra_progress-bar, echo = FALSE}
+xaringanExtra::use_progress_bar(color = "#004c93", location = "bottom")
+```
+
+```{r xaringanExtra-clipboard_2, echo=FALSE}
+# copy button styles mainly in ude.css 
+# https://github.com/gadenbuie/xaringanExtra
+htmltools::tagList(
+  xaringanExtra::use_clipboard(
+    button_text = "<i class=\"fa fa-clipboard\"></i>",
+    success_text = "<i class=\"fa fa-check\" style=\"color: #00ff00\"></i>",
+    error_text = "<i class=\"fa fa-times-circle\" style=\"color: #F94144\"></i>"
+  ),
+  rmarkdown::html_dependency_font_awesome()
+)
+```
+
+
+##Recap of Causal Diagrams
+
+Causal diagrams are representations the DGP that got us our data. Causal diagrams help us in answering research questions.
+
+Drawing our own causal diagram will come down to putting our idea of what the DGP is onto paper (or a computer screen).
+
+```{r, echo=F, cache=F, out.extra = 'style="color:black; display:block; margin-right:auto; margin-left:auto;"', fig.height=2, out.width='70%', dpi=190, fig.cap=paste0(fig_counter(), ': A simple causal diagram')}
+coord_dag <- list(
+  x = c(Y = 3, X = 1),
+  y = c(Y = 1, X = 1)
+)
+dag_object <- ggdag::dagify(Y ~ X,
+                            coords = coord_dag,
+                            labels=c("Y"="Cake",
+                                     "X"="Coin flip"))
+ggdag::ggdag(dag_object, # the dag object we created
+             text = T, # this means the original names won't be shown
+             use_labels = "label") + # instead use the new names
+  theme_void()
+
+```
+
+---
+## Causal Diagrams
+**Assumptions for causal diagrams**
+
+- Assumptions about the DPG are very important for causal diagrams.
+- The quality of our research will hinge on how accurate those assumptions are. 
+- Think about whether our assumptions are reasonable, try to base them as much on well-established knowledge and prior research as possible. 
+- If we think that there is reason to be skeptical of assumption, we should ask ourselves what evidence would support the assumption and try to provide that evidence.
+
+---
+## How to get from DGP to causal diagram?
+**General steps**
+
+1. Make a list of all relevant variables.
+  - A variable on a causal diagram is a measurement we could take that could result in different values.
+  - Every variable that 
+    
+      ...causes the treatment or outcome or
+      
+      ...causes something that causes something that causes the treatment or outcome or 
+      
+      ...causes something that causes something that causes something
+  
+      is a good candidate for inclusion `r emoji::emoji('slightly_smiling_face')`.
+  
+2. Filter the variables to the ones that are (strongly) causing the outcome.
+
+---
+## How to get from DGP to causal diagram?
+**General steps**
+
+<ol start=3>
+<li>Categorise the variables into <b>treatment variables</b> and <b>outcome variables</b>
+    
+    <p>Think about how those variables might cause each other, or perhaps be caused by the treatment or outcome</p>
+
+    <p>We might also want to consider whether any of the variables are related but neither causes the other, in which case they must have some sort of (unobserved) common cause we can include</p>
+</li>
+<li>Add the non-treatment and non-control variables.</li>
+    
+<li>Create the causal diagram and carefully revise. Is an important variable missing?</li>
+
+</ol>
+
+
+---
+## Reducing the complexity of causal diagrams
+
+We can identify and reduce needless complexity with s few simple tests:
+
+- **Unimportance**: We’ve already discussed this one&mdash;if the arrows coming in and out of a variable are likely to be tiny and unimportant effects, we can probably remove the variable.
+- **Redundancy**: If there are any variables on the diagram that occupy the same space - that is, they have the arrows coming in and going out of them from/to the same variables - we can probably combine them and describe them together.
+- **Mediators**: If one variable is only on the graph as a way for one variable to affect another, e.g. $B$ in $$A\to B\to C$$ where nothing else connects to $B$, then we can probably remove it and just have $A\to C$ directly.
+- **Irrelevance**: Some variables are an important part of the DGP but irrelevant to the research question at hand can be neglected.
+
+---
+## Drawing causal Diagrams
+
+.vcenter[
+.blockquote[
+
+### Example: Online classes
+
+Potential causes for people to take online classes (*classes*):
+
+- The preferences (*prefs*) of student might be driven by background factors like *race*, *gender*, *age*, and socioeconomic status (*SES*)
+- Those same background factors might influence how much available time (*time*) students have
+- *Time* might be influenced by how many work hours (*work*) a student is doing
+- Causes for people to drop out of community college (*DropOut*) may be *race*, *gender*, *SES*, *work*, and previous performance in academics (*academics*)
+
+]]
+
+---
+## Drawing causal Diagrams
+
+.vcenter[
+.blockquote[
+
+### Example: Online classes
+
+Think about which variables cause which others.
+
+- *classes* $\to$ *DropOut*, *prefs* $\to$ *classes*, *race* $\to$ *DropOut*, *gender* $\to$ *DropOut*, *gender* $\to$ *DropOut*, *WebAccess* $\to$ *classes*, and so on.
+
+- If variables are related to each other without there necessarily being a clear causal arrow in either direction, we add on common (unobserved) causes we just call U1, U2, etc.
+
+]]
+
+---
+## Drawing causal Diagrams
+
+.blockquote[
+### Example: Online classes
+
+The causal diagram becomes messy.
+
+```{r, echo=F, cache=F, out.extra = 'style="color:black; display:block; margin-right:auto; margin-left:auto; margin-top:15px"', fig.width=12, fig.height=4.5, dpi=190, fig.cap=paste0(fig_counter(), ': Online classes')}
+coord_dag <- list(
+  x = c(a = 5, b = 3, c = 1, d = 1, e = 9, f = 5,g=3 ,h=3 ,i=5 ,j=5 ,k=7 ,l=7 ,m=9 ,n=11 ,o=9 ,p= 9,q=11 ),
+  y = c(a = 1, b = 1.3, c = 2, d = 3, e = 1, f = 2,g=3 ,h=4 ,i=3.5 ,j=4 ,k=3.3 ,l= 2,m=2 ,n=2 ,o= 3,p=4 ,q=4 )
+)
+dag_object <- ggdag::dagify(f ~ a,
+                            e ~ a,
+                            f ~ b,
+                            l ~ b,
+                            g ~ c,
+                            e ~ c,
+                            g ~ d,
+                            l ~ d,
+                            o ~ e,
+                            h ~ e,
+                            i ~ f,
+                            j ~ f,
+                            h ~ f,
+                            j ~ g,
+                            i ~ g,
+                            o ~ g,
+                            h ~ g,
+                            j ~ h,
+                            p ~ i,
+                            p ~ j,
+                            i ~ k,
+                            h ~ k,
+                            j ~ k,
+                            o ~ k,
+                            l ~ k,
+                            k ~ l,
+                            i ~ l,
+                            n ~ m,
+                            l ~ m,
+                            q ~ n,
+                            p ~ q,
+                            o ~ p,
+                            coords = coord_dag,
+                            labels=c("a"="U1",
+                                     "b"="U2",
+                                     "c"="U3",
+                                     "d"="U4",
+                                     "e"="acedemics",
+                                     "f"="race",
+                                     "g"="gender",
+                                     "h"="hours",
+                                     "i"="prefs",
+                                     "j"="time",
+                                     "k"="age",
+                                     "l"="SES",
+                                     "m"="U5",
+                                     "n"="location",
+                                     "o"="dropOut",
+                                     "p"="classes",
+                                     "q"="webAccess"))
+ggdag::ggdag(dag_object, # the dag object we created
+             text = FALSE, # this means the original names won't be shown
+             use_labels = "label") + # instead use the new names
+  theme_void()
+```
+
+]
+
+
+---
+## Drawing causal Diagrams
+
+.vcenter[
+.blockquote[
+### Example: Online classes
+
+Simplification of the Causal diagram:
+
+- *gender* and *race* have the exact same set of arrows coming in and going out. So we can combine those in to one, which we can call d*emographics*.
+- Instead of having *gender*, *race*, *SES*, and *age* affect *prefs* and then have *prefs* affect *classes*, we can just have those variables affect *classes* directly as mediators
+- We omit *webAccess* using the same logic
+- Other variables besides *hours* that cause *time* also cause *hours*. We omit *time* to have *hours* affect *classes* directly: we still have all those same *time* causes affecting *hours*. 
+
+]]
+
+---
+## Drawing causal Diagrams
+
+.blockquote[
+### Example: Online classes
+
+After Simplification, the causal diagram looks like:
+
+
+```{r, echo=F, cache=F, out.extra = 'style="color:black; display:block; margin-right:auto; margin-left:auto; margin-top:15px"', fig.width=12, fig.height=4.5, dpi=190, fig.cap=paste0(fig_counter(), ': Simplified causal diagram for online classes')}
+coord_dag <- list(
+  x = c(a = 1, b = 1, c = 1, d = 1, e = 3, f = 5,g=7 ,h=7 ,i=9 ,j=7 ,k=5  ),
+  y = c(a = 1, b = 2, c = 3, d = 4, e = 1, f = 1,g=1 ,h=2 ,i=3 ,j=4 ,k=4 )
+)
+dag_object <- ggdag::dagify(b ~ a,
+                            e ~ a,
+                            f ~ b,
+                            k ~ b,
+                            i ~ b,
+                            h ~ b,
+                            b ~ c,
+                            d ~ c,
+                            k ~ d,
+                            i ~ d,
+                            h ~ e,
+                            e ~ f,
+                            g ~ f,
+                            h ~ g,
+                            i ~ h,
+                            h ~ j,
+                            k ~ j,
+                            h ~ k,
+                            i ~ h,
+                            
+                            coords = coord_dag,
+                            labels=c("a"="U4",
+                                     "b"="demographics",
+                                     "c"="U3",
+                                     "d"="acedemics",
+                                     "e"="SES",
+                                     "f"="U5",
+                                     "g"="location",
+                                     "h"="classes",
+                                     "i"="dropout",
+                                     "j"="age",
+                                     "k"="hours"))
+ggdag::ggdag(dag_object, # the dag object we created
+             text = FALSE, # this means the original names won't be shown
+             use_labels = "label") + # instead use the new names
+  theme_void() 
+```
+
+]
+
+---
+## Drawing causal Diagrams
+**Avoiding cycles**
+
+- A causal diagram cannot have a cycles. 
+- A cycle depicts that a variable causes itself&mdash;we cannot isolate the cause from effect.
+- In the true DGP there cannot be any cycles either.
+- Whenever we have a cycle in our diagram, we can get out of it by adding a **time dimension**.
+- Cycles can also be broken using a source of random variation for one of the variables in the cycle:
+
+    If we just focus on the part of the variable driven by randomness, the effect cannot loop back on itself! 
+ 
+---
+## Drawing causal Diagrams 
+**Avoiding cycles**
+
+.vcenter[
+.blockquote[
+### Example: Cycles in a causal diagram
+
+<br>
+
+.pull-left[
+
+```{r, echo=F, cache=F, fig.height=4, out.width='100%', dpi=190, fig.cap=paste0(fig_counter(), ': A simple loop in a causal diagram')}
+coord_dag <- list(
+  x = c(a = 1, b = 3),
+  y = c(a = 1, b = 2)
+)
+dag_object <- ggdag::dagify(a ~ b,
+                            b ~ a,
+                            coords = coord_dag,
+                            labels=c("a"="You Punch You",
+                                     "b"="You Punch me"))
+ggdag::ggdag(dag_object, # the dag object we created
+             text = FALSE, # this means the original names won't be shown
+             use_labels = "label") + # instead use the new names
+  theme_void()
+
+```
+ ]
+
+.pull-right[
+
+```{r, echo=F, cache=F, fig.height=4, out.width='100%', dpi=190, fig.cap=paste0(fig_counter(), ': Another representation of the loop')}
+coord_dag <- list(
+  x = c(a = 4, b = 1, c = 4, d = 1),
+  y = c(a = 3, b = 1, c = 1, d = 3)
+)
+dag_object <- ggdag::dagify(a ~ b,
+                            c ~ d,
+                            coords = coord_dag,
+                            labels=c("a"="You Punch Me (t+1)",
+                                     "b"="I Punch You (t)",
+                                     "c"="I Punch You (t+1)",
+                                     "d"="You Punch Me (t)"))
+ggdag::ggdag(dag_object, # the dag object we created
+             text = FALSE, # this means the original names won't be shown
+             use_labels = "label") + # instead use the new names
+  theme_void()
+```
+]]]
+ 

@@ -24,6 +24,7 @@ class: title-slide title-index
 1. [Introduction]()
 2. [Research Questions and Identification](Research Questions and Identification/QuestionsIdentification.html)
 3. [Causal Diagrams](Causal Diagrams/CausalDiagrams.html)
+4. [Drawing Causal Diagrams](DrawingCausalDiagrams/DrawingCausalDiagrams.html)
 ]]
 
 
