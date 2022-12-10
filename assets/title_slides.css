@@ -13,3 +13,16 @@
     color: rgba(255, 255, 255, 1) !important;
     font-weight: 600 !important;
   }
+  
+.pull-left strong {
+  color: rgba(255, 255, 255, 0.68) !important;
+  margin-left: 1em;
+} 
+
+.pull-left b {
+  color: rgba(255, 255, 255, 0.68);
+} 
+
+p:nth-of-type(1) ~ ol {
+  margin-left: 1em !important;
+}

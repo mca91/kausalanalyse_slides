@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Causal Paths</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Prof. Dr. Christoph Hanck" />
+    <script src="CausalPaths_files/header-attrs-2.17/header-attrs.js"></script>
+    <link href="CausalPaths_files/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <script src="CausalPaths_files/xaringanExtra-progressBar-0.0.1/progress-bar.js"></script>
+    <script src="CausalPaths_files/clipboard-2.0.6/clipboard.min.js"></script>
+    <link href="CausalPaths_files/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.css" rel="stylesheet" />
+    <script src="CausalPaths_files/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.js"></script>
+    <script>window.xaringanExtraClipboard(null, {"button":"<i class=\"fa fa-clipboard\"><\/i>","success":"<i class=\"fa fa-check\" style=\"color: #00ff00\"><\/i>","error":"<i class=\"fa fa-times-circle\" style=\"color: #F94144\"><\/i>"})</script>
+    <link href="CausalPaths_files/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+    <link href="CausalPaths_files/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        TeX: { equationNumbers: { autoNumber: "AMS" } },
+      });
+    </script>
+    <style>
+    .mjx-mrow a {
+      color: black;
+      pointer-events: none;
+      cursor: default;
+    }
+    </style>
+    <link rel="stylesheet" href="../assets/ude_fonts.css" type="text/css" />
+    <link rel="stylesheet" href="../assets/ude.css" type="text/css" />
+    <link rel="stylesheet" href="../assets/custom.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Causal Paths
+]
+.author[
+### Prof. Dr. Christoph Hanck
+]
+.date[
+### Sommer 2023
+]
+
+---
+
+
+
+
+<style>.xe__progress-bar__container {
+  bottom:0;
+  opacity: 1;
+  position:absolute;
+  right:0;
+  left: 0;
+}
+.xe__progress-bar {
+  height: 0.25em;
+  background-color: #004c93;
+  width: calc(var(--slide-current) / var(--slide-total) * 100%);
+}
+.remark-visible .xe__progress-bar {
+  animation: xe__progress-bar__wipe 200ms forwards;
+  animation-timing-function: cubic-bezier(.86,0,.07,1);
+}
+@keyframes xe__progress-bar__wipe {
+  0% { width: calc(var(--slide-previous) / var(--slide-total) * 100%); }
+  100% { width: calc(var(--slide-current) / var(--slide-total) * 100%); }
+}</style>
+
+
+
+##Paths
+.content-box-red[
+A path between two variables on a causal diagram is a description of the set of arrows and nodes you visit when “walking” from one variable to another.]
+.pull-left[
+For example, consider the following diagram:
+]
+.pull-right[
+![](CausalPaths_files/figure-html/unnamed-chunk-1-1.png)&lt;!-- --&gt;
+]
+---
+##A Note
+&lt;br&gt;
+
+- B and C are related. 
+ - One reason is that B causes C. After all, B →C is on the diagram - that’s one path between B and C.
+ - Another reason is that D causes both E and C, and E causes B. In other words, we have the path B ←E ←D →C. - If our research question is about the effect of B on C, then this second pathway - the one that D is responsible for, is another reason we would see B and C being related other than B → C. 
+- It’s an alternate explanation for why B and C might be related, other than the explanation that answers our research question of whether (and how much) B causes C.
+- The paths can tell us the road we want to walk on, and also the road we want to avoid.
+
+---
+##Finding all the paths
+&lt;br&gt;
+
+**Why is it important?**
+
+- We want to be able to write out every single path that starts with the treatment variable and ends with the outcome variable.
+- This is because, each path explains one way in which the treatment and outcome variables might be related. 
+- The alternative paths are alternate explanations for the causation.
+- If you want to really show how much your treatment causes your outcome, you have to be able to find those alternate explanations so you can account for them in your research and identify just the explanation you’re interested in.
+
+---
+##Finding all paths
+&lt;br&gt;
+
+**how can we find every path from treatment to outcome?**
+
+We can follow, the following steps:
+- Start at the treatment variable
+- Follow one of the arrows coming in or outof the treatment variable to find another variable
+- Then, follow one of the arrows coming in or out of that variable
+- Keep repeating step 3 until you either come to a variable you’ve already visited ( _A loop which is  not a path_ ), or find the outcome variable ( _Which is a path_ Write it down)
+- Every time you either find a path or a loop, back up one and try a different arrow in/out until you’ve tried them all. - - - Then, back up again and try all those arrows
+- Once you’ve tried all the ways out of the treatment variable and all the eventual paths, you’ve got all the paths!
+
+---
+#An Illustration
+Can you find all the paths:
+.pull-left[
+![](CausalPaths_files/figure-html/unnamed-chunk-2-1.png)&lt;!-- --&gt;
+
+]
+
+--
+.pull-right[
+&lt;br&gt;
+The list of paths are:
+The full list of paths is:
+
+- Treatment → Outcome
+- Treatment →A →Outcome
+- Treatment →A ←B →C →Outcome
+- Treatment ←B →A →Outcome
+- Treatment ←B →C →Outcome
+]
+
+---
+##Another Example:
+Consider the following causal diagram describing relationship between drinking wine and your lifespan:
+![](CausalPaths_files/figure-html/unnamed-chunk-3-1.png)&lt;!-- --&gt;
+
+---
+#Steps you must follow:
+&lt;br&gt;
+- From Wine, we can go to Lifespan. Easy. Wine → Lifespan.
+- Now back to Wine. The next arrow out is Drugs, which only goes to Lifespan. Wine →Drugs →Lifespan.
+- From Income we can go to Lifespan: Wine ←Income →Lifespan.
+- Now back to Income. Here,  the only way is Lifespan. Wine ←Income ←U1 →Health →Lifespan.
+- The only arrow we haven’t been out of yet is Health. So we go to Health and can then go on to Lifespan. Wine ←Health →    Lifespan.
+- Back to Health. We can take the arrow to U1 out of Health, which goes to Income, which goes to Lifespan. Wine ←Health ← U1 → Income → Lifespan.
+
+
+---
+
+
+**Hence the full list of paths is :**
+&lt;br&gt;
+&lt;/br&gt;
+
+- Wine → Lifespan
+- Wine → Drugs → Lifespan
+- Wine ← Income → Lifespan
+- Wine ← Income ← U1 → Health → Lifespan
+- Wine ← Health → Lifespan
+- Wine ← Health ← U1 → Income → Lifespan
+
+---
+##Good Paths - Bad Paths &amp; Front Doors - Back Doors
+.content-box-red[
+Good Paths are the reasons why the treatment and outcome variables are related that you think should “count” for your research question. Bad paths are the paths that shouldn’t count, in other words the alternate explanations.
+]
+
+- Every path in which all the arrows face away from Treatment are Good Paths, and the rest are Bad Paths.
+
+.content-box-red[
+Paths where all the arrows face away from Treatment are also known as front door paths. The rest would then be “back door paths
+]
+
+- Paths with at least one arrow pointing towards Treatment are back door paths.
+
+- Usually, all the front door paths are good, and all the back door paths are bad.
+
+---
+##Examples:
+- In our example, there are two paths where all the arrows are going away from Wine:
+ - Wine → Lifespan 
+ - Wine → Drugs → Lifespan.
+- These are all the ways in which a change in Wine would cause a change in Lifespan. So these are our front door paths.
+
+- If our research question is “does Wine cause Lifespan?” then these front door paths are the Good Paths, and the other, back door paths are bad ones.
+
+---
+##Open and Closed Paths
+.content-box-red[
+ A path is Open if all of the variables along that paths are allowed to vary. It is instead Closed if at least one of the variables along that path has no variation.
+ ]
+ 
+ 
+--
+
+
+ 
+###An Example:
+- Wine → Drugs → Lifespan
+- If in our data set we have wine drinkers and non-wine drinkers, drug-users and non-drug users, and people with shorter and longer lifespans, then all the variables along this path have variation. They vary in value.
+- If we pick a data set in which nobody uses drugs. In this case, there’s no variation in Drugs, and thus none of the relationship between Wine and Lifespan can possibly be driven by Drugs. The path has Closed.
+
+---
+##The basic idea:
+- paths become Closed, and thus no longer a threat to our identification - if we can remove all the variation due to a variable along that path. 
+- If we can control for at least one variable on each of our Bad Paths without controlling for anything on one of our Good Paths, we have identified the answer to our research question.
+
+--
+
+**We can revise this Idea with our Wine-Drug Example:**
+
+- If we’re interested in the effect of Wine on Lifespan, we want all the ways in which Wine can cause Lifespan to change.
+- We want all the Front Door Paths. We can identify the answer to this research question by picking at least one variable along each Bad Path to control, without controlling for anything on a Good Path.
+- We have two Front Door Paths, which means we have two Good Paths:
+ - Wine  → Lifespan
+ - Wine → Drugs → Lifespan
+- The rest are Bad Paths.
+
+
+---
+##Colliders
+- So for we have said that, paths are Open as long as every variable along the path is allowed to vary, but removing the variation from a variable on the path (controlling/adjusting for it) Closes the path.
+- But that’s not always true if there is a collider on the path. 
+
+.content-box-red[
+A variable is a collider on a particular path if, on that path, both arrows point at it.
+]
+
+- For Example: For example, on the path Treatment ← A → B ← C → Outcome, B is a collider, since the arrows on either side of it on the path point towards it.
+
+- When there’s a collider on the path, that path is Closed by default.
+- If we’re looking for alternate explanations of why Treatment and Outcome might be related, the collider shuts that alternate explanation down.
+- Once you control for the collider, the two variables pointing to the collider become related
+- The alternate explanation returns.
+
+---
+##Dealing with Colliders:
+- We may not control for the colliders. However, two problems are associated with that:
+ - We need to figure out that a variable is a collider so we know not to control for it.
+ - one common way we control for colliders is by selecting a sample. Picking a sample with no variation in Z is one way of controlling for Z. So if we  do a study, say, of college students, then you’re controlling for college attendance whether we want to or not. However, colleege attendence can be a collider.
+- So, if we want to identify the answer to our research question, what we have to do is Close all the Bad Paths while leaving all the Good Paths Open.
+- Once we’ve done that, any remaining relationship between Treatment and Control can only be going through the Good Paths, and all of the Good Paths we want are included.
+- This is exactly what we want.
+
+---
+##Using Paths to Test Your Diagram
+- In our Causal diagram,  We can look for paths between any two variables.
+- It can help us determine whether we have the right diagram in the first place.
+
+--
+
+- The basic idea is this:
+ - We pick two variables on our diagram other than Treatment and Outcome. 
+ - Let’s call them A and B. 
+ - list all of the paths between A and B. Then, do what you need to do to make sure they’re all Closed.
+ - If A and B are still related to each other, that means there must be some other path you didn’t account for.
+ - our diagram is deficient, and perhaps in an important way.
+
+---
+##An Example
+- Let’s pick two variables on Our Wine-Lifespan 
+- Let’s try it with Income and Drugs.
+.pull-left[
+- We list all the path between wine and drugs,
+ - Drugs ← Wine ← Income
+ - Drugs ← Wine ← Health ← U1 → Income
+ - Drugs← Wine ← Health → Lifespan ← Income
+ - Drugs ← Wine → Lifespan ← Income
+ - Drugs← Wine → Lifespan ← Health ← U1 → Income
+ - Drugs → Lifespan ← IncomeDrugs → Lifespan ← Wine ← Income
+ ]
+ 
+ - Drugs → Lifespan ← Wine ← Health ←  U1 → Income
+ - Drugs → Lifespan ← Health → Wine ← Income
+ - Drugs → Lifespan ← Health ← U1 → Income
+
+&lt;br&gt;
+
+
+- list of Open Paths is much smaller, since Lifespan is a collider everywhere it turns up.
+ - Drugs ← Wine ← Income
+ - Drugs ← Wine ← Health ← U1 → Income
+
+---
+##Example contd.
+- If we can then control for Wine, both of these paths Close too. 
+- We learned that there’s no way that Income and Drugs are related to each other except through the amount of wine you drink. 
+- We can then check in the data to see if Income and Drugs are related after controlling for Wine. 
+- If they are (and they likely will be), our model is incomplete.
+- Here we come across Placebo tests.
+.content-box-red[
+Tests like these, where we expect that a relationship should be zero because our diagram says there are no Open Paths, and we see whether it’s actually zero, are called placebo tests. 
+]
+- Failing one of these tests  prove that your model is incorrect and incomplete.
+- If you find a small but nonzero relationship that, according to the diagram, shouldn’t be there, that might be a minor case for concern. 
+- if there’s an enormous and super-strong relationship that shouldn’t be there, that’s when you should really worry and maybe go back to the drawing board on your diagram.
+
+---
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="../assets/remark-zoom.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9",
+"navigation": {
+"scroll": false
+}
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
