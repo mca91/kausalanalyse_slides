@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Identification</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Prof. Dr. Christoph Hanck" />
+    <script src="Identification_files/header-attrs-2.17/header-attrs.js"></script>
+    <link href="Identification_files/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <script src="Identification_files/xaringanExtra-progressBar-0.0.1/progress-bar.js"></script>
+    <script src="Identification_files/clipboard-2.0.6/clipboard.min.js"></script>
+    <link href="Identification_files/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.css" rel="stylesheet" />
+    <script src="Identification_files/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.js"></script>
+    <script>window.xaringanExtraClipboard(null, {"button":"<i class=\"fa fa-clipboard\"><\/i>","success":"<i class=\"fa fa-check\" style=\"color: #00ff00\"><\/i>","error":"<i class=\"fa fa-times-circle\" style=\"color: #F94144\"><\/i>"})</script>
+    <link href="Identification_files/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+    <link href="Identification_files/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+    <script src="Identification_files/kePrint-0.0.1/kePrint.js"></script>
+    <link href="Identification_files/lightable-0.0.1/lightable.css" rel="stylesheet" />
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        TeX: { equationNumbers: { autoNumber: "AMS" } },
+      });
+    </script>
+    <style>
+    .mjx-mrow a {
+      color: black;
+      pointer-events: none;
+      cursor: default;
+    }
+    </style>
+    <link rel="stylesheet" href="../assets/ude_fonts.css" type="text/css" />
+    <link rel="stylesheet" href="../assets/ude.css" type="text/css" />
+    <link rel="stylesheet" href="../assets/custom.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Identification
+]
+.author[
+### Prof. Dr. Christoph Hanck
+]
+.date[
+### Sommer 2023
+]
+
+---
+
+
+
+
+<style>.xe__progress-bar__container {
+  bottom:0;
+  opacity: 1;
+  position:absolute;
+  right:0;
+  left: 0;
+}
+.xe__progress-bar {
+  height: 0.25em;
+  background-color: #004c93;
+  width: calc(var(--slide-current) / var(--slide-total) * 100%);
+}
+.remark-visible .xe__progress-bar {
+  animation: xe__progress-bar__wipe 200ms forwards;
+  animation-timing-function: cubic-bezier(.86,0,.07,1);
+}
+@keyframes xe__progress-bar__wipe {
+  0% { width: calc(var(--slide-previous) / var(--slide-total) * 100%); }
+  100% { width: calc(var(--slide-current) / var(--slide-total) * 100%); }
+}</style>
+
+
+
+# The data generating process
+
+- A general way how scientists think about reality is that there are regular laws that govern the way the universe works.
+
+- These laws are an example of a *data generating process* (DGP). The laws work behind the scenes, doing what they do whether we know about them or not. 
+
+- DGPs are unknown but we observe the data that result from them. 
+
+We have a two-part concept of DGPs&amp;mdash;the characteristics we do know about (by combining everything we already know about a topic and its underlying laws) and those we do not know.
+
+- The parts we do not know are what we are hoping to learn about using research!
+
+
+---
+# DGPs &amp;mdash; an example
+
+.vcenter[
+.blockquote[
+
+### Example: A DGP for Income
+
+Assume that we have [income data](https://observablehq.com/embed/a2046a4b2b3d459e?cells=viewof+radios_hc%2Cviewof+radios_degree%2Cplot) that has been generated from the following laws, but we have no idea what the laws are.
+
+- Income is log-normally distributed 
+- Being brown-haired gives you a 10% income boost
+- 20% of people are naturally brown-haired
+- Having a college degree gives you a 20% income boost
+- 30% of people have college degrees
+- 40% of people who don’t have brown hair or a college degree will choose to dye their hair brown
+
+]]
+
+
+---
+# DGPs &amp;mdash; an example
+
+
+
+.vcenter[
+.blockquote[
+
+### Example: A DGP for Income
+
+What can we say about the effect of being brown-haired using *conditional distributions*?
+
+&lt;div class="figure"&gt;
+&lt;img src="Identification_files/figure-html/unnamed-chunk-2-1.png" alt="1: log-income distributions" width="45%" style="color:black; display:block; margin-right:auto; margin-left:auto; margin-top:15px" /&gt;
+&lt;p class="caption"&gt;1: log-income distributions&lt;/p&gt;
+&lt;/div&gt;
+
+]]
+
+---
+# DGPs &amp;mdash; an example
+
+.vcenter[
+.blockquote[
+
+### Example: A DGP for Income
+
+What can we say about the effect of being brown-haired using *conditional distributions*?
+
+&lt;table&gt;
+&lt;caption&gt;1: log-income for all individuals&lt;/caption&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; haircolor &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; mean log income &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; brown &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5.128248 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; other &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5.076427 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;br&gt;
+
+]]
+
+---
+# DGPs &amp;mdash; an example
+
+.vcenter[
+.blockquote[
+
+### Example: A DGP for Income
+
+- We find that being brown-haired gives you a pay-bump of about 5%:
+
+  We don’t see much effect of brown hair because many non-college people have brown hair, but those people don’t get the College wage bump, so it looks like brown hair doesn’t do much!
+
+- Where can we go from there in order to get the right answer? We have College information in our data, and need an idea of how it fits into the DGP:
+
+  If we know that it’s only non-college people who are dying their hair, and that College gives you a bump, we have some alternate explanations for our data. 
+
+]]
+
+---
+# DGPs &amp;mdash; an example
+
+.vcenter[
+.blockquote[
+
+### Example: A DGP for Income
+
+Knowing about the DGP also lets us figure out what we need to do to the data to get the right answer. In this DGP, we can notice that among college students, nobody is dying their hair, and so there’s no reason we can see why brown hair and income might be related except for brown hair giving you an income boost.
+
+Limiting things just to college students, we see that brown-haired students get a bump of about 10%.
+
+&lt;table&gt;
+&lt;caption&gt;2: log-income for college students&lt;/caption&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; haircolor &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; mean log income &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; brown &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5.307714 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; other &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5.202623 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;br&gt;
+
+]]
+
+---
+# DGPs 
+
+What did we do?
+
+- **Looking for variation** 
+
+    The DGP comprises all mechanisms producing the observed data. We are interested in a part of the observed variation: the variation in income by hair color among college students. 
+    
+    How can we find the variation we need and focus just on that?
+
+- **Identification** 
+
+    How can we use the DGP to be sure that the variation we look at is the right variation? Figuring out what sorts of problems in the data you need to clear away&amp;mdash;like how we noticed that the non-college students dying their hair was giving us problems&amp;mdash;is the process of identification.
+
+---
+# Looking for Variation
+
+.blockquote[
+
+#### **Example: Avocado sales**
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="Identification_files/figure-html/unnamed-chunk-5-1.png" alt="2: Weekly Sales of Avocados in California, Jan 2015 &amp;amp;mdash; March 2018" width="55%" style="display:block; margin-right:auto; margin-left:auto;" /&gt;
+&lt;p class="caption"&gt;2: Weekly Sales of Avocados in California, Jan 2015 &amp;mdash; March 2018&lt;/p&gt;
+&lt;/div&gt;
+
+]
+
+---
+# Looking for Variation
+
+.blockquote[
+
+#### **Example: Avocado sales**
+
+- What conclusion can we draw from Figure 2? 
+
+    Avocado sales tend to be lower in weeks where the price of avocados is high and vice versa.
+
+- An interesting research question might be: 
+
+    What is the effect a 10% increase in price on the number of avocados people want to buy?
+
+- Can we answer our research question from using the data shown in Figure 2? Why or why not?
+
+]
+
+---
+# Looking for Variation
+
+.blockquote[
+
+#### **Example: Avocado sales**
+
+- We might be tempted to say something like ''an increase in the price of avocados drives down sales.'' But even that’s not actually on the graph!
+
+- All that we *can* see in the graph is the **covariation** or **correlation** between price and quantity of avocados&amp;mdash;how they move together or apart. But these variables move around for *all sorts of reasons*!
+
+
+]
+
+---
+# Looking for Variation
+
+.blockquote[
+
+#### **Example: Avocado sales**
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="Identification_files/figure-html/unnamed-chunk-6-1.png" alt="3: Weekly Sales of Avocados in California, Jan 2015 &amp;amp;mdash; March 2018" width="55%" style="display:block; margin-right:auto; margin-left:auto;" /&gt;
+&lt;p class="caption"&gt;3: Weekly Sales of Avocados in California, Jan 2015 &amp;mdash; March 2018&lt;/p&gt;
+&lt;/div&gt;
+
+]
+
+---
+# Looking for Variation
+
+.blockquote[
+
+#### **Example: Avocado sales**
+
+We still see a negative relationship in Figure 3. But why did price drop and quantity rise from January to February that year? 
+
+- Is it because a drop in price made people buy more? 
+- Is it because the market was flooded with avocados so people wouldn’t pay as much for them? 
+- Is it because the high price in January made suppliers bring way more avocados to market in February?
+
+It’s probably a little bit of all of them: Variables move around for all sorts of reasons. Those reasons would be reflected in the DGP. But when we have a research question in mind, we are usually only interested in one of those reasons!
+
+]
+
+---
+# Looking for Variation
+
+.blockquote[
+
+#### **Example: Avocado sales**
+
+- How can we find the variation in the data that answers our question? 
+
+- We have to ask what is the variation that we want to find? If we want to figure out what the effect of the price is on how many avocados people want to buy, then we want variation in people buying avocados (rather than people selling them) that is driven by changes in the price (rather than, say, avocados becoming less popular).
+
+- We’re going to be hopeless at doing this if we don’t know anything about the DGP: 
+  
+  *We need to use what we know about the DGP to learn a little more*. 
+
+]
+
+---
+# Looking for Variation
+
+.blockquote[
+
+#### **Example: Avocado sales**
+
+- Assume that at the beginning of each month, avocado suppliers make a plan for what avocado prices will be each week in that month, and never change their plans until the next month.
+
+- If that’s true, then the “suppliers set prices” and “suppliers set quantities” explanations only matter between months. The variation in price and quantity from week to week in the same month will isolate variation in people buying avocados and get rid of variation from people selling avocados. 
+
+- Further, because the price is set by the sellers, the variation in quantity we’re looking at can only be driven by changes in the price.
+
+]
+
+---
+# Looking for Variation
+
+.blockquote[
+
+#### **Example: Avocado sales**
+
+- Our ability to find this answer is entirely based on that assumption we made about sellers making their choices between months. The reason I’ve made this particular assumption is that it helps us isolate (identify) only the variation on the part of consumers, conveniently getting rid of variation on the part of sellers and letting us just look at buyers.
+
+- This assumption, which works so much magic for us, is entirely a fiction made up for the convenience of writing this book. Hopefully you will not find all assumptions made for the purposes of digging out variation to be convenient fictions. Some probably are.
+
+]
+
+---
+# Looking for Variation
+
+.blockquote[
+
+#### **Example: Avocado sales**
+
+- By tossing out any variation between months, we’re digging through explanations that rely on that variation and tossing them out. Since sellers only change behavior between months (given our assumption), that explanation gets tossed out when we get rid of between-month variation, leaving us only with buyer behavior.
+
+- If we just look at changes within months, as in Figure 4, we can see that there’s still a negative relationship. Note that for each of the months, there’s a negative relationship, ignoring any differences between the months. So, given the data and what we know about how sellers operate, an increase in price does reduce how many avocados people want to buy.
+
+]
+
+---
+# Looking for Variation
+
+.blockquote[
+
+#### **Example: Avocado sales**
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="Identification_files/figure-html/unnamed-chunk-7-1.png" alt="4: Weekly Sales of Avocados in California, Feb. 2015 &amp;amp;mdash; March 2015" width="55%" style="display:block; margin-right:auto; margin-left:auto;" /&gt;
+&lt;p class="caption"&gt;4: Weekly Sales of Avocados in California, Feb. 2015 &amp;mdash; March 2015&lt;/p&gt;
+&lt;/div&gt;
+
+]
+
+---
+# Looking for Variation
+
+.blockquote[
+
+#### **Example: Avocado sales**
+
+- The task of figuring out how to answer our research question is really the task of figuring out where your variation is. It’s unlikely that the variation in the raw data answers the question you’re really interested in. So where is the variation that does answer your question? How can you find it and dig it out? What variation needs to be removed to unearth the good stuff underneath?
+
+- That process - finding where the variation you’re interested in is lurking and isolating just that part so you know that you’re answering your research question - is called identification.
+
+]
+
+---
+# Identification
+
+- Identification is the process of figuring out what part of the variation in your data answers your research question. 
+
+- A **research question takes us from theory to hypothesis**, making sure that the hypothesis we’re testing will actually tell us something about the theory. 
+
+- **Identification takes us from hypothesis to the data**, making sure that we have a way of testing that hypothesis in the data, and not accidentally testing some other hypothesis instead.
+
+.blockquote[
+#### **Example: Avocado sales &amp;mdash; Identification**
+Having an idea of the DGP (the different ways that prices and quantities might be related), we know what work we need to do for identification: 
+
+We closed off undesirable explanations by getting rid of between-month variation driven by sellers. The only way for price to affect quantity at that point is through the consumers.
+]
+
+
+---
+# Identification
+
+Identification requires statistical procedures in order to isolate the variation we are interested in. Therefore, **identification critically relies on the theory and the assumptions about DGP**
+
+.blockquote[
+#### **Example: Avocado sales &amp;mdash; Identification**
+  
+Consider again the avocado example:
+  
+- We used our knowledge about markets to realise that sellers might be setting price in response to the quantity&amp;mdash;an alternate explanation we need to deal with in isolating the variation of interest. 
+
+- We then used an assumption about how sellers set prices to figure out how we can block out this alternate explanation by looking within-month.
+
+]
+
+---
+# Identification
+
+**Summary:** 
+
+If we want to identify the part of our data that gives the answer to our research question, we must:
+
+1. Using theory, paint the most accurate picture possible of what the DGP looks like
+2. Use that DGP to figure out the reasons our data might look the way it does that *do not* answer our research question
+3. Find ways to block out those alternate reasons and to isolate the variation we need
+
+This process is a lot more difficult than just “look at the data and see what it says.” But if we don’t go the extra mile of following these steps, we can end up with confusing, inconsistent, or just plain wrong results. 
+
+Let us see what may happen when we do not take identification seriously enough...
+
+
+---
+# Study: Alcohol an Mortality
+
+A. M. Wood et al. (2018) investigate the relationship between drinking and outcomes like mortality and cardiovascular disease among nearly 600,000 people.
+
+  - no benefit of small amounts of drinking. 
+    
+  - Amount of alcohol it took to start noticing increased risk for serious outcomes was at about 100 grams of alcohol per week (which is about a drink per day, and below current guidelines in some countries) 
+
+Figure 5 shows the relationship they found between weekly alcohol consumption and the chances of mortality. Mortality starts to rise at around 100 grams of alcohol per week, and goes up sharply from there.
+
+.footnote[
+Wood, Angela M, Stephen Kaptoge, Adam S Butterworth, and 239 more. 2018. “Risk Thresholds for Alcohol Consumption: Combined Analysis of Individual-Participant Data for 599,912 Current Drinkers in 83 Prospective Studies.” The Lancet 391 (10129): 1513–23. https://doi.org/10.1016/S0140-6736(18)30134-X.
+]
+
+---
+# Study: Alcohol an Mortality
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="Identification_files/figure-html/unnamed-chunk-8-1.png" alt="5: Alcohol Consumption and Mortality from Wood et al. (2018). Minor changes from original." width="55%" style="display:block; margin-top:5%; margin-right:auto; margin-left:auto;" /&gt;
+&lt;p class="caption"&gt;5: Alcohol Consumption and Mortality from Wood et al. (2018). Minor changes from original.&lt;/p&gt;
+&lt;/div&gt;
+
+---
+# Study: Alcohol an Mortality
+
+**Think about the DGP:**
+
+  - What leads us to observe people drinking?
+  - What leads us to observe them dying? 
+  - What reasons might there be for us to see an association between alcohol and mortality?
+  
+  **Think about determinants of drinking and mortality:**
+
+    - Tendency to take more risks may results in more drinking and other unhealthy activities, e.g., smoking
+    - Increased mortality risk may result from many bad-health indicators (including drinking and smoking)
+
+---
+# Study: Alcohol an Mortality
+
+**Think of alternate explanations**
+
+Smoking is likely related alcohol consumption and high mortality and thus may be an alternate explanation for the results.
+
+- Smokers could be more likely to drink:
+
+  The relationship between drinking and mortality might just be that smokers tend to drink, and also die earlier because of their smoking. 
+
+- Anything else that ends up on both lists is going to give us an alternate explanation.
+
+---
+# Study: Alcohol an Mortality
+
+**Would non-drinkers would have very low mortality rates?**
+
+Maybe, but people...
+
+- may choose not to drink at all because their health is too poor to handle it. 
+- wont't drink if they are recovering alcoholics. In these cases, we may actually see worse mortality for non-drinkers, but that relationship is almost certainly *not* because not-drinking is bad for them.
+
+---
+# Study: Alcohol an Mortality
+
+**Did Woods et al. (2018) manage to deal with some of these alternate explanations.**
+
+Yes:
+
+- Note that Figure 5 does not contain non-drinkers. They have been left out of the study to block out the too-sick-to-drink and ex-alcoholic alternate explanations. 
+
+    This is one reason why the study does not find a positive effect of a little alcohol while other studies do&amp;mdash;those that leave in the non-drinkers!
+
+- Woods et al. (2018) also use statistical adjustment to account for further alternate explanations like smoking, age, gender, and a few health variables like BMI and diabetes indicators
+
+---
+# Study: Alcohol an Mortality
+
+**Did Woods et al. (2018) find the "true" effect of drinking on mortality**
+
+Not necessarily:
+
+- It is impossible to account for all conceivable alternate explanations related to risk-taking
+
+- Omission of all non-drinkers disregards non-drinkers who are neither sick nor ex-alcoholics.
+
+  What if some very sick people just choose to drink less rather than not at all?
+  
+Thus it might be a little premature to take these results, despite the hundreds of thousands of people they examined, and use them to conclude that we have now *identified* the effects of alcohol on mortality.
+
+ 
+If it feels like they did their part in addressing some of the alternate explanations and what’s left over feels trivial, keep in mind that these alternate explanations can lead us to very strange conclusions...
+
+---
+# Study: Alcohol an Mortality
+
+If the methods can give us Figure 6 by Auld (2018), then even if there is really an effect of alcohol on mortality, how close do we think Figure 5.5 is to identifying that effect?
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="Identification_files/figure-html/unnamed-chunk-9-1.png" alt="6: Alcohol Consumption and Being a Man" width="55%" style="display:block; margin-right:auto; margin-top:5%; margin-left:auto;" /&gt;
+&lt;p class="caption"&gt;6: Alcohol Consumption and Being a Man&lt;/p&gt;
+&lt;/div&gt;
+
+.footnote[
+  Auld, Chris. 2018. “Breaking News!” https://twitter.com/Chris_Auld/status/1035230771957485568.
+]
+
+---
+# Do we need to be *omniscient* ?
+
+No research project is perfect. We should try to...
+
+- Learn what we can about the context so that we do not miss any hugely important part of the DGP
+- Be careful to acknowledge what assumptions we are making, and think about how they might be wrong
+- Spot gaps in our knowledge about the DGP, and make some realistic guesses about what might be in that gap
+- Not aim for perfection, but aim for getting as close as we can
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="../assets/remark-zoom.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9",
+"navigation": {
+"scroll": false
+}
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

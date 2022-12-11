@@ -22,16 +22,19 @@ class: title-slide title-index
 # Kausalanalyse
 
 .pull-left[
-1. [Introduction (t.b.d.)]()
+
+<ol start=0>
+  <li> Introduction (t.b.d.) </li>
+</ol>
 
 **Research Design**
 
-2. [Research Questions and Identification](Research Questions and Identification/QuestionsIdentification.html)
-3. <b>Causal Diagrams</b>
-  - [Causal Diagrams](Causal Diagrams/CausalDiagrams.html)
-  - [Drawing Causal Diagrams](DrawingCausalDiagrams/DrawingCausalDiagrams.html)
-4. [Causal Paths](CausalPaths/CausalPaths.html)
-5. Front Doors
-6. Treatment Effects
+2. [Research Questions](ResearchQuestions/ResearchQuestions.html)
+3. [Identification](Identification/Identification.html)
+4. [Causal Diagrams](Causal Diagrams/CausalDiagrams.html)
+5. [Drawing Causal Diagrams](DrawingCausalDiagrams/DrawingCausalDiagrams.html)
+6. [Causal Paths](CausalPaths/CausalPaths.html)
+7. [Front Doors](FindingFrontDoors/FindingFrontDoors.html)
+8. Treatment Effects
 ]]
 
