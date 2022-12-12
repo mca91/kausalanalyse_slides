@@ -96,6 +96,8 @@ blockquote, .blockquote {
   padding: 0.5em;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
+  -webkit-print-color-adjust: exact;
+  -webkit-filter: blur(0);
 }
 
 
