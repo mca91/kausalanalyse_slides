@@ -92,12 +92,9 @@ A research questions takes us from a **theory** to an **hypothesis** that we can
 ---
 # What is a research question anyway? &mdash; ctd.
 
-<br>
-
-```{r, echo = F}
+```{r, echo = F, out.width='85%',out.extra = 'style="display:block; margin-right:auto; margin-left:auto;margin-top:10%;"'}
 knitr::include_graphics("researchquestion.png")
 ```
-
 
 ---
 # Research questions &mdash; Examples
