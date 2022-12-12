@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Causal Diagrams</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Christoph Hanck" />
+    <meta name="date" content="2022-12-12" />
+    <script src="CausalDiagrams_files/header-attrs/header-attrs.js"></script>
+    <link href="CausalDiagrams_files/remark-css/default.css" rel="stylesheet" />
+    <script src="CausalDiagrams_files/xaringanExtra-progressBar/progress-bar.js"></script>
+    <script src="CausalDiagrams_files/clipboard/clipboard.min.js"></script>
+    <link href="CausalDiagrams_files/xaringanExtra-clipboard/xaringanExtra-clipboard.css" rel="stylesheet" />
+    <script src="CausalDiagrams_files/xaringanExtra-clipboard/xaringanExtra-clipboard.js"></script>
+    <script>window.xaringanExtraClipboard(null, {"button":"<i class=\"fa fa-clipboard\"><\/i>","success":"<i class=\"fa fa-check\" style=\"color: #00ff00\"><\/i>","error":"<i class=\"fa fa-times-circle\" style=\"color: #F94144\"><\/i>"})</script>
+    <link href="CausalDiagrams_files/font-awesome/css/all.css" rel="stylesheet" />
+    <link href="CausalDiagrams_files/font-awesome/css/v4-shims.css" rel="stylesheet" />
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        TeX: { equationNumbers: { autoNumber: "AMS" } },
+      });
+    </script>
+    <style>
+    .mjx-mrow a {
+      color: black;
+      pointer-events: none;
+      cursor: default;
+    }
+    </style>
+    <link rel="stylesheet" href="../assets/ude_fonts.css" type="text/css" />
+    <link rel="stylesheet" href="../assets/ude.css" type="text/css" />
+    <link rel="stylesheet" href="../assets/custom.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Causal Diagrams
+]
+.author[
+### Christoph Hanck
+]
+.date[
+### 2022-12-12
+]
+
+---
+
+
+
+
+<style>.xe__progress-bar__container {
+  bottom:0;
+  opacity: 1;
+  position:absolute;
+  right:0;
+  left: 0;
+}
+.xe__progress-bar {
+  height: 0.25em;
+  background-color: #004c93;
+  width: calc(var(--slide-current) / var(--slide-total) * 100%);
+}
+.remark-visible .xe__progress-bar {
+  animation: xe__progress-bar__wipe 200ms forwards;
+  animation-timing-function: cubic-bezier(.86,0,.07,1);
+}
+@keyframes xe__progress-bar__wipe {
+  0% { width: calc(var(--slide-previous) / var(--slide-total) * 100%); }
+  100% { width: calc(var(--slide-current) / var(--slide-total) * 100%); }
+}</style>
+
+
+
+##Motivation
+
+Before going into all the technicalities of causality, we need to understand *why* we should worry so much about causality: **many interesting research questions are causal in nature.**
+
+&lt;br&gt;
+
+.blockquote[
+
+###Examples: Economic research questions
+
+- We don’t want to know if countries with higher minimum wages have less poverty, we want to know if raising the minimum wage reduces poverty. 
+- We don’t want to know if people who take a popular common-cold-shortening medicine get better, we want to know if the medicine made them get better more quickly. 
+- We don’t want to know if the central bank cutting interest rates was shortly followed by a recession, we want to know if the interest rate cut caused the recession.
+
+]
+
+---
+## So what is causality?
+
+.vcenter[
+.blockquote[
+
+###Definition: Causality
+
+We say that `\(X\)` causes `\(Y\)` when we interfere and change the value of `\(X\)` without changing anything else, then the distribution of `\(Y\)` would also change as a result.
+
+]]
+
+---
+## Causality &amp;mdash; Examples
+
+.vcenter[
+.blockquote[
+### Examples: a few causal relationships
+
+Obvious ones:
+ - A light switch being set to on causes the light to be on
+ - Setting off fireworks raises the noise level
+
+Less obvious ones:
+ - Getting a college degree increases your earnings
+ - Tariffs reduce the amount of trade
+]]
+
+---
+## Causality 
+
+**Correlation does not imply causality.**
+
+Often we observe non-zero correlations that do not reflect causal relationships (or may be causal in the wrong direction!)
+
+.blockquote[
+###Examples: causality vs. correlation
+
+Obvious ones:
+- People tend to wear shorts on days when ice cream trucks are out
+- Rooster crowing sounds are followed closely by sunrise
+
+Less obvious ones:
+- Colds tend to clear up a few days after you take Emergen-C
+- The performance of the economy tends to be lower or higher depending on the president’s political party
+]
+
+---
+##Casusality 
+
+Not all `\(Y\)` must be due to `\(X\)`: we still say `\(X\)` causes `\(Y\)` even if changing `\(X\)` does not always change `\(Y\)`, but just changes the distribution of `\(Y\)`: the **probability** that `\(Y\)` occurs. 
+
+&lt;br&gt;
+
+.blockquote[
+###Example: switches and bulbs
+
+Flipping a light switch ( `\(X\)` ) on alters the distribution of the light coming on ( `\(Y\)` ), but not that it  happens for certain:
+
+- The bulb may be broken
+
+- The bulb may be loose
+
+- There may be no electricity
+
+]
+
+---
+##Weasel words
+
+There are lots of words that are generally taken to imply causality, as well as words that describe relationships *without* implying causality. 
+
+There are also some “weasel words” that don’t technically say anything about causality but clearly really want you to hear it.
+
+
+&lt;br&gt;
+.center[What are some of these words?]
+&lt;/br&gt;
+
+
+We can say `\(X\)` causes `\(Y\)` by saying:
+- `\(X\)` causes `\(Y\)`
+- `\(X\)` affects `\(Y\)`
+- The effect of `\(X\)` on `\(Y\)`
+- `\(X\)` influences `\(Y\)` 
+
+---
+##Why are Weasel words important?
+
+- Knowing these terms can help interpreting what scientific studies are really saying, and when someone might be trying to be misleading:
+
+  Weasel terms are problematic because they convey that there is a relation between `\(X\)` and `\(Y\)` (from `\(X\)` to `\(Y\)`), without literally claiming a causal relationship.
+
+- Clearly non-causal terms do not even specify which of `\(X\)` and `\(Y\)` goes first! They just talk about these two variables and how they work together. 
+
+- Causal phrases always have a clear direction. They further tell us *what* `\(X\)` is doing to `\(Y\)`.
+
+
+.footnote[
+The key is that all the weasel phrases are equally true if you swap the positions of X and Y, even though swapping them would really change how we’d interpret the claim. “Aspirin is linked to headaches” is no more or less true than “Headaches are linked to aspirin.” You can hear the notion that aspirin causes your headache in the first one, which is false. You can get away with it without technically lying because it’s true that they’re “linked.”
+]
+
+---
+exclude: true
+##The Problem of Causal Inference
+
+**Potential outcomes**
+
+Meet Angela with health status `\(Y\)` and consider the variable
+
+`$$\begin{equation*} X = \begin{cases}1, \ \text{person gets medical treatment}\\ 0, \ \text{else.} \end{cases} \end{equation*}$$`
+
+- We we would like to check Angela’s `\(Y\)` when choosing `\(X=0\)` and also check what Angela’s `\(Y\)` is again when we make `\(X=1\)`. If the two `\(Y\)`'s are different, then we can say that `\(X\)` causes `\(Y\)`.
+
+- However, Angela cannot exist both with `\(X=0\)` and with `\(X=1\)`. She either got that medical treatment or she did not!
+
+- Let’s say she did. So for Angela, X=1 and, let’s say, Y=10.
+The other one, what Y would have been if we made X=0, is missing. We don’t know what it is! Could also be Y=10. Could be Y=9. Could be Y=1000!
+
+---
+exclude: true
+##A possible solution!
+
+- We can take someone who actually DOES have X=0 and compare their Y?
+
+- However, as both of them are different people, it is quite natural that they will have different Y BESIDES X. 
+
+- So if we find someone, Gareth, with X=0 and they have Y=9, is that because X increases Y, or is that just because Angela and Gareth would have had different Ys anyway?
+
+- In order to overcome with this problem, and making as good a guess as possible as to what that Y would have been if X had been different, we want to think about two people/firms/countries that are basically **exactly the same** except that one has X=0 and one has X=1
+&lt;/br&gt;
+
+---
+exclude: true
+##POTENTIAL OUTCOMES
+&lt;br&gt;
+The logic we just went through is the basis of the potential outcomes model, which is one way of thinking about causality.
+&lt;/br&gt;
+&lt;br&gt;
+Figuring out that makes a good counterfactual estimate is a key part of causal inference!
+&lt;/br&gt;
+.footnote[
+counterfactual - counter to the fact of what actually happened
+]
+
+---
+exclude: true
+##Experiments and Models
+- A common way to do causal inference in many fields is an experiment.
+- When we’re working with people/firms/countries, running experiments is often infeasible, impossible, or unethical.
+- So we have to think hard about a model of what the world looks like.
+- So that we can use our model to figure out what the counterfactual would be.
+- In causal inference, the model is our idea of what we think the process is that generated the data.
+- We put together what we know about the world with assumptions we make and end up with our model.
+-The model can then tell us what kinds of things could give us wrong results so we can fix them and get the right counterfactual.
+
+---
+exclude: true
+#Model Identification
+- We have “identified” a causal effect if the estimate that we generate gives us a causal effect.
+- In other words, when we see the estimate, we can claim that it’s isolating just the causal effect.
+- Identifying effects requires us to understand the data generating process (DGP).
+- And once we understand that DGP, knowing what calculations we need to do to isolate our effect.Often these will require taking some conditional values (controls). Or isolating the variation we want in some otherway.
+- We need to think about how to create models of the processes that generated the data.
+- Once we have those models, we’ll figure out what methods we can use to generate plausible counterfactuals.
+- Once we’re really comparing apples to apples, we can figure out, using only data we can actually observe, how things would be different if we reached in and changed X, and how Y would change as a result.
+
+---
+##Causal Diagrams
+
+Causal diagrams were developed in the mid-1990s by the computer scientist Judea Pearl&lt;sup&gt;1&lt;/sup&gt;   who was trying to develop a way for artificial intelligence to think about causality. 
+
+&lt;/br&gt;
+
+.blockquote[
+### Definition: Causal Diagram
+A causal diagram is a graphical representation of a data generating process (DGP). Variables in the DGP are represented by nodes. The causal relationships in the DGP, each represented by an arrow from the cause variable to the caused variable.
+]
+
+.footnote[
+&lt;sup&gt;1&lt;/sup&gt; Pearl, Judea. 2009. Causality. 2nd ed. Cambridge, MA: Cambridge University Press.
+]
+
+
+---
+##Causal Diagrams &amp;mdash; A simple Example
+
+.blockquote[
+###Example: Flipping coins for cake
+
+Two people A and B flip a coin. If they get head, then person A gets a slice of cake. If they get tail, then person B gets the slice.
+
+&lt;/br&gt;
+
+We have...
+- two variables 
+ 1. the outcome of coin flip ( `\(X\)` )
+ 2. which person gets the cake ( `\(Y\)` )
+- one causal relationship: the outcome of the coin flip determines which person gets cake.
+
+]
+
+---
+##Causal Diagrams &amp;mdash; A simple Example
+
+.blockquote[
+###Example: Flipping coins for cake
+
+&lt;div class="figure"&gt;
+&lt;img src="CausalDiagrams_files/figure-html/unnamed-chunk-1-1.png" alt="1: A simple causal diagram" width="60%" style="color:black; display:block; margin-right:auto; margin-left:auto; margin-top:15px" /&gt;
+&lt;p class="caption"&gt;1: A simple causal diagram&lt;/p&gt;
+&lt;/div&gt;
+
+]
+ 
+---
+##Causal Diagrams
+**Some points to be noted**
+
+- Each variable on the graph may take multiple values. 
+- The arrow just tells us that one variable causes another. It does not say anything about whether that causal effect is positive or negative.
+- Other events that might effect the outcomes are ignores.
+- Outcomes of outcomes are not taken into consideration.
+- All (non-trivial) variables relevant to the DGP should be included, even if we cannot measure or see them.
+
+---
+##Causal Diagrams
+**Unmeasured Variables** (labelled U)
+
+Unmeasured Variables serve two purposes in causal diagrams:
+- they are the key parts of the data generating process
+- they can sometimes fill in for variables that we know must be there, but we have no idea what they are.
+
+**Latent variables** (labelled L) are an example of unmeasured variables: They explain *why* two variables that are correlated but neither of them causes the other 
+
+---
+##Causal Diagrams
+
+.blockquote[
+###Example: Ice-cream sales revisited
+
+Ice-cream sales (X) are high when people wear shorts (Y). However, there is no causal relationship between ice-cream sales and people wearing sorts: weather (U) is latent variable causes them both.
+
+&lt;div class="figure"&gt;
+&lt;img src="CausalDiagrams_files/figure-html/unnamed-chunk-2-1.png" alt="2: Unobserved variable" width="52%" style="color:black; display:block; margin-right:auto; margin-left:auto; margin-top:15px" /&gt;
+&lt;p class="caption"&gt;2: Unobserved variable&lt;/p&gt;
+&lt;/div&gt;
+
+]
+
+---
+
+
+##Causal Diagrams &amp;mdash; The Real World: On an Omission Mission
+
+&lt;div class="figure"&gt;
+&lt;img src="CausalDiagrams_files/figure-html/unnamed-chunk-4-1.png" alt="3:  Police Presence and Crime Rate by County, North Carolina 1981-1987" width="55%" style="color:black; display:block; margin-right:auto; margin-left:auto; margin-top:5%" /&gt;
+&lt;p class="caption"&gt;3:  Police Presence and Crime Rate by County, North Carolina 1981-1987&lt;/p&gt;
+&lt;/div&gt;
+
+.footnote[
+Cornwell, Christopher, and William N. Trumbull. 1994. "Estimating the Economic Model of Crime with Panel Data." The Review of Economics and Statistics 76: 360–66.
+]
+
+???
+
+The raw correlation is picking up the fact that high-crime areas get assigned lots of police.
+
+---
+##Causal Diagrams &amp;mdash; The Real World: On an Omission Mission
+
+To make a causal diagram, we think of following latent variables:
+ - Expected crime payout (profitability of crime w.r.t. likelihood to get caught, sentencing law severity)
+ - Law and order politics (how tough the political system in the local area wants to be on crime)
+ 
+Some assumptions are:
+ - Lagged crime does not cause law and order politics
+ - The poverty rate is not a part of the DGP
+ - Lagged police per capita does not cause current police per capita 
+
+---
+##Causal Diagrams &amp;mdash; The Real World: On an Omission Mission
+
+&lt;div class="figure"&gt;
+&lt;img src="CausalDiagrams_files/figure-html/unnamed-chunk-5-1.png" alt="4: Police presence and crime rate" style="color:black; display:block; margin-right:auto; margin-left:auto; margin-top:5%" /&gt;
+&lt;p class="caption"&gt;4: Police presence and crime rate&lt;/p&gt;
+&lt;/div&gt;
+
+---
+## Causal Diagrams and Research Questions
+
+**Does additional police presence reduce crime?**
+
+The causal diagram can be used to figure out how to identify the answer to our research question.
+
+We may identify parts of the diagram that indicate how police per capita to causes crime)
+- Police per capita → Crime (direct effect) 
+- Expected crime payout → Crime (indirect effect)
+
+The variation in our data that answers our research question thus relates to police per capita causing crime, and to police per capita causing expected crime payout, which *then* affects crime. 
+
+To get our answer, we have to dig out *that* part of the variation in crime and block out the alternative explanations.
+
+---
+## Causal Diagrams: Moderators
+
+- `\(X\)` → `\(Y\)` and `\(Z\)` → `\(Y\)`
+- However, this could be consistent with any of the following two DGPs:
+ - `\(Y = .2X + .3Z\)`
+ - `\(Y= 2X + 3XZ\)` 
+ 
+ ...and infinite many more!
+- We say that `\(Z\)` has a *moderating influence* on the effect of `\(X\)` on `\(Y\)`
+
+
+---
+## Causal Diagrams: Moderators
+
+.vcenter[
+.blockquote[
+### Definition: Moderators in causal diagrams
+Moderators are variables that do not necessarily cause another variable (although they might do that too). Instead, they *moderate the effect of one variable on another*.
+]]
+
+---
+## Causal Diagrams: Moderators
+
+**Moderator effects are *not* shown in the causal diagram.**
+
+&lt;div class="figure"&gt;
+&lt;img src="CausalDiagrams_files/figure-html/unnamed-chunk-6-1.png" alt="5: Z moderates X" width="55%" style="color:black; display:block; margin-right:auto; margin-left:auto; margin-top:1%" /&gt;
+&lt;p class="caption"&gt;5: Z moderates X&lt;/p&gt;
+&lt;/div&gt;
+
+---
+## Causal Diagrams: Moderators
+
+.vcenter[
+.blockquote[
+### Example: Fertility drug
+Consider the effect of a fertility drug (X) on the chances of getting pregnant (Y). The effect is *moderated* by the variable "having a uterus" (Z). If you don’t have a uterus, the drug cannot do much for you! But if you do have a uterus, it can increase your chances of conceiving.
+]] 
+ 
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="../assets/remark-zoom.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9",
+"navigation": {
+"scroll": false
+}
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
