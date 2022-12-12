@@ -1,5 +1,5 @@
 ---
-title: "Causal Paths"
+title: "<a href='https://github.com/mca91/kausalanalyse_slides/raw/main/CausalPaths/CausalPaths.pdf'>Causal Paths</a>"
 author: "Prof. Dr. Christoph Hanck"
 date: "Summer 2023"
 output:

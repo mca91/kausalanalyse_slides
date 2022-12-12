@@ -27,10 +27,10 @@
 */
 
 
-a, a > code {
+/*a, a > code {
     color: #0148A4;
     text-decoration: none;
-}
+}*/
 
 /* in  conflict to ude_fonts.css 
 .small {
@@ -98,3 +98,5 @@ b {
 .remark-slide-content strong {
   color: #004c93;
 }
+
+

@@ -1,5 +1,5 @@
 ---
-title: "Research Questions"
+title: "<a href='https://github.com/mca91/kausalanalyse_slides/raw/main/ResearchQuestions/ResearchQuestions.pdf'>Research Questions</a>"
 author: "Prof. Dr. Christoph Hanck"
 date: "Summer 2023"
 output:
@@ -185,7 +185,7 @@ Example on predicting ice cream sales / digression on the non-causal relation wi
 .vcenter[
 .blockquote[
 
-### Example: Viagra &mdash; Looking
+### Example: Viagra
 
 **To find a pattern can make you rich**
 

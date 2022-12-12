@@ -150,6 +150,10 @@ h1, h2, h3, h4 {
   margin-bottom: 18px;
 }
 
+.title-slide h1 > a {
+  color: #ffffff !important;
+}
+
 /* H2 fonts */
 .title-slide h2 {
   color: #ffffff !important;
