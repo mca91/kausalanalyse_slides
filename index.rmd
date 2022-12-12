@@ -19,7 +19,7 @@ output:
 
 class: title-slide title-index 
 .font80[
-# Kausalanalyse
+# Causal Analysis
 
 .pull-left[
 
