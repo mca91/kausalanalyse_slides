@@ -16,7 +16,7 @@ output:
       countIncrementalSlides: false
       ratio: '16:9' #alternatives '16:9' or '4:3' or others e.g. 13:9
       navigation:
-        scroll: TRUE #disable slide transitions by scrolling
+        scroll: false #disable slide transitions by scrolling
 ---
 
 ```{r setup, include=FALSE}
@@ -45,9 +45,17 @@ counter <- function() {
 
 tbl_counter <- counter()
 fig_counter <- counter()
+
 # transparent images
 library(tidyverse)
 library(lubridate)
+library(vtable)
+library(cowplot)
+library(extrafont)
+library(gapminder)
+library(ggpubr)
+library(modelsummary)
+
 theme_set(theme_bw(base_size=12))
 theme_update(panel.background = element_rect(fill = "transparent", colour = NA),
              plot.background = element_rect(fill = "transparent", colour = NA))
@@ -80,103 +88,152 @@ library(ggdag)
 library(ggplot2)
 library(stfit)
 ```
-#Fixed Effects
+
+# Fixed effects
 <br>
 **Motivation**
 <br><br>
-Fixed effects arises due to two main problems:
-<br><br>
+Fixed effects are often remedy for two problems:
+<br>
 - Difficulty in figuring out the correct causal diagram that tells what to control for.
 - Difficulty in measuring all the variables that needs to be controlled for.
 
----
-#Fixed Effects
-.vcenter[
+<br>
+
 .blockquote[
-###Definition: Matching
+### Definition: Fixed effects
 Fixed effects is a method of controlling for all variables, whether they are observed or not, as long as they stay constant within some larger category.
-]]
+]
 
 ---
-#Fixed Effects
+#Fixed effects
+
 .vcenter[
 .blockquote[
-###Example: Effect of getting electricity on the productivity of a rural town.
-- Backdoor: Geography (towns up in the mountainous hillside will be more difficult to electrify.) 
-- The same town when observed in different times will still be on the mountain.
-- By observing the town in different years, any variation explained by town can be removed. 
+### Example: Effect of getting electricity on the productivity of a rural town.
+- **Backdoor**: Geography (towns up in the mountainous hillside will be more difficult to electrify) 
 
-]]
+- The same town when observed in different times will still be on the mountain
 
----
-#Fixed Effects
-.vcenter[
-.blockquote[
-###Example: Effect of getting electricity on the productivity of a rural town.
+- By observing the town in different years, any variation explained by town can be removed
+
 - Since there is no variation in geography that is not explained by town, after controlling for town geography will be controlled too
-- There will be no variation in geography left!
+
+  &rarr; There will be no variation in geography left!
 
 ]]
 
 ---
-#Fixed Effects
+# Fixed effects
+
+.vcenter[
+.blockquote[
+### Example: Effect of a visit from the German chancellor on a country’s level of trade with Germany
+
+```{r, echo=F, cache=F, out.extra = 'style="display:block; margin-right:auto; margin-left:auto;"', fig.height=4, out.width='55%', dpi=190, fig.cap=paste0(fig_counter(), ': Causes of trade with Germany'), fig.align='center'}
+coord_dag <- list(
+  x = c(a = 0, b = 2, c = 0, d = 2, e=1, f=1),
+  y = c(a = 1, b = 1, c = 0, d = 0, e=1, f=1.5)
+)
+dag_object <- ggdag::dagify(c ~ a,
+                            c ~ b,
+                            c ~ e,
+                            d ~ a,
+                            d ~ e,
+                            d ~ f,
+                            c ~ e,
+                            c ~ f,
+                            d ~ c,
+                            d ~ b,
+                            coords = coord_dag,
+                            labels=c("a"="CurrentPolitics",
+                                     "b"="HistorywithGermany",
+                                     "c"="ChancellorVisit",
+                                     "d"="TradewithGermany",
+                                     "e"="Geography",
+                                     "f"="CultureofPopulation"
+                                     ))
+ggdag::ggdag(dag_object, # the dag object we created
+             text = FALSE, # this means the original names won't be shown
+             use_labels = "label") + # instead use the new names
+  theme_void()
+```
+]]
+
+---
+# Fixed effects
+
+.vcenter[
+.blockquote[
+###Example: Effect of a visit from the German chancellor on a country’s level of trade with Germany
+
+- There are many causes of trade with Germany. Many of which would be difficult to keep track of or even measure. 
+
+- Several of these variables &mdash; the country’s geography, the culture of the population, and the history that country has with Germany &mdash; are constant *within* country.
+
+- The causal diagram can be redrawn...
+]]
+
+---
+# Fixed effects
+
+.vcenter[
+.blockquote[
+### Example: Effect of a visit from the German chancellor on a country’s level of trade with Germany
+
+The effect can be identified *without* controling for each of the variables&mdash; Controlling only for country would be enough.
+
+```{r, echo=F, cache=F, out.extra = 'style="display:block; margin-right:auto; margin-left:auto; margin-top:30px"', fig.height=3, out.width='55%', dpi=190, fig.cap=paste0(fig_counter(), ': Simplified causes of trade with Germany'), fig.align='center'}
+coord_dag <- list(
+  x = c(a = 0, b = 2, c = 0, d = 2),
+  y = c(a = 1, b = 1, c = 0, d = 0)
+)
+dag_object <- ggdag::dagify(c ~ a,
+                            c ~ b,
+                            d ~ a,
+                            d ~ c,
+                            d ~ b,
+                            coords = coord_dag,
+                            labels=c("a"="CurrentPolitics",
+                                     "b"="Country",
+                                     "c"="ChancellorVisit",
+                                     "d"="TradewithGermany"
+                                     ))
+ggdag::ggdag(dag_object, # the dag object we created
+             text = FALSE, # this means the original names won't be shown
+             use_labels = "label") + # instead use the new names
+  theme_void()
+```
+
+]]
+
+---
+# Fixed effects
 <br>
-**Notes**
-<br><br><br>
-- Fixed effects can be thought of as taking a whole long list of variables as back doors that are constant within some category and collapsing them to just be that category. Then, controlling for that category.
+
+- In fixed effects, **individuals** are controlled for. The **individual** can represent “person,” “company,” “school,” or “country,” and so on.
+
+- This idea is to remove variation *between* individuals:
+
+  Sweeping away all that variation between individuals, any variables that are *fixed over time* can be controlled for.
+  
+- Since fixed effects removes between variation, it is not a suitable approach when between variation is of interest!
+
+**So what does fixed effects actually do to the data?**
+
+We isolate **within variation** by finding differences between groups (individuals) and subtract them out. 
 
 ---
-#Fixed Effects
-
-.vcenter[
-.blockquote[
-###Example: Effect of a visit from the German chancellor on a country’s level of trade with Germany
-    DIAGRAM 16.1
-]]
-
----
-# Fixed Effects
-
-.vcenter[
-.blockquote[
-###Example: Effect of a visit from the German chancellor on a country’s level of trade with Germany
-- There are many causes of trade with Germany.
-- Many of which would be difficult to keep track of or even measure. 
-- Several of these variables - the country’s geography, the culture of the population, and the history that country has with Germany - are constant within country.
-- The causal diagram can be redrawn.
-]]
-
----
-#Fixed Effects
-.vcenter[
-.blockquote[
-###Example: Effect of a visit from the German chancellor on a country’s level of trade with Germany
-         DIAGRAM
-- In the following figure, the effect can be identified without needing to control for each of the variables.
-- Controlling only for country would be enough.
-]]
-
----
-#Fixed Effects
-<br>
-**Notes**
-<br><br><br>
-- In fixed effects, **indivisuals** are controlled for. The **indivisual** can represent “person,” “company,” “school,” or “country,” and so on.
-- It gets rid of any variation between individuals.
-- The idea of fixed effects is that by sweeping away all that variation between individuals, any variables that are fixed over time can be controlled for.
-- Since fixed effects removes between variation, it is not a suitable approach when between variation is of interest.
-
----
-#Fixed Effects
+# Fixed effects
 
 .vcenter[
 
 .blockquote[
-###Example: Effect of exercise on the number of times a year a person gets a cold.
-- There are two people in the study: A and B.
-- There are some variables like “genetics” that are fixed over time can can be adjusted for with fixed effects.
+###Example: Effect of exercise on the number of times a year a person gets a cold
 
-|Indivisual|Year|Exercise|
+Consider two people A and B. There are variables like “genetics” that are fixed over time and hence can be adjusted for with fixed effects.
+
+|Individual|Year|Exercise|
 |:------:|:------:|:------:|
 |Person A|2019|5|
 |Person A|2020|7|
@@ -186,16 +243,17 @@ Fixed effects is a method of controlling for all variables, whether they are obs
 <br>
 ]]
 ---
-#Fixed Effects
+# Fixed effects
 
-**Example**
 .vcenter[
 .blockquote[
-###Example: Effect of exercise on the number of times a year a person gets a cold.
-- To get the within and between variation, the within-individual means is required.
-- The difference between individuals in the means is the between variation. 
+###Example: Effect of exercise on the number of times a year a person gets a cold
 
-|Indivisual|Year|Exercise|Mean Exercise|Within Exercise|
+- To get the within and between variation, the within-individual means are required
+
+- The difference between individuals in the means is the between variation 
+
+|Individual|Year|Exercise|Mean Exercise|Within Exercise|
 |:------:|:------:|:------:|:------:|:------:|
 |Person A|2019|5|6.0|-1.0|
 |Person A|2020|7|6.0|1.0|
@@ -205,58 +263,45 @@ Fixed effects is a method of controlling for all variables, whether they are obs
 ]]
 
 ---
-#Fixed Effects
+# Fixed effects
+
 .vcenter[
 .blockquote[
-###Example: Effect of exercise on the number of times a year a person gets a cold.
-- If those individual means are subtracted out, the way in which it varies from time period to time period  is left relative to the averages.
-- So person A's within variation in exercise compares the fact that in 2019 he exercised half an hour per week more than average, and in 2020 he exercised half and hour per week less than average.
-]]
+### Example: Effect of exercise on the number of times a year a person gets a cold.
 
----
-#Fixed Effects
-<br>
-**What does fixed effects actually do to data? **
-<br><br><br><br>
-- Within variation is isolated 
-- The mean differences between groups (individuals) is found and subtracted. 
+- Subtracting out individual means, we are left with variation from time period to time period, relative to the averages (the **within variation**)
 
----
-#Fixed Effects
-.vcenter[
-.blockquote[
-###Example: Effects of healthy-eating reminders on actual healthy eating.
-- Four subjects have each downloaded an app that, at random times, reminds them to eat healthy. 
-- They have each chosen how frequently they want reminders, but do not control exactly on which days they come.
-- It is recorded how often they get reminders, and also scored them on how healthy they actually eat.
-- There are two variations: 
- - Variation over time in how intensively each individual gets reminders.
- - Variation in their healthy eating.
+- So person A's within variation in exercise compares the fact that in 2019 she exercised half an hour per week more than average, and in 2020 she exercised half and hour per week less than average
 
 ]]
 
 ---
+# Fixed effects
 
-
-```{r , include=FALSE}
-library(tidyverse)
-library(vtable)
-library(cowplot)
-#library(Cairo)
-library(extrafont)
-library(gapminder)
-#library(lfe)
-#library(Cairo)
-library(ggpubr)
-library(modelsummary)
-```
-
-#Fixed Effects
-<br>
+.vcenter[
 .blockquote[
-###Example: Effects of healthy-eating reminders on actual healthy eating.
-- There might be some individual-level back doors that led them to choose their frequency and also their general healthy-eating level. 
-```{r, echo=F, cache=F, out.extra = 'style="display:block; margin-right:auto; margin-left:auto;"', fig.height=3, out.width='55%', dpi=190, fig.cap=paste0(fig_counter(), ': Healthy Eating Reminders and Healthy Eating for Four Individuals'), fig.align='center'}
+### Example: Effects of healthy-eating reminders on actual healthy eating
+
+- Four subjects have each downloaded an app that, at random times, reminds them to eat healthy
+
+- They have chosen how frequently they want reminders, but do not control exactly on which days they come
+
+- It is recorded how often they get reminders, and also scored them on how healthy they eat
+
+- There are two kinds of variations here: 
+ - Variation over time in how intensively each individual gets reminders (treatment)
+ - Variation in their healthy eating
+
+]]
+
+---
+# Fixed effects
+.blockquote[
+### Example: Effects of healthy-eating reminders on actual healthy eating&mdash;ctd.
+
+There might be back doors that influence reminder frequency and also general healthy-eating level. 
+
+```{r, echo=F, cache=F, out.extra = 'style="display:block; margin-right:auto; margin-left:auto;"', fig.height=4, out.width='65%', dpi=190, fig.cap=paste0(fig_counter(), ': Healthy eating reminders and healthy eating for four individuals'), fig.align='center'}
 set.seed(2000)
 tb <- tibble(Individual = factor(c(rep('Person_B',8),rep('Person_A',8),
                             rep('Shamma',8),rep('Liqing',8)),levels = c('Person_A','Person_B','Liqing','Shamma')),
@@ -280,24 +325,24 @@ ggplot(tb, aes(x = IntensityOfReminders,
   theme_pubr()+
   labs(x = "Intensity of Reminders",
        y = "Healthy Eating Score")+
-   theme(text         = element_text(size = 13),
+  theme_cowplot() + 
+  theme(text         = element_text(size = 13),
         axis.title.x = element_text(size = 13),
-        axis.title.y = element_text(size = 13))
-
+        axis.ticks.y = element_blank(),
+        legend.position = c(.7, .8),
+        legend.background = element_rect(color = 'black'))
 ```
 
 ]
 
 ---
-#Fixed Effects
-.vcenter[
+# Fixed effects
 .blockquote[
-###Example: Effects of healthy-eating reminders on actual healthy eating.
--  Now fixed effects estimation is started by calculating the mean reminders and mean healthy eating scores for each of the individuals. 
-- Now the individual means are plotted with the same graph.
-```{r, echo=F, cache=F, out.extra = 'style="display:block; margin-right:auto; margin-left:auto;"', fig.height=3, out.width='55%', dpi=190, fig.cap=paste0(fig_counter(), ': Healthy Eating Reminders and Healthy Eating for Four Individuals with Indivisual Means'), fig.align='center'}
+### Example: Effects of healthy-eating reminders on actual healthy eating&mdash;ctd.
 
+Compute the mean number of reminders and mean healthy eating scores for each individual.
 
+```{r, echo=F, cache=F, out.extra = 'style="display:block; margin-right:auto; margin-left:auto;"', fig.height=4, out.width='65%', dpi=190, fig.cap=paste0(fig_counter(), ': Healthy eating reminders and healthy eating for four individuals with individual means'), fig.align='center'}
 ggplot(tb, aes(x = IntensityOfReminders,
                y = HealthyEatingScore, 
                shape = Individual)) + 
@@ -309,29 +354,36 @@ ggplot(tb, aes(x = IntensityOfReminders,
   theme_pubr() +
   labs(x = "Intensity of Reminders",
        y = "Healthy Eating Score") +
+  theme_cowplot() + 
   theme(text         = element_text(size = 13),
         axis.title.x = element_text(size = 13),
-        axis.title.y = element_text(size = 13)) 
+        axis.ticks.y = element_blank(),
+        legend.position = c(.7, .8),
+        legend.background = element_rect(color = 'black'))
 ```
 
+]
 
-]]
 ---
-#Fixed Effects
+# Fixed effects
 .vcenter[
 .blockquote[
-###Example: Effects of healthy-eating reminders on actual healthy eating.
-- The next task is to remove any variation between individuals. 
-- All four of the +‘s  are taken and are slided  on top of each other.
-- The data gets centered at 0 on both the X and Y axis when plotted with the four individuals’ within-variation alone
+###Example: Effects of healthy-eating reminders on actual healthy eating&mdash;ctd.
+
+- The next task is to remove any variation *between* individuals 
+
+- All four crosses are slided on top of each other
+
+- The data gets centered at 0 on both the $X$ and $Y$ axis when plotted with the four individuals’ within-variation alone
 ]]
 ---
-#Fixed Effects
-.vcenter[
+# Fixed effects
+
 .blockquote[
-###Example: Effects of healthy-eating reminders on actual healthy eating.
-- With the different individuals moved on top of each other, a more clear picture emerging can be seen , with a positive relationship between the intensity of reminders and the scores. 
-```{r, echo=F, cache=F, out.extra = 'style="display:block; margin-right:auto; margin-left:auto;"', fig.height=3.5, out.width='55%', dpi=190, fig.cap=paste0(fig_counter(), ': Healthy Eating Reminders and Healthy Eating for Four Individuals with Indivisual Means'), fig.align='center'}
+### Example: Effects of healthy-eating reminders on actual healthy eating&mdash;ctd.
+
+With the different individuals moved on top of each other, a more clear picture emerging can be seen, with a positive relationship between the intensity of reminders and the scores. 
+```{r, echo=F, cache=F, out.extra = 'style="display:block; margin-right:auto; margin-left:auto;"', fig.height=4, out.width='60%', dpi=190, fig.cap=paste0(fig_counter(), ': Healthy eating reminders and healthy eating for four individuals with individual means'), fig.align='center'}
 
 
 ggplot(tb, aes(x = Intensity.R,
@@ -343,262 +395,261 @@ ggplot(tb, aes(x = Intensity.R,
   theme_pubr() +
   labs(x = "Within Variation in Intensity",
        y = "Within Variation in Score") +
+  theme_cowplot() + 
   theme(text         = element_text(size = 13),
         axis.title.x = element_text(size = 13),
-        axis.title.y = element_text(size = 13)) 
+        axis.ticks.y = element_blank(),
+        legend.position = c(.7, .8),
+        legend.background = element_rect(color = 'black'))
 
 ```
-
-]
 ]
 
 ---
-#Fixed Effects
+# Fixed effects
 <br>
-**How Is It Performed?**
-<br>
+**Fixed effects can be performed with regression**
 
-
-- It can be performed with **regression estimators.**
-- Fixed effects regressions generally start with a regression equation 
+Fixed effects regressions generally start with a regression equation 
 
 $$Y_{it}=\beta_i+\beta_1X_{it} +\epsilon_{it}$$
- - $X$ has subscript $it$ indicating that the data varies both between individuals $i$ over time $t$.
+ - $X$ has subscript $it$ indicating that the data varies both between individuals $i$ over time $t$
  
- - the intercept term $\beta$ has subscript $i$ istead of $0$ . 
+ - the intercept term $\beta$ has subscript $i$, indexing individuals 
 
+**Why do individual-specific intercepts yield fixed effect estimates where only within variation is used?**
+
+Breaking up the intercept is equivalent to adding a *control for each person*.
 
 ---
-#Fixed Effects
-<br><br>
-**How does allowing the intercept to vary gives a fixed effects estimate where only within variation is used?**
-
-<br><br>
-- By allowing the intercept to vary is equivalent to adding a control for each person. 
-
-- By breaking up the intercept, for example instead of using two  parallel lines having the same slope, they can be moved up and down until they hit each regressors.
----
-#Fixed Effects
-<br><br>
-**How to estimate a regression with individual intercepts?**
-
+# Fixed effects
 <br>
-There are two standard methods:
-- The first method is to extract the within variation.
-  
-  - Calculate the mean of the dependent variable for each individual $\bar{Y_i}$ and subtract that mean out $Y_{it}-\bar{Y_i}$. 
-  - Then, do the same for each of the independent variables $X_{it}-\bar{X_i}$.
- - Then, run the regression, $$Y_{it}-\bar{Y_i}=\beta_0-\beta_1(X_{it}-\bar{X_i})+\epsilon_{it}$$
- - This method is known as **absorbing the fixed effect.**
-
-
----
-#Fixed Effects
-<br><br>
 **How to estimate a regression with individual intercepts?**
+<br>
+
+There are two common methods:
 
 <br>
 
-- The second simple method is to add a binary control variable for every individual.
- - Or rather, every indivisual except one - if the model also has an intercept/constant in it, then including every individual will make the model impossible to estimate, so leave one out, or leave the intercept out.
- - That one indivisual left is still in the analysis, it does not get it's own coefficient. 
+**Method 1:** extracting the within variation (absorbing the fixed effects).
+  1. Obtain $Y_{it}-\bar{Y}_i$, i.e., for each individual subtract the individual specific mean $\bar{Y}_i$ from the dependent variable $Y_{it}$
+  2. Do the same for the independent variables $X_{it}-\bar{X_i}$.
+  3. Run the regression $$Y_{it}-\bar{Y_i}=\beta_0+\beta_1(X_{it}-\bar{X_i})+\epsilon_{it}$$
+
+
+---
+# Fixed effects
+<br>
+**How to estimate a regression with individual intercepts?**
+
+**Method 2:** adding a binary control variable for the individuals
+
+Run the regression $$Y_{it} = \beta_0 + \beta_{0,1} + \dots +\beta_{0,N-1} + \beta_1 X_{it} + \epsilon_{it}$$ with $N$ the number of individuals.
+
+**Caution**
+
+- If the model includes an intercept, then including every individual will make the model impossible to estimate, so leave one out, or leave the intercept out (we leave out $\beta_{0,N}$ here)!
+
+- That individual without an own intercept is still in the analysis, but it does not get it's own coefficient: estimates are interpreted *relative* to that individual.
   
   
 ---
-#Fixed Effects
-<br><br>
+# Fixed effects
+<br>
 **How to interpret the results of this regression once it is estimated?**
 
-<br><br>
-- The interpretation of the slope coefficient in a fixed effects model is the same as when controlled for any other variable.
-- The value of $R^2$ gives an insight to the interpretation. $R^2$ is a measure based on how much variation there is in the residuals relative to the dependent variable.
-- Sometimes researchers will use these fixed effects estimates to make claims about the individuals being evaluated. 
+<br>
+
+- The interpretation of the slope coefficient in a fixed effects model is the same as when controlled for any other variable
+
+- The value of $R^2$ gives an insight to the interpretation. $R^2$ is a measure based on how much variation there is in the residuals relative to the dependent variable
+
+- Sometimes researchers will use the fixed effects estimates to make claims about the individuals being evaluated 
   
 
 
 ---
-#Fixed Effects
-<br><br>
-**Notes**
+# Fixed effects
+<br>
+**Some notes on fixed effects**
 
 <br>
-- Fixed effects is a good way of controlling for a long list of unobserved variables that are fixed over time to look at the effect of a few time-varying variables. 
-- Those individual effects do not have the same luxury of controlling for a bunch of unobserved time-varying variables. 
-- Those individual fixed effects estimates cannot be thought of as causal.
-- Fixed Effects focuses on within variation. So the treatment effect  estimated will focus a lot more heavily on people with a lot of within variation.
+
+- Fixed effects is a good way of controlling for a long list of unobserved variables that are fixed over time when we are interested in the effect of (a few) time-varying variables
+
+- Those individual effects do not have the same luxury of controlling for a bunch of unobserved *time-varying* variables
+
+- The fixed effects estimates *cannot* be thought of as causal!
+
+- Fixed Effects focuses on *within* variation. So the treatment effect estimated will focus a lot more heavily on people with a lot of within variation.
 
 ---
-#Fixed Effects
-<br><br>
-**Why not include multiple sets of fixed effects?**
-
-<br>
-- Consider same individuals is observed over multiple years. 
-- Fixed effects for individual is included
- - comparing individuals to themselves at different periods of time, or fixed effects for year
- - comparing individuals to each other at the same period of time. 
----
-
-#Fixed Effects
+# Fixed effects
 <br>
 **Why not include multiple sets of fixed effects?**
 
 <br>
-One approach can be, including fixed effects for both individual and year.
-- This approach is a common application of multiple sets of fixed effects, and is commonly known as **two-way fixed effects.**
-- The regression model for two-way fixed effects looks like:
-$$Y_{it}=\beta_i+\beta_t+\beta_1X_{it}+\epsilon_{it}$$
-- This gives the variation that is left as being variation relative to what is expected given that individual, and given that year.
+Consider the same individuals are observed over multiple years. We then could include 
 
+- fixed effects for individuals, *comparing individuals to themselves at different periods* of time 
+- fixed effects for year, *comparing individuals to each other* at the same period of time
+
+Including both is commonly known as **two-way fixed effects**, $$Y_{it}=\beta_i+\beta_t+\beta_1X_{it}+\epsilon_{it}.$$
+
+This gives the variation that is left as being variation relative to what is expected given that individual, and given that year.
 
 ---
-#Fixed Effects
-<br>
+# Fixed effects
+
 .blockquote[
-###Example: The effect of experience of in-job training on pay at that job
-- Data is on how much each person earns per year $Y_{it}$ and on how many hours of training they received that year $X_{it}$
-- That earnings in 2009 were $10,000 below what they normally are (due to recession).
-- Anthony, earns \$120,000 per year, a lot more money than the average person ($40,000).
-- In 2009 Anthony only earned $116,000 which is above average, but that can be explained by the fact that Anthony earns a lot.
+### Example: The effect of experience of in-job training on pay at that job
 
+- Data is on how much each person earns per year $Y_{it}$ and on how many hours of training they received that year $X_{it}$. Earnings in 2009 were $10,000 below what they normally are (due to recession)
+
+- Anthony, earns $120,000 per year, a lot more money than the average person ($40,000). In 2009 Anthony only earned $116,000 which is above average, but that can be explained by the fact that Anthony earns a lot.
+
+  - Given that the individual is Anthony, it is $4,000 below average. 
+  - But given that the year is 2009, most people are earning $10,000 less, but Anthony is only earning $4,000 less. 
+  - So given that it is Anthony, and given that it is 2009, Anthony's earning in 2009 is $6,000 more than expected.
 ]
+
 ---
-#Fixed Effects
-<br>
-.blockquote[
-###Example: The effect of experience of in-job training on pay at that job
-- Given that the person is Anthony, it is $4,000 below average. 
-- But given that the year is 2009, most people are earning \$10,000 less, but Anthony is only earning $4,000 less. 
-- So given that it is Anthony, and given that it is 2009, Anthony's earning in 2009 is $6,000 more than expected.
-]
----
-#Fixed Effects
+# Fixed effects
 <br>
 **Estimating a model with multiple fixed effects**
 
 <br>
-- It can be done using the same **binary controls** approach as for the regular (**one-way**) fixed effects estimator with only one set of fixed effects. 
+- ... can be done using the same **binary controls** approach as for the regular (one-way) fixed effects estimator with only one set of fixed effects 
+
 - However, this can be difficult if there are lots of different fixed effects to estimate. 
-- Unless the fixed effects only have a few categories each, it is generally advised to use a command specifically designed to handle multiple sets of fixed effects.
+
+- Unless the fixed effects only have a few categories each, it is generally advised to use a method specifically 
+designed to handle multiple sets of fixed effects.
+
 - These methods usually use something called **alternating projections.**
 
 
 
 ---
-#Random Effects
-<br><br><br>
-- Random effects takes a slightly different approach than fixed effects.
-- Instead of letting the $\beta_is$ be anything, t puts some structure on them. 
-- It assumes that the $\beta_is$ come from a known random distribution, for example assuming that the $\beta_is$ follow a normal distribution..
-
-
----
-#Random Effects
+# Random effects
 <br>
-**Advantages**
-<br><br>
-- It makes estimates more precise (lowers the standard errors).
-- It improves the estimation of the individual $\beta_i$ effects themselves.
-- Instead of just using within variation, it uses a weighted average of within and between variation.
-- It solves the same back door problem that fixed effects does if the $\beta_i$ terms are unrelated to the right-hand-side variables $X_{it}$
+**What it is**
+- Instead of letting the $\beta_is$ be anything, random effects puts some structure on them 
+
+- Random effects assumes that the $\beta_is$ come from a known random distribution, for example assuming that the $\beta_is$ follow a normal distribution
+
+- The idea is to use a weighted average of within and between variation (instead of just the within variation)
+
+**Why it can be useful**
+<br>
+- More precise estimates (lower standard errors)
+
+- Improved estimation of the individual $\beta_i$ effects
+
+- Random effects solves the same back door problem that fixed effects does if the $\beta_i$ terms are *unrelated* to the right-hand-side variables $X_{it}$
+
 
 
 ---
-#Random Effects
+# Fixed effects vs. random effects
 <br>
 **Comparision**
 <br><br>
-- Fixed effects are done to solve the research design problem.
-- Random effects only solves the same problem if the individual fixed effects are unrelated to the right-hand-side variable, including our treatment variable.
-- That seems unlikely.
-- For this reason, fixed effects is almost always preferred to random effects.
-- One common way around this problem is the use of the **Durbin-Wu-Hausman test.**
+
+- Fixed effects are used to *solve a research design problem*.
+
+- Random effects only solves the *same problem* if the individual fixed effects are *unrelated to the right-hand-side 
+variables*, including our treatment variable
+
+  That seems unlikely!
+
+- For this reason, fixed effects is almost always preferred to random effects
+
+- One common way around this problem is to use the **Durbin-Wu-Hausman test*
+
 ---
-#Random Effects
+# Fixed effects vs. random effects
+
+<br><br>
+
+.blockquote[
+### Definition: Durbin-Wu-Hausman test
+The Durbin-Wu-Hausman test is a broad set of tests that compare the estimates in one model against the estimates in another and sees if they are different. 
+]
+
+<br>
+
+**The idea of the test**
+
+If the estimates of fixed effects and random effects are found to *not* be different (i.e., the test *fails* to reject the null hypothesis), then the relationship between $\beta_i$ and $X_{it}$ probably is not too strong.
+
+  &rarr; Random effects can be used.
+
+
+---
+# Fixed effects
+<br>
+**Clustered standard errors**
+
+<br>
+
+**Motivation**
+
+- An assumption of the regression model is that the errors are independent. Then parts of the DGP for the outcome variable that are not in the model are effectively random.
+
+   This assumption is *necessary to obtain correct regression standard errors* !
+
+- However, this assumption is difficult when it comes to fixed effects:
+
+- If parts of the DGP that are left out are shared across all an individual's or a group’s observations, there will be correlation. 
+
+  &rarr; **Classic standard errors will be wrong**.
+
+- For this reason **clustered standard errors** are used
+
+---
+# Clustered standard errors
+
 .vcenter[
 .blockquote[
-###Definition: Durbin-Wu-Hausman test
-The Durbin-Wu-Hausman test is a broad set of tests that compare the estimates in one model against the estimates in another and sees if they are different. 
+###Definition: Clustered standard errors
+Standard errors clustered at the same level as the fixed effect are called *clustered standard errors*. Clustered standard errors calculate the standard errors while allowing some level of correlation between the error terms.
+
+<br>
+**Examples**
+
+- For person fixed effects, using standard errors clustered at the person level
+- For city fixed effects, using standard errors clustered at the city level
+
 ]]
 
 ---
-#Random Effects
-<br><br>
-**Durbin-Wu-Hausman test**
-<br><br>
-- In the context of fixed effects and random effects, if the estimates are found to not be different (fail to reject the null hypothesis that they are the same), then the relationship between $\beta_i$ and $X_{it}$ probably is not too strong
-- In such a case random effects can be used.
-
----
-#Fixed Effects
+# Clustered standard errors
 <br>
-**Clustered Standard Errors**
-
-<br>
-
-**Motivation**
-- One of the assumptions of the regression model is that the error terms are independent of each other. 
-- That is, the parts of the data generating process for the outcome variable that are not in the model are effectively random.
-- This assumption is necessary to correctly calculate the regression’s standard errors.
-- However, this assumption is is difficult when it comes to fixed effects.
-
-
-
----
-#Fixed Effects
-<br>
-**Clustered Standard Errors**
-<br>
-
-**Motivation**
-- It can be expected that some of the parts of the data generating process that are left out are shared across all of that individual or group’s observations, making them correlated with each other, and making the standard errors wrong.
-- For this reason **clustered standard errors are used.**
-
----
-#Clustered Standard Errors
-.vcenter[
-.blockquote[
-###Definition: Clustered Standard Errors
-Standard errors clustered at the same level as the fixed effect are called Clustered Standard Errors. Clustered standard errors calculate the standard errors while allowing some level of correlation between the error terms.
-]
-]
----
-#Clustered Standard Errors
-<br><br>
-
-**Examples:**
-
-<br>
-- For person fixed effects, using standard errors clustered at the person level. 
-- For city fixed effects, using standard errors clustered at the city level. 
-
----
-#Clustered Standard Errors
-<br>
-
-<br>
-
 **Conditions**
 
 <br>
 
-- There needs to be **treatment effect heterogeneity.** That is, the treatment effect must be different for different individuals.
-- Either the fixed effect groups/individuals in the data need to be a non-random sampling of the population, or, within fixed effect groups/individuals, the treatment variable is assigned in a clustered way.
+- There needs to be **treatment effect heterogeneity.** That is, the treatment effect must be *different for different individuals*.
+- Either the fixed effect groups/individuals in the data need to be a non-random sample of the population, or, within fixed effect groups/individuals, the treatment variable is assigned in a clustered way.
 
 ---
-#Fixed Effects in Nonlinear Models
+# Fixed effects in nonlinear models
 <br>
 **Why might this be a problem?**
 
 <br>
 
-- One of the methods for getting rid of between variation is adding a set of binary control variables for the fixed effects
- - This method will not work when there are lots of groups, as there might be in many **fixed effects for individual** settings. 
- - That is fine in a linear model, but in a nonlinear model one might run into the **incidental parameters problem,** where it just can not handle estimating that many groups. 
- - The estimates start getting noisy and bad.
+Recall that adding a set of binary control variables is a method to get rid of between variation.
+
+- This method will not work when there are lots of groups, as there might be in many **fixed effects for individual** settings
+
+- That is fine in a linear model, but in a nonlinear model we might run into the **incidental parameters problem**, i.e. we can not handle well estimating that many groups
+  
+  &rarr; The estimates start getting noisy!
 
 ---
-#Fixed Effects in Nonlinear Models
+# Fixed effects in nonlinear models
 <br>
 **Why might this be a problem?**
 
@@ -610,65 +661,83 @@ Standard errors clustered at the same level as the fixed effect are called Clust
 
 
 ---
-#Fixed Effects in Nonlinear Models
+#Fixed effects in nonlinear models
 <br>
-**Approaches**
+**What to do then?**
 
 <br>
-There are two common approaches to use a fixed effects design when there is  a nonlinear dependent variable.
-- One is to drop the **nonlinear** part and estimate a linear model anyway with the nonlinear dependent variable. 
- - This is especially common when the dependent variable is **binary or ordinal.**
--  Another common approach is to use a nonlinear model variant that is designed to handle fixed effects properly. 
+There are two common approaches to use a fixed effects design when there is  a nonlinear dependent variable:
+
+1. Drop the *nonlinear* part and estimate a *linear* model anyway with the nonlinear dependent variable. This is especially common when the dependent variable is binary or ordinal
+
+2. Use a nonlinear model variant that is designed to handle fixed effects properly 
+
+(Examples will be discussed in the R tutorials.)
+
 ---
+# Advanced random effects
 
-#Advanced Random Effects
-Modern approaches to random effects includes:
-- Seeing the model as containing multiple levels. 
-- This makes sense for the context - in any fixed effects setting the data is **hierarchical.**
-- At the very least it has multiple observations over time within individual. - For example, if the model is:
+<br>
+**Hierachical modeling**
+
+- Modern approaches to random effects consider models that contain *multiple levels*
+
+- This seems natural &mdash; in any fixed effects setting, the data is **hierarchical:**
+  
+  At the very least we have multiple observations over time within individuals. E.g., if the model is
 $$Y_{it}=\beta_i+\beta_1X_{it}+\epsilon_{it}$$
-- It can be said that $\beta_1$ term itself follows its own equation:
+  It can be said that $\beta_1$ has its own model equation,
 $$\beta_i=\beta_0+\gamma_1Z_i+\mu_i$$
-where $Z_i$ is a set of individual-level variables that determine the individual effect, and $\mu_i$ is an error term.
----
-#Advanced Random Effects
-
-<br>
-**Advantages**
-
-<br>
-- This allows us to deal with the correlation between the $\beta_i$ and the $X_{it}$ becaused it is modelled directly.
-- It gives the nice statistical properties that random effects gives  over fixed effects, but without imposing as many additional assumptions.
-- It allows to look at the effect of variables that are constant within individual. 
-- It allows explicitly to look at between and within effects separately.
+where $Z_i$ is a set of individual-level variables that determine the individual effect and $\mu_i$ is an error.
 
 ---
-#Advanced Random Effects
+# Advanced random effects
+
 <br>
-There are two directions to go with this multi-level intuition:
+**Hierarchical modeling**
+
+- This allows us to deal with the correlation between the $\beta_i$ and the $X_{it}$ becaused it is *modelled directly*
+
+- The approach has the nice statistical properties that random effects gives over fixed effects, but *without imposing as many additional assumptions*.
+
+  - Hierarchical modelling allows to look at the effect of variables that are constant within individual
+  
+  - It also allows explicitly to analyse between and within effects separately
+
+
+---
+# Advanced random effects
+<br>
+**Hierarchical modeling**
+
+There are two directions to go with this multi-level intuition.
 
 <br>
 **Direction 1**
+
 - Calculate within-individual means for each predictor $\bar{X_i}$
-- Calculate the within variation for each predictor $(X_{it}-\bar{X_i})$
-- Regress the dependent variable on the within-individual means $\bar{X_i}$ , the within variation $(X_{it}-\bar{X_i})$ and any other individual-level controls $Z_i$ , and use random effects for the intercept.
-- This is referred to as **correlated random effects.**
+
+- Obtain the within variation for each predictor $(X_{it}-\bar{X_i})$
+
+- Regress the dependent variable on the within-individual means $\bar{X_i}$ , the within variation $(X_{it}-\bar{X_i})$ and any other individual-level controls $Z_i$ , and use random effects for the intercept
+
+- This is referred to as **correlated random effects**
 
 
 ---
-#Advanced Random Effects
+#Advanced random effects
+<br>
+**Hierarchical modeling**
 
 <br>
 **Direction 2** 
 
-<br>
-
 - The other way is the multi-level intuition, which is whole hog into mixed models, also known as **hierarchical linear models.**
-- In Mixed models stopping at the intercept following a random distribution is not required. 
-- The following models can get complex, but they can be used to represent very complex interactions between variables.
+
+- In mixed models stopping at the intercept following a random distribution is not required
+
+- The following models can get complex, but they can be used to represent very complex interactions between variables:
 $$Y_{it}=\beta_{0i}+\beta_{1i}X_{it}+\epsilon_{it}$$
 $$\beta_{0i}=\beta_0+\gamma_1Z_i+\mu_i$$
 $$\beta_{1i}=\beta_1+\delta_1Z_i+\eta_i$$
----
-
 

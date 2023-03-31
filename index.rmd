@@ -46,6 +46,7 @@ class: title-slide title-index
 <li><a href='Matching/Matching.html'>Matching</a></li>
 <li><a href='Simulation/Simulation.html'>Simulation</a></li>
 <li><a href='FixedEffects/FixedEffects.html'>Fixed Effects</a></li>
+<li><a href='EventStudies/EventStudies.html'>Event Studies</a></li>
 </ol>
 
 ]]
