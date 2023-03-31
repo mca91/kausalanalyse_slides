@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Simulation</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Christoph Hanck" />
+    <script src="Simulation_files/header-attrs/header-attrs.js"></script>
+    <link href="Simulation_files/remark-css/default.css" rel="stylesheet" />
+    <script src="Simulation_files/xaringanExtra-progressBar/progress-bar.js"></script>
+    <script src="Simulation_files/clipboard/clipboard.min.js"></script>
+    <link href="Simulation_files/xaringanExtra-clipboard/xaringanExtra-clipboard.css" rel="stylesheet" />
+    <script src="Simulation_files/xaringanExtra-clipboard/xaringanExtra-clipboard.js"></script>
+    <script>window.xaringanExtraClipboard(null, {"button":"<i class=\"fa fa-clipboard\"><\/i>","success":"<i class=\"fa fa-check\" style=\"color: #00ff00\"><\/i>","error":"<i class=\"fa fa-times-circle\" style=\"color: #F94144\"><\/i>"})</script>
+    <link href="Simulation_files/font-awesome/css/all.css" rel="stylesheet" />
+    <link href="Simulation_files/font-awesome/css/v4-shims.css" rel="stylesheet" />
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        TeX: { equationNumbers: { autoNumber: "AMS" } },
+      });
+    </script>
+    <style>
+    .mjx-mrow a {
+      color: black;
+      pointer-events: none;
+      cursor: default;
+    }
+    </style>
+    <link rel="stylesheet" href="../assets/ude_fonts.css" type="text/css" />
+    <link rel="stylesheet" href="../assets/ude.css" type="text/css" />
+    <link rel="stylesheet" href="../assets/custom.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Simulation
+]
+.author[
+### Christoph Hanck
+]
+.date[
+### Summer 2023
+]
+
+---
+
+
+
+
+
+
+<style>.xe__progress-bar__container {
+  bottom:0;
+  opacity: 1;
+  position:absolute;
+  right:0;
+  left: 0;
+}
+.xe__progress-bar {
+  height: 0.25em;
+  background-color: #004c93;
+  width: calc(var(--slide-current) / var(--slide-total) * 100%);
+}
+.remark-visible .xe__progress-bar {
+  animation: xe__progress-bar__wipe 200ms forwards;
+  animation-timing-function: cubic-bezier(.86,0,.07,1);
+}
+@keyframes xe__progress-bar__wipe {
+  0% { width: calc(var(--slide-previous) / var(--slide-total) * 100%); }
+  100% { width: calc(var(--slide-current) / var(--slide-total) * 100%); }
+}</style>
+
+
+
+
+
+# Simulation
+
+&lt;br&gt;
+
+.blockquote[
+###Definition: Simulation
+Simulation refers to the process of using a random process that that can be controlled (usually, a DGP) to produce data that can be evaluated with a given method. 
+]
+
+&lt;br&gt;
+
+- Using a controlled random process, we can simulate data from a true DGP of our choice
+
+- Simulation allows to choose whether there is a back door, or a collider, or whether the error terms are correlated, or whether there is common support
+
+---
+# Anatomy of simulation
+
+&lt;br&gt;
+
+A typical statistical simulation has only a few parts:
+
+- A procedure for **generating data** (an implementation of a DGP)
+- An **estimation** step
+- A way of **iterating** steps 1-2 many times
+- A way of **storing estimates** from each iteration
+- An **analysis of the distribution of estimates** across iterations
+
+---
+# Anatomy of simulation
+
+.vcenter[
+.blockquote[
+
+###Example: Flipping a coin 100 times and estimating probability of heads 
+**Steps:**
+
+Decide upon the DGP. For example a coin that shows heads with probability 75%.
+
+1. Use the computer to produce a sample of 100 coin flips with 75% probability of heads.
+2. Apply the estimator to the sample of 100 coin flips. In other words, calculate the proportion of heads in that sample.
+3. Store the estimate
+4. Iterate steps 1-3
+5. Examine the distribution of heads
+]]
+
+---
+# Use of simulation
+
+&lt;br&gt;
+
+- Simulation can **identify bad estimators**:
+in the coin tossing example, simulation can be used to compare the proportion of heads estimator (the sample mean) to any other estimator.
+
+- Simulation allows to **infer an estimator’s sampling distribution**:
+it can help to figure out the degree of sampling variation without having to write a proof.
+
+- Simulation is crucial to **check robustness against violations of the assumptions of an estimator**, and how sensitive its estimates are to changes in the DGP.
+
+  If a true model has a second-order polynomial for `\(X\)`, but we estimate a linear regression without that polynomial, the results will be wrong. Simulation can help to know *how wrong*.
+
+
+---
+# Use of simulation
+
+&lt;br&gt;
+
+**The old man and the C**
+
+In the context of causal inference, simulation can determine if a an estimator provides, *on average*, the true causal effect. 
+
+We may check whether the mean of the effect estimates is near the truth and their distribution is not too wide.
+
+**Situations where simulation works well**
+
+Simulation is a great tool for three main things:
+
+- Trying out new estimators
+- Comparing different estimators (*horse race*)
+- Seeing what needs to be broken in order to make an estimator stop working.
+
+---
+# Horse race
+.vcenter[
+.blockquote[
+###Example: Choices in matching process
+
+- Different choices can be made in a matching. The most important choice is between **reducing bias** and **improving precision.**
+
+- Allowing a wider caliper brings in more, but worse matches, increasing bias but also making the sampling distribution narrower.
+
+- It might be easier if the amount of bias reduction is not very high, but the precision savings are huge. To know such a thing, **horse race simulation is useful.**
+]]
+
+---
+# Breaking things
+
+.vcenter[
+.blockquote[
+###Example: Linear regression 
+
+- If we want a linear regression coefficient on `\(X\)` to be an unbiased estimate of the causal effect of `\(X\)`, we need to assume that `\(X\)` is unrelated to the error term (*no open back doors*).
+
+- In social sciences there are always some thing we cannot measure or control for which is unfortunately related to both `\(X\)` and the outcome. 
+- Simulation can be used to probe these kinds of issues using a simulation function that is flexible enough to gauge the effect of different kinds of assumption violations or degrees of those violations. 
+
+]]
+
+---
+# Power analysis
+.vcenter[
+.blockquote[
+### Definition: Power analysis
+Power analysis is the process of trying to figure out if the amount of information present in the data is enough. While there are calculators and analytical methods out there for performing power analysis, power analysis is very commonly done by simulation, especially for non-experimental studies.
+]]
+
+---
+# Power analysis
+
+&lt;br&gt;
+**What can go wrong with statistical analysis?**
+&lt;br&gt;
+
+- Small effects are very hard to identify.
+- Most statistical analyses involve looking at variation. If there is little variation in the data, the analysis will be tricky.
+- If the data is very noisy, then analysis becomes very difficult.
+- If the standards of evidence are set very high, then a lot of good evidence can get ignored and more evidence is required to make up for that.
+
+**Why is it a good idea to do power analysis?**
+
+All of the above problems can be fixed by increasing the **sample size.** Power analysis is the way of figuring out exactly how much data we need to satisfy reliability standards. 
+
+
+---
+#Power analysis 
+&lt;br&gt;
+**When can power analysis be used?**
+&lt;br&gt;&lt;br&gt;
+Power Analysis can be mainly used in three situations:
+- If the analyst has a impression that an effect is probably not that central or important or has a small effect on a part of a system where a lot of other "stuff" is going on, a power analysis can be performed. 
+- If the variation of an effect over a group is of interest, then a power analysis is a good idea. Finding differences between groups in an effect takes more data to find than the effect itself.
+- In a randomized experiment a power analysis is most importance as the sample size can be controlled
+
+---
+# Power analysis
+&lt;br&gt;
+**What power analysis does**
+&lt;br&gt;&lt;br&gt;
+Let `\(X\)` represents treatment and `\(Y\)` represents the outcome and consider
+
+1. the **true effect size** (coefficient in a regression, a correlation, etc.),
+2. the **amount of variation in the treatment** ( `\(Var(X)\)` ),
+3. the **amount of other variation in** `\(Y\)` (either the variation from the residual after explaining `\(Y\)` with `\(X\)`, or just `\(\text{Var}(Y)\)` ),
+4. **statistical precision** (the standard error of the estimate or statistical power, i.e., the true-positive rate),
+5. the **sample size**.
+
+**A power analysis holds four things constant and allows conclusion about the fifth.**
+
+---
+# Statistical precision and statistical power
+
+.vcenter[
+.blockquote[
+###Definition: Statistical precision and statistical power
+
+- **Statistical precision** in power analysis is measured by a target level of statistical power (hence the name *power analysis*). 
+
+- **Statistical power**, also known as the true-positive rate, is a concept specific to hypothesis testing:  
+It is the proportion of times we correctly reject the false null.
+
+]]
+
+
+---
+# Statistical precision and statistical power
+&lt;br&gt;
+**Some notes on statitical power**
+&lt;br&gt;&lt;br&gt;
+
+- Statistical power depends on the test:
+
+  For a hypothesis test at the 95% confidence level, it is more likely to reject the null (and thus will have higher statistical power) than for a hypothesis test at the 99% confidence level.
+
+- there is a tradeoff: the more careful one is about false positives, the more likely one will get a false negative.
+
+- Power analyses do not have to be run with statistical power in mind. 
+
+---
+# Power Analysis
+&lt;br&gt;
+**Requirements**
+&lt;br&gt;&lt;br&gt;
+- In order to do power analysis, one must fill in the values for four of the five pieces, so that power analysis can tell the fifth one.
+- A prior research needs to be done to fill in the gaps
+- If power research is not at all possible, then it can be substituted with an educated guess.
+- A measurement of standards (statistical power) needs to  be set.
+
+---
+# Simulation with existing data: the bootstrap
+
+&lt;br&gt;
+
+.blockquote[
+### Definition: Bootstrap
+Bootstrapping is the process of repeating an analysis many times after **resampling with replacement**.
+]
+
+- The resampling process mimics the *sampling distribution* in the actual data.
+- On average, the means of the variables will match the original means, as will the variances, the correlations between the variables, and so on. 
+- In this way, we can run a simulation using actually-existing data.
+
+---
+# The Bootstrap
+&lt;br&gt;
+**Limitations**
+&lt;br&gt;&lt;br&gt;
+- Unlike with a simulation where we sample data from a *known* DGP, in bootstrapping the true DGP is *unknown*.
+
+  As a simulation tool, the bootstrap is limited to cases where the question does not rely on comparing the results to the truth.
+  
+- The bootstrap is often is to estimate *standard errors*:
+
+  By mimicking the whole sampling process, strange interdependencies between the variables are automatically simulated, allowing any oddities in the true sampling distribution to creep into the bootstrap-simulated sampling distribution.
+
+---
+# The Bootstrap
+&lt;br&gt;
+**Algorithm for boostrapping a standard error**
+&lt;br&gt;&lt;br&gt;
+1. Start with a data set with `\(N\)` observations.
+2. Randomly sample `\(N\)` observations from that data set *with replacement*, allowing the same observation to be drawn more than once. This is called a **bootstrap sample.**
+3. Compute the statistic of interest using the bootstrap sample. This is called a **bootstrapped statistic**.
+4. Iteration: repeat steps 1-3 multiple times
+5. Examine the distribution of the simulated statistics. The **standard deviation** of that distribution is the **standard error of the estimate.** 
+
+---
+# The Bootstrap
+&lt;br&gt;
+**Asumptions**
+&lt;br&gt;&lt;br&gt;
+Bootstrapping comes with its own set of assumptions to provide good estimates of the standard error. 
+&lt;br&gt;
+- A reasonably large sample size is required.
+- The data should reasonably be well behaved. If the variables follow extremely highly skewed distributions, bootstrap will not work well. 
+- Care must be taken when accounting for how the observations might be related to each other. 
+
+
+---
+
+# The Bootstrap
+&lt;br&gt;
+**Variants:**
+&lt;br&gt;&lt;br&gt;
+There are many types of bootstrap. The most important ones are:
+&lt;br&gt;
+- **The cluster/block bootstrap**
+- **Residual Resampling**
+- **The Wild Bootstrap**
+
+---
+# The Bootstrap
+&lt;br&gt;
+**The cluster/block bootstrap**
+
+- The cluster bootstrap is  like the regular bootstrap, except instead of resampling individual observations, clusters of observations also known as **blocks** are resampled.
+
+- It is mainly used where the data is hierarchical in nature or panel data. Hierarchical data is when observations are nested within groups. In panel data the same individual (person, firm, etc.) is observed multiple times.
+
+---
+# The Bootstrap
+&lt;br&gt;
+**The cluster/block bootstrap**
+ - Another place where the cluster/block bootstrap pops up is in the context of time series data, where the same value is measured across many time periods. This often means there is autocorrelation.
+ - When applying a bootstrap to time series data, the time series is first divided into blocks of continuous time. The blocks themselves are often determined by one of several different available an optimal-block-length algorithms
+
+
+---
+# The Bootstrap
+
+**Residual Resampling**
+
+Instead of resampling observations, in residual resampling the residuals are resampled.
+
+**Algorithm**
+&lt;br&gt;
+1. Perform the analysis using the original data (e.g., OLS regression)
+2. Use the analysis to get a predicted outcome value `\(\widehat{Y}\)` and also the residual `\(\hat{r}\)` which is the difference between the actual outcome and the predicted outcome, `$$r=Y-\widehat{Y}.$$`
+3. Perform bootstrap resampling to get resampled residuals `\(r_b\)` .
+4. Create a new outcome variable by adding the residual to the actual outcome, `\(Y_b=Y+r_b\)`.
+5. Estimate the model as normal using `\(Y_b\)`.
+6. Store the result and iterate steps 3 to 5.
+
+---
+#The Bootstrap
+**Residual resampling**
+
+&lt;br&gt;
+
+The idea of the algorithm is that the predictors in the model never change with this process. Hence, the residual bootstrap mimmicks whatever kind of interdependence they have. 
+
+&lt;br&gt;
+**Caution:**
+
+- A downsie of residual resampling is that it does not perform well if the errors are in any way related to the predictors.
+
+- This is a *stronger* assumption than even the OLS assumption that errors are on average unrelated to predictors!
+
+---
+# The Bootstrap
+&lt;br&gt;
+**The Wild Bootstrap**
+
+- The wild bootstrap is popular because it works under heteroskedasticity &amp;mdash; even when the exact form of the heteroskedasticity is unknown!
+
+- It also performs well when the data is clustered and even when the clusters are of different size
+
+- For a wild bootstrap, the general outline of residual resampling is followed. Except that the residuals are not resampled. Each residual needs to be lined up with its original observation each time the bootstrap data is created.
+
+
+
+
+
+
+
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="../assets/remark-zoom.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9",
+"navigation": {
+"scroll": false
+}
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

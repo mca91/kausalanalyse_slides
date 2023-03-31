@@ -31,10 +31,22 @@ class: title-slide title-index
 
 2. [Research Questions](ResearchQuestions/ResearchQuestions.html)
 3. [Identification](Identification/Identification.html)
-4. [Causal Diagrams](Causal Diagrams/CausalDiagrams.html)
+4. [Causal Diagrams](CausalDiagrams/CausalDiagrams.html)
 5. [Drawing Causal Diagrams](DrawingCausalDiagrams/DrawingCausalDiagrams.html)
 6. [Causal Paths](CausalPaths/CausalPaths.html)
 7. [Front Doors](FindingFrontDoors/FindingFrontDoors.html)
-8. Treatment Effects
+8. [Treatment Effects](TreatmentEffects/TreatmentEffects.html)
+]
+
+.pull-right[
+
+<h4>Econometric Toolbox</h4>
+
+<ol start=9>
+<li><a href='Matching/Matching.html'>Matching</a></li>
+<li><a href='Simulation/Simulation.html'>Simulation</a></li>
+<li><a href='FixedEffects/FixedEffects.html'>Fixed Effects</a></li>
+</ol>
+
 ]]
 

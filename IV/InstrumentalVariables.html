@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Instrumental Variables</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Prof. Dr. Christoph Hanck" />
+    <script src="InstrumentalVariables_files/header-attrs/header-attrs.js"></script>
+    <link href="InstrumentalVariables_files/remark-css/default.css" rel="stylesheet" />
+    <script src="InstrumentalVariables_files/xaringanExtra-progressBar/progress-bar.js"></script>
+    <script src="InstrumentalVariables_files/clipboard/clipboard.min.js"></script>
+    <link href="InstrumentalVariables_files/xaringanExtra-clipboard/xaringanExtra-clipboard.css" rel="stylesheet" />
+    <script src="InstrumentalVariables_files/xaringanExtra-clipboard/xaringanExtra-clipboard.js"></script>
+    <script>window.xaringanExtraClipboard(null, {"button":"<i class=\"fa fa-clipboard\"><\/i>","success":"<i class=\"fa fa-check\" style=\"color: #00ff00\"><\/i>","error":"<i class=\"fa fa-times-circle\" style=\"color: #F94144\"><\/i>"})</script>
+    <link href="InstrumentalVariables_files/font-awesome/css/all.css" rel="stylesheet" />
+    <link href="InstrumentalVariables_files/font-awesome/css/v4-shims.css" rel="stylesheet" />
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        TeX: { equationNumbers: { autoNumber: "AMS" } },
+      });
+    </script>
+    <style>
+    .mjx-mrow a {
+      color: black;
+      pointer-events: none;
+      cursor: default;
+    }
+    </style>
+    <link rel="stylesheet" href="../assets/ude_fonts.css" type="text/css" />
+    <link rel="stylesheet" href="../assets/ude.css" type="text/css" />
+    <link rel="stylesheet" href="../assets/custom.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Instrumental Variables
+]
+.author[
+### Prof. Dr. Christoph Hanck
+]
+.date[
+### Summer 2023
+]
+
+---
+
+
+
+
+
+
+<style>.xe__progress-bar__container {
+  bottom:0;
+  opacity: 1;
+  position:absolute;
+  right:0;
+  left: 0;
+}
+.xe__progress-bar {
+  height: 0.25em;
+  background-color: #004c93;
+  width: calc(var(--slide-current) / var(--slide-total) * 100%);
+}
+.remark-visible .xe__progress-bar {
+  animation: xe__progress-bar__wipe 200ms forwards;
+  animation-timing-function: cubic-bezier(.86,0,.07,1);
+}
+@keyframes xe__progress-bar__wipe {
+  0% { width: calc(var(--slide-previous) / var(--slide-total) * 100%); }
+  100% { width: calc(var(--slide-current) / var(--slide-total) * 100%); }
+}</style>
+
+
+
+
+
+
+
+#Isolating Variation
+.vcenter[
+.blockquote[
+###Definition: Isolating Variation
+Instrumental variables are variables that instead of trying to strip away all the undesirable variation using controls, they finds a source of variation that allows to isolate just the interested front-door path.
+]]
+
+
+---
+#Isolating Variation
+&lt;br&gt;
+**Notes**
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+- Instrumental variables designs seize directly on the concept of randomized controlled experiments, and are in effect an attempt to mimic a randomized experiment, but using statistics and opportune settings instead of actually being able to influence or randomize anything.
+
+---
+#Isolating Variation
+&lt;br&gt;
+**Typical Setting**
+&lt;br&gt;&lt;br&gt;
+- There is a `\(Treatment\)` and an `\(Outcome\)` and the interest is to know the effect of `\(Treatment\)` on `\(Outcome\)` ( `\(Treatment \rightarrow Outcome\)` )
+- `\(Annoyance\)` is a backdoor path such that: `\(Treatment \leftarrow  Annoyance  \rightarrow Outcome\)`
+- A randomized experiment shakes up this system by adding a new source of variation, `\(Randomization\)` which is completely unrelated to `\(Annoyance\)` 
+
+
+
+---
+#Isolating Variation
+&lt;br&gt;
+**Typical Setting**
+&lt;br&gt;&lt;br&gt;
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="InstrumentalVariables_files/figure-html/unnamed-chunk-3-1.png" alt="1: Causal Diagram" width="55%" style="display:block; margin-right:auto; margin-left:auto;" /&gt;
+&lt;p class="caption"&gt;1: Causal Diagram&lt;/p&gt;
+&lt;/div&gt;
+
+
+
+---
+#Isolating Variation
+&lt;br&gt;
+**Typical Setting**
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+- The instrumental variables design works in the exact same way. - An instrumental variables design does not remove the requirement to identify an effect by closing back doors. But it does move the requirement to something simpler.
+- Instead of needing to close the back doors between `\(Treatment\)` and `\(Outcome\)` it becomes enough to close the back doors between `\(Randomization\)` and `\(Outcome\)` 
+
+
+
+
+
+---
+#Isolating Variation
+&lt;br&gt;
+**Steps**
+&lt;br&gt;&lt;br&gt;
+1.  Use the instrument to explain the treatment-
+2.  Remove any part of the treatment that is not explained by the instrument.
+3.  Use the instrument to explain the outcome.
+4.  Remove any part of the outcome that is not explained by the instrument.
+5.  Look at the relationship between the remaining, instrument-explained part of the outcome and the remaining, instrument-explained part of the treatment
+
+---
+#Isolating Variation
+
+
+
+
+
+---
+#Assumptions for Instrumental Variables
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+For instrumental variables to work, two assumptions must be satisfied:
+
+- Relevance of the instrument
+- Validity of the instrument
+
+
+---
+#Assumptions for Instrumental Variables
+&lt;br&gt;
+**Relevance for Instrumental Variables**
+&lt;br&gt;&lt;br&gt;
+- The idea of instrumental variables is that, that part of `\(X\)` :
+ the treatment, that is explained by `\(Z\)` : the instrument is used.
+- In its basic form, instrumental variables gives `\(\frac{Cov(Z,Y)}{Cov(Z,X)}\)` 
+- If no part of `\(X\)` is explained by `\(Z\)` then `\(Cov(Z,X)=0\)` and hence we get `\(\frac{Cov(Z,Y)}{0}\)` .
+- In this case Instrumental variable does not work.
+---
+
+#Assumptions for Instrumental Variables
+&lt;br&gt;
+**Validity of the Instrument**
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+.blockquote[
+###Definition: Isolating Variation
+Validity is, in effect, the assumption that the instrument `\(Z\)` is a variable that has no open back doors of its own.
+]
+
+---
+#Assumptions for Instrumental Variables
+&lt;br&gt;
+**Validity of the Instrument**
+&lt;br&gt;&lt;br&gt;
+- Perhaps a bit more precisely, any paths between the instrument `\(Z\)` and the outcome `\(Y\)` must either pass through the treatment `\(X\)` or be closed.
+
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="InstrumentalVariables_files/figure-html/unnamed-chunk-4-1.png" alt="2: Causal Diagram" width="55%" style="display:block; margin-right:auto; margin-left:auto;" /&gt;
+&lt;p class="caption"&gt;2: Causal Diagram&lt;/p&gt;
+&lt;/div&gt;
+---
+#Assumptions for Instrumental Variables
+&lt;br&gt;
+**Validity of the Instrument**
+&lt;br&gt;&lt;br&gt;
+There are a few paths from `\(Z\)` to `\(Y\)`
+- `\(Z \rightarrow X \rightarrow Y\)`
+- `\(Z \rightarrow X \leftarrow D \rightarrow Y\)`
+- `\(Z \leftarrow C \rightarrow X \rightarrow Y\)`
+- `\(Z \leftarrow C  \rightarrow X \leftarrow D \rightarrow Y\)`
+- `\(Z \leftarrow B \rightarrow Y\)`
+- `\(Z \rightarrow A \rightarrow Y\)`
+
+---
+#Assumptions for Instrumental Variables
+&lt;br&gt;
+**Validity of the Instrument**
+&lt;br&gt;&lt;br&gt;
+- All open paths from `\(Z\)` to `\(Y\)` to contain `\(X\)` is required.
+- The annoying source of endogeneity that could not be controlled for, that made `\(X \rightarrow Y\)` is `\(D\)`
+- Putting the paths with `\(X\)` in arrows leading to `\(X\)` to the side, that gives:
+ - `\(Z \leftarrow B \rightarrow Y\)`
+ - `\(Z \rightarrow A \rightarrow Y\)`
+These two paths are problems and must be shut down for `\(Z\)` to be valid.
+- So for the validity assumption to hold for `\(Z\)` both the above paths needs to be closed.
+  
+---
+#Assumptions for Instrumental Variables
+&lt;br&gt;
+**How realistic is validity**
+&lt;br&gt;&lt;br&gt;
+.blockquote[
+###Example: Effect of population’s health on economic growth in that country.
+- Study by Acemoglu and Johnson (2007)
+- They use the timing of when new medical technology (like vaccines for certain diseases) is introduced as an instrument for a country’s health (specifically, mortality from certain diseases). 
+- They find that changes in health in a given year driven by changes in medical technology that year actually has a negative effect on a country’s economic growth.
+]
+
+
+
+---
+#Assumptions for Instrumental Variables
+&lt;br&gt;
+**How realistic is validity**
+&lt;br&gt;&lt;br&gt;
+.blockquote[
+###Example: Effect of population’s health on economic growth in that country.
+- Bloom, Canning, and Fink (2014) pointed out that the original study did not account for the possibility that changes in health may have long-term effects on growth. 
+- Because the healthier one is, the less a new medical technology can improve one's mortality rates even further.
+-So the effectiveness of that medical technology is related to pre-existing health, which is related to pre-existing economic factors, which is related to current economic growth.
+]
+
+
+---
+#Assumptions for Instrumental Variables
+&lt;br&gt;
+**How realistic is validity**
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+.blockquote[
+###Example: Effect of population’s health on economic growth in that country.
+- This results in a backdoor.
+-  Bloom, Canning, and Fink find that when they add a control for pre-existing factors, presumably fixing the validity issue, the negative effect that Acemoglu and Johnson found actually becomes positive.
+
+]
+
+---
+#Canonical Designs
+.vcenter[
+- The use of instrumental variables means finding causal inference using good instruments (clever design), and in places of numerous back doors.
+- One downside of clever instruments is that they are often highly context-dependent.
+- One good example of a canonical instrumental variables design is **judge assignment** 
+]
+---
+#Canonical Designs
+.vcenter[
+.blockquote[
+###Example: Judge Assignment
+- By Aizer and Doyle Jr (2015)
+- In many court systems, the process of assigning a judge to your trial is more or less random. This is important because some judges are harsher, and others are less harsh.
+- This means `\(JudgeHarshness\)` can act as an instrument for `\(Punishment\)` .
+
+]]
+
+
+---
+#Canonical Designs
+.vcenter[
+.blockquote[
+###Example: Judge Assignment
+
+- By estimating the harshness of each judge using their prior rulings, the harshness of the judge becomes an instrument for the punishment. 
+- This can be used anywhere where there is the system of randomly-assigned judges and the interest is to know the impact of harsher punishments (or even being judged guilty) on some later outcome.
+]]
+
+
+---
+#Instrumental Variables Estimators
+.vcenter[
+- Instrumental Variable can be estimated by using 2SLS
+- Two-stage least squares, or 2SLS, is a method that uses two regressions to estimate an instrumental variables model.
+ - The **first stage** uses the instrument (and other controls) to predict the treatment variable. 
+ - Then, the predicted (explained) values of the treatment variable from that first stage is taken, and it is uded to predict the outcome in the second stage (along with the controls again).
+]
+---
+
+#Instrumental Variables Estimators
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+Given: Instrument `\(Z\)` , Treatment `\(Y\)` and controls `\(W\)` , the model will be estimated as:
+$$X = \gamma_0 + \gamma_1Z + \gamma_2W + \nu $$
+
+`$$Y = \beta_0 + \beta_1\hat{X} +\beta_2W + \epsilon$$`
+where `\(\nu\)` and `\(\epsilon\)` are both error terms of `\(\hat{X}\)` are the predicted values of `\(X\)` predicted using an OLS estimation of the first equation, and `\(\gamma\)` are regression coefficients just like `\(\beta\)` 
+
+---
+#Instrumental Variables Estimators
+&lt;br&gt;
+**Interpretation of 2SLS**
+&lt;br&gt;&lt;br&gt;
+-  2SLS produces a ratio of effects, dividing the effect of `\(Z\)` on `\(Y\)` by the effect of `\(Z\)` on `\(X\)` . 
+- It asks **for each movement in `\(X\)` we get by changing `\(Z\)` how much movement in `\(Y\)` does that lead to?**
+- The answer to this question, **Since `\(Z\)` has no back doors, should give us the causal effect of `\(X\)` on `\(Y\)` .**
+
+
+---
+#Instrumental Variables Estimators
+&lt;br&gt;&lt;br&gt;
+**Advantages and Disadvantages of 2SLS**
+&lt;br&gt;&lt;br&gt;
+- It is easy to estimate as well as flexible (adding more instruments to the first stage is super easy, although adding more treatment variables is less easy)
+- It does not perform that well in small samples, for one. While the instrument in theory has no back doors, in an actual data set the relationship between `\(Z\)` and  the non- `\(X\)` parts of `\(Y\)` is going to be at least a little nonzero, just by random chance. - 2SLS also does not perform particularly well when the errors are heteroskedastic.
+
+---
+#Instrumental Variables Estimators
+&lt;br&gt;&lt;br&gt;
+**Generalized Method of Moments (GMM)**
+
+&lt;br&gt;
+- The basic idea is this: based on your assumptions and theory, construct some statistical moments (means, variances, covariances, etc.) that should have certain values.
+- For example, to use GMM to estimate the expected value of a variable `\(Y\)` , it can be said that he difference between the sample estimation of the expected value `\(\mu\)` and the population expected value `\(E(Y)\)` should be zero. 
+- Thus making `\(\mu - E(Y) = 0\)` a condition of the estimation. 
+- Replace `\(E(Y)\)` with its sample value `\(\frac{1}{N}\sum Y\)` and solve the equation to get `\(\hat{\mu} = \frac{1}{N}\sum Y\)` .
+- GMM will pick the `\(\mu\)`that makes the moment condition true on average.
+---
+#Instrumental Variables Estimators
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+**Generalized Method of Moments (GMM)**
+&lt;br&gt;&lt;br&gt;
+- GMM and 2SLS are both capable of handling heteroskedasticity.
+- GMM does so naturally, as it does not  make assumptions about the error terms in the same way that the OLS equations making up 2SLS do. But with 2SLS by simply using heteroskedasticity-robust standard errors the same result as OLS can be.
+
+
+---
+#Instrumental Variables Estimators
+&lt;br&gt;&lt;br&gt;
+**Overidentification**
+&lt;br&gt;&lt;br&gt;
+- **Overidentification** occurs when the number of instruments is bigger than the number of treatment/endogenous variables.
+- When the model is overidentified, 2SLS and GMM will diverge.
+- GMM is going to be more precise, at least if there is heteroskedasticity involved. GMM will have less sampling variation (and thus smaller standard errors) under heteroskedasticity than 2SLS, even if heteroskedasticity-robust standard errors are added.
+
+---
+#Instrumental Variables and Treatment Effects
+.vcenter[
+- In the case of a standard estimator like 2SLS or GMM with one treatment/endogneous variable and one instrument, the weights are what the individual effect of the instrument would be in the first stage.
+]
+
+
+---
+#Instrumental Variables and Treatment Effects
+.vcenter[
+.blockquote[
+###Example: Effect of exercise on blood pressure
+- There has been a recent set of television advertisements that encourage people to exercise more. 
+- Exposure to the advertisements is used as an instrument for how much a person exercises.
+- Consider three people in the sample: Jakeila, Kyle, and Li. 
+]]
+
+---
+#Instrumental Variables and Treatment Effects
+.vcenter[
+.blockquote[
+###Example: Effect of exercise on blood pressure
+|Name|Effect of Ads on Exercise Hours| Effect of Exercise Hours on Blood Pressure|
+|:----:|:-----:|:-----:|
+|Jakeila|0.5|-2|
+|Kyle|0.25|-0.8|
+|Li|0.00|-10|
+- 2SLS is used to determine the effect of exercise hours on blood pressure.
+- Jakeila responds the strongest to the ads, so the -2 effect of exercise that she gets will be more heavily weighted. Specifically, it gets the .5 weight she has on the effect of ads. Similarly, Kyle gets a weight of .25. Li, on the other hand, does not respond to the ads at all - they make no difference to him.
+]]
+
+
+---
+#Instrumental Variables and Treatment Effects
+.vcenter[
+.blockquote[
+###Example: Effect of exercise on blood pressure
+- So it turns out he makes no difference to the 2SLS estimate. He gets a weight of 0.
+- the estimated LATE is:
+$$\frac{0.5\times (-2)+0.25\times (-8)+0\times (-10)}{(0.5+0.25+0)} =\frac{(-1+ -2)}{0.75} = -4 $$
+
+
+- This is in contrast to the average treatment effect which is:
+`$$\frac{(-2)+(-8)+(-10)}{3} = -6.67$$`
+]]
+---
+#Instrumental Variables and Treatment Effects
+.vcenter[
+- Different ways of estimating instrumental variables can produce different weighted average treatment effects.
+- The idea that a LATE is estimated does hold up in most cases, although the specifics on which LATE we are getting change from estimator to estimator:
+]
+
+---
+#Instrumental Variables and Treatment Effects
+.vcenter[
+- There is a common terminology used in instrumental variables when thinking about these weights, and in particular the 0s. The sample can be devided into three groups.
+ - **Compliers:** For compliers, the effect of the instrument on the treatment is in the expected direction.
+ - **Always-takers/never-takers:** Always-takers/never-takers are completely unaffected by the instrument.
+ - **Defiers:** Defiers are affected by the instrument in the opposite of the expected direction
+]
+---
+
+#Instrumental Variables and Treatment Effects
+- From the above terminology, we can obtain:
+ - **A Result:** if all of the compliers are affected by the instrument to the same degree, then 2SLS gives the average treatment effect among compliers.
+ - **An Assumption:**  For all of this to work, it is important to assume that there are no defiers. 
+ 
+-  The assumption that there are no defiers is also known as the **monotonicity assumption.** 
+
+- So ifthere is an instrument that has an effect on average, then it is advisable to think carefully about whether that effect is likely to be in the same direction for everyone.
+
+---
+#Instrumental Variables and Treatment Effects
+.vcenter[
+.blockquote[
+###Example: Children and Their Parents
+- By  Angrist and Evans (1998)
+- They observed that families appeared to have a preference for having both a boy and a girl. 
+- A family that happens to have two boys as their first two children, or two girls, would be more likely to have a third child so as to try for a mix. 
+- So, **your first two kids being the same gender** has been used as an instrument for **having a third child** in lots of studies, following on from Angrist and Evans.
+
+]]
+
+---
+#Instrumental Variables and Treatment Effects
+.vcenter[
+.blockquote[
+###Example: Children and Their Parents
+- But for this to work, there have to be no defiers.
+- Even if most people would be more likely to have the third kid if the first two are the same gender (or not base their third-kid decision on that at all), if there are some people who would be less likely to have the third kid because the first two are the same gender, then monotonicity is violated. 
+
+]]
+
+
+---
+#Checking the Instrumental Variables Assumptions
+.vcenter[
+.blockquote[
+###Definition: Weak Instrument 
+A weak instrument is one that is valid and does predict the treatment variable, but it only predicts the treatment variable a little bit. It predicts weakly.
+]]
+
+
+---
+#Checking the Instrumental Variables Assumptions
+&lt;br&gt;&lt;br&gt;
+**first-stage F-statistic test**
+&lt;br&gt;&lt;br&gt;
+- It is the most common way to check for relevance.
+- The steps are:
+ - Estimate the first stage of the model (regress the treatment/endogenous variable on the controls and instruments)
+ - Do a joint F test on the instruments
+ - Get the F statistic from that joint F-test and use it to decide if the instrument is relevant
+
+---
+#Checking the Instrumental Variables Assumptions
+&lt;br&gt;&lt;br&gt;
+**Cut-off for F-statistic test**
+&lt;br&gt;&lt;br&gt;
+- There is no single correct cutoff F-statistic to look for.
+- Instead, there is a tradeoff:
+ - The bigger the F-statistic, the less bias one gets. S
+ - So the F-statistic will depend on how much bias one is willing to accept.
+- Weak instruments lead to bias because, even if the instrument is truly valid, in an actual sample of data the instrument will have a nonzero relationship with the error term just by random chance, worsening validity
+
+---
+#Checking the Instrumental Variables Assumptions
+&lt;br&gt;&lt;br&gt;
+**Tests for validity assumption**
+&lt;br&gt;&lt;br&gt;
+- There are several very well-known tests that are designed to test the validity assumption.
+- The main idea of the tests are to check whether there are any open back doors between the instrument `\(Z\)` and the outcome `\(Y\)`
+- It can be done by checking whether `\(Z\)` is related to the second-stage error term  `\(\epsilon\)` . 
+- If `\(Z\)` and `\(\epsilon\)` are unrelated, the validity assumption is violated.
+
+
+
+---
+#Checking the Instrumental Variables Assumptions
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+**Problems in testing for validity assumption**
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+- Testing for validity has some obvious hurdles to overcome. - - - The error term `\(\epsilon\)` cannot be observed, hence the relationship between `\(Z\)` and `\(\epsilon\)` cannot be seen.
+
+
+
+---
+#Checking the Instrumental Variables Assumptions
+&lt;br&gt;&lt;br&gt;
+**Problems in testing for validity assumption**
+&lt;br&gt;
+**Approach 1**
+&lt;br&gt;
+- One approach is to run the second-stage model but include the instrument as a control.
+`$$Y = \beta_0 + \beta_1X + \beta_2Z + \epsilon$$`
+- If the coefficient on the instrument `\(Z\)` is nonzero, that suggests a violation of validity.
+
+
+
+
+---
+#Checking the Instrumental Variables Assumptions
+&lt;br&gt;&lt;br&gt;
+**Problems in testing for validity assumption**
+&lt;br&gt;
+**Approach 2**
+&lt;br&gt;
+- Another approach uses the **Durbin-Wu-Hausman test**
+- The Durbin-Wu-Hausman test compares the results from two models, one of which may have inconsistent results if some assumptions are wrong, while the other does not rely on those assumptions but is less precise.
+- If the results are similar, it suggests that the assumptions at least aren’t so wrong that they mess up the results, and it means a green light to use the more precise model.
+
+---
+#Checking the Instrumental Variables Assumptions
+&lt;br&gt;&lt;br&gt;
+**Durbin-Wu-Hausman test**
+&lt;br&gt;&lt;br&gt;
+- In the context of instrumental variables, Durbin-Wu-Hausman is used in two ways:
+ - First, it can be used to compare OLS (inconsistent if `\(X\)` is related to `\(epsilon\)`  to IV (less precise). If the results are different, that means that `\(X\)` have open back doors.
+ - Second, Durbin-Wu-Hausman can be used to compare two different IV models in an **overidentification test.**
+
+---
+#Fixing Weakness
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+-  In the case of one treatment/endogenous variable and one instrument, the standard errors can be adjusted to account for the possibility that the instruments are weak.
+- **Anderson-Rubin** confidence intervals provide valid measures of uncertainty in the estimate of the effect even if the instruments are weak.
+- A common estimation method that attempts to perform better when the instrument is weak is **limited-information maximum likelihood (LIML).**
+
+
+---
+#Fixing Weakness
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+- Instrumental variables uses the parts of the treatment/endogenous variable `\(X\)` and the outcome `\(Y\)` that are predicted by the instrument `\(Z\)` .
+- LIML in the context of instrumental variables does the same thing, except that it scales down the prediction, making it weaker, using a parameter `\(k\)` which is generally estimated in the model based on the data.
+
+---
+#Fixing Weakness
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+- If `\(k = 1\)` , the prediction is scaled by 1, making no change, and ending up back with 2SLS.
+- But if `\(x&lt;1\)` , a little of the original endogenous variable is brought back, that would have been used in OLS, relying less on that weak instrument.
+- **Fuller’s  `\(\alpha\)` adjustment** can be made to `\(k\)` as `\(k = \hat{k}-\frac{\alpha}{(N-N_1)}\)` . Where `\(N\)` is the number of observation and `\(N_1\)` is the number of instruments.
+ 
+---
+#Nonlinear Instrumental Variables
+&lt;br&gt;&lt;br&gt;
+**Binary Treatments**
+&lt;br&gt;
+- There is a handy and easy-to-implement method for incorporating a binary treatment into 2SLS popularized by Jeffrey Wooldridge (2010)
+- The steps are:
+ - First, estimate the first stage using nonlinear regression of the treatment/endogenous variable on the instruments and controls.
+ - Run that probit model.
+ - Get the predicted values.
+ - Use those predicted values in place of the instrument in 2SLS.
+
+
+---
+#Nonlinear Instrumental Variables
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+**Treatment Effect Regression**
+&lt;br&gt;&lt;br&gt;
+- This approach avoids 2SLS entirely and directly models the actual binary structure of the data. 
+- These approaches basically estimate the probit first stage and the linear second stage at the same time, allowing the instrument to influence the treatment/endogenous variable as usual.
+
+
+---
+#Nonlinear Instrumental Variables
+&lt;br&gt;&lt;br&gt;
+**What if the outcome is binary?**
+&lt;br&gt;&lt;br&gt;
+- The control function approach is a lot like 2SLS, except that instead of isolating the explained part of `\(X\)` , and using that in the second stage, regular of `\(X\)`  is used and also control for the unexplained part of `\(X\)` . 
+- In regular linear instrumental variables, 2SLS and the control function give the same point estimates.
+
+
+---
+#Validity Violation
+.vcenter[
+- There are two popular approaches which can be taken if the f validity of the assumptions does not perfectly hold:
+ - The first tries to do what it can with a mostly-valid instrument
+ - The second makes up for invalidity by using a large number of instruments.
+
+]
+
+---
+#Validity Violation
+&lt;br&gt;&lt;br&gt;
+**Partial Identification,**
+&lt;br&gt;&lt;br&gt;
+- Instead of treating an invalid instrument as a reason to throw out the analysis, instead think about how bad that validity violation is - how strongly the instrument is related to the second stage error term - and construct a range of plausible estimates based on the plausible range of violations.
+- This approach gives something called **partial identification,** since instead of giving a single estimate (identifying an estimate exactly), it gives a range, based on a range of different assumptions that can be made.
+---
+#Validity Violation
+.vcenter[
+Another common approach is to replace your validity assumption with some other assumption about the instrument that may be more plausible than validity, and seeing how far that assumption can take you. 
+]
+
+
+---
+#Lasso in Instrumental variable
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+- LASSO is a method that modifies OLS to tell it to minimize a sum of the absolute values of the coefficients, in addition to the sum of squared residuals, in effect encouraging it to toss variables out of the model entirely.
+- It can be used as it normally is, here, selecting the most important predictors among both control variables and instruments.
+- LASSO can also be used to help spot invalid instruments.
+---
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="../assets/remark-zoom.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9",
+"navigation": {
+"scroll": true
+}
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

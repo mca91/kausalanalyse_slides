@@ -1,3 +1,5 @@
+# https://www.garrickadenbuie.com/blog/print-xaringan-chromote/#fnref:1
+
 xaringan_to_pdf <- function(
     input,
     output_file = NULL,

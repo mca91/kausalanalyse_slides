@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Treatment Effects</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Christoph Hanck" />
+    <script src="TreatmentEffects_files/header-attrs/header-attrs.js"></script>
+    <link href="TreatmentEffects_files/remark-css/default.css" rel="stylesheet" />
+    <script src="TreatmentEffects_files/xaringanExtra-progressBar/progress-bar.js"></script>
+    <script src="TreatmentEffects_files/clipboard/clipboard.min.js"></script>
+    <link href="TreatmentEffects_files/xaringanExtra-clipboard/xaringanExtra-clipboard.css" rel="stylesheet" />
+    <script src="TreatmentEffects_files/xaringanExtra-clipboard/xaringanExtra-clipboard.js"></script>
+    <script>window.xaringanExtraClipboard(null, {"button":"<i class=\"fa fa-clipboard\"><\/i>","success":"<i class=\"fa fa-check\" style=\"color: #00ff00\"><\/i>","error":"<i class=\"fa fa-times-circle\" style=\"color: #F94144\"><\/i>"})</script>
+    <link href="TreatmentEffects_files/font-awesome/css/all.css" rel="stylesheet" />
+    <link href="TreatmentEffects_files/font-awesome/css/v4-shims.css" rel="stylesheet" />
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        TeX: { equationNumbers: { autoNumber: "AMS" } },
+      });
+    </script>
+    <style>
+    .mjx-mrow a {
+      color: black;
+      pointer-events: none;
+      cursor: default;
+    }
+    </style>
+    <link rel="stylesheet" href="../assets/ude_fonts.css" type="text/css" />
+    <link rel="stylesheet" href="../assets/ude.css" type="text/css" />
+    <link rel="stylesheet" href="../assets/custom.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Treatment Effects
+]
+.author[
+### Christoph Hanck
+]
+.date[
+### Summer 2023
+]
+
+---
+
+
+
+
+
+
+<style>.xe__progress-bar__container {
+  bottom:0;
+  opacity: 1;
+  position:absolute;
+  right:0;
+  left: 0;
+}
+.xe__progress-bar {
+  height: 0.25em;
+  background-color: #004c93;
+  width: calc(var(--slide-current) / var(--slide-total) * 100%);
+}
+.remark-visible .xe__progress-bar {
+  animation: xe__progress-bar__wipe 200ms forwards;
+  animation-timing-function: cubic-bezier(.86,0,.07,1);
+}
+@keyframes xe__progress-bar__wipe {
+  0% { width: calc(var(--slide-previous) / var(--slide-total) * 100%); }
+  100% { width: calc(var(--slide-current) / var(--slide-total) * 100%); }
+}</style>
+
+
+
+
+
+
+&lt;!-- #Motivation --&gt;
+
+&lt;!-- - Consider a drug designed to reduce the rate of cervical cancer: --&gt;
+&lt;!-- - It reduces the rate of cervical cancer by half for people with a cervix.  --&gt;
+&lt;!-- - For people without a cervix, the drug has no effect on the rate of cervical cancer. --&gt;
+&lt;!-- - So, the drug has two effects - one for people with a cervix, and one for people without. --&gt;
+&lt;!-- - Even if we just focus on people with a cervix, maybe the drug is highly effective for some people and not very effective for others.  --&gt;
+&lt;!-- - This nature of the effect of a treatment which varies leads to  several types of treatment effect. --&gt;
+
+# Heterogeneity of Treatment Effects
+
+.vcenter[
+.blockquote[
+###Definition: Heterogeneous Treatment Effect
+If the effect of a treatment varies across individuals of the population, we speak of a **heterogeneous treatment effect.**
+]]
+
+---
+# Heterogeneity of Treatment Effects
+
+**Heterogeneity**
+
+Individuals are heterogeneous. If their characteristics impact the effect of treatment, the effects will be heterogeneous across individuals
+
+&amp;rarr; It is often useful to think of each individual as having their own treatment effect. 
+
+&lt;br&gt;
+
+**How do deal with heterogeneous treatment effects?**
+
+- We can try to **estimate the heterogeneous treatment effects.**
+- We can **estimate the distribution of the treatment effects** and try to predict individual treatment effects given individual attributes.
+
+---
+# Average Treatment Effect
+
+.vcenter[
+.blockquote[
+### Definition: Average Treatment Effect (ATE)
+The *mean* of the treatment effect distribution is called the average treatment effect: If we impose the treatment on everyone, the ATE is the effect we will see for an **average individual**.
+]]
+
+---
+# Average Treatment Effect
+
+.vcenter[
+.blockquote[
+###Example: Drug on Cervical Cancer
+
+Assume a drug against Cervical cancer will reduce Terry’s chances of cervical cancer by 2% and Angela’s by 1%. Andrew and Mark do not have cervices so it will reduce their chances by 0.
+
+&lt;br&gt;
+
+**What is the average treatment effect?**
+
+The drug company does tests only on females, they get `$$ATE = \frac{0.02 + 0.01}{2} = 0.015.$$`
+
+Note that 1.5% is probably the better answer for a research question (which one?), but it _cannot_ be considered as the average treatment effect among the population.
+
+]]
+
+???
+
+AET=$\frac{0.2 + 0.1 + 0+ 0}{4} = 0.75$
+
+AET for females: AET= `\(\frac{0.02 + 0.01}{2} = 0.015\)`
+
+---
+
+#Categories of Treatment Effect Averages
+**Main categories of treatment effect averages**
+
+1. Treatment effect averages where we only count *the treatment effects of some people but not others*, i.e., treatment effect averages *conditional on something*.
+ 
+2. Treatment effect averages where we count *everyone*, but we count some individuals more than others.
+
+
+---
+# Isolating the Average Effect
+
+.vcenter[
+.blockquote[
+###Example: Drug on Cervical Cancer &amp;mdash; ctd.
+Name     | Gender    | Untreated Outcome | Treated Outcome | Treatment Effect
+:--------|:---------:|:-----------------:|:---------------:|:----------------:
+Alfred   | Male      | 1                 | 2               | 1
+Brianna  | Female    | 1                 | 5               | 4
+Chizue   | Female    | 2                 | 5               | 3
+Diego    | Male      | 2                 | 4               | 2
+
+&lt;br&gt;
+
+The individuals have *different* treatment effects. The *average* treatment effect is `$$\frac{1 + 4 + 3 + 2}{4} = 2.5.$$`
+]]
+
+---
+# Conditional Average Treatment Effects
+
+.vcenter[
+.blockquote[
+###Example: Conditional ATE
+
+To get an average effect for a certain group we literally pick the corresponding individuals. E.g., we can run an experiment but only on men, taking guys *like* Alfred and Diego and randomly assign them to get treatment or not.
+
+Name   |   Treated     |  Outcome 
+:------|:-------------:|:----------:
+Alfred |  Treated      |    2     
+Alfred |  Untreated    |    1    
+Diego  |  Treated      |    4     
+Diego  |  Untreated    |   .2
+
+&lt;br&gt;
+
+**Q: What is the conditional ATE?**
+
+]]
+
+???
+- We find that the treated people on average had an outcome of `\(\frac{2 + 4}{2} = 3\)`
+- The untreated had `\(\frac{1 + 2}{2} = 1.5\)` and conclude that the treatment has an effect of `\(3−1.5=1.5\)`
+- This is the exact same as the average of Alfred’s and Diego’s treatment effect, `\(\frac{1 + 2}{2} = 1.5\)`
+- So we have an average treatment effect among men, or an average treatment effect *conditional* on being a man.
+
+---
+# Average Treatment Effect on the (un)treated
+
+- Another common way in which the average effect is taken among just one group is based on **who gets treated**.
+&lt;br&gt;
+
+- We might end up with the **average treatment on the treated (ATT)** or **the average treatment on the untreated (ATUT)**, which averages the treatment effects among those who actually got treated (or not).
+
+- The distinction between ATT and ATUT (and to know which one we end up with) is an important one in nearly all social science contexts.
+
+- Treated and untreated people are often different in quite a few ways (people who choose to do stuff are generally quite different from those who do not!), and we might expect the treatment effect to be different for them, too. 
+
+---
+
+#Marginal Treatment Effect
+
+Another way in which a treatment effect can focus on just a particular group is with the marginal treatment effect.
+
+&lt;/br&gt;
+
+.blockquote[
+###Definition: Marginal Treatment Effect
+The **marginal treatment effect** is the treatment effect of a person who is just *on the margin of either being treated or not being treated*. 
+]
+
+---
+#Weighted Average Treatment Effect
+
+We may also include everyone but weight some people different than others to get a **weighted average treatment effect**.
+
+&lt;/br&gt;
+
+.blockquote[
+###Definition: Weighted Average Treatment Effect
+The **Weighted Average Treatment Effect** is the treatment effect obtained by *placing distinct weights* on different individuals. 
+]
+
+---
+#Weighted Average Treatment Effect
+
+.vcenter[
+.blockquote[
+###Example: Drug on Cervical Cancer &amp;mdash; ctd.
+Consider the table _Isolating the Average Effect_ again:
+- The mean of `\(1\)`, `\(2\)`, `\(3\)`, and `\(4\)` is `\(2.5\)`
+- Assume that Brianna should count twice as much as everyone else, and Diego should count half as much. Then our weighted average treatment effect is `$$\frac{1\cdot1 + 4 \cdot 2 + 3 \cdot 1 + 2 \cdot 0.5}{1 + 2 + 1 + 0.5} = 2.89.$$`
+- In the context of treatment effects, we rarely get to literally pick weights. Instead, there is something about the study design that weights some people more than others.
+- A common way this shows up is as *variance-weighted average treatment effects*.
+]]
+
+---
+# Variance-Weighted Average Treatment Effect
+
+- There may be groups of people having lots of variation in treatment while others have not.
+
+- We may weight the treatment effect estimate of those with high variation in treatment more heavily, simply because they can be seen both with and without treatment a lot.
+
+&lt;br&gt;
+.blockquote[
+###Definition: Variance-Weighted Average Treatment Effect
+A treatment effect average where each individual’s treatment effect (after closing back doors!) is weighted based on the *variation in their treatment variable* is called **variance-weighted average treatment effect**.
+]
+
+---
+# Variance-Weighted Average Treatment Effect
+.blockquote[
+###Example: Drug on Cervical Cancer &amp;mdash; ctd.
+ Let us consider the following table:
+
+
+Name     |  Number of Treated  |  Outcome 
+:--------|:------------------- |:-----------:
+Brianna  |  `\(500\)` treated      |  `\(5\)`     
+Brianna  |  `\(500\)` untreated    |  `\(1\)`    
+Diego    |  `\(900\)` treated      |  `\(4\)`     
+Diego    |  `\(100\)` untreated   |  `\(2\)`
+
+
+- Here, we can close the back door, '**being a Brianna' / 'being a Diego**' by subtracting out mean differences between Brianna and Diego, both for the outcome and the treatment.
+- By doing so we get the treatment effect `\(3.47\)`
+]
+
+---
+# Variance-Weighted Average Treatment Effect
+
+.vcenter[
+.blockquote[
+###Example: Drug on Cervical Cancer &amp;mdash; ctd.
+
+3.47 is closer to Brianna’s treatment effect of about 4 than to Diego’s treatment effect of 2.
+- The variance in treatment among Briannas is `\(0.5 \cdot 0.5 = 0.25\)` and among Diegos is `\(0.9 \cdot 0.1 = 0.09\)`
+
+- The **variance-weighted average**, then, is `\(\frac{0.25 \cdot 4 + 0.09 \cdot 2}{0.25 + 0.09} = 3.47\)`
+]]
+
+---
+# Distribution-Weighted Average Treatment Effects
+&lt;br&gt;
+Another weighted average treatment effect is the **distribution-weighted average treatment effect.** 
+&lt;br&gt;&lt;br&gt;
+.blockquote[
+###Definition: Distribution-Weighted Average Treatment Effect
+In **distribution-weighted average treatment effect** we weight, individuals with **common values of the matching variable** are more heavily.
+]
+
+---
+# Exogenous variation in treatment
+
+- Another form of weighted treatment effect that pops up often is based the **responsiveness** of treatment.
+
+-  Heterogeneous treatment effects not only apply to the effect of treatment on an outcome but also apply to the effect of exogenous variation on treatment.
+
+- There may be heterogeneous treatment effects due to (undesired) effects of treatment on assignment *on* treatment, rather than the effect of treatment on outcome.
+
+---
+# Intent-to-treat estimate
+
+&lt;br&gt;
+
+If we have exogenous variation but not everybody follows it, and we limit our data to just the people in our experiment, and we look at the relationship between treatment assignment and the outcome, we then get the intent-to-treat estimate.
+
+&lt;br&gt;
+&lt;br&gt;
+.blockquote[
+###Definition: Intent-to-treat
+Intent-to-treat is **the effect of assigning treatment, although not the effect of treatment itself**, since not everybody follows the assignment.
+]
+
+---
+#Intent-to-treat estimate
+###A note
+- Intent-to-treat gives us the **average treatment effect of assignment.**
+- It weighs each person’s treatment effect by **the proportion of their treatment effect they received.**
+- It is not exactly a weighted treatment effect as instead of dividing by the *sum of the weights*, we divide by the *number of individuals*. 
+
+---
+# Local average treatment effect 
+
+.vcenter[
+.blockquote[
+### Definition: Local average treatment effect
+The local average treatment effect (**LATE**) is a **weighted average treatment effect** where **stronger response to exogenous variation** gets weighted more heavily.
+]]
+
+---
+# Local average treatment effect 
+
+- For LATE we use some **source of exogenous variation to predict treatment**, and then use those predictions instead of your actual data on treatment
+
+- This approach does not just say *were you assigned treatment or not?* but rather *how much more treatment do we think you got due to assignment?*
+
+- If we replace the *number of people* denominator with a *how much more treatment was there?* denominator, LATE becomes very similar to the intent-to-treat
+
+- Specifically, the weights in LATE reflect how much additional treatment each individual would get if assigned to treatment
+
+ 
+---
+# Importance of ATE
+
+.vcenter[
+.blockquote[
+### Why ATE is better than other treatment effects
+
+- The treatment effect we get is almost entirely determined by the source of treatment variation we use. 
+
+- Usually, we wantthe average treatment effect&amp;mdash;the effect we would see *on average* if we took a single individual and applied the treatment to them.
+]]
+
+---
+# Can we always get an ATE?
+
+.vcenter[
+.blockquote[
+### Example: Effect of traffic school on future driving performance
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="TreatmentEffects_files/figure-html/unnamed-chunk-2-1.png" alt="1: Causal diagram of Effect of traffic school on future driving performance " width="70%" style="display:block; margin-right:auto; margin-left:auto;" /&gt;
+&lt;p class="caption"&gt;1: Causal diagram of Effect of traffic school on future driving performance &lt;/p&gt;
+&lt;/div&gt;
+]]
+
+---
+# Can we always get an ATE?
+
+.vcenter[
+.blockquote[
+### Example: Effect of traffic school on future driving performance &amp;mdash; ctd.
+
+- There are only two reasons anyone goes to traffic school: **making a terrible driving mistake**, or **having someone else make a terrible driving mistake that you are somehow punished for.**
+
+- Back Door: *TrafficSchool* ← *YourBadDriving* → *YourFutureDriving*
+
+- We want to identify the effect by measuring and controlling for your own bad driving skills
+
+- This will identify the effect, but it will also shut out any variation in _TrafficSchool_ that is driven by _YourBadDriving_
+]]
+
+---
+# Can we always get an ATE?
+
+.vcenter[
+.blockquote[
+###Example: Effect of traffic school on future driving performance
+
+Consider Rodney and Richard:
+
+- Rodney has a 50% chance of not going to traffic school, a 10% chance of going because of someone else’s bad driving, and a 40% chance of going because of his own bad driving. 
+- Richard has a 50% chance of not going to traffic school, a 30% chance of going because of someone else’s bad driving, and a 20% chance of going because of his own bad driving.
+]]
+
+---
+# Can we always get an ATE?
+
+.vcenter[
+.blockquote[
+###Example: Effect of traffic school on future driving performance
+
+**Outcome**
+- We are tossing out that 40% for Rodney and 20% for Richard chances of going because of their own bad driving.
+
+- There is only a 10% chance that Rodney goes to traffic school for the reason we still allow to count, and similarly a 30% chance for Richard. 
+
+- That means there is more remaining variation in treatment for Richard than for Rodney, so Richard’s treatment effect will be weighted more heavily than Rodney’s will. 
+
+  ** A weighted average treatment effect!**
+
+]]
+
+---
+# Which treatment effect do we get?
+
+.vcenter[
+.blockquote[
+
+### Thumb rules
+
+1. If you have true randomization in a representative sample and do not need to do any adjustment, then you have an average treatment effect (ATE).
+
+2. If you have true randomization only within a certain group, and you isolate that group so you can take advantage of that randomization, you have a conditional average treatment effect.
+
+3. If you know that some variation in treatment is connected to back doors and so you close those back doors, using only the remaining variation, you have a weighted average treatment effect 
+]]
+
+---
+# Which treatment effect do we get?
+
+.vcenter[
+.blockquote[
+
+### Thumb rules &amp;mdash; ctd.
+
+&lt;ol start = 4&gt;
+&lt;li&gt;If you are identifying your effect by assuming that some untreated group is what the treated group would look like if they hadn’t been treated, then we have the average treatment on the treated (ATT).&lt;/li&gt;
+&lt;li&gt;If part of the variation in treatment is driven by an exogenous variable, and you isolate just the part driven by that exogenous variable, then you have a local average treatment effect (LATE).&lt;/li&gt;
+&lt;/ol&gt;
+
+]]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="../assets/remark-zoom.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9",
+"navigation": {
+"scroll": false
+}
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

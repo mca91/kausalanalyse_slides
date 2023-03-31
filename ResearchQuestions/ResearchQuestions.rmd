@@ -1,6 +1,6 @@
 ---
 title: "<a href='https://github.com/mca91/kausalanalyse_slides/raw/main/ResearchQuestions/ResearchQuestions.pdf'>Research Questions</a>"
-author: "Prof. Dr. Christoph Hanck"
+author: "Christoph Hanck"
 date: "Summer 2023"
 output:
   xaringan::moon_reader:

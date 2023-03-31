@@ -1,7 +1,7 @@
 ---
 title: "<a href='https://github.com/mca91/kausalanalyse_slides/raw/main/FindingFrontDoors/FindingFrontDoors.pdf'>Finding Front Doors</a>"
-author: "Prof. Dr. Christoph Hanck"
-date: "Sommer 2023 "
+author: "Christoph Hanck"
+date: "Summer 2023"
 output:
   xaringan::moon_reader:
     css: ["default", "../assets/ude_fonts.css", "../assets/ude.css", "../assets/custom.css"]
