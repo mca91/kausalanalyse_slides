@@ -825,4 +825,4 @@ The application of placebo testing in event studies has been around a long time 
 
 - If it is known from before that there were no effect, then anything estimated could only be the counterfactual model being wrong
 
-  &rarr; If an effect were obtained under those conditions, then the model was fishy and would have to try something else
+  &rarr; If an effect were obtained under those conditions, then the model was fishy and we would have to try something else
