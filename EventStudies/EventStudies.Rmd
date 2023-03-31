@@ -1,0 +1,828 @@
+---
+title: "Event Studies"
+author: "Christoph Hanck"
+date: "Summer 2023"
+output:
+  xaringan::moon_reader:
+    css: ["default", "../assets/ude_fonts.css", "../assets/ude.css", "../assets/custom.css"]
+    self_contained: false # if true, fonts will be stored locally
+    seal: true # show a title slide with YAML information
+    includes:
+      in_header: "../assets/mathjax-equation-numbers.html"
+    nature:
+      beforeInit: ["../assets/remark-zoom.js"]
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: '16:9' #alternatives '16:9' or '4:3' or others e.g. 13:9
+      navigation:
+        scroll: false #disable slide transitions by scrolling
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
+
+```{r , load_refs, include = FALSE, echo=FALSE, cache=FALSE}
+library(RefManageR)
+BibOptions(check.entries = FALSE, 
+           bib.style = "authoryear", 
+           cite.style = 'authoryear', 
+           style = "markdown",
+           hyperlink = FALSE, 
+           dashed = FALSE)
+myBib <- ReadBib("../assets/example.bib", check = FALSE)
+# packages
+source('../assets/packages.R')
+library(kableExtra)
+counter <- function() {
+  i <- 0
+  function() {
+    i <<- i + 1
+    return(i)
+  }
+}
+
+tbl_counter <- counter()
+fig_counter <- counter()
+# transparent images
+library(tidyverse)
+library(lubridate)
+theme_set(theme_bw(base_size=12))
+theme_update(panel.background = element_rect(fill = "transparent", colour = NA),
+             plot.background = element_rect(fill = "transparent", colour = NA))
+opts_chunk$set(
+  dev.args=list(bg="transparent"),
+  message = F, echo = F
+  )
+
+```
+
+```{r xaringanExtra_progress-bar, echo = FALSE}
+xaringanExtra::use_progress_bar(color = "#004c93", location = "bottom")
+```
+
+```{r xaringanExtra-clipboard_2, echo=FALSE}
+# copy button styles mainly in ude.css 
+# https://github.com/gadenbuie/xaringanExtra
+htmltools::tagList(
+  xaringanExtra::use_clipboard(
+    button_text = "<i class=\"fa fa-clipboard\"></i>",
+    success_text = "<i class=\"fa fa-check\" style=\"color: #00ff00\"></i>",
+    error_text = "<i class=\"fa fa-times-circle\" style=\"color: #F94144\"></i>"
+  ),
+  rmarkdown::html_dependency_font_awesome()
+)
+```
+
+```{r , include=FALSE}
+library(ggdag)
+library(ggplot2)
+library(stfit)
+```
+
+# Event Studies
+<br>
+**An event as old as time**
+<br><br>
+
+The event study is probably the oldest and simplest causal inference research design. 
+
+<br>
+**Idea**
+
+- At a certain time, an event occurred, leading a treatment to be put into place at that time
+- Whatever changed from before the event to after is the treatment effect
+
+---
+# Event Studies
+.vcenter[
+.blockquote[
+### Examples: Event studies
+
+- Someone who has a late-night beer, immediately falls asleep, and concludes the next day that beer makes them sleepy is an event study
+
+- When someone puts up a “no solicitors” sign on the door and then notices fewer solicitors afterwards, and conclude the sign worked is again an event study
+
+- When a dog is hungry, then finds its master and whines, and becomes fed and full, then concludes that whining leads to getting fed is also an event study 
+]]
+
+
+---
+# Event studies
+<br>
+**Scenario for event study**
+
+Event studies are designed to work in cases where the relevant causal diagram looks like the following:
+
+```{r , echo=F, cache=F, out.extra = 'style="display:block; margin-right:auto; margin-left:auto;"', fig.height=3.5, out.width='65%', dpi=190, fig.cap=paste0(fig_counter(), ': Causal diagram that event studies work for'), fig.align='center'}
+coord_dag <- list(
+  x = c(a = 1, b = 0, c = 1, d = 2),
+  y = c(a = 1, b = 0, c = 0, d = 0)
+)
+dag_object <- ggdag::dagify(b ~ a,
+                            d ~ a,
+                            c ~ b,
+                            d ~ c,
+                            coords = coord_dag,
+                            labels=c("a"="Time",
+                                     "b"="AfterEvent",
+                                     "c"="Treatment",
+                                     "d"="Outcome"))
+ggdag::ggdag(dag_object, # the dag object we created
+             text = FALSE, # this means the original names won't be shown
+             use_labels = "label") + # instead use the new names
+  theme_void()
+```
+
+
+---
+# Event studies
+<br>
+**Scenario for event study**
+<br><br>
+
+- At some given time period, when moved forward from “before-event” to “after-event”, some treatment goes into effect
+
+- By comparing the outcome when the treatment is in place to the outcome when it is not, the effect of $Treatment \rightarrow Outcome$ is estimated
+
+- A back door is on *everything that changes with $Time$*:
+$$Treatment \leftarrow AfterEvent \leftarrow Time \rightarrow Outcome $$
+
+---
+# Event studies
+<br>
+**Scenario for event study**
+<br><br>
+
+- For an event study to work, the backdoor needs to be closed
+
+- $AfterEvent$ cannot be controlled for and that would in effect control for $Treatment$
+
+- Because $Time$ only effects $Treatment$ through $AfterEvent$ there is the possibility that we can close the back door by controlling for some elements of $Time$ while still leaving variation in $AfterLife$
+
+---
+# Event studies
+<br>
+**Scenario for event study**
+<br><br>
+
+- The whole design of an event study is based around the idea that something changes over time &mdash; the event occurs, the treatment goes into effect. 
+
+- Then before-event to after-event is compared and get the effect of treatment. 
+
+- *Treatment needs to be the only thing that is changing* 
+
+- If the outcome would have changed some reason  which cannot be accounted for, the event study will go poorly
+
+---
+# Prediction and deviation
+<br>
+**Treatment effect**
+<br><br>
+
+There is a way of *predicting the counterfactual* :
+
+- Often we have plenty of information from the before-event times. 
+
+  &rarr; Predict what we would see without treatment, and then see how the actual outcome deviates from that prediction 
+  
+  (Under the assumption that whatever was going on before would have continued without treatment)
+
+- The *extent of the deviation* is the treatment effect
+
+---
+# Prediction and deviation
+
+.vcenter[
+.blockquote[
+### Example: Extent of the deviation is the effect of treatment
+
+```{r , include=FALSE}
+  library(tidyverse)
+  library(extrafont)
+  library(ggpubr)
+  library(cowplot)
+  library(lubridate)
+```
+
+```{r, echo=F, cache=F, out.extra = 'style="display:block; margin-right:auto; margin-left:auto;"', fig.height=3, out.width='85%', dpi=190, fig.cap=paste0(fig_counter(), ': Two examples of graphs representing event studies'), fig.align='center'}
+suppressWarnings({
+d <- list()
+set.seed(1000)
+d[[1]] <- tibble(Date = ymd('2018-01-01') + days(0:199),
+                 y = c(runif(150,0,.5), runif(50,0,.5) + 1/sqrt(1:50)),
+                 yalt = c(rep(NA_real_,150),runif(50,0,.5))) %>%
+  pivot_longer(cols = c('y','yalt')) %>%
+  mutate(name = factor(case_when(
+    name == 'y' ~ 'What we see',
+    name == 'yalt' ~ 'What we expect'
+  ), levels = c('What we see','What we expect')))
+
+p1 <- ggplot(d[[1]], aes(x = Date, y = value, color = name)) + 
+  geom_line() + 
+  geom_vline(aes(xintercept = ymd('2018-05-30')), linetype = 'dashed') +
+  scale_color_manual(values = c('black','gray')) +
+  theme_cowplot() + 
+  labs(y = 'Outcome', color = NULL,
+       title = '(a) flat beforehand') + 
+  theme(text         = element_text(size = 13),
+        axis.title.x = element_text(size = 13),
+        axis.ticks.y = element_blank(),
+        legend.position = c(.1, .8),
+        legend.background = element_rect(color = 'black'))
+
+d[[2]] <- tibble(Date = ymd('2018-01-01') + days(0:199),
+             y = c(rnorm(150,0,.5) + (1:150)/75, rnorm(50,0,.5) + (151:200)/75 - 1),
+             yalt = c(rep(NA_real_,150),rnorm(50,0,.5) + (151:200)/75)) %>%
+  pivot_longer(cols = c('y','yalt')) %>%
+  mutate(name = factor(case_when(
+    name == 'y' ~ 'What We See',
+    name == 'yalt' ~ 'What We Expect'
+  ), levels = c('What We See','What We Expect')))
+
+p2 <- ggplot(d[[2]], aes(x = Date, y = value, color = name)) + 
+  geom_line() + 
+  geom_vline(aes(xintercept = ymd('2018-05-30')), linetype = 'dashed') +
+  scale_color_manual(values = c('black','gray')) +
+  theme_cowplot() + 
+  guides(color = FALSE) +
+  labs(y = 'Outcome',
+       title = '(b) prior trend') + 
+  theme(text         = element_text(size = 13),
+        axis.title.x = element_text(size = 13),
+        axis.ticks.y = element_blank(),
+        legend.position = c(.7, .8),
+        legend.background = element_rect(color = 'black'))
+
+plot_grid(p1,p2)
+})
+```
+]]
+
+---
+# Prediction and deviation
+
+.vcenter[
+.blockquote[
+###Example: Extent of the deviation is the effect of treatment.
+- To get the event study estimate, just compare the black line of real data to the gray line of predicted counterfactual data after the event goes into place. 
+- Looks like the treatment had an immediate positive effect on the outcome, with the black line far above the gray right after the treatment, but then that effect fades out over time and the lines come back together.
+- The same idea applies to the second fiqure as well.
+]]
+
+---
+# Prediction and deviation
+<br>
+**How to make predictions?**
+<br><br>
+There are three main approaches.
+
+<br>
+**Approach 1: Ignore possible changes**
+
+- A very common approach is to simply compare after-event to before-event without worrying about changes over time at all 
+
+- This works best if there is no time effect to worry about
+
+- It also woks well when looking at an extremely short time span
+
+---
+#Prediction and deviation
+<br>
+**How to make predictions?**
+<br><br>
+**Approach 2: Predict after-event data using *before*-event data**
+
+Use patterns in the outcome data up to the event to predict what the outcome would be afterwards.
+
+**Approach 3: Predict after-event data using *after*-event data**
+
+- Use before-event data to establish some pattern in the data. Also look for relationships between the outcome and some other variables
+
+- Extrapolate to the after-event period to get the predictions. Prediction can be made by also seeing how those other variables change.
+
+---
+# Prediction and deviation
+<br>
+**Notes on these approches**
+<br><br>
+
+- All three of the methods makes it clear that the event studies are generally intended for a fairly short post-event window (*short horizon*)
+
+- The farther out one gets from the event, the worse a job one's pre-event-based predictions are going to do, and the more likely it is that the $Time$ back door will creep in, inspite of the controls! 
+
+---
+# Event studies
+<br>
+**Some notes on terminology**
+<br><br>
+Event studies were developed across many fields independently and so terminology may have different meaning (and/or may be confusing)
+
+- In health fields, the term **statistical process control** is used if there are no apparent pre-event trends. These, and the wide family of other similar methods, can be thought of as a form of event study.
+
+- **Interrupted time series** usually either refers to an event study that uses time series econometrics, or to a regression-based approach that fits one regression before-event and another after-event 
+
+
+
+
+---
+# Event studies in the stock market
+<br>
+
+Event studies are highly popular in studies of the stock market when the outcome of interest is a stock’s return.
+
+- Because in any sort of efficient, highly-traded stock market, a stock’s price should already reflect all the public knowledge about a company 
+ 
+- Returns might vary a bit from day to day, or might rise if the market goes up overall
+
+- The only reason the price should have any sort of sharp change is if there is surprising new information revealed about the company
+
+  &rarr; This can be considred a *treatment* !
+
+
+---
+# Event studies in the stock market
+<br>
+**Process for doing a stock market event study**
+<br>
+- Pick an **estimation period** a fair bit before the event, and an **observation period** from just before the event to the period of interest after the event
+
+-  Use the data from the estimation period to estimate a model that can make a prediction $\hat{R}$ of the stock’s return $R$ in each period. Three popular ways of doing this are:
+
+Means-adjusted returns models, market-adjusted returns models and risk-adjusted returns models
+
+---
+# Event studies in the stock market
+<br>
+**Process for doing a stock market event study**
+<br>
+
+1. **Means-adjusted returns model**: Just take the average of the stock’s return in the estimation period, $\hat{R}=\bar{R}$
+
+2. **Market-adjusted returns model**: Use the market return in each period, $\hat{R}=R_m$
+
+3. **Risk-adjusted returns model**: Use the data from the estimation period to fit a regression describing how related the return $R$ is to other market portfolios, like the market return: 
+ $$R=\alpha + \beta R_m$$
+Then, in the observation period, use that model and the actual $R_m$ to predict $\hat{R}$ in each period.
+
+
+---
+#Event Studies in the Stock Market
+<br>
+**Process for doing a stock market event study**
+<br>
+- In the observation period, subtract the prediction from the actual return to get the **abnormal return,**
+$$AR=R-\hat{R}$$
+- Look at $AR$ in the observation period: 
+
+  Nonzero $AR$ values *before* the event imply the event was anticipated.
+  
+  Nonzero $AR$ values *after* the event give the effect of the event on the stock’s return. 
+  
+  For the same efficient-market reason that stock returns are a good candidate for event studies in the first place, effects will generally spike and then fade out quickly.
+
+---
+# Event studies with regression
+<br>
+**Idea**
+
+- Estimate one regression of the outcome on the time period before the event. Then estimate another time series of the outcome on the time period after the event. See how the two are different.
+
+- This approach can be implemented with the simple use of an interaction term (**segmented regression**), $$Outcome = \beta_0 + \beta_{1t} + \beta_2 After + \beta_{3t} \cdot After + \epsilon,$$
+where $t$ is the time period and $After$ is a binary variable equal to 1 in any time after the event.
+
+---
+# Event studies with regression
+<br>
+**Advantage**
+
+A more-precise estimate of the time trend than going day by day (or second by second, etc.) can be obtained.
+
+**Disadvantage**
+
+- The exact shape that the effect takes will get limited to be seen. We need a decent (polynomial) representation of the time series on either side of the event. Results may be bad if the time trend is misspecified!
+
+- For autocorrelated data there is a high chance of obtaining a statistically significant effect of the event, even if it truly had no effect!
+
+  &rarr; Use heteroskedasticity- and autocorrelation-consistent (HAC) standard errors
+  
+  &rarr; Use a model that directly accounts for autocorrelation
+
+---
+# Event studies with regression
+
+.vcenter[
+.blockquote[
+### Example: Effect of ambulance quality control policy on heart attack care 
+
+- Taljaard et al. (2014) looked at an English policy put in place in mid-2010 to improve quality of health care received in the ambulance on the way to the hospital on the chances of heart attack and stroke afterwards 
+
+- Quality-improvement teams were formed, they all collaborated, they shared ideas and they informed staff
+
+- The aim was to determine if the quality improvement teams significantly improved heart attack care
+]]
+
+---
+# Event studies with regression
+
+.vcenter[
+.blockquote[
+### Example: Effect of ambulance quality control policy on heart attack care
+
+Their regression model is:
+
+$$AMI=\beta_0+\beta_1(Week-27)+\beta_2After+\beta_3(Week-27)\cdot After+\epsilon$$
+
+- $AMI$ measures heart attack performance (Acute Myocardial Infarction)
+
+- $Week-27$ (centered at the event period, which allows the coefficient to represent a jump in performance) 
+  
+- $After$ (indicator for being after the 27-week mark of the data where the policy was introduced)
+
+]]
+
+---
+# Event studies with regression
+
+.vcenter[
+.blockquote[
+### Example: Effect of ambulance quality control policy on heart attack care
+
+```{r , echo=F, cache=F, out.extra = 'style="display:block; margin-right:auto; margin-left:auto;"', fig.height=4, out.width='65%', dpi=190, fig.cap=paste0(fig_counter(), ': Effect of an Ambulance Quality Control Cooperative Policy on Heart Attack Care in Taljaard et al. (2014)'), fig.align='center'}
+hosp <- read.csv(text = 'X, Y
+                 0.9411764705882355, 0.48863636363636365
+1.8235294117647047, 0.4545454545454546
+2.882352941176471, 0.4386363636363636
+3.9411764705882355, 0.38181818181818183
+5, 0.42272727272727273
+5.882352941176469, 0.4113636363636364
+6.9411764705882355, 0.15227272727272734
+8, 0.38636363636363646
+8.882352941176471, 0.34090909090909094
+9.941176470588236, 0.42727272727272736
+10.823529411764707, 0.4136363636363637
+11.882352941176471, 0.3772727272727273
+12.941176470588236, 0.35
+14, 0.49090909090909096
+14.882352941176471, 0.44090909090909103
+15.941176470588236, 0.3568181818181818
+17.000000000000004, 0.5318181818181817
+18.058823529411768, 0.4931818181818183
+19.117647058823533, 0.44999999999999996
+19.823529411764707, 0.4568181818181818
+21.058823529411764, 0.44772727272727275
+21.941176470588236, 0.5181818181818182
+23.000000000000004, 0.4181818181818182
+24.058823529411764, 0.4
+24.941176470588243, 0.415909090909091
+25.823529411764707, 0.36363636363636365
+27.05882352941177, 0.44090909090909103
+27.941176470588236, 0.38636363636363646
+29.000000000000004, 0.4113636363636364
+30.058823529411764, 0.49090909090909096
+31.117647058823533, 0.3318181818181819
+32, 0.3772727272727273
+32.88235294117648, 0.44772727272727275
+33.94117647058823, 0.49090909090909096
+35, 0.4363636363636364
+36.05882352941177, 0.3545454545454545
+37.117647058823536, 0.42499999999999993
+38, 0.4795454545454546
+38.882352941176464, 0.46818181818181825
+39.94117647058823, 0.42954545454545456
+41, 0.5227272727272727
+41.88235294117648, 0.4977272727272727
+43.117647058823536, 0.4772727272727273
+44, 0.5545454545454545
+44.88235294117648, 0.5636363636363637
+45.941176470588246, 0.55
+47, 0.5340909090909091
+48.05882352941177, 0.5590909090909091
+48.941176470588246, 0.5977272727272728
+50.176470588235304, 0.5568181818181819
+50.882352941176464, 0.4136363636363637
+51.94117647058823, 0.4636363636363636
+53, 0.6136363636363636
+54.05882352941177, 0.625
+55.11764705882352, 0.5545454545454545
+56, 0.6022727272727273
+57.05882352941177, 0.515909090909091
+58.11764705882352, 0.5840909090909091
+59, 0.5136363636363637
+60.05882352941177, 0.6204545454545455
+61.117647058823536, 0.5636363636363637
+62, 0.6590909090909092
+63.05882352941177, 0.6136363636363636
+64.11764705882354, 0.5636363636363637
+65, 0.5977272727272728
+66.05882352941177, 0.5863636363636364
+67.11764705882354, 0.5818181818181818
+68.1764705882353, 0.5681818181818181
+69.05882352941177, 0.5363636363636364
+69.94117647058823, 0.5545454545454545
+71, 0.6227272727272728
+72.05882352941177, 0.5636363636363637
+73.11764705882354, 0.5613636363636363
+74, 0.6204545454545455
+75.05882352941177, 0.6386363636363637
+75.94117647058825, 0.6000000000000001
+77, 0.625
+78.05882352941177, 0.6590909090909092
+79.11764705882354, 0.6272727272727272
+80.1764705882353, 0.665909090909091
+80.88235294117646, 0.6090909090909091
+82.11764705882354, 0.5863636363636364
+83, 0.6045454545454545
+84.23529411764707, 0.6090909090909091
+85.11764705882354, 0.5954545454545455
+86.1764705882353, 0.5954545454545455
+87.05882352941177, 0.675
+88.11764705882354, 0.6454545454545455
+89, 0.6590909090909092
+89.88235294117646, 0.6795454545454545
+90.94117647058825, 0.65
+92.17647058823529, 0.6227272727272728
+93.23529411764706, 0.6022727272727273
+94.11764705882352, 0.6363636363636364
+95.00000000000001, 0.6318181818181818
+96.05882352941177, 0.6840909090909091
+96.94117647058825, 0.6363636363636364
+98, 0.6954545454545455
+99.05882352941178, 0.6863636363636363
+100.11764705882354, 0.6409090909090909
+101.00000000000001, 0.6909090909090909
+102.23529411764706, 0.7159090909090909
+103.11764705882352, 0.6681818181818182
+104, 0.7
+105.23529411764706, 0.7
+106.11764705882354, 0.7568181818181818
+107.17647058823529, 0.6363636363636364
+108.05882352941177, 0.6977272727272728
+109.11764705882352, 0.7318181818181818
+110.1764705882353, 0.6704545454545454
+111.05882352941177, 0.7318181818181818
+111.94117647058825, 0.6795454545454545')
+hosp <- hosp %>%
+  mutate(X = 1:112) %>%
+  mutate(After = X >= 27) %>%
+  rename(Weeks = X, AMI = Y) %>%
+  mutate(Weeks_Centered = Weeks - 27)
+
+ggplot(hosp, aes(x = Weeks, y = AMI)) + 
+  geom_line(alpha = .5, color = 'gray') + geom_point() + 
+  geom_smooth(mapping = aes(group = After), method = 'lm', color = 'black', se = FALSE) + 
+  geom_vline(aes(xintercept = 27), linetype = 'dashed') + 
+  scale_y_continuous(limits = c(0,1)) +
+  labs(y = 'AMI Performance') + 
+  theme_cowplot() + 
+  theme(text         = element_text(size = 13),
+        axis.title.x = element_text(size = 13),
+        axis.ticks.y = element_blank(),
+        legend.position = c(.7, .8),
+        legend.background = element_rect(color = 'black'))
+```
+]]
+
+
+---
+# Event studies with regression
+
+.vcenter[
+.blockquote[
+### Example: Effect of ambulance quality control policy on heart attack care
+
+- There is no jump at the cutoff. So no immediate effect of the policy on outcomes.
+
+- The jump is represented by the change in prediction at the event time, $Week=27$  
+
+- Comparing the lines on the left and the right at that time, a prediction of $\beta_0$ on the left and $\beta_0+\beta_1$ on the right is obtained.
+]]
+
+---
+# Event studies with regression
+
+.vcenter[
+.blockquote[
+### Example: Effect of ambulance quality control policy on heart attack care
+
+- The difference is $$(\beta_2+\beta_0)-\beta_0=\beta_2\cdot \beta_2$$ is the jump in the prediction at the moment the treatment goes into effect
+
+- This is the **event study estimate** of the treatment effect
+]]
+
+---
+# Event studies with multiple affected groups
+<br>
+
+- All the methods that are discussed so far have assumed that an event that affects only one group
+
+- However, there are many events that can be applied to lots of groups. 
+
+- To run an event study in a case like that, the followings can be done:
+
+ - Pretending not having many groups
+ - Each groups can be treated separately
+ - Groups can be aggregated with Regression
+ 
+---
+
+# Event studies with multiple affected groups
+<br>
+**Pretending not having many groups**
+
+<br>
+- If a method is designed for a single time series, but  lots of different time series are present that matter. Then they all can be squeezed together. 
+
+ &rarr; Average a bunch of time series. 
+
+- One disadvantage is that a lot of information can be lost by doing this and the estimate will be less precise
+
+---
+# Event studies with multiple affected groups
+<br>
+**Each group can be treated separately**
+
+<br>
+- Running one event study per group if study methods for single groups are present and there are lots of groups will will give a different effect for each group.
+
+- At this point we have effects for each group &mdash; this could be an immediate effect of 
+
+    - a single post-event time period or
+    
+    - the coefficient on $After$ in a regression, or 
+    
+    - an average effect over the entire post-event period, or a cumulative effect. 
+
+- From there the distribution of effects across all the groups can be insepcted (and summarized, think averages)
+
+---
+# Event studies with multiple affected groups
+<br>
+**Groups can be aggregated with regression**
+
+<br>
+- The regression approach to event study estimation allows to have more than one observation per time period 
+
+- The regression model is nearly the same as when there is just one time series: $$Outcome=\beta_i+\beta_{1t} + \beta_2 After + \beta_{3t}\cdot After + \epsilon$$
+
+- The only difference is the switch from $\beta_0$ to a group to a group fixed effect of $\beta_i$
+
+- This is not always necessary, but if the different groups have different baseline levels of $Outcome$ the fixed effect will help deal with that
+
+---
+# Event studies with multiple affected groups
+<br>
+**Groups can be aggregated with regression**
+
+<br>
+- This regression will produce very similar results to what can be expected if first, averaged all the data together and then estimated a regression on that single time series
+
+- If an event matters only for a day or the interest is to know the full shape of the event, a different type of regression is required: $$Outcome = \beta_0+\beta_t+ \epsilon$$
+
+  (regression on a set of *time-period fixed effects*)
+
+---
+# Event studies with multiple affected groups
+<br>
+**Groups can be aggregated with regression**
+
+<br>
+- The fixed effects are done in a particular way. The last time period before the event should have an effect as the reference category is selected. 
+
+- The fixed effect for a given period is then just an estimate of the mean outcome in that period relative to the period just before the event 
+
+- If time-period fixed effects themselves is plotted, it will be a single time series
+
+- The only difference is that now standard errors for each of the periods are present, and everything is made relative to the period just before the event
+
+
+---
+# Forecasting properly with time series methods
+<br>
+
+- Remember that an event study requires that some actual data in the after-event period is present and that we can conduct a comparison and a prediction of what would have happened in the after-event period if the event had not occurred
+
+- The prediction is invariably based on the idea that, *without the event*, whatever was going on before the event would have continued
+
+- In other words, time series data from before the event is used to predict beyond the event. This is **time series forecasting.**
+
+---
+# Forecasting properly with time series methods
+<br>
+** The ARMA Model**
+
+<br>
+- The ARMA model is an acronym for two common features that can be seen in time series data. 
+ - **AR stands for autoregression**, meaning that the value of something today influences its value tomorrow. 
+ - **MA stands for moving-average**, meaning that transitory effects on something last a little while and then fade out. 
+
+---
+# Forecasting properly with time series methods
+<br>
+** The ARMA Model**
+
+The ARMA model consists of an autoregressive (AR) and a moving-average (MA) component
+
+<br>
+**AR(1) model**
+
+$$Y_t = \beta_0+\beta_1Y_{t-1}+ \epsilon$$
+$t$ and $t-1$ indicate that the predictor for $Y$ in a given period is $Y$ from the previous period: the **lag** of $Y$.
+
+**MA(1) model**
+
+$$Y_t = \beta_0+(\epsilon_t + \theta \epsilon_{t-1})$$
+$\epsilon_t$ and $\epsilon_{t-1}$ are error terms at times $t$ and $t-1$. Since $\epsilon_t$ and $\epsilon_{t-1}$ cannot be observed, $\theta$ cannot be estimated by regular regression (there are alternate methods).
+
+---
+# Forecasting properly with time series methods
+
+.vcenter[
+.blockquote[
+### Example: ARMA(2,1) model
+An ARMA(2,1) model includes two autoregressive terms and one moving-average term. The the current value of the time series depends on the previous two values, and the transitory effect in one previous period, $$Y_t = \beta_0+\beta_1Y_{t-1}+\beta_2Y_{t-2}+(\epsilon_t + \theta \epsilon_{t-1}).$$
+]]
+
+---
+# Forecasting properly with time series methods
+
+<br>
+
+```{r , echo=F, cache=F, out.extra = 'style="display:block; margin-right:auto; margin-left:auto;"', fig.height=4.25, out.width='70%', dpi=190, fig.cap=paste0(fig_counter(), ': Different time series processes'), fig.align='center'}
+set.seed(10)
+suppressWarnings({
+d <- data.frame(t = 1:100, Y = rnorm(100)) %>%
+  mutate(Y_AR  = Y,
+         Y_MA = Y,
+         Y_ARMA = Y)
+for (i in 2:100) {
+  d[i, 'Y_AR'] <- d[i,'Y_AR'] + .8*d[i-1,'Y_AR']
+  d[i, 'Y_MA'] <- d[i, 'Y_MA'] + .9*d[i-1, 'Y']
+  d[i, 'Y_ARMA'] <- d[i, 'Y_ARMA']+ .8*d[i-1,'Y_ARMA'] + .9*d[i-1, 'Y']
+}
+
+names <- c('(a) Totally Random', '(b) MA(1) Process', '(c) AR(1) Process', '(d) ARMA(1,1) Process')
+vars <- c('Y','Y_MA','Y_AR','Y_ARMA')
+p <- list()
+for (i in 1:4) {
+  p[[i]] <- ggplot(d, aes_string(x = 't', y = vars[i])) + 
+    geom_line() + 
+    labs(x = 'Time', y = 'Value', title= names[i]) + 
+    theme_pubr() + 
+    theme(text= element_text( size = 13))
+}
+plot_grid(p[[1]],p[[2]],p[[3]],p[[4]], ncol = 2)
+})
+```
+
+
+---
+# The joint-test problem
+<br>
+
+- Results obtained from an event study are a combination of two things:
+ 
+ - The actual event study effect
+ 
+ - The model which is used to generate the counterfactual prediction
+
+- Event study designs are highly reliant on making *accurate predictions of the counterfactual*. 
+
+  That **prediction is the only thing making the event study work**!
+
+- Doing a significance test of that effect would imply
+
+ - ...testing the true event-study effect.
+ - ...doing a joint test of both the true effect and whether the predictive model is right.
+ 
+- These two parts *cannot* be separated!
+
+  &rarr; **The counterfactual-prediction model is made as good as possible**
+ 
+
+---
+# The joint-test problem
+
+.vcenter[
+.blockquote[
+### Definition: Placebo test
+A placebo test is a test performed under conditions where there should be zero effect. So if you find an effect, something is wrong.
+]]
+
+
+---
+# The joint-test problem
+<br>
+**Placebo testing**
+
+The application of placebo testing in event studies has been around a long time and the approach seems to have been largely codified by the time of Brown and Warner (1985).
+
+<br>
+**Idea**
+
+- When there is supposed to be an effect, and tested for it, we cannot tease apart what part of the findings is the effect and what part is due to the counterfactual model being wrong.
+
+- If it is known from before that there were no effect, then anything estimated could only be the counterfactual model being wrong
+
+  &rarr; If an effect were obtained under those conditions, then the model was fishy and would have to try something else
