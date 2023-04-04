@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Difference-in-Differences</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Christoph Hanck" />
+    <script src="DiD_files/header-attrs/header-attrs.js"></script>
+    <link href="DiD_files/remark-css/default.css" rel="stylesheet" />
+    <script src="DiD_files/xaringanExtra-progressBar/progress-bar.js"></script>
+    <script src="DiD_files/clipboard/clipboard.min.js"></script>
+    <link href="DiD_files/xaringanExtra-clipboard/xaringanExtra-clipboard.css" rel="stylesheet" />
+    <script src="DiD_files/xaringanExtra-clipboard/xaringanExtra-clipboard.js"></script>
+    <script>window.xaringanExtraClipboard(null, {"button":"<i class=\"fa fa-clipboard\"><\/i>","success":"<i class=\"fa fa-check\" style=\"color: #00ff00\"><\/i>","error":"<i class=\"fa fa-times-circle\" style=\"color: #F94144\"><\/i>"})</script>
+    <link href="DiD_files/font-awesome/css/all.css" rel="stylesheet" />
+    <link href="DiD_files/font-awesome/css/v4-shims.css" rel="stylesheet" />
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        TeX: { equationNumbers: { autoNumber: "AMS" } },
+      });
+    </script>
+    <style>
+    .mjx-mrow a {
+      color: black;
+      pointer-events: none;
+      cursor: default;
+    }
+    </style>
+    <link rel="stylesheet" href="../assets/ude_fonts.css" type="text/css" />
+    <link rel="stylesheet" href="../assets/ude.css" type="text/css" />
+    <link rel="stylesheet" href="../assets/custom.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Difference-in-Differences
+]
+.author[
+### Christoph Hanck
+]
+.date[
+### Summer 2023
+]
+
+---
+
+
+
+
+
+
+<style>.xe__progress-bar__container {
+  bottom:0;
+  opacity: 1;
+  position:absolute;
+  right:0;
+  left: 0;
+}
+.xe__progress-bar {
+  height: 0.25em;
+  background-color: #004c93;
+  width: calc(var(--slide-current) / var(--slide-total) * 100%);
+}
+.remark-visible .xe__progress-bar {
+  animation: xe__progress-bar__wipe 200ms forwards;
+  animation-timing-function: cubic-bezier(.86,0,.07,1);
+}
+@keyframes xe__progress-bar__wipe {
+  0% { width: calc(var(--slide-previous) / var(--slide-total) * 100%); }
+  100% { width: calc(var(--slide-current) / var(--slide-total) * 100%); }
+}</style>
+
+
+
+
+
+
+# Across within variation
+
+**Time can be a back door**
+
+.vcenter[
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="DiD_files/figure-html/unnamed-chunk-2-1.png" alt="1:  Basic time backdoor" width="65%" style="display:block; margin-right:auto; margin-left:auto;" /&gt;
+&lt;p class="caption"&gt;1:  Basic time backdoor&lt;/p&gt;
+&lt;/div&gt;
+]
+
+---
+# Across within variation
+&lt;br&gt;
+**Closing a back door with another back door**
+
+&lt;br&gt;
+
+- We often ask how much of the change in the world is due to a treatment that occurred at a particular *time* which is a back door
+
+- Identifying the treatment effect (closing the back door) is difficult: *all* variation in `\(Treatment\)` is explained by `\(Time\)`:
+
+ Individuals are either in a before-treatment time and untreated, or in an after-treatment time and treated.
+
+- Event studies solve this problem by using before-treatment information to *construct* a counterfactual
+
+- Differences-in-differences (DiD) considers a second group that is *never* treated (another back door) to introduce within variation to compare too
+
+
+---
+# Across within variation
+&lt;br&gt;
+
+.vcenter[
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="DiD_files/figure-html/unnamed-chunk-3-1.png" alt="2: Two back doors that can be closed by DiD" width="65%" style="display:block; margin-right:auto; margin-left:auto;" /&gt;
+&lt;p class="caption"&gt;2: Two back doors that can be closed by DiD&lt;/p&gt;
+&lt;/div&gt;
+
+
+]
+
+---
+# Across within variation
+&lt;br&gt;
+**DiD closes a back door with another back door**
+
+**Steps**
+
+1. **Obtain *within* differences**: 
+
+  Control for group differences by isolating the *within* variation for both the treated group and untreated group. This **closes back doors through *Group***.
+
+2. **Obtain differences in the differences**:
+
+  Compare the within variation in the treated group to the within variation in the untreated group. Because the within variation in the untreated group is affected by time, this controls for time differences and **closes the back door through *Time***.
+
+---
+# Differences-in-differences
+&lt;br&gt;
+
+**Treatment effects in DiD**
+&lt;br&gt;
+
+- DiD compares what is seen for the treated group after treatment against the best guess at what the treatment group would have been without treatment
+
+- The difference between being treated and not being treated for the group that actually gets treated is being isolated
+
+  &amp;rarr; **average treatment on the treated**
+
+- The DiD estimate is all about how effective the treatment was for the groups that actually got it 
+
+
+---
+# Difference-in-differences
+
+.vcenter[
+.blockquote[
+###Example: Difference-in-differences and dirty water
+
+- Snow's (1855).fn[1] study on cholera spreading by dirty drinking water is very similar to a modern-day difference-in-differences research design, and can be easily discussed in those terms (Coleman 2019).
+
+- Water taken in from the parts of the Thames that were downstream of London (by the Lambeth Company) contained everything that Londoners dumped in the river, including plenty of fecal matter from people infected with cholera 
+]]
+
+.footnote[[1] Snow, John. 1855. *On the Mode of Communication of Cholera*. John Churchill.]
+
+
+---
+# Difference-in-differences
+
+.vcenter[
+.blockquote[
+###Example: Difference-in-differences and dirty water
+
+- Between 1849 and 1854 (before and after periods), a policy required the Lambeth Company to move their water intake upstream of London
+
+- Lambeth moving their intake source gives the **Treated group:** people in areas where the water came from the Lambeth company, and an **untreated group:** anyone in an area without Lambeth's water supply.
+
+**Research Question**: Did areas getting water from Lambeth see their Cholera numbers go down from 1849 to 1854 relative to areas getting no water from Lambeth?
+]]
+
+
+---
+# Difference-in-differences
+
+.vcenter[
+.blockquote[
+###Example: Effect of lambeth on cholera
+| &lt;div style="width:350px"&gt;Region supplier&lt;/div&gt; | &lt;div style="width:200px"&gt;Death rates (1849)&lt;/div&gt; | &lt;div style="width:200px"&gt;Death rates (1854)&lt;/div&gt;  |
+| :------------- |:-------------:|:-----:|
+| Non-Lambeth only (dirty)	     | 134.9	| 146.6 |
+| Lambeth + others (mix dirty and clean)     | 130.1      |   84.9 |
+
+&lt;br&gt;
+.font80[(Death rates are deaths per 10,000 of the 1851 population.)]
+]]
+
+
+---
+# Mechanics of DiD
+
+.vcenter[
+.blockquote[
+### Example: Effect of active choice on organ donor
+
+- People are assumed not to be organ donors in most states of the US. They *may opt-in* to be a potential organ donor when signing up for a driver's license. 
+
+- In some states there is an *active choice* rule: when one signs up for a driver’s license, one is *asked to choose whether or not* to be a donor.
+
+- In July 2011, California switched from an opt-in to an active choice rule (a treatment!)
+]]
+
+.footnote[[2] Kessler, Judd B., and Alvin E. Roth. 2014. *Don’t Take ’No’ for an Answer: An Experiment with Actual Organ Donor Registrations*. National Bureau of Economic Research.]
+
+
+---
+# Mechanics of DiD
+
+.vcenter[
+.blockquote[
+### Example: Effect of active choice on organ doner
+
+- Kessler and Roth (2014).fn[2] compare California against the twenty-five states that either have opt-in or a verbally given question with no fixed response (a difference). 
+
+- Specifically, they compared the states on the basis of how their organ donation rates changed from before July 2011 to after (a difference in differences).
+]]
+
+
+---
+# Mechanics of DiD
+
+.blockquote[
+### Example: Effect of active choice on organ doner
+&lt;br&gt;
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="DiD_files/figure-html/unnamed-chunk-4-1.png" alt="3: Organ donation rates in California and other states" width="65%" style="display:block; margin-right:auto; margin-left:auto;" /&gt;
+&lt;p class="caption"&gt;3: Organ donation rates in California and other states&lt;/p&gt;
+&lt;/div&gt;
+]
+
+---
+### Example: Effect of active choice on organ doner
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="DiD_files/figure-html/unnamed-chunk-5-1.png" alt="4: Organ donation rates in California and other states" width="85%" height="100%" style="display:block; margin-right:auto; margin-left:auto; margin-top:25px;" /&gt;
+&lt;p class="caption"&gt;4: Organ donation rates in California and other states&lt;/p&gt;
+&lt;/div&gt;
+
+
+---
+# Untreated groups and parallel trends
+&lt;br&gt;&lt;br&gt;
+**Parallel trends assumption**
+
+&lt;br&gt;
+
+- If no treatment had occurred, the difference between the treated group and the untreated group would have stayed the same in the post-treatment period as it was in the pre-treatment period
+
+- Parallel trends is *inherently unobservable*: it is about the counterfactual of what would have happened if treatment had not occurred.
+
+---
+# Untreated groups and parallel trends
+&lt;br&gt;&lt;br&gt;
+**Parallel trends assumption**
+
+&lt;br&gt;
+
+- The DiD design targets the change in the untreated group to represent all non-treatment changes in the treated group.
+
+- That way, once the untreated group’s change is subtracted, only the treated group’s change is left. 
+
+- DiD cannot work without parallel trends: 
+
+  If the gap between the two groups would have changed from the pre-period to the post-period without treatmetn, then this non-treatment-related change will get mixed up with the treatment-related change.
+
+---
+# Untreated groups and parallel trends
+&lt;br&gt;&lt;br&gt;
+**Parallel trends assumption**
+
+&lt;br&gt;
+- The difference between pre-treatment and post-treatment in the treated group is
+`$$\text{EffectOfTreatment} +\text{OtherTreatedGroupChanges}$$`
+- `\(\text{OtherUntreatedGroupChanges}\)` is the difference between pre-treatment and post-treatment in the untreated group
+
+- Difference-in-difference subtracts one from the other, giving us `$$\text{EffectOfTreatment} + \text{OtherTreatedGroupChanges} - \text{OtherUntreatedGroupChanges}$$`
+
+---
+# Untreated groups and parallel trends
+&lt;br&gt;&lt;br&gt;
+**How to pick an untreated comparison group is a parallel trend is required?**
+
+&lt;br&gt;
+
+Outcome of the untreated group must change by the same amount as the treated group (if treatment had occurred) 
+
+There are a few good signs that can be looked for:
+
+- The treated group and untreated groups are generally similar
+
+- The untreated group would never suddenly change around the time of treatment
+
+- The treated group and untreated groups had similar trajectories for the dependent variable before treatment
+
+  &amp;rarr; Check prior trends, placebo test
+
+---
+# Untreated groups and parallel trends
+&lt;br&gt;
+.blockquote[
+### Example: Plausible vs. implauslible prior trends
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="DiD_files/figure-html/unnamed-chunk-6-1.png" alt="3: A Graph Where the Prior Trends Test Looks Good for DID, and a Graph Where It Does not " width="80%" style="display:block; margin-right:auto; margin-left:auto;" /&gt;
+&lt;p class="caption"&gt;3: A Graph Where the Prior Trends Test Looks Good for DID, and a Graph Where It Does not &lt;/p&gt;
+&lt;/div&gt;
+]
+
+---
+# Untreated groups and parallel trends
+&lt;br&gt;
+**Placebo test for DiD**
+
+&lt;br&gt;
+In a placebo test, a situation is taken where a treatment was applied.
+
+1. Ignoring all the data from the periods where treatment was actually applied
+
+2. Using pre-treatment data, pick a few different periods and pretend that a treatment was applied at that time. 
+
+3. Obtain DiD estimates at the pretended treatment dates. 
+
+If a DID “effect” is found consistently at those pretended treatment dates, that gives a clue that something may be awry about the parallel trends assumption.
+
+---
+# How to perform DiD?
+&lt;br&gt;
+**Two-way fixed effects**
+
+&lt;br&gt;
+The goal here is to control for group differences, and also control for time differences. The regression is
+`$$Y = \alpha_g+\alpha_t+\beta_1Treated+\epsilon.$$`
+-  `\(\alpha_g\)` is a set of fixed effects for the group &amp;mdash; in the simplest form, just “treated” or “untreated” 
+
+- `\(\alpha_t\)` is a set of fixed effects for the time period  just “before treatment” and “after treatment”
+
+- `\(Treated\)` is a binary variable indicating that one is being treated right now
+
+- `\(\beta_1\)` is the difference-in-differences effect
+
+Control variables that change over time can be incorporated. 
+
+---
+# How to perform DiD?
+&lt;br&gt;
+**Two-way fixed effects**
+
+&lt;br&gt;
+Another way to write the same model equation if only two groups and two time periods is present is
+`$$Y = \beta_0 + \beta_1 \text{TreatedGroup} + \beta_2 \text{AfterTreatment} + \beta_3 \text{TreatedGroup} \times \text{AfterTreatment} + \epsilon.$$`
+ 
+ - `\(\text{TreatedGroup}\)` is an indicator of the group being treated
+ 
+ - `\(\text{AfterTreatment}\)` is an indicator of the “post’’-treatment period
+ 
+ - The third term is an interaction term, in effect an indicator for being in the treated group and in the post-treatment period
+ 
+---
+# How to perform DiD?
+&lt;br&gt;
+**Two-way fixed effects**
+
+&lt;br&gt;
+- This third term is equivalent to `\(\text{Treated}\)` in the last equation, and `\(\widehat{\beta}_3\)` is the DiD estimate 
+
+- By standard interaction-term interpretation, `\(\beta_3\)` tells us how much bigger the `\(\text{TreatedGroup}\)` effect is in the `\(\text{AfterTreatmen}\)` than in the before-period
+
+- Whichever the equation is written, this approach is called the *two-way fixed effects DiD estimator* since it has two sets of fixed effects, one for group and one for time period 
+
+- This model is generally estimated using standard errors that are clustered at the group level
+
+
+---
+# Two-way fixed effects
+&lt;br&gt;
+**Advantages**
+
+&lt;br&gt;
+
+- Highly intuitive, straightforward to use with with software that implements fixed effects estimation
+
+- Allows to account for *multi-group designs* where some groups are treated and some are not, rather than just one treated and untreated group.
+
+**Disadvantage**
+
+Two-way fixed effects does not work very well for **rollout designs** also known as **staggered treatment timing**, where the treatment is applied at different times to different groups. 
+
+
+
+---
+# Two-way fixed effects
+&lt;br&gt;
+**The test of prior trends**
+
+&lt;br&gt;
+
+The simplest form uses the regression model `$$Y =\alpha_g+\beta_1Time+\beta_2Time\times Group+\epsilon$$` to test  `\(H_0: \beta_2=0\)`, i.e., the prior trends do not differ across group.
+
+- `\(\alpha_g\)` are group-specific intercepts
+
+- `\(\beta_2Time\times Group\)` allows the time trend to be different for each group
+
+- More complex specifications can be made by adding polynomial terms or other nonlinearities to the model
+
+---
+# Long-term effects
+&lt;br&gt;
+**Dynamic DiD**
+
+
+- DiD can be modified to allow the effect to differ in each time period. In other words, there is a possibility to have **dynamic treatment effects.**
+
+- A common way of doing this is to first generate a centered time variable, which is just the original time variable minus the treatment period:
+
+  Time in the last period before treatment is `\(t=0\)` the first period with treatment implemented is `\(t=1\)` the second-to-last period before treatment is `\(t=-1\)` and so on.
+
+- Estimate
+`$$Y_k = \alpha_g + \alpha_t + \beta_{-T_1}\text{Treated}+\beta_{-(T_1-1)} \text{Treated} + \dots + \beta_1 \text{Treated} + \dots + \beta_{T_2} \text{Treated} + \epsilon,$$`
+ 
+  where the `\(\text{Treated}\)` regressors are interactions of `\(\text{Treatment}\)` and each of the time periods (for `\(T_1\)` periods before the treatment period and `\(T_2\)` periods afterwards).
+
+ 
+
+---
+# Long-term effects
+&lt;br&gt;
+
+**Advantages**
+
+- The before-treatment coefficients `\(\beta_{T_1},\beta_{-(T_1-1)},...,\beta_{-1}\)` should be close to zero
+
+- The after-treatment coefficients  `\(\beta_1,...,\beta_{T_2}\)` show the DiD estimated effect in the relevant period: 
+
+  The effect one period *after* treatment is `\(\beta_1\)` and so on.
+
+**Disadvantage**
+
+- Regular DiD takes advantage of all the data in the entire after period to estimate the effect.
+
+- Each period’s effect estimate in the dynamic treatment effects approach relies mostly on data from that one period.
+
+  &amp;rarr; Shortage of data and hence less precise estimation!
+  
+---
+# Long-term effects
+&lt;br&gt;
+**Dynamic DiD**
+
+&lt;br&gt;
+- When interpreting the results, everything is relative to the (omitted) `\(t=0\)` effect (as always when there is a categorical variable, everything is relative to the omitted group)
+
+- There should be no actual effect in period 0. But if there was, results will be wrong!
+
+- It's common to represent dynamic estimates graphically with time at the X axis and the DiD estimates and (usually) confidence intervals on the Y axis
+
+
+---
+# Long-term effects
+
+.blockquote[
+### Example: Effect of active choice on organ doner &amp;mdash; ctd.
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="DiD_files/figure-html/unnamed-chunk-7-1.png" alt="3: Dynamic effect of active-choice phrasing on organ donation rates" width="70%" style="display:block; margin-right:auto; margin-left:auto;" /&gt;
+&lt;p class="caption"&gt;3: Dynamic effect of active-choice phrasing on organ donation rates&lt;/p&gt;
+&lt;/div&gt;
+]
+
+---
+# Rollout designs and multiple treatment periods
+
+.vcenter[
+.blockquote[
+### Definition: Rollout design
+ A rollout design is when the groups get treated at different times.
+]]
+
+---
+# Rollout designs and multiple treatment periods
+
+.vcenter[
+.blockquote[
+###Example: High Speed Internet on new businesses
+- We are interested in the impact of having access to high-speed Internet on the formation of new businesses
+
+- Prior knowledge: King County got broadband in 2001, Pierce County got it in 2002, and Snohomish County got it in 2003 
+
+- They each have a before and after period, but those treatment times are not all the same
+]]
+
+
+---
+# Rollout designs and multiple treatment periods
+&lt;br&gt;
+**Rollout designs are tricky**
+
+&lt;br&gt;
+
+From a statistical perspective, tossing a bunch of valid DiD designs together makes the two-way fixed effects regression invalid:
+
+  The estimator does not work because this setup leads already-treated groups to get used as untreated groups.
+
+  &amp;rarr; We get biased DiD estimates. Estimates of the treatment effect may be negative, even if the true effect is positive for everyone in the sample! 
+
+
+---
+# Doing multiple treatment periods right
+&lt;br&gt;
+**Rollout designs are tricky**
+
+&lt;br&gt;
+- Handling multiple treatment periods in DiD where some groups are treated at different times than others is an active area of research
+
+- There are two ways of addressing this problem:
+
+  1. Using models for dynamic treatment effects that are modified to fix the staggered rollout problem (cf. Sun and Abraham 2020.fn[3])
+  2. The method described in Callaway and Sant’Anna (2020).fn[4]
+
+.footnote[[3] Sun, Liyang, and Sarah Abraham. 2020. *Estimating Dynamic Treatment Effects in Event Studies with Heterogeneous Treatment Effects*. Journal of Econometrics.&lt;br&gt; [4] Callaway, Brantly, and Pedro HC Sant’Anna. 2020. *Difference-in-Differences with Multiple Time Periods*. Journal of Econometrics.]
+&lt;br&gt;
+
+---
+# Doing multiple treatment periods right
+&lt;br&gt;
+**1. Dynamic treatment effects approach (Sun and Abraham 2020)**
+
+&lt;br&gt;
+Dynamic treatment effect models modified for staggered rollout can help in the case of staggered DiD
+
+- They separate out the time periods when the effects take place 
+
+- They allow to check model violations by prior trends checks
+
+- They give insight in how the effect evolves (evolving treatment effects are one of the problems with two-way fixed effect!) 
+
+  &amp;rarr; Opportunity to separate things out and fix them.
+
+---
+# Doing multiple treatment periods right
+&lt;br&gt;
+**1. Dynamic treatment effects approach (Sun and Abraham 2020).fn[5]**
+
+&lt;br&gt;
+
+- Sun and Abraham (2020) propose to interact time-centered-on-treatment-time dummies with group membership, i.e., each group and time period has its own coefficient.
+
+  &amp;rarr; Avoids comparisons we do not want to make, since now the regression model is barely comparing anything. 
+
+- Comparisons are then up to us. We can average the corresponding coefficient estimates together in a way that yields a time-varying treatment effect.
+
+.footnote[[5] In R the method is implemented in the `sunab` function of the `fixest` package.]
+
+---
+# Doing multiple treatment periods right
+&lt;br&gt;
+**2. Callaway and Sant’Anna (2020) **
+&lt;br&gt;
+- Estimate *group-time treatment effects*: average treatment effects on the group treated in a particular time period. This gives an effect estimate for each time period where the treatment was new to *someone*
+
+- Compare `\(Y\)` between each treatment group and the untreated group, and use propensity score matching to improve estimates
+
+  &amp;rarr; Group-time treatment effects reflect the post-treatment outcomes of the groups treated in that period against the never-treated groups that are most similar to those treated groups
+
+- 'Summarising' treatment effects can than be obtained as a weighted averages of the group-time treatment effects
+
+---
+# Picking an untreated group with matching
+&lt;br&gt;
+
+**Good control groups are important**
+
+- DiD only works if the comparison group is good (parallel trends)
+
+- Since parallel trends cannot be checked directly, an untreated group needs to be picked (or a set of untreated groups) good enough that the assumption is plausible
+
+- When having potential untreated groups, one can choose between them (or aggregate them together) by matching untreated and treated groups (as in Callaway and Sant’Anna 2020)
+
+**Idea**
+- Match each treated group with an untreated group, or produce a set of weights for the untreated groups based on similarity to the treated groups using a set of pre-treatment predictor variables 
+
+- Run the the usual DiD with the matching groups/weights applied
+
+---
+# Picking an untreated group with matching
+&lt;br&gt;
+**A step further: Synthetic control**
+
+&lt;br&gt;
+
+.blockquote[
+### Definition: Synthetic control 
+In synthetic control, one matches the treated group to a bunch of untreated groups based not just on prior covariates but also on *prior outcomes*. 
+]
+
+&lt;br&gt;
+
+Successful synthetic control matching forces prior trends are to be the same because weights have been specifically chosen for the untreated groups that have the same average outcomes as your treated group in each prior period.
+
+---
+# Picking an untreated group with matching
+&lt;br&gt;
+**Combined matching and DiD**
+&lt;br&gt;
+
+- DiD controls for any differences between treated and untreated groups that is *constant* over time using group fixed effects
+
+- However, DiD is inconclusive about why certain groups come to be treated and others do not
+  
+  &amp;rarr; back doors may be present:
+
+  If there is some back door between 'becomes a treated group' and 'evolution of the outcome in the post-treatment period', identification fails
+
+- Matching can close the back doors between *which groups become treated and when* and the outcome, thus getting parallel trends back!
+
+---
+# Picking an untreated group with matching
+&lt;br&gt;
+**A general problem: Regression to the mean**
+
+&lt;br&gt;
+The basic idea:
+
+- if a variable is far above its typical average of this period, then it’s likely to go down next period, i.e., it *regresses back* towards the mean
+
+- A problem arises if the pre-period outcome levels are related to the probability of treatment:
+
+  DiD cannot adjust for the researcher assigning treatment to subjects with a (random) extreme outcome 
+  
+  &amp;rarr; The effect estimate will be biased!
+
+---
+# Picking an untreated group with matching
+&lt;br&gt;
+**A general problem: Regression to the mean**
+
+&lt;br&gt;
+.blockquote[
+###Example: Effect of policy on unemployment 
+- Two cities A and B have been matched based on very similar covariates 
+
+- Policymakers are planning to put a job training program in place and want to know the effects of the program on unemployment
+
+- They choose City A for the program since unemployment is currently bad in City A. B as the control group.
+]
+
+---
+# Picking an untreated group with matching
+&lt;br&gt;
+**A general problem: Regression to the mean**
+
+&lt;br&gt;
+.blockquote[
+###Example: Effect of policy on unemployment 
+
+After the policy goes into effect, unemployment might get better in City A for two reasons:
+
+ 1. The effect of the policy
+ 2. Regression to the mean &amp;mdash; A may just have had an unusually bad period when policymakers were choosing where to put the training program 
+
+DiD cannot tell the two apart!
+
+]
+
+
+---
+# Picking an untreated group with matching
+&lt;br&gt;
+**A general problem: Regression to the mean**
+
+&lt;br&gt;
+.blockquote[
+### Example: Effect of policy on unemployment 
+
+The matching emphasizes comparisons that are especially subject to regression to the mean:
+
+- This is only a problem because A and B are matched: If a bunch of untreated cities were used, or a random city from a set of potential comparisons, the bias would not be there
+
+- That is because B was selected as a good match for an unusually bad time in A’s history
+
+]
+
+
+---
+# The unfurling logic of difference-in-differences
+
+.vcenter[
+.blockquote[
+###Example: Training program on educational income disparities
+
+- Consider a teacher training program to help ease educational income disparities that is introduced in some districts but not others
+
+- The relationship between parental income and student test scores should be weaker with the introduction of the training program.
+
+- We know
+`$$TestScore=\beta_0+\beta_1Income+\epsilon$$`
+]]
+
+
+
+---
+# The unfurling logic of difference-in-differences
+
+.vcenter[
+.blockquote[
+###Example: Training program on educational income disparities &amp;mdash; ctd.
+
+- Interest is to perform DiD on `\(\beta_1\)` instead of `\(Y\)`:
+`$$(\beta_1^{Treated,\,After}-\beta_1^{Treated,\,Before})-(\beta_1^{Untreated,\,After}-\beta_1^{Unreated,\,Before})$$`
+
+- In order to know the within variation in the effect we may use the model
+`$$TestScore = \beta_0 + \beta_1 Income + \beta_2 After + \beta_3 Income \times After + \epsilon$$`
+
+- For the treated group, `\(\beta_3\)` in the above model gives us
+`$$\beta_1^{Treated,\, After} - \beta_1^{Treated,\, Before}$$`
+]]
+
+---
+# The unfurling logic of difference-in-differences
+&lt;br&gt;
+.blockquote[
+### Example: Training program on educational income disparities &amp;mdash; ctd.
+
+- For the treated group, `\(\beta_3\)` gives us
+`$$\beta_1^{Untreated,After}-\beta_1^{Unreated,Before}$$`
+
+- Everything can be combined into one regression with a triple-interaction term:
+
+`\begin{align*}
+TestScore = &amp;\, \beta_0+\beta_1 Income\\ 
++&amp;\, \beta_2After + \beta_3Income\times After\\
++&amp;\, \beta_4 Treated+\beta_5Treated\times Income+ \beta_6Treated\times After\\ 
++&amp;\, \beta_7 Treated \times Income \times After + \epsilon 
+\end{align*}`
+
+- This is difference-in-differences but *on a relationship* rather than the average of an outcome!
+]
+
+---
+# The unfurling logic of difference-in-differences
+&lt;br&gt;
+**Applications**
+
+&lt;br&gt;
+- Aside from applying DiD to effects themselves (relationships), the logic can also be applied to other kinds of summary descriptions of a single variable rather than the mean (like DiD would do)
+ 
+- An example is in using DiD with [quantile regression](https://en.wikipedia.org/wiki/Quantile_regression): a form of regression that looks at how predictors affect the *distribution* of a variable
+
+- DiD can also be applied to DiD itself and get the difference-in-difference-in-differences model, also known as triple-differences (DiDiD)
+
+---
+# The unfurling logic of difference-in-differences
+&lt;br&gt;
+**Applications**
+
+&lt;br&gt;
+- DiDiD could be used to see how a newly implemented policy *changes* a DID-estimated effect
+
+- However, DiDiD is also used to help strengthen the parallel trends assumption by finding a treated group that should not be affected at all, and subtracting out their effect
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="../assets/remark-zoom.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9",
+"navigation": {
+"scroll": false
+}
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

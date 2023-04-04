@@ -40,13 +40,17 @@ class: title-slide title-index
 
 .pull-right[
 
-<h4>Econometric Toolbox</h4>
+**Econometric Toolbox**
 
 <ol start=9>
 <li><a href='Matching/Matching.html'>Matching</a></li>
 <li><a href='Simulation/Simulation.html'>Simulation</a></li>
 <li><a href='FixedEffects/FixedEffects.html'>Fixed Effects</a></li>
 <li><a href='EventStudies/EventStudies.html'>Event Studies</a></li>
+<li><a href='DiD/DiD.html'>Differences-in-Differences</a></li>
+<li><a href='IV/IV.html'>Instrumental Variables</a></li>
+<li><a href='RDD/RDD.html'>Regression Discontinuity</a></li>
+<li><a href='Rogues/Rogues.html'>Further selected topics</a></li>
 </ol>
 
 ]]
