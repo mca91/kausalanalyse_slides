@@ -717,8 +717,8 @@ The curse of dimensionality means that the more matching variables are added, th
 - Mahalanobis distance suffers from curse of dimensionality.
 - Ways to deal with it:
  - Limit the number of matching variables
- - To have a sample of observations.
- - Compromise with the match quality, or with the value of the caliper/bandwidth, as the number of dimensions goes up.
+ - To have a sample of observations
+ - Compromise with the match quality, or with the value of the caliper/bandwidth, as the number of dimensions goes up
 
 
 
@@ -737,9 +737,9 @@ In coarsened exact matching we only match if observations exactly matches for ea
 .vcenter[
 .blockquote[
 ###Example: Defaulting on credit card debt
-- The variable $Bill April$ can be cutted into ten deciles. 
+- The variable $Bill April$ can be cut into deciles
 
-- For observation 10,305, instead of matching in that row’s exact value of NT$ 91,630 (which no other observation shares), the value of NT$91,630 is between the 80th and 90th percentiles of $Bill April$.
+- For observation 10,305, instead of matching in that row’s exact value of NT$ 91,630 (which no other observation shares), the value of NT$91,630 is between the 80th and 90th percentiles of $Bill April$
 
 - So put it in the category of between NT$63,153 (80th percentile) and NT$112,110 (90th percentile)
 ]]

@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Regression Discontinuity</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Christoph Hanck" />
+    <script src="RDD_files/header-attrs/header-attrs.js"></script>
+    <link href="RDD_files/remark-css/default.css" rel="stylesheet" />
+    <script src="RDD_files/xaringanExtra-progressBar/progress-bar.js"></script>
+    <script src="RDD_files/clipboard/clipboard.min.js"></script>
+    <link href="RDD_files/xaringanExtra-clipboard/xaringanExtra-clipboard.css" rel="stylesheet" />
+    <script src="RDD_files/xaringanExtra-clipboard/xaringanExtra-clipboard.js"></script>
+    <script>window.xaringanExtraClipboard(null, {"button":"<i class=\"fa fa-clipboard\"><\/i>","success":"<i class=\"fa fa-check\" style=\"color: #00ff00\"><\/i>","error":"<i class=\"fa fa-times-circle\" style=\"color: #F94144\"><\/i>"})</script>
+    <link href="RDD_files/font-awesome/css/all.css" rel="stylesheet" />
+    <link href="RDD_files/font-awesome/css/v4-shims.css" rel="stylesheet" />
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        TeX: { equationNumbers: { autoNumber: "AMS" } },
+      });
+    </script>
+    <style>
+    .mjx-mrow a {
+      color: black;
+      pointer-events: none;
+      cursor: default;
+    }
+    </style>
+    <link rel="stylesheet" href="../assets/ude_fonts.css" type="text/css" />
+    <link rel="stylesheet" href="../assets/ude.css" type="text/css" />
+    <link rel="stylesheet" href="../assets/custom.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Regression Discontinuity
+]
+.author[
+### Christoph Hanck
+]
+.date[
+### Summer 2023
+]
+
+---
+
+
+
+
+
+
+<style>.xe__progress-bar__container {
+  bottom:0;
+  opacity: 1;
+  position:absolute;
+  right:0;
+  left: 0;
+}
+.xe__progress-bar {
+  height: 0.25em;
+  background-color: #004c93;
+  width: calc(var(--slide-current) / var(--slide-total) * 100%);
+}
+.remark-visible .xe__progress-bar {
+  animation: xe__progress-bar__wipe 200ms forwards;
+  animation-timing-function: cubic-bezier(.86,0,.07,1);
+}
+@keyframes xe__progress-bar__wipe {
+  0% { width: calc(var(--slide-previous) / var(--slide-total) * 100%); }
+  100% { width: calc(var(--slide-current) / var(--slide-total) * 100%); }
+}</style>
+
+
+
+
+
+# Regression discontinuity
+&lt;br&gt;
+**The idea**
+&lt;br&gt;
+
+- There are plenty situations where treatment is assigned *discontinuously* : 
+
+  People on one side of some **cutoff** get it, and people on the other side do not.
+
+- Without the cutoff people would likely be very similar. Differences can probably be attributed to the cutoff.
+
+- In a regression discontinuity design (RDD) we compare people *just* on either side of a cutoff to estimate treatment effects
+
+---
+# Regression discontinuity
+&lt;br&gt;
+**Terminology**
+
+&lt;br&gt;
+- **Running variable:** The running variable, also known as a forcing variable, is the variable that determines whether one is treated or not. 
+
+- **Cutoff:** The cutoff is the value of the running variable that determines whether one gets treatment. 
+
+- **Bandwidth:** The bandwidth is how much area around the cutoff one is willing to consider comparable. 
+
+---
+# Regression discontinuity
+&lt;br&gt;
+
+**Aim**
+
+&lt;br&gt;
+The core of RDD is to
+
+- ... account for how the running variable normally affects the outcome. 
+
+- ... focus on observations right around the cutoff, inside the bandwidth.
+
+- ... compare the *just-barely-treated* against the *just-barely-did-not* to get the effect of treatment.
+
+---
+# Regression discontinuity
+&lt;br&gt;
+
+**Examples of cutoffs**
+
+&lt;br&gt;
+- Earning more money might lead to disqualify for some means-tested program
+
+- Having a low test score might lead to disqualify for the gifted-and-talented program
+
+- Living on one side of a time zone border or another might lead to getting up an hour earlier
+
+- Staying on one side of a police jurisdiction’s border might lead to experiencing different policing policies
+
+
+---
+# Regression discontinuity
+&lt;br&gt;
+**When can we apply regression discontinuity? **
+
+&lt;br&gt;
+
+People close to the cutoff need to effectively be randomly assigned. We must rule out any obvious impediments to that randomness:
+
+  1. People cannot manipulate the running variable (i.e., choose of treatment or not) 
+  
+  2. People who choose what the cutoff is should not be able to make that choice in response to finding out who has which running variable values.
+
+
+
+---
+# Regression discontinuity
+&lt;br&gt;
+**When can we apply regression discontinuity?**
+
+.vcenter[
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="RDD_files/figure-html/unnamed-chunk-2-1.png" alt="1: A causal diagram that regression discontinuity works for" width="70%" style="display:block; margin-right:auto; margin-left:auto;" /&gt;
+&lt;p class="caption"&gt;1: A causal diagram that regression discontinuity works for&lt;/p&gt;
+&lt;/div&gt;
+]
+
+---
+# Regression discontinuity
+&lt;br&gt;
+**When can we apply regression discontinuity?**
+
+&lt;br&gt;
+- The **running bariable** has
+ 
+ - ... a back door through `\(\text{Z}\)`.
+ 
+ - ... a direct effect on `\(\text{Outcome}\)`.
+
+- Controlling for `\(\text{Running variable}\)` closes the back door `\(\text{Z}\rightarrow\text{Treatment}\)`
+
+- We are interested in the effect of `\(\text{Treatment}\)` having a back door through `\(\text{Running Variable}\)`
+
+- Instead of closing back doors, a front-door path can be isolated:
+
+  By only looking right around the cutoff we are getting rid of any variation that does not lie on the `\(\text{AboveCutoff}\rightarrow\text{Treatment}\rightarrow\text{Outcome}\)` path.
+
+
+---
+# Regression discontinuity
+&lt;br&gt;
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="RDD_files/figure-html/unnamed-chunk-3-1.png" alt="2: Regression discontinuity step-by-step" width="100%" height="95%" style="display:block; margin-right:auto; margin-left:auto;" /&gt;
+&lt;p class="caption"&gt;2: Regression discontinuity step-by-step&lt;/p&gt;
+&lt;/div&gt;
+
+
+
+---
+# Regression discontinuity
+&lt;br&gt;
+**Fuzzy RDD**
+
+&lt;br&gt;
+- In some regression discontinuity applications we need to relax the assumption of a sharp cutoff: 
+  Being on one side or another of the cutoff only changes the *probability of treatment*. 
+
+- In these cases it we have a fuzzy regression discontinuity design (FRDD), as opposed to a 'sharp' RDD where the probability of treatment jumps from 0% to 100%
+
+
+---
+# Regression discontinuity
+&lt;br&gt;
+**Sharp vs. Fuzzy RDD**
+
+&lt;br&gt;
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="RDD_files/figure-html/unnamed-chunk-4-1.png" alt="3: Sharp vs Fuzzy Discontinuity" width="90%" height="95%" style="display:block; margin-right:auto; margin-left:auto;" /&gt;
+&lt;p class="caption"&gt;3: Sharp vs Fuzzy Discontinuity&lt;/p&gt;
+&lt;/div&gt;
+
+
+---
+# Regression discontinuity
+
+&lt;/br&gt;
+
+.blockquote[
+### Example: Fuzzy regression discontinuity to retirement (Battistin et al. 2009.fn[1])
+
+- Battistin et al. analyse how consumption changes at the point of retirement. Specifically, they want to know if retirement causes consumption to immediately drop.
+
+- They use information on when people become eligible for their pension in Italy in the period 1993-2004
+
+- Becoming eligible for pension does not have a 0% to 100% jump (and thus the cutoff is fuzzy)
+]
+
+.footnote[[1] Battistin, Erich, Agar Brugiavini, Enrico Rettore, and Guglielmo Weber. 2009. *The Retirement Consumption Puzzle: Evidence from a Regression Discontinuity Approach*. American Economic Review 99 (5): 2209–26.]
+
+---
+# Regression discontinuity
+&lt;br&gt;
+.blockquote[
+###Example: Fuzzy regression discontinuity to retirement &amp;mdash; ctd.
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="RDD_files/figure-html/unnamed-chunk-5-1.png" alt="4: Fuzzy discontinuity in pension rate" width="55%" style="display:block; margin-right:auto; margin-left:auto;" /&gt;
+&lt;p class="caption"&gt;4: Fuzzy discontinuity in pension rate&lt;/p&gt;
+&lt;/div&gt;
+]
+
+---
+# Regression discontinuity
+
+&lt;br&gt;
+
+.blockquote[
+###Example: Fuzzy regression discontinuity to retirement &amp;mdash; ctd.
+
+- If Battistin et al. estimated the consumption change at that cutoff with a sharp regression discontinuity, their results would be way off (why?) 
+
+- Their approach is to account for fuzziness by *scaling* the effect of the cutoff:
+
+- Roughly, Battistin et al. divide the estimate the observed 30% jump to see how big the change would have been *if everyone got treated*.
+
+]
+
+---
+# Regression discontinuity
+&lt;br&gt;
+**Fuzzy Regression **
+
+&lt;br&gt;
+
+.blockquote[
+###Example: Fuzzy regression discontinuity to retirement
+
+- Battistin et al.'s FRDD does not just identify the effect of retirement on overall consumption, it identifies the effect of retirement on just about anything, in this case specific types of consumption and the number of kids at home. 
+
+- They find that consumption drops resulting from retirement are largely due to things like using your extra leisure time to cook rather than order from a restaurant, not needing nice work clothes any more, and adult children tending to move out of the house. 
+]
+
+---
+# Regression discontinuity
+&lt;br&gt;
+**What kind of treatment effects are being estimated?**
+
+- Note that we only use variation from just around the cutoff.
+
+  &amp;rarr; The effect of treatment for people who are just around the cutoff is obtained. 
+
+- This is called a **local average treatment effect** (LATE). A LATE is a weighted average treatment effect for those just on the margin of being given treatment.
+
+---
+# Regression discontinuity with OLS
+&lt;br&gt;
+
+A a simple linear approach to (sharp) regression discontinuity is `$$Y = \beta_0 + \beta_1(\text{Running}-\text{Cutoff}) + \beta_2 \text{Treated} + \beta_3(\text{Running} -\text{Cutoff}) \times \text{Treated} + \epsilon.$$`
+
+ - `\(\text{Running}\)` is the running variable, which we have centered around the cutoff by using `\((\text{Running} - \text{Cutoff})\)`
+
+- `\((\text{Running} - \text{Cutoff})\)` takes a negative value to the left of the cutoff, zero at the cutoff, and a positive value to the right
+
+- `\(\text{Treated}\)` is both an indicator for being treated and an indicator for being above the cutoff
+
+
+---
+# Regression discontinuity with OLS
+&lt;br&gt;
+
+**Notes**
+
+&lt;br&gt;
+
+- The model is generally estimated using heteroskedasticity-robust standard errors, as one might expect the discontinuity and general shape of the line are being fitted to exhibit heteroskedasticity in most cases.
+
+- Control variables are not required because the design itself should close any back doors. 
+ 
+- Controls may be necessary for FRDDs, where there are determinants of treatment other than the cutoff: then there maybe back doors to be worried about. 
+ 
+---
+# Regression discontinuity with OLS
+
+&lt;br&gt;
+
+.vcenter[
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="RDD_files/figure-html/unnamed-chunk-6-1.png" alt="5: Sharp regression discontinuity estimated with linear regression with an interaction" width="60%" style="display:block; margin-right:auto; margin-left:auto;" /&gt;
+&lt;p class="caption"&gt;5: Sharp regression discontinuity estimated with linear regression with an interaction&lt;/p&gt;
+&lt;/div&gt;
+]
+
+---
+#Regression discontinuity with OLS
+&lt;br&gt;
+**Applying fitted shapes**
+
+&lt;br&gt;
+- Applying a fitted shape only works with the right fitted shape. Picking up a wrong shape will lead to *wrong predictions*!
+
+- The problem is especially bad here because fitted shapes tend to be at their most wrong *at the edges* of the available data (can you given an example?) 
+
+- An obvious instinct is to just try a more flexible shape 
+
+---
+# Regression discontinuity with OLS
+&lt;br&gt;
+**Applying fitted shapes**
+
+&lt;br&gt;
+The model can be modified as
+`$$Y = \beta_0 + f(\text{Running} -\text{Cutoff},\,\text{Treated}) + \beta_2 \text{Treated} + \epsilon.$$`
+`\(f\)` is some non-linear function of `\(\text{Running} - \text{Cutoff}\)` with one version of `\(\text{Treated} = 0\)` and another for `\(\text{Treated} = 1\)`.
+
+
+---
+# Discontinuity designs and local regression
+
+.vcenter[
+.blockquote[
+### Definition: Local regression
+A local regression estimates the relationship between some predictor `\(X\)` and some outcome `\(Y\)`,  allowing that relationship to vary freely across the range of `\(X\)`.
+
+Local regression is how most researchers choose to implement their regression discontinuity design, at least if they have a *large sample*.
+]]
+
+---
+# Discontinuity designs and local regression
+&lt;br&gt;
+**Local regression**
+&lt;br&gt;
+- For each value of `\(X\)`, we estimate the corresponding valueof `\(Y\)` by running its own regression
+- This 'dedicated' regression fits a regression specific shape.
+- The idea of local regression is to weight observations more heavily the closer they are to the specific value of `\(X\)`. 
+- The weighting funtion is a **kernel.**
+
+
+---
+# Discontinuity designs and local regression
+
+&lt;br&gt;
+
+.vcenter[
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="RDD_files/figure-html/unnamed-chunk-7-1.png" alt="6: Triangular kernel function" width="60%" style="display:block; margin-right:auto; margin-left:auto;" /&gt;
+&lt;p class="caption"&gt;6: Triangular kernel function&lt;/p&gt;
+&lt;/div&gt;
+]
+
+---
+# Discontinuity designs and local regression
+&lt;br&gt;
+
+**Local regression: LOESS**
+
+&lt;br&gt;
+
+- The most commonly used regression approach in discontinuity is *locally estimated scatterplot smoothing* (LOESS)
+
+- LOESS estimates a linear (*local linear regression*) or second-order polynomial regression (*local polynomial regression* or *local quadratic regression*) at each point
+
+- Depending on the curviness, linear or second-order polynomial functions might not be enough to capture the relationship
+
+---
+# Discontinuity designs and local regression
+
+.vcenter[
+.blockquote[
+### Example: Manacorda et al. (2011).fn[2] 
+
+- Manacorda et al. investigate the effect of government transfers and political support by means of a large poverty alleviation program in Uruguay 
+
+- The program cut a sizeable check to a large portion of the population. They analyse whether receiving those funds made people more likely to support the newly-installed center-left government that sent them.
+
+]]
+
+.footnote[[2] Manacorda, Marco, Edward Miguel, and Andrea Vigorito. 2011. *Government Transfers and Political Support*. American Economic Journal: Applied Economics 3 (3): 1–28.]
+
+---
+# Discontinuity designs and local regression
+
+.vcenter[
+.blockquote[
+### Example: Manacorda et al. (2011)
+
+- The government used factors like housing, work, reported income, schooling to predict household income 
+
+- The predicted income was the running variable, and treatment was assigned based on being below a cutoff
+
+- The set cutoff resulted in 14% of the population getting payments
+
+]]
+
+---
+# Discontinuity designs and local regression
+
+.vcenter[
+.blockquote[
+### Example: Manacorda et al. (2011)
+
+- The predicted-income variable in government transfers data is pre-centered so the cutoff is at zero 
+
+- The outcome (support for the government) takes three values: 
+ - A person thinks that they are *better* than the previous government (1)
+ - A person thinks that both are *the same* (1/2)
+ - A person thinks that they are *worse* (0). 
+
+]]
+
+---
+# Discontinuity designs and local regression
+
+&lt;br&gt;
+
+.blockquote[
+### Example: Manacorda et al. (2011)
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="RDD_files/figure-html/unnamed-chunk-8-1.png" alt="7: Government support by income with policy cutoff" width="60%" style="display:block; margin-right:auto; margin-left:auto;" /&gt;
+&lt;p class="caption"&gt;7: Government support by income with policy cutoff&lt;/p&gt;
+&lt;/div&gt;
+]
+
+---
+# Discontinuity designs and local regression
+
+.blockquote[
+<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; width: 75%; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-9">
+<col><col><col><tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 1pt 0pt 1pt 0pt;    padding: 4pt 6pt 4pt 6pt; font-weight: normal; font-size: 12pt;"> </th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 1pt 0pt 1pt 0pt;    padding: 4pt 6pt 4pt 6pt; font-weight: normal; font-size: 12pt;">Quadratic</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 1pt 0pt 1pt 0pt;    padding: 4pt 6pt 4pt 6pt; font-weight: normal; font-size: 12pt;">Linear with Kernel Weight</th></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 1pt 0pt 0pt 0pt;    padding: 4pt 6pt 4pt 6pt; font-weight: normal; font-size: 12pt;">(Intercept)</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 1pt 0pt 0pt 0pt;    padding: 4pt 6pt 4pt 6pt; font-weight: normal; font-size: 12pt;">0.769***</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 1pt 0pt 0pt 0pt;    padding: 4pt 6pt 4pt 6pt; font-weight: normal; font-size: 12pt;">0.819***</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 4pt 6pt 4pt 6pt; font-weight: normal; font-size: 12pt;"></td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 4pt 6pt 4pt 6pt; font-weight: normal; font-size: 12pt;">(0.034)</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 4pt 6pt 4pt 6pt; font-weight: normal; font-size: 12pt;">(0.015)</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 4pt 6pt 4pt 6pt; font-weight: normal; font-size: 12pt;">Income_Centered</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 4pt 6pt 4pt 6pt; font-weight: normal; font-size: 12pt;">-11.567</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 4pt 6pt 4pt 6pt; font-weight: normal; font-size: 12pt;">-23.697***</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 4pt 6pt 4pt 6pt; font-weight: normal; font-size: 12pt;"></td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 4pt 6pt 4pt 6pt; font-weight: normal; font-size: 12pt;">(8.101)</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 4pt 6pt 4pt 6pt; font-weight: normal; font-size: 12pt;">(3.219)</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 4pt 6pt 4pt 6pt; font-weight: normal; font-size: 12pt;">Participation</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 4pt 6pt 4pt 6pt; font-weight: normal; font-size: 12pt;">0.093**</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 4pt 6pt 4pt 6pt; font-weight: normal; font-size: 12pt;">0.033</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 4pt 6pt 4pt 6pt; font-weight: normal; font-size: 12pt;"></td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 4pt 6pt 4pt 6pt; font-weight: normal; font-size: 12pt;">(0.044)</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 4pt 6pt 4pt 6pt; font-weight: normal; font-size: 12pt;">(0.021)</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 4pt 6pt 4pt 6pt; font-weight: normal; font-size: 12pt;">I(Income_Centered^2)</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 4pt 6pt 4pt 6pt; font-weight: normal; font-size: 12pt;">562.247</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 4pt 6pt 4pt 6pt; font-weight: normal; font-size: 12pt;"></td></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 4pt 6pt 4pt 6pt; font-weight: normal; font-size: 12pt;"></td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 4pt 6pt 4pt 6pt; font-weight: normal; font-size: 12pt;">(401.982)</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 4pt 6pt 4pt 6pt; font-weight: normal; font-size: 12pt;"></td></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 4pt 6pt 4pt 6pt; font-weight: normal; font-size: 12pt;">Income_Centered × Participation</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 4pt 6pt 4pt 6pt; font-weight: normal; font-size: 12pt;">19.300*</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 4pt 6pt 4pt 6pt; font-weight: normal; font-size: 12pt;">26.594***</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 4pt 6pt 4pt 6pt; font-weight: normal; font-size: 12pt;"></td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 4pt 6pt 4pt 6pt; font-weight: normal; font-size: 12pt;">(10.322)</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 4pt 6pt 4pt 6pt; font-weight: normal; font-size: 12pt;">(4.433)</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 4pt 6pt 4pt 6pt; font-weight: normal; font-size: 12pt;">Participation × I(Income_Centered^2)</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 4pt 6pt 4pt 6pt; font-weight: normal; font-size: 12pt;">-101.103</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 4pt 6pt 4pt 6pt; font-weight: normal; font-size: 12pt;"></td></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.8pt 0pt;    padding: 4pt 6pt 4pt 6pt; font-weight: normal; font-size: 12pt;"></td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.8pt 0pt;    padding: 4pt 6pt 4pt 6pt; font-weight: normal; font-size: 12pt;">(502.789)</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.8pt 0pt;    padding: 4pt 6pt 4pt 6pt; font-weight: normal; font-size: 12pt;"></td></tr>
+<tr>
+<td colspan="3" style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0pt 1pt 0pt;    padding: 4pt 6pt 4pt 6pt; font-weight: normal; font-size: 12pt;">* p &lt; 0.1, ** p &lt; 0.05, *** p &lt; 0.01</td></tr>
+</table>
+
+]
+
+---
+# Fuzzy regression discontinuity
+&lt;br&gt;
+.vcenter[
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="RDD_files/figure-html/unnamed-chunk-10-1.png" alt="8: A causal diagram that fuzzy regression discontinuity works for" width="60%" style="display:block; margin-right:auto; margin-left:auto;" /&gt;
+&lt;p class="caption"&gt;8: A causal diagram that fuzzy regression discontinuity works for&lt;/p&gt;
+&lt;/div&gt;
+]
+
+---
+# Fuzzy regression discontinuity
+&lt;br&gt;
+**Sharp RDD vs. FRDD**
+
+&lt;br&gt;
+- In FRDD, the data cannot be simply be limited to the area around the cutoff to control for `\(\text{Running Variable}\)` 
+
+  &amp;rarr; Doing that would lead us to understate the effect!
+
+- Instead we apply IV: 
+  
+  - The first stage uses `\(\text{AboveCutoff}\)` as an instrument for `\(\text{Treated}\)`
+
+  - Estimate regression discontinuity equations as for the sharp RDD in the second-stage equation
+
+---
+# Fuzzy regression discontinuity
+&lt;br&gt;
+**IV estimation of FRDD**
+
+&lt;br&gt;
+IV divides the effect of the instrument on the outcome by the effect of the instrument on the endogenous/treatment variable.
+
+&amp;rarr; The effect of being *above* the cutoff on the outcome is scaled but divided to account for the fact that being above the cutoff only leads to a partial increase in treatment rates.
+
+---
+# Fuzzy regression discontinuity
+
+.vcenter[
+.blockquote[
+### Example: Effect of mortgage subsidies on home ownership (Fetter 2013).fn[3]
+
+- Fetter’s main research question is how much of the increase in the home ownership rate in the mid-century US was due to mortgage subsidies given out by the government
+
+- He considers people who were about the right age to be veterans of major wars like WWII or the Korean war: 
+
+  Anyone who was a veteran of these wars received special mortgage subsidies.
+]]
+
+.footnote[[3] Fetter, Daniel K. 2013. *How Do Mortgage Subsidies Affect Home Ownership? Evidence from the Mid-Century GI Bills*. American Economic Journal: Economic Policy 5 (2): 111–47.]
+
+---
+# Fuzzy regression discontinuity
+
+.vcenter[
+.blockquote[
+### Example: Effect of mortgage subsidies on home ownership (Fetter 2013)
+
+- There is an age requirement to join the military:
+
+  If one is born one year too late to join the military to fight in the Korean war, then he will not get these mortgage subsidies (or at least far fewer veterans were eligible). 
+
+  &amp;rarr; Discontinuity based on birth year. 
+
+- The “treatment” of being eligible for mortgage subsidies would only apply to some people born at the right time: 
+
+  Treatment rates jump from 0% some value below 100% (fuzzy).
+
+- Veteran status at this margin increases home ownership rates by 17%
+
+]]
+
+---
+# Fuzzy regression discontinuity
+
+&lt;/br&gt;
+
+.blockquote[
+### Example: Effect of mortgage subsidies on home ownership (Fetter 2013)
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="RDD_files/figure-html/unnamed-chunk-11-1.png" alt="9: Eligibility for mortgage subsidies for being a Korean war veteran and home ownership from Fetter (2013)" width="70%" style="display:block; margin-right:auto; margin-left:auto;" /&gt;
+&lt;p class="caption"&gt;9: Eligibility for mortgage subsidies for being a Korean war veteran and home ownership from Fetter (2013)&lt;/p&gt;
+&lt;/div&gt;
+&lt;/br&gt;
+]
+
+
+
+---
+# RDD
+&lt;br&gt;
+**Placebo tests**
+
+&lt;br&gt;
+- The astonishing thing about regression discontinuity is that it closes all back doors, even the ones that go through variables which cannot be measured 
+
+- That is the whole idea:
+
+  Isolate variation in such a narrow window of the running variable so that it is plausible to claim that the *only* thing changing at the cutoff is treatment&amp;mdash;and by extension anything that treatment affects (like the outcome)!
+
+
+
+---
+# Placebo tests
+&lt;/br&gt;
+**Idea**
+
+Anything we would normally use as a control variable should not affect treatment.
+
+&lt;br&gt;
+**Procedure**
+
+- Run the regression discontinuity model on plausible control variables
+
+- If an effect is found, the original RDD might not have been right. This might indicate that our assumption about randomness at the cutoff is violated.
+
+---
+# Placebo tests
+&lt;/br&gt;
+**Procedure**
+
+&lt;br&gt;
+
+Keep in mind that, since we can run placebo tests on a long list of potential placebo outcomes, it is likely that we find a few nonzero effects just by random chance. 
+
+  &amp;rarr; If one test a long list of variables and find a few differences, that is not a fatal problem with the design.
+  
+  In these cases, it is better to add the variables with the failed placebo tests to the model as control variables. 
+ 
+---
+# Placebo tests
+
+.vcenter[
+.blockquote[
+### Example: Manacorda et al. (2011)
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="RDD_files/figure-html/unnamed-chunk-12-1.png" alt="10: Performing regression discontinuity with controls as outcomes for a placebo test" width="70%" style="display:block; margin-right:auto; margin-left:auto;" /&gt;
+&lt;p class="caption"&gt;10: Performing regression discontinuity with controls as outcomes for a placebo test&lt;/p&gt;
+&lt;/div&gt;
+
+]]
+ 
+---
+# The density discontinuity test
+&lt;/br&gt;
+**Random assignment may fail**
+
+&lt;/br&gt;
+There are two ways manipulation could happen:
+
+- First, whoever (or whatever) is in charge of setting the cutoff value might do so with the knowledge of exactly who it will lead to getting treated.
+
+- Second, individuals themselves likely have some control over their running variable. Sometimes they have *direct control* and sometimes they have *indirect control*.
+ 
+
+---
+# The density discontinuity test
+&lt;br&gt;
+
+**Random assignment may fail**
+
+&lt;br&gt;
+In the case of indirect control we do have a test we can perform to check whether manipulation seems to be occurring at the cutoff.
+
+For this we inspect the distribution of the running variable around the cutoff:
+
+- If the running variable was randomly assigned without regard for the cutoff we expect its distribution to be smooth 
+
+- A distribution that seems to have a dip just to one side of the cutoff, with those observations sitting just on the other side, this may indicate manipulation
+
+---
+# The density discontinuity test
+&lt;br&gt;
+**Steps**
+
+- Estimate the density of the treatment variable. Allow that density to have a discontinuity at the cutoff.
+
+- Look for a significant discontinuity at the cutoff
+
+- Do graphical inspection of the density
+
+&lt;br&gt;
+**A big discontinuity is not a good sign. It implies manipulation.**
+
+---
+# The density discontinuity test
+
+.vcenter[
+.blockquote[
+### Example: Manacorda et al. (2011)
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="RDD_files/figure-html/unnamed-chunk-13-1.png" alt="11: Distribution of the binned running variable" width="70%" style="display:block; margin-right:auto; margin-left:auto;" /&gt;
+&lt;p class="caption"&gt;11: Distribution of the binned running variable&lt;/p&gt;
+&lt;/div&gt;
+&lt;br&gt;
+]]
+
+---
+# Regression kink
+&lt;br&gt;
+
+- Another thing to inspect is a change in the slope of the relationship between the outcome and the running variable. 
+
+- The treatment administered at the cutoff does not make the outcome itself change/jump&amp;mdash;it changes the *strength* of the relationship between outcome and the running variable 
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="RDD_files/figure-html/unnamed-chunk-14-1.png" alt="12: Regression kink on simulated data" width="55%" style="display:block; margin-right:auto; margin-left:auto;" /&gt;
+&lt;p class="caption"&gt;12: Regression kink on simulated data&lt;/p&gt;
+&lt;/div&gt;
+
+---
+# Regression kink
+
+.vcenter[
+.blockquote[
+### Example: Effect of unemployment benifits on job findings (Card et al. 2015.fn[4])
+
+- Card et al. use data from Austria, where unemployment insurance benefits are 55% of regular earnings but there is an upper limit of benefits.
+
+- So regular earnings (running variable) positively affect the amount of unemployment insurance received (treatment), up to the cutoff, at which point the effect of regular earnings on your unemployment insurance payment becomes zero.
+
+- If generous unemployment benefits make people take longer to find a new job, we would expect to find a positive relationship between regular earnings (running variable) and time-to-find-a-new-job (outcome) up to the point of the cutoff, and then it should be flat after the cutoff.
+
+  Card et al. find evidence of such an effect.
+
+]]
+
+.footnote[[4] Card, David, David S Lee, Zhuan Pei, and Andrea Weber. 2015. *Inference on Causal Effects in a Generalized Regression Kink Design*. Econometrica 83 (6): 2453–83.]
+
+---
+# Regression kink
+
+.vcenter[
+.blockquote[
+###Example: Treatment-has-a-kink regression kink design (Bana et al. 2020.fn[5])
+
+- Bana et al. look at the impact of paid family leave (Elternzeit) in California
+
+- In California, the state pays 55% of regular earnings up to a maximum benefit amount. Family leave payment (treatment) increases with regular earnings (running variable), until a maximum amount (cutoff) is reached
+
+- After that, additional regular earnings does not increase the family leave payment
+
+]]
+
+.footnote[[5] Bana, Sarah H, Kelly Bedard, and Maya Rossin-Slater. 2020. *The Impacts of Paid Family Leave Benefits: Regression Kink Evidence from California Administrative Data*. Journal of Policy Analysis and Management 39 (4): 888–929.]
+
+---
+# Regression kink
+.vcenter[
+.blockquote[
+### Example: Treatment-has-a-kink
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="RDD_files/figure-html/unnamed-chunk-15-1.png" alt="13: Paid family leave benefits and pre-leave Earnings" width="60%" style="display:block; margin-right:auto; margin-left:auto;" /&gt;
+&lt;p class="caption"&gt;13: Paid family leave benefits and pre-leave Earnings&lt;/p&gt;
+&lt;/div&gt;
+&lt;br&gt;
+]]
+
+
+---
+# Regression kink
+
+.vcenter[
+.blockquote[
+### Example: Treatment-has-a-kink
+
+- Treatment on the y-axis can be replaced with some outcome to see whether it also changes slope. If so, that is evidence of an effect.
+
+- Bana et al. look at a various outcome variables, e.g.,
+
+ - how long the mothers stay on family leave.
+
+ - whether they use family leave again in the next three years, conditional on going back to work in the meantime.
+]]
+
+---
+# Regression kink
+.vcenter[
+.blockquote[
+### Example: Treatment-has-a-kink regression kink design
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="RDD_files/figure-html/unnamed-chunk-16-1.png" alt="14: Log leave duration or proportion claiming leave again and pre-leave earnings" width="80%" style="display:block; margin-right:auto; margin-left:auto;" /&gt;
+&lt;p class="caption"&gt;14: Log leave duration or proportion claiming leave again and pre-leave earnings&lt;/p&gt;
+&lt;/div&gt;
+&lt;br&gt;
+]]
+
+
+---
+# When running variables misbehave
+&lt;br&gt;
+
+**Granularity and heaping**
+
+&lt;br&gt;
+Two potential issues are
+
+- ... the running variable being too **granular:** it is measured at a too coarse level.
+
+- ... the running variable exhibiting **heaping:** it has some values that are suspiciously much more common than others.
+
+---
+# When running variables misbehave
+&lt;br&gt;
+**Granularity**
+
+&lt;br&gt;
+
+- **Example**
+
+  on measuring annual income, it can be said that a person earned $40,231.36 last year, or can also be said say that he earned $40,231, or  say that he earned $40,000. Or we could even say that he earned '$40-50,000'. Or,  say 'less than $100,000'. These are measurements of his income in decreasing order of granularity.
+
+- **Solution** 
+
+  The real solution here is 'find a running variable that is granular enough'. But no variable is infinitely granular. So when worried about granularity, it is better to pick an estimator that will account for that granularity.
+
+---
+# When running variables misbehave
+&lt;br&gt;
+**Heaping**
+
+&lt;br&gt;
+**Non-random heaping** is when the running variable seems to be much more likely to take certain values than others. Often this can come in the form of rounding.
+
+- **Example** 
+
+  If one asks people how old they are and the vast majority of them are going to give a round number, like '36 years old'. However, some of them will be more precise and say '36 years, eight months, and two days'. 
+
+- **Solution** 
+
+  A common approach to this is **donut hole regression discontinuity**, where one simply drops observations just around the cutoff so as to clear out heaps near the cutoff.
+  
+---
+# Dealing with bandwidths
+&lt;br&gt;
+
+How far away from the cutoff can we get and still have comparable observations on either side of it?
+
+The answer to this question is a tradeoff:
+
+ - Picking a bandwidth around the cutoff that is too wide we bring in observations that are not comparable making the estimates less believable and more biased
+
+ - Picking a bandwidth that is too narrow we will end up estimating the effect on hardly any data, resulting in a noisy estimate 
+
+- This is a **efficiency-robustness tradeoff**
+
+---
+# Dealing with bandwidths
+&lt;br&gt;
+**How to proceed?**
+
+&lt;br&gt;
+- **Just pick a bandwidth** 
+
+  This is a very common approach. Although perhaps it is becoming less common over time. 
+
+- **Pick a bunch of bandwidths** 
+
+  This sensitivity test-based approach is also fairly common. For this approach, the biggest bandwidth is picked which seems to makes some sense for the research design, and then start shrinking it. Each time, estimate the regression discontinuity model.
+
+-  **Data based bandwidth selection** 
+
+  Pick an objective of 'what a good bandwidth looks like' and then use the data to figure out how wide a bandwidth is the best one by that criterion
+
+---
+# Dealing with bandwidths
+&lt;br&gt;
+**Data based bandwidth selection**
+
+&lt;br&gt;
+ - **Cross-validation** 
+ 
+  The basic idea is to try to get the best out-of-sample predictive power. So the data is splitted into random chunks. For each chunk, the model is estimated  using all the other chunks, and then make predictions for the now out-of-sample chunk which is left out. Repeat this for every chunk, and then see overall how well your out-of-sample prediction went. Then, repeat that whole process for each potential bandwidth and see which one does the best.
+ 
+ - **Optimal bandwidth rules** 
+ 
+  This approach takes as its goal getting the best prediction right at the cutoff, just on either side. 
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="../assets/remark-zoom.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9",
+"navigation": {
+"scroll": false
+}
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
