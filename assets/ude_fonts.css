@@ -154,6 +154,10 @@ h1, h2, h3, h4 {
   color: #ffffff !important;
 }
 
+.title-slide h1 > a:hover {
+  text-decoration: underline !important;
+}
+
 /* H2 fonts */
 .title-slide h2 {
   color: #ffffff !important;

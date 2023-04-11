@@ -12,6 +12,7 @@
 .title-index a:hover {
     color: rgba(255, 255, 255, 1) !important;
     font-weight: 600 !important;
+    text-decoration: underline;
   }
   
 .pull-left strong {

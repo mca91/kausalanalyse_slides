@@ -1,8 +1,6 @@
 
-# Chrome browser is necessary for this to work
-
-source("xaringan_to_pdf.R")
-library(tidyverse)
+# install.packages("renderthis")
+# Chrome browser needs to be installed for this to work!
 
 # base directory
 base <- "~/git_projects/KA_slides"
@@ -20,11 +18,10 @@ walk(
   .f = ~ rmarkdown::render(paste0("~/git_projects/KA_slides/", .x), 'xaringan::moon_reader')
 )
 
-# generate PDFs
-walk2(
-  .x = paste0("file:///", path.expand(base), "/", file_nms, ".html"),
-  .y = paste0(path.expand(base), "/", file_nms, ".pdf"),
-  .f = ~ xaringan_to_pdf(input = .x, output_file = .y)
+# generate PDFs (takes a moment)
+walk(
+  .x = paste0(base, "/", Rmd_files),
+  .f = ~ renderthis::to_pdf(., )
 )
 
 
