@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Further selected topics</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Christoph Hanck" />
+    <script src="FurtherTopics_files/header-attrs/header-attrs.js"></script>
+    <link href="FurtherTopics_files/remark-css/default.css" rel="stylesheet" />
+    <script src="FurtherTopics_files/xaringanExtra-progressBar/progress-bar.js"></script>
+    <script src="FurtherTopics_files/clipboard/clipboard.min.js"></script>
+    <link href="FurtherTopics_files/xaringanExtra-clipboard/xaringanExtra-clipboard.css" rel="stylesheet" />
+    <script src="FurtherTopics_files/xaringanExtra-clipboard/xaringanExtra-clipboard.js"></script>
+    <script>window.xaringanExtraClipboard(null, {"button":"<i class=\"fa fa-clipboard\"><\/i>","success":"<i class=\"fa fa-check\" style=\"color: #00ff00\"><\/i>","error":"<i class=\"fa fa-times-circle\" style=\"color: #F94144\"><\/i>"})</script>
+    <link href="FurtherTopics_files/font-awesome/css/all.min.css" rel="stylesheet" />
+    <link href="FurtherTopics_files/font-awesome/css/v4-shims.min.css" rel="stylesheet" />
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        TeX: { equationNumbers: { autoNumber: "AMS" } },
+      });
+    </script>
+    <style>
+    .mjx-mrow a {
+      color: black;
+      pointer-events: none;
+      cursor: default;
+    }
+    </style>
+    <link rel="stylesheet" href="../assets/ude_fonts.css" type="text/css" />
+    <link rel="stylesheet" href="../assets/ude.css" type="text/css" />
+    <link rel="stylesheet" href="../assets/custom.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Further selected topics
+]
+.author[
+### Christoph Hanck
+]
+.date[
+### Summer 2023
+]
+
+---
+
+
+
+
+
+
+<style>.xe__progress-bar__container {
+  bottom:0;
+  opacity: 1;
+  position:absolute;
+  right:0;
+  left: 0;
+}
+.xe__progress-bar {
+  height: 0.25em;
+  background-color: #004c93;
+  width: calc(var(--slide-current) / var(--slide-total) * 100%);
+}
+.remark-visible .xe__progress-bar {
+  animation: xe__progress-bar__wipe 200ms forwards;
+  animation-timing-function: cubic-bezier(.86,0,.07,1);
+}
+@keyframes xe__progress-bar__wipe {
+  0% { width: calc(var(--slide-previous) / var(--slide-total) * 100%); }
+  100% { width: calc(var(--slide-current) / var(--slide-total) * 100%); }
+}</style>
+
+
+
+
+
+---
+class: center, middle, inverse
+# Synthetic control
+
+---
+# Synthetic control
+.vcenter[
+.blockquote[
+### Definition: Synthetic control
+Synthetic control is a variant of **DiD with matching**. The same basic setup as for DiD is used with a policy that goes into effect at a particular time, but only for a particular group:
+
+- The data from the pre-treatment period is used to adjust for differences between the treatment and control groups. We then checked how they differ after treatment goes into effect. 
+
+- The post-treatment difference, adjusting for pre-treatment differences, is the effect.
+
+]]
+
+
+---
+# Synthetic control
+&lt;br&gt;
+**Synthetic Control vs. DiD**
+
+&lt;br&gt;
+- Unlike with DiD, the pre-treatment difference adjustments are not done with regression, but rather using matching. 
+
+- Unlike DiD with matching, the purpose of matching is to eliminate these prior differences, not to account for the propensity of treatment.
+
+- Synthetic control relies on a long period of pre-treatment data.
+
+---
+# Synthetic control
+&lt;br&gt;
+**Synthetic Control vs. DiD**
+
+&lt;br&gt;
+- After matching, the treated and control groups should have basically no pre-treatment differences. This is often accomplished by including the outcome variable as a matching variable.
+
+- Statistical significance is generally not determined by figuring out the sampling distribution of the estimation method used beforehand, but rather by **randomization inference**: 
+
+  Randomization inference uses placebo tests to estimate a null distribution that can compared to the real estimate.
+
+
+
+---
+# Synthetic control
+&lt;br&gt;
+**Procedure**
+
+&lt;br&gt;&lt;br&gt;
+- Synthetic control starts with a treated group and a **donor set** of potential control groups.
+- Using the pre-treatment data periods, it implements a matching algorithm that goes through all the control groups and assigns each of the potential controls a weight.
+- These weights are designed such that the time trend of the outcome for the treated group should be almost exactly the same as the time trend of the outcome for the weighted average of the control group (the **synthetic control group**).
+
+
+---
+# Synthetic control
+
+.vcenter[
+.blockquote[
+### Example: Effect of conflict on economic activity in Spain
+
+- Abadie and Gardeazabal (2003) study the outbreak of violent conflict in the Basque region of Spain in the late 1960s to see what effect the conflict had on economic activity
+
+- They compare growth in the Basque region to growth in a synthetic control group. They find that GDP in the Basque region was negatively impacted by the conflict.
+]]
+
+
+
+---
+
+# Synthetic control
+
+.vcenter[
+.blockquote[
+### Example: Effect of conflict on economic activity in Spain
+
+- Abadie and Gardeazabal match the Basque region to seventeen other nearby regions.
+
+- The synthetic control algorithm creates weights for each of those seventeen regions in order to make prior trends equal, using information about those prior trends as well as other matching variables including population density, education, and investment levels. 
+
+- Cataluna and Madrid turn out to be the strongest matches and get the most weight, with the other regions getting very little weight. These weights are then applied across the entire time period.
+]]
+
+
+---
+# Synthetic control
+
+.vcenter[
+.blockquote[
+### Example: Effect of conflict on economic activity in Spain
+
+
+
+&lt;/br&gt;
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="FurtherTopics_files/figure-html/unnamed-chunk-3-1.png" alt="1: Synthetic control effect of conflict on Basque country economic growth" width="70%" height="80%" style="display:block; margin-right:auto; margin-left:auto;" /&gt;
+&lt;p class="caption"&gt;1: Synthetic control effect of conflict on Basque country economic growth&lt;/p&gt;
+&lt;/div&gt;
+]]
+
+---
+# Synthetic control
+&lt;br&gt;
+**Advantages**
+
+&lt;br&gt;
+
+- Synthetic control does not need to rely on the parallel trends assumption as DiD does
+
+- It makes the process of selecting a control group more disciplined
+
+- Since synthetic control does not rely on regression, it is not as sensitive to functional form issues as
+DiD is
+
+- It naturally shows dynamic effects without the need to estimate interaction terms
+
+---
+# Synthetic control
+&lt;br&gt;
+**Disadvantages**
+
+&lt;br&gt;
+
+- Synthetic control is not as widely applicable as DiD: the matching quality will be poor if we do not have a lot of pre-treatment data 
+  
+- It has a tendency to overfit noise in the outcome variable when matching
+
+- Matching on the outcome variable seems problematic: using the outcome itself to close back doors is cheating.
+
+- Synthetic control only matches on pre-treatment outcomes, not the post-treatment outcomes where we actually estimate the effect
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="../assets/remark-zoom.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9",
+"navigation": {
+"scroll": false
+}
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

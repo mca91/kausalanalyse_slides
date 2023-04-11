@@ -50,7 +50,7 @@ class: title-slide title-index
 <li><a href='DiD/DiD.html'>Differences-in-Differences</a></li>
 <li><a href='IV/IV.html'>Instrumental Variables</a></li>
 <li><a href='RDD/RDD.html'>Regression Discontinuity</a></li>
-<li><a href='Rogues/Rogues.html'>Further selected topics</a></li>
+<li><a href='FurtherTopics/FurtherTopics.html'>Further selected topics</a></li>
 </ol>
 
 ]]
