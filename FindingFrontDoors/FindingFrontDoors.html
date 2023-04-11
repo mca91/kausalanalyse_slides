@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>Finding Front Doors</title>
+    <title>Finding front doors</title>
     <meta charset="utf-8" />
     <meta name="author" content="Christoph Hanck" />
     <script src="FindingFrontDoors_files/header-attrs/header-attrs.js"></script>
@@ -11,8 +11,8 @@
     <link href="FindingFrontDoors_files/xaringanExtra-clipboard/xaringanExtra-clipboard.css" rel="stylesheet" />
     <script src="FindingFrontDoors_files/xaringanExtra-clipboard/xaringanExtra-clipboard.js"></script>
     <script>window.xaringanExtraClipboard(null, {"button":"<i class=\"fa fa-clipboard\"><\/i>","success":"<i class=\"fa fa-check\" style=\"color: #00ff00\"><\/i>","error":"<i class=\"fa fa-times-circle\" style=\"color: #F94144\"><\/i>"})</script>
-    <link href="FindingFrontDoors_files/font-awesome/css/all.css" rel="stylesheet" />
-    <link href="FindingFrontDoors_files/font-awesome/css/v4-shims.css" rel="stylesheet" />
+    <link href="FindingFrontDoors_files/font-awesome/css/all.min.css" rel="stylesheet" />
+    <link href="FindingFrontDoors_files/font-awesome/css/v4-shims.min.css" rel="stylesheet" />
     <script type="text/x-mathjax-config">
       MathJax.Hub.Config({
         TeX: { equationNumbers: { autoNumber: "AMS" } },
@@ -34,7 +34,7 @@
 class: center, middle, inverse, title-slide
 
 .title[
-# <a href='https://github.com/mca91/kausalanalyse_slides/raw/main/FindingFrontDoors/FindingFrontDoors.pdf'>Finding Front Doors</a>
+# <a href='https://github.com/mca91/kausalanalyse_slides/raw/main/FindingFrontDoors/FindingFrontDoors.pdf'>Finding front doors</a>
 ]
 .author[
 ### Christoph Hanck
@@ -44,8 +44,6 @@ class: center, middle, inverse, title-slide
 ]
 
 ---
-
-
 
 
 
@@ -80,6 +78,7 @@ class: center, middle, inverse, title-slide
 
 
 # Motivation 
+
 .vcenter[
 - Modelling the DGP, listing all the paths, finding a set of variables that close all the back doors, and measuring and controlling for all of those variables is a lot of work by itself.
 
@@ -120,7 +119,7 @@ We can estimate individual arrows on the front door paths even if the overall ef
 .vcenter[
 .blockquote[
 
-###Definition: Randomised controlled experiment
+### Definition: Randomised controlled experiment
 
 In a **randomised controlled experiment**, the researcher assigns treatment (or the absence of treatment) to people, and watches the resulting differences in outcome.
 
@@ -139,7 +138,7 @@ In a **randomised controlled experiment**, the researcher assigns treatment (or 
 .vcenter[
 .blockquote[
 
-###Example: Charter school's influence on grades
+### Example: Charter school's influence on grades
 
 - We are interested in figuring out whether charter schools improve students’ test scores than traditional public schools.
 - Many variable influence people's decision to attend Charter school,for example, background, personality, location, etc.
@@ -157,7 +156,7 @@ In a **randomised controlled experiment**, the researcher assigns treatment (or 
 .vcenter[
 .blockquote[
 
-###Example: Charter school's influence on grades
+### Example: Charter school's influence on grades
 
 - Many students in charter schools are assigned slots based on a lottery system.
 - There are no back doors from Lottery to _Student Achievement_. 
@@ -205,16 +204,16 @@ The data from the experiment can be analysed in two ways:
 &lt;br&gt;
 
 .blockquote[
-###Definition: Natural Experiment
+### Definition: Natural experiment
 
-Natural experiments are a real-world settings in which randomisation of treatment and control conditions has been already done by nature or by other factors that our outside our control
+Natural experiments are a real-world settings in which randomisation of treatment and control conditions has been already done by nature or by other factors that are outside our control
 
 Natural experiments work because they fix some of the variation in treatment to *have no back doors*.
 
 ]
 &lt;br&gt;
 .blockquote[
-###Example: Charter school's influnece on grades
+### Example: Charter school's influnece on grades
 
 In the last example the charter schools did some randomisation to select the pupils&amp;mdash;the randomisation occurred in the world and we could take advantage of it.
 ]
@@ -224,7 +223,7 @@ In the last example the charter schools did some randomisation to select the pup
 
 .vcenter[
 .blockquote[
-### Definition: Source of Exogenous Variation
+### Definition: Source of exogenous variation
 A source of variation in the treatment that has no open back doors is called a **source of exogenous variation**.
 
 An ideal source of exogenous variation is not caused by any other variable that belongs on the causal diagram.
@@ -271,7 +270,7 @@ The causal diagram for this looks almost exactly like a **randomised controlled 
 
 .vcenter[
 .blockquote[
-### Example: The effect of air pollution on number of people driving
+### Example: the effect of air pollution on number of people driving
 
 - **Pan He** and **Cheng Xu** in 2019 look at whether **air pollution being worse causes people to drive more**.
 
@@ -286,7 +285,7 @@ The causal diagram for this looks almost exactly like a **randomised controlled 
 
 .vcenter[
 .blockquote[
-### Example: The effect of air pollution on number of people driving
+### Example: the effect of air pollution on number of people driving
 
 - By isolating just the variation in pollution driven by wind direction, they find that an increase in daily pollution large enough to change the government’s rating from "not polluted" to "polluted" increases driving by 3%.
 
@@ -298,7 +297,7 @@ The causal diagram for this looks almost exactly like a **randomised controlled 
 &lt;br&gt;
 .vcenter[
 .blockquote[
-###Example: The effect of air pollution on number of people driving
+###Example: the effect of air pollution on number of people driving
 
 &lt;div class="figure" style="text-align: center"&gt;
 &lt;img src="FindingFrontDoors_files/figure-html/unnamed-chunk-6-1.png" alt="4: Causal Diagram of effect of Air Pollution on number of people driving" width="55%" style="display:block; margin-right:auto; margin-left:auto;" /&gt;
@@ -312,7 +311,7 @@ The causal diagram for this looks almost exactly like a **randomised controlled 
 
 .vcenter[
 .blockquote[
-###Example: The effect of uncompensated health care on patient experience
+###Example: the effect of uncompensated health care on patient experience
 
 - Camilleri and Diebold (2019), looked at the effect of uncompensated care (medical care given by hospitals that do not get paid for) on patient experience. 
 - The amount of uncompensated care a hospital gives is related to some **back-doors**:
@@ -327,17 +326,17 @@ The causal diagram for this looks almost exactly like a **randomised controlled 
 
 .vcenter[
 .blockquote[
-###Example: The effect of uncompensated health care on patient experience
+###Example: the effect of uncompensated health care on patient experience
 
 - The choice of states to accept Medicaid was not random, but rather **politicised**.
 - Medication expansion may **not be a source of exogenous variation**.
 - Medicaid expansion, and thus **expanded access to insurance**, should change lots of things about health care besides hospital compensation that might also be related to patient experience. 
 - We have to assume that the e**xpansion only affected hospital compensation** in order to consider **variation in compensation driven by the Medicaid expansion as being exogenous**.
 - We need to be very careful in thinking what assumptions we have to make about the data generating process, and whether those assumptions are true.
-]
-]
+]]
+
 ---
-#More on randomisation
+# More on randomisation
 &lt;br&gt;
 
 - **Isolating front paths is always feasible**, just like identifying the effect of a treatment by closing back doors is always feasible, even if we do not have anything even remotely like purely-random variation as we would in a randomised experiment or even a lottery.
@@ -388,10 +387,7 @@ We can identify that  the only back doors are:
 We can identify Treatment → M and M → Outcome
 
 We just need to combine those two effects to get our effect: Treatment → M → Outcome.
-
 ]]
-
-
 
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>

@@ -1,5 +1,5 @@
 ---
-title: "Instrumental Variables"
+title: "<a href='https://github.com/mca91/kausalanalyse_slides/raw/main/IV/IV.pdf'>Instrumental variables</a>"
 author: "Christoph Hanck"
 date: "Summer 2023 "
 output:
@@ -163,6 +163,7 @@ An IV design works in the exact same way:
 # Isolating variation
 <br>
 ```{r, echo=F, cache=T, out.extra = 'style="display:block; margin-right:auto; margin-left:auto;"', fig.height=5, fig.width=12, out.width='100%', out.height='100%', dpi=190, fig.cap=paste0(fig_counter(), ': Instrumental variables with a binary instrument'), fig.align='center'}
+suppressWarnings({
 set.seed(1000)
 tb <- tibble(W = rnorm(100), Z = sample(0:1, 100, replace = TRUE)) %>%
   mutate(X = 2*W - 2*Z + rnorm(100)) %>%
@@ -311,6 +312,7 @@ p6 <- ggplot(tb %>% group_by(Z) %>% slice(1), aes(x = mean_X, y = mean_Y)) +
         legend.background = element_rect(size = .5, color = 'black'))
 
 plot_grid(p1,p2,p3,p4,p5,p6, ncol = 3)
+})
 ```
 
 ---
@@ -444,7 +446,7 @@ Clever instruments are often highly context-dependent. One good example of a can
 .blockquote[
 ###Example: Judge assignment (Aizer and Doyle Jr. 2015)
 
-- In many court systems, the process of assigning a judge to your trial is more or less random. This is important because some judges are harsher than and others.
+- In many court systems, the process of assigning a judge to your trial is more or less random. This is important because some judges are harsher than others.
 
 - This means $JudgeHarshness$ can act as an instrument for $Punishment$
 
@@ -481,7 +483,7 @@ Instrumental Variable can be estimated using Two-stage least squares (2SLS). The
 <br>
 - 2SLS produces a *ratio of effects*, dividing the effect of $Z$ on $Y$ by the effect of $Z$ on $X$ 
 
-- It asks 'for each movement in $X$ we get by changing $Z$, how much movement in $Y$ does that lead to?'
+- It asks for each movement in $X$ we get by changing $Z$, how much movement in $Y$ does that lead to?'
 
   &rarr; Since $Z$ has no back doors, this should give us the causal effect of $X$ on $Y$.
 
@@ -579,9 +581,9 @@ $$\frac{(-2)+(-8)+(-10)}{3} = -6.67$$
 
 - Different ways of IV estimation can produce different weighted average treatment effects
 
-- LATE is estimated in most cases, although the specifics on *which* LATE we are getting change from estimator to estimator
+- LATE is estimated in most cases, although the specifics on *which* LATE, are getting change from estimator to estimator
 
-- There is a common terminology for these weights, in particular the 0s. The sample can be devided into three groups.
+- There is a common terminology for these weights.. The sample can be divided into three groups.
 
  - **Compliers:** For compliers, the effect of the instrument on the treatment is in the expected direction.
  - **Always-takers/never-takers:** Always-takers/never-takers are completely unaffected by the instrument.

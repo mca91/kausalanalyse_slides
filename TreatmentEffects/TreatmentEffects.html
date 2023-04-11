@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>Treatment Effects</title>
+    <title>Treatment effects</title>
     <meta charset="utf-8" />
     <meta name="author" content="Christoph Hanck" />
     <script src="TreatmentEffects_files/header-attrs/header-attrs.js"></script>
@@ -11,8 +11,8 @@
     <link href="TreatmentEffects_files/xaringanExtra-clipboard/xaringanExtra-clipboard.css" rel="stylesheet" />
     <script src="TreatmentEffects_files/xaringanExtra-clipboard/xaringanExtra-clipboard.js"></script>
     <script>window.xaringanExtraClipboard(null, {"button":"<i class=\"fa fa-clipboard\"><\/i>","success":"<i class=\"fa fa-check\" style=\"color: #00ff00\"><\/i>","error":"<i class=\"fa fa-times-circle\" style=\"color: #F94144\"><\/i>"})</script>
-    <link href="TreatmentEffects_files/font-awesome/css/all.css" rel="stylesheet" />
-    <link href="TreatmentEffects_files/font-awesome/css/v4-shims.css" rel="stylesheet" />
+    <link href="TreatmentEffects_files/font-awesome/css/all.min.css" rel="stylesheet" />
+    <link href="TreatmentEffects_files/font-awesome/css/v4-shims.min.css" rel="stylesheet" />
     <script type="text/x-mathjax-config">
       MathJax.Hub.Config({
         TeX: { equationNumbers: { autoNumber: "AMS" } },
@@ -34,7 +34,7 @@
 class: center, middle, inverse, title-slide
 
 .title[
-# Treatment Effects
+# <a href='https://github.com/mca91/kausalanalyse_slides/raw/main/TreatmentEffects/TreatmentEffects.pdf'>Treatment effects</a>
 ]
 .author[
 ### Christoph Hanck
@@ -85,17 +85,17 @@ class: center, middle, inverse, title-slide
 &lt;!-- - Even if we just focus on people with a cervix, maybe the drug is highly effective for some people and not very effective for others.  --&gt;
 &lt;!-- - This nature of the effect of a treatment which varies leads to  several types of treatment effect. --&gt;
 
-# Heterogeneity of Treatment Effects
+# Heterogeneity of treatment effects
 
 .vcenter[
 .blockquote[
-###Definition: Heterogeneous Treatment Effect
+###Definition: Heterogeneous treatment effect
 If the effect of a treatment varies across individuals of the population, we speak of a **heterogeneous treatment effect.**
 ]]
 
 ---
-# Heterogeneity of Treatment Effects
-
+# Heterogeneity of treatment
+&lt;/br&gt;
 **Heterogeneity**
 
 Individuals are heterogeneous. If their characteristics impact the effect of treatment, the effects will be heterogeneous across individuals
@@ -106,24 +106,24 @@ Individuals are heterogeneous. If their characteristics impact the effect of tre
 
 **How do deal with heterogeneous treatment effects?**
 
-- We can try to **estimate the heterogeneous treatment effects.**
-- We can **estimate the distribution of the treatment effects** and try to predict individual treatment effects given individual attributes.
+- We can try to **estimate the heterogeneous treatment effects**
+- We can **estimate the distribution of the treatment effects** and try to predict individual treatment effects given individual attributes
 
 ---
-# Average Treatment Effect
+# Average treatment effect
 
 .vcenter[
 .blockquote[
-### Definition: Average Treatment Effect (ATE)
+### Definition: Average treatment effect (ATE)
 The *mean* of the treatment effect distribution is called the average treatment effect: If we impose the treatment on everyone, the ATE is the effect we will see for an **average individual**.
 ]]
 
 ---
-# Average Treatment Effect
+# Average treatment effect
 
 .vcenter[
 .blockquote[
-###Example: Drug on Cervical Cancer
+### Example: Drug on cervical cancer
 
 Assume a drug against Cervical cancer will reduce Terry’s chances of cervical cancer by 2% and Angela’s by 1%. Andrew and Mark do not have cervices so it will reduce their chances by 0.
 
@@ -145,16 +145,17 @@ AET for females: AET= `\(\frac{0.02 + 0.01}{2} = 0.015\)`
 
 ---
 
-#Categories of Treatment Effect Averages
+# Categories of treatment effect averages
+&lt;/br&gt;
 **Main categories of treatment effect averages**
 
-1. Treatment effect averages where we only count *the treatment effects of some people but not others*, i.e., treatment effect averages *conditional on something*.
+1. Treatment effect averages where we only count *the treatment effects of some people but not others*, i.e., treatment effect averages *conditional on something*
  
-2. Treatment effect averages where we count *everyone*, but we count some individuals more than others.
+2. Treatment effect averages where we count *everyone*, but we count some individuals more than others
 
 
 ---
-# Isolating the Average Effect
+# Isolating the average effect
 
 .vcenter[
 .blockquote[
@@ -172,7 +173,7 @@ The individuals have *different* treatment effects. The *average* treatment effe
 ]]
 
 ---
-# Conditional Average Treatment Effects
+# Conditional average treatment effects
 
 .vcenter[
 .blockquote[
@@ -195,12 +196,17 @@ Diego  |  Untreated    |   .2
 
 ???
 - We find that the treated people on average had an outcome of `\(\frac{2 + 4}{2} = 3\)`
+
 - The untreated had `\(\frac{1 + 2}{2} = 1.5\)` and conclude that the treatment has an effect of `\(3−1.5=1.5\)`
+
 - This is the exact same as the average of Alfred’s and Diego’s treatment effect, `\(\frac{1 + 2}{2} = 1.5\)`
-- So we have an average treatment effect among men, or an average treatment effect *conditional* on being a man.
+
+- So we have an average treatment effect among men, or an average treatment effect *conditional* on being a man
 
 ---
-# Average Treatment Effect on the (un)treated
+# Average treatment effect on the (un)treated
+
+&lt;/br&gt;
 
 - Another common way in which the average effect is taken among just one group is based on **who gets treated**.
 &lt;br&gt;
@@ -213,59 +219,69 @@ Diego  |  Untreated    |   .2
 
 ---
 
-#Marginal Treatment Effect
+#Marginal treatment effect
+
+&lt;/br&gt;
 
 Another way in which a treatment effect can focus on just a particular group is with the marginal treatment effect.
 
 &lt;/br&gt;
 
 .blockquote[
-###Definition: Marginal Treatment Effect
+### Definition: Marginal treatment effect
 The **marginal treatment effect** is the treatment effect of a person who is just *on the margin of either being treated or not being treated*. 
 ]
 
 ---
-#Weighted Average Treatment Effect
+# Weighted average treatment effect
 
 We may also include everyone but weight some people different than others to get a **weighted average treatment effect**.
 
 &lt;/br&gt;
 
 .blockquote[
-###Definition: Weighted Average Treatment Effect
+### Definition: Weighted average treatment effect
 The **Weighted Average Treatment Effect** is the treatment effect obtained by *placing distinct weights* on different individuals. 
 ]
 
 ---
-#Weighted Average Treatment Effect
+# Weighted average treatment effect
 
 .vcenter[
 .blockquote[
-###Example: Drug on Cervical Cancer &amp;mdash; ctd.
+### Example: Drug on cervical cancer &amp;mdash; ctd.
 Consider the table _Isolating the Average Effect_ again:
+
 - The mean of `\(1\)`, `\(2\)`, `\(3\)`, and `\(4\)` is `\(2.5\)`
+
 - Assume that Brianna should count twice as much as everyone else, and Diego should count half as much. Then our weighted average treatment effect is `$$\frac{1\cdot1 + 4 \cdot 2 + 3 \cdot 1 + 2 \cdot 0.5}{1 + 2 + 1 + 0.5} = 2.89.$$`
+
 - In the context of treatment effects, we rarely get to literally pick weights. Instead, there is something about the study design that weights some people more than others.
-- A common way this shows up is as *variance-weighted average treatment effects*.
+
+- A common way this shows up is as *variance-weighted average treatment effects*
 ]]
 
 ---
-# Variance-Weighted Average Treatment Effect
+# Variance-weighted average treatment effect
+&lt;/br&gt;
 
-- There may be groups of people having lots of variation in treatment while others have not.
+- There may be groups of people having lots of variation in treatment while others have not
 
-- We may weight the treatment effect estimate of those with high variation in treatment more heavily, simply because they can be seen both with and without treatment a lot.
+- We may weight the treatment effect estimate of those with high variation in treatment more heavily, simply because they can be seen both with and without treatment a lot
 
-&lt;br&gt;
+&lt;/br&gt;
+
 .blockquote[
-###Definition: Variance-Weighted Average Treatment Effect
+### Definition: Variance-weighted average treatment effect
 A treatment effect average where each individual’s treatment effect (after closing back doors!) is weighted based on the *variation in their treatment variable* is called **variance-weighted average treatment effect**.
 ]
 
 ---
-# Variance-Weighted Average Treatment Effect
+# Variance-weighted average treatment effect
+
+.vcenter[
 .blockquote[
-###Example: Drug on Cervical Cancer &amp;mdash; ctd.
+### Example: Drug on cervical cancer &amp;mdash; ctd.
  Let us consider the following table:
 
 
@@ -277,41 +293,42 @@ Diego    |  `\(900\)` treated      |  `\(4\)`
 Diego    |  `\(100\)` untreated   |  `\(2\)`
 
 
-- Here, we can close the back door, '**being a Brianna' / 'being a Diego**' by subtracting out mean differences between Brianna and Diego, both for the outcome and the treatment.
+- Here, we can close the back door, '**being a Brianna' / 'being a Diego**' by subtracting out mean differences between Brianna and Diego, both for the outcome and the treatment
 - By doing so we get the treatment effect `\(3.47\)`
-]
+]]
 
 ---
-# Variance-Weighted Average Treatment Effect
+# Variance-weighted average treatment effect
 
 .vcenter[
 .blockquote[
-###Example: Drug on Cervical Cancer &amp;mdash; ctd.
+### Example: Drug on cervical cancer &amp;mdash; ctd.
 
 3.47 is closer to Brianna’s treatment effect of about 4 than to Diego’s treatment effect of 2.
+
 - The variance in treatment among Briannas is `\(0.5 \cdot 0.5 = 0.25\)` and among Diegos is `\(0.9 \cdot 0.1 = 0.09\)`
 
 - The **variance-weighted average**, then, is `\(\frac{0.25 \cdot 4 + 0.09 \cdot 2}{0.25 + 0.09} = 3.47\)`
 ]]
 
 ---
-# Distribution-Weighted Average Treatment Effects
-&lt;br&gt;
-Another weighted average treatment effect is the **distribution-weighted average treatment effect.** 
-&lt;br&gt;&lt;br&gt;
+# Distribution-weighted average treatment effect
+
+.vcenter[
 .blockquote[
-###Definition: Distribution-Weighted Average Treatment Effect
-In **distribution-weighted average treatment effect** we weight, individuals with **common values of the matching variable** are more heavily.
-]
+### Definition: Distribution-weighted average treatment effect
+In **distribution-weighted average treatment effect** we weight, individuals with **common values of the matching variable** more heavily.
+]]
 
 ---
 # Exogenous variation in treatment
+&lt;/br&gt;
 
-- Another form of weighted treatment effect that pops up often is based the **responsiveness** of treatment.
+- Another form of weighted treatment effect that pops up often is based upon the **responsiveness** of treatment
 
--  Heterogeneous treatment effects not only apply to the effect of treatment on an outcome but also apply to the effect of exogenous variation on treatment.
+-  Heterogeneous treatment effects not only apply to the effect of treatment on an outcome but also apply to the effect of exogenous variation on treatment
 
-- There may be heterogeneous treatment effects due to (undesired) effects of treatment on assignment *on* treatment, rather than the effect of treatment on outcome.
+- There may be heterogeneous treatment effects due to (undesired) effects of treatment on assignment *on* treatment, rather than the effect of treatment on outcome
 
 ---
 # Intent-to-treat estimate
@@ -329,10 +346,17 @@ Intent-to-treat is **the effect of assigning treatment, although not the effect 
 
 ---
 #Intent-to-treat estimate
-###A note
-- Intent-to-treat gives us the **average treatment effect of assignment.**
-- It weighs each person’s treatment effect by **the proportion of their treatment effect they received.**
-- It is not exactly a weighted treatment effect as instead of dividing by the *sum of the weights*, we divide by the *number of individuals*. 
+&lt;/br&gt;
+
+**Note**
+
+&lt;br&gt;
+
+- Intent-to-treat gives us the **average treatment effect of assignment**
+
+- It weighs each person’s treatment effect by **the proportion of their treatment effect they received**
+
+- It is not exactly a weighted treatment effect as instead of dividing by the *sum of the weights*, we divide by the *number of individuals* 
 
 ---
 # Local average treatment effect 
@@ -345,8 +369,9 @@ The local average treatment effect (**LATE**) is a **weighted average treatment 
 
 ---
 # Local average treatment effect 
+&lt;/br&gt;
 
-- For LATE we use some **source of exogenous variation to predict treatment**, and then use those predictions instead of your actual data on treatment
+- For LATE we use some **source of exogenous variation to predict treatment**, and then use those predictions instead of our actual data on treatment
 
 - This approach does not just say *were you assigned treatment or not?* but rather *how much more treatment do we think you got due to assignment?*
 
@@ -364,11 +389,12 @@ The local average treatment effect (**LATE**) is a **weighted average treatment 
 
 - The treatment effect we get is almost entirely determined by the source of treatment variation we use. 
 
-- Usually, we wantthe average treatment effect&amp;mdash;the effect we would see *on average* if we took a single individual and applied the treatment to them.
+- Usually, we want the average treatment effect&amp;mdash;the effect we would see *on average* if we took a single individual and applied the treatment to them.
 ]]
 
 ---
 # Can we always get an ATE?
+&lt;/br&gt;
 
 .vcenter[
 .blockquote[
@@ -435,11 +461,11 @@ Consider Rodney and Richard:
 
 ### Thumb rules
 
-1. If you have true randomization in a representative sample and do not need to do any adjustment, then you have an average treatment effect (ATE).
+1. If you have *true randomization* in a representative sample and do not need to do any adjustment, then you have an average treatment effect (ATE).
 
-2. If you have true randomization only within a certain group, and you isolate that group so you can take advantage of that randomization, you have a conditional average treatment effect.
+2. If you have true randomization only within a certain group, and you isolate that group so you can take advantage of that randomization, you have a conditional average treatment effect (CTE)
 
-3. If you know that some variation in treatment is connected to back doors and so you close those back doors, using only the remaining variation, you have a weighted average treatment effect 
+3. If you know that some variation in treatment is connected to back doors and so you close those back doors, using only the remaining variation, you have a weighted average treatment effect (WATE) 
 ]]
 
 ---
@@ -451,30 +477,14 @@ Consider Rodney and Richard:
 ### Thumb rules &amp;mdash; ctd.
 
 &lt;ol start = 4&gt;
-&lt;li&gt;If you are identifying your effect by assuming that some untreated group is what the treated group would look like if they hadn’t been treated, then we have the average treatment on the treated (ATT).&lt;/li&gt;
-&lt;li&gt;If part of the variation in treatment is driven by an exogenous variable, and you isolate just the part driven by that exogenous variable, then you have a local average treatment effect (LATE).&lt;/li&gt;
+
+&lt;li&gt;If you are identifying your effect by assuming that some untreated group is what the treated group would look like if they had not been treated, then we have the average treatment on the treated (ATT)&lt;/li&gt;
+
+&lt;li&gt;If part of the variation in treatment is driven by an exogenous variable, and you isolate just the part driven by that exogenous variable, then you have a local average treatment effect (LATE)&lt;/li&gt;
+
 &lt;/ol&gt;
 
 ]]
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

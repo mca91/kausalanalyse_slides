@@ -1,5 +1,5 @@
 ---
-title: "Difference-in-Differences"
+title: "<a href='https://github.com/mca91/kausalanalyse_slides/raw/main/DiD/DiD.pdf'>Difference-in-differences</a>"
 author: "Christoph Hanck"
 date: "Summer 2023"
 output:
@@ -178,7 +178,7 @@ ggdag::ggdag(dag_object, # the dag object we created
   Compare the within variation in the treated group to the within variation in the untreated group. Because the within variation in the untreated group is affected by time, this controls for time differences and **closes the back door through *Time***.
 
 ---
-# Differences-in-differences
+# Difference-in-differences
 <br>
 
 **Treatment effects in DiD**
@@ -276,6 +276,20 @@ ggdag::ggdag(dag_object, # the dag object we created
 ### Example: Effect of active choice on organ doner
 <br>
 ```{r, echo=F, cache=T, out.extra = 'style="display:block; margin-right:auto; margin-left:auto;"', fig.height=4, out.width='65%', dpi=190, fig.cap=paste0(fig_counter(), ': Organ donation rates in California and other states'), fig.align='center', warning=F}
+d <- read_tsv('kessler_roth.tsv') %>%
+  pivot_longer(cols = 2:7,
+               names_to = 'quarter',
+               values_to = 'rate') %>%
+  mutate(qtr = case_when(
+    quarter == 'Q42010' ~ ymd('2010-10-01'),
+    quarter == 'Q12011' ~ ymd('2011-01-15'),
+    quarter == 'Q22011' ~ ymd('2011-05-01'),
+    quarter == 'Q32011' ~ ymd('2011-08-01'),
+    quarter == 'Q42011' ~ ymd('2011-10-01'),
+    quarter == 'Q12012' ~ ymd('2012-01-15')
+  ),
+  st = State == 'California') 
+
 p <- ggplot(d, aes(x = qtr, y = rate/100, color = st, shape = st, size = st)) + 
   geom_point(position = position_jitter(seed = 1000)) +
   geom_vline(aes(xintercept = ymd('2011-07-01')), linetype = 'dashed', size = .5)  +
@@ -413,7 +427,7 @@ plot_grid(
 
 - DiD cannot work without parallel trends: 
 
-  If the gap between the two groups would have changed from the pre-period to the post-period without treatmetn, then this non-treatment-related change will get mixed up with the treatment-related change.
+  If the gap between the two groups would have changed from the pre-period to the post-period without treatment, then this non-treatment-related change will get mixed up with the treatment-related change.
 
 ---
 # Untreated groups and parallel trends
@@ -583,7 +597,7 @@ $$Y = \beta_0 + \beta_1 \text{TreatedGroup} + \beta_2 \text{AfterTreatment} + \b
 
 <br>
 
-- Highly intuitive, straightforward to use with with software that implements fixed effects estimation
+- Highly intuitive, straightforward to use  with software that implements fixed effects estimation
 
 - Allows to account for *multi-group designs* where some groups are treated and some are not, rather than just one treated and untreated group.
 
@@ -897,7 +911,7 @@ The matching emphasizes comparisons that are especially subject to regression to
 
 
 ---
-# The unfurling logic of difference-in-differences
+# The unfurling logic of DiD
 
 .vcenter[
 .blockquote[
@@ -914,7 +928,7 @@ $$TestScore=\beta_0+\beta_1Income+\epsilon$$
 
 
 ---
-# The unfurling logic of difference-in-differences
+# The unfurling logic of DiD
 
 .vcenter[
 .blockquote[
@@ -931,7 +945,7 @@ $$\beta_1^{Treated,\, After} - \beta_1^{Treated,\, Before}$$
 ]]
 
 ---
-# The unfurling logic of difference-in-differences
+# The unfurling logic of DiD
 <br>
 .blockquote[
 ### Example: Training program on educational income disparities &mdash; ctd.
@@ -952,7 +966,7 @@ TestScore = &\, \beta_0+\beta_1 Income\\
 ]
 
 ---
-# The unfurling logic of difference-in-differences
+# The unfurling logic of DiD
 <br>
 **Applications**
 
@@ -964,7 +978,7 @@ TestScore = &\, \beta_0+\beta_1 Income\\
 - DiD can also be applied to DiD itself and get the difference-in-difference-in-differences model, also known as triple-differences (DiDiD)
 
 ---
-# The unfurling logic of difference-in-differences
+# The unfurling logic of DiD
 <br>
 **Applications**
 
@@ -972,5 +986,4 @@ TestScore = &\, \beta_0+\beta_1 Income\\
 - DiDiD could be used to see how a newly implemented policy *changes* a DID-estimated effect
 
 - However, DiDiD is also used to help strengthen the parallel trends assumption by finding a treated group that should not be affected at all, and subtracting out their effect
-
 

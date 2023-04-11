@@ -1,5 +1,5 @@
 ---
-title: "Regression Discontinuity"
+title: "<a href='https://github.com/mca91/kausalanalyse_slides/raw/main/RDD/RDD.pdf'>Regression discontinuity</a>"
 author: "Christoph Hanck"
 date: "Summer 2023"
 output:
@@ -93,7 +93,8 @@ library(broom)
 # Regression discontinuity
 <br>
 **The idea**
-<br>
+
+</br>
 
 - There are plenty situations where treatment is assigned *discontinuously* : 
 
@@ -199,7 +200,7 @@ ggdag::ggdag(dag_object, # the dag object we created
 **When can we apply regression discontinuity?**
 
 <br>
-- The **running bariable** has
+- The **running variable** has
  
  - ... a back door through $\text{Z}$.
  
@@ -216,9 +217,8 @@ ggdag::ggdag(dag_object, # the dag object we created
 
 ---
 # Regression discontinuity
-<br>
 
-```{r, echo=F, cache=F, out.extra = 'style="display:block; margin-right:auto; margin-left:auto;"', fig.height=5, fig.width=12, out.width='100%', out.height='95%', dpi=190, fig.cap=paste0(fig_counter(), ': Regression discontinuity step-by-step'), fig.align='center'}
+```{r, echo=F, cache=T, out.extra='style="display:block; margin-right:auto; margin-left:auto; margin-top:30px;"', fig.height=5, fig.width=12, out.width='100%', out.height='95%', dpi=190, fig.cap=paste0(fig_counter(), ': Regression discontinuity step-by-step'), fig.align='center'}
 suppressWarnings({
 set.seed(1000)
 tb <- tibble(x = runif(100)) %>%
@@ -294,10 +294,10 @@ plot_grid(p1,p2,p3,p4, nrow = 2)
 **Fuzzy RDD**
 
 <br>
-- In some regression discontinuity applications we need to relax the assumption of a sharp cutoff: 
+- In some regression discontinuity applications, we need to relax the assumption of a sharp cutoff: 
   Being on one side or another of the cutoff only changes the *probability of treatment*. 
 
-- In these cases it we have a fuzzy regression discontinuity design (FRDD), as opposed to a 'sharp' RDD where the probability of treatment jumps from 0% to 100%
+- In these cases we have a fuzzy regression discontinuity design (FRDD), as opposed to a 'sharp' RDD where the probability of treatment jumps from 0% to 100%
 
 
 ---
@@ -448,11 +448,15 @@ x, y
 <br>
 **What kind of treatment effects are being estimated?**
 
+</br>
+
 - Note that we only use variation from just around the cutoff.
 
   &rarr; The effect of treatment for people who are just around the cutoff is obtained. 
 
-- This is called a **local average treatment effect** (LATE). A LATE is a weighted average treatment effect for those just on the margin of being given treatment.
+- This is called a **local average treatment effect** (LATE):
+
+  A LATE is a weighted average treatment effect for those just on the margin of being given treatment.
 
 ---
 # Regression discontinuity with OLS
@@ -549,11 +553,13 @@ Local regression is how most researchers choose to implement their regression di
 # Discontinuity designs and local regression
 <br>
 **Local regression**
-<br>
+
+</br>
+
 - For each value of $X$, we estimate the corresponding valueof $Y$ by running its own regression
-- This 'dedicated' regression fits a regression specific shape.
-- The idea of local regression is to weight observations more heavily the closer they are to the specific value of $X$. 
-- The weighting funtion is a **kernel.**
+- This 'dedicated' regression fits a regression specific shape
+- The idea of local regression is to weight observations more heavily the closer they are to the specific value of $X$
+- The weighting function is a **kernel**
 
 
 ---
@@ -670,7 +676,7 @@ ggplot(binned, aes(x = Income, y = Support)) +
 # Discontinuity designs and local regression
 
 .blockquote[
-```{r, echo=F, cache=F, warning=F, out.extra = 'style="display:block; margin-right:auto; margin-left:auto;"'}
+```{r, echo=F, cache=T, warning=F, out.extra='style="display:block; margin-right:auto; margin-left:auto;"'}
 gt <- causaldata::gov_transfers
 
 # Linear term and a squared term with "treated" interactions
@@ -694,7 +700,7 @@ mw <- lm(Support ~ Income_Centered*Participation, data = gt,
 
 # See the results with heteroskedasticity-robust SEs
 msummary(
-  models = list('Quadratic' = m, 'Linear with Kernel Weight' = mw), 
+  models = list('Quadratic' = m, 'Linear with kernel weight' = mw), 
   output = "huxtable",
   estimate = "estimate",
   stars = c('*' = .1, '**' = .05, '***' = .01), 
@@ -744,7 +750,7 @@ ggdag::ggdag(dag_object, # the dag object we created
 **Sharp RDD vs. FRDD**
 
 <br>
-- In FRDD, the data cannot be simply be limited to the area around the cutoff to control for $\text{Running Variable}$ 
+- In FRDD, the data cannot simply be limited to the area around the cutoff to control for $\text{Running Variable}$ 
 
   &rarr; Doing that would lead us to understate the effect!
 
@@ -795,7 +801,7 @@ IV divides the effect of the instrument on the outcome by the effect of the inst
 
 - The “treatment” of being eligible for mortgage subsidies would only apply to some people born at the right time: 
 
-  Treatment rates jump from 0% some value below 100% (fuzzy).
+  Treatment rates jump from 0% to some value below 100% (fuzzy).
 
 - Veteran status at this margin increases home ownership rates by 17%
 
@@ -936,6 +942,7 @@ plot_grid(p1,p2)
 **Random assignment may fail**
 
 </br>
+
 There are two ways manipulation could happen:
 
 - First, whoever (or whatever) is in charge of setting the cutoff value might do so with the knowledge of exactly who it will lead to getting treated.
@@ -945,11 +952,11 @@ There are two ways manipulation could happen:
 
 ---
 # The density discontinuity test
-<br>
-
+</br>
 **Random assignment may fail**
 
-<br>
+</br>
+
 In the case of indirect control we do have a test we can perform to check whether manipulation seems to be occurring at the cutoff.
 
 For this we inspect the distribution of the running variable around the cutoff:
@@ -960,8 +967,10 @@ For this we inspect the distribution of the running variable around the cutoff:
 
 ---
 # The density discontinuity test
-<br>
+</br>
 **Steps**
+
+</br>
 
 - Estimate the density of the treatment variable. Allow that density to have a discontinuity at the cutoff.
 
@@ -978,7 +987,7 @@ For this we inspect the distribution of the running variable around the cutoff:
 .vcenter[
 .blockquote[
 ### Example: Manacorda et al. (2011)
-
+</br>
 ```{r, echo=F, warning=F, cache=F, out.extra = 'style="display:block; margin-right:auto; margin-left:auto;"', fig.height=4, fig.width=8, out.width='70%', dpi=190, fig.cap=paste0(fig_counter(), ': Distribution of the binned running variable'), fig.align='center'}
 gt <- read_csv('Government_Transfers_McCrary.csv') %>%
   filter(abs(Income_Centered) <= .02) %>%
@@ -2783,7 +2792,6 @@ tb1 <- read.csv(text = 'x,y
 ---
 # When running variables misbehave
 <br>
-
 **Granularity and heaping**
 
 <br>
@@ -2814,6 +2822,7 @@ Two potential issues are
 **Heaping**
 
 <br>
+
 **Non-random heaping** is when the running variable seems to be much more likely to take certain values than others. Often this can come in the form of rounding.
 
 - **Example** 
@@ -2859,7 +2868,7 @@ The answer to this question is a tradeoff:
 ---
 # Dealing with bandwidths
 <br>
-**Data based bandwidth selection**
+**Data-based bandwidth selection**
 
 <br>
  - **Cross-validation** 

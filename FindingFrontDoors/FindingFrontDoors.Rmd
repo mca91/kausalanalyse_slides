@@ -1,5 +1,5 @@
 ---
-title: "<a href='https://github.com/mca91/kausalanalyse_slides/raw/main/FindingFrontDoors/FindingFrontDoors.pdf'>Finding Front Doors</a>"
+title: "<a href='https://github.com/mca91/kausalanalyse_slides/raw/main/FindingFrontDoors/FindingFrontDoors.pdf'>Finding front doors</a>"
 author: "Christoph Hanck"
 date: "Summer 2023"
 output:
@@ -59,8 +59,6 @@ opts_chunk$set(
 ```
 
 
-
-
 ```{r , include=FALSE}
 library(ggdag)
 library(ggplot2)
@@ -86,6 +84,7 @@ htmltools::tagList(
 
 
 # Motivation 
+
 .vcenter[
 - Modelling the DGP, listing all the paths, finding a set of variables that close all the back doors, and measuring and controlling for all of those variables is a lot of work by itself.
 
@@ -126,7 +125,7 @@ We can estimate individual arrows on the front door paths even if the overall ef
 .vcenter[
 .blockquote[
 
-###Definition: Randomised controlled experiment
+### Definition: Randomised controlled experiment
 
 In a **randomised controlled experiment**, the researcher assigns treatment (or the absence of treatment) to people, and watches the resulting differences in outcome.
 
@@ -145,7 +144,7 @@ In a **randomised controlled experiment**, the researcher assigns treatment (or 
 .vcenter[
 .blockquote[
 
-###Example: Charter school's influence on grades
+### Example: Charter school's influence on grades
 
 - We are interested in figuring out whether charter schools improve students’ test scores than traditional public schools.
 - Many variable influence people's decision to attend Charter school,for example, background, personality, location, etc.
@@ -180,7 +179,7 @@ ggdag::ggdag(dag_object, # the dag object we created
 .vcenter[
 .blockquote[
 
-###Example: Charter school's influence on grades
+### Example: Charter school's influence on grades
 
 - Many students in charter schools are assigned slots based on a lottery system.
 - There are no back doors from Lottery to _Student Achievement_. 
@@ -247,16 +246,16 @@ The data from the experiment can be analysed in two ways:
 <br>
 
 .blockquote[
-###Definition: Natural Experiment
+### Definition: Natural experiment
 
-Natural experiments are a real-world settings in which randomisation of treatment and control conditions has been already done by nature or by other factors that our outside our control
+Natural experiments are a real-world settings in which randomisation of treatment and control conditions has been already done by nature or by other factors that are outside our control
 
 Natural experiments work because they fix some of the variation in treatment to *have no back doors*.
 
 ]
 <br>
 .blockquote[
-###Example: Charter school's influnece on grades
+### Example: Charter school's influnece on grades
 
 In the last example the charter schools did some randomisation to select the pupils&mdash;the randomisation occurred in the world and we could take advantage of it.
 ]
@@ -266,7 +265,7 @@ In the last example the charter schools did some randomisation to select the pup
 
 .vcenter[
 .blockquote[
-### Definition: Source of Exogenous Variation
+### Definition: Source of exogenous variation
 A source of variation in the treatment that has no open back doors is called a **source of exogenous variation**.
 
 An ideal source of exogenous variation is not caused by any other variable that belongs on the causal diagram.
@@ -330,7 +329,7 @@ ggdag::ggdag(dag_object, # the dag object we created
 
 .vcenter[
 .blockquote[
-### Example: The effect of air pollution on number of people driving
+### Example: the effect of air pollution on number of people driving
 
 - **Pan He** and **Cheng Xu** in 2019 look at whether **air pollution being worse causes people to drive more**.
 
@@ -345,7 +344,7 @@ ggdag::ggdag(dag_object, # the dag object we created
 
 .vcenter[
 .blockquote[
-### Example: The effect of air pollution on number of people driving
+### Example: the effect of air pollution on number of people driving
 
 - By isolating just the variation in pollution driven by wind direction, they find that an increase in daily pollution large enough to change the government’s rating from "not polluted" to "polluted" increases driving by 3%.
 
@@ -357,7 +356,7 @@ ggdag::ggdag(dag_object, # the dag object we created
 <br>
 .vcenter[
 .blockquote[
-###Example: The effect of air pollution on number of people driving
+###Example: the effect of air pollution on number of people driving
 
 ```{r, echo=F, cache=F, out.extra = 'style="display:block; margin-right:auto; margin-left:auto;"', fig.height=5.5, out.width='55%', dpi=190, fig.cap=paste0(fig_counter(), ': Causal Diagram of effect of Air Pollution on number of people driving'), fig.align='center'}
 coord_dag <- list(
@@ -397,7 +396,7 @@ ggdag::ggdag(dag_object, # the dag object we created
 
 .vcenter[
 .blockquote[
-###Example: The effect of uncompensated health care on patient experience
+###Example: the effect of uncompensated health care on patient experience
 
 - Camilleri and Diebold (2019), looked at the effect of uncompensated care (medical care given by hospitals that do not get paid for) on patient experience. 
 - The amount of uncompensated care a hospital gives is related to some **back-doors**:
@@ -412,17 +411,17 @@ ggdag::ggdag(dag_object, # the dag object we created
 
 .vcenter[
 .blockquote[
-###Example: The effect of uncompensated health care on patient experience
+###Example: the effect of uncompensated health care on patient experience
 
 - The choice of states to accept Medicaid was not random, but rather **politicised**.
 - Medication expansion may **not be a source of exogenous variation**.
 - Medicaid expansion, and thus **expanded access to insurance**, should change lots of things about health care besides hospital compensation that might also be related to patient experience. 
 - We have to assume that the e**xpansion only affected hospital compensation** in order to consider **variation in compensation driven by the Medicaid expansion as being exogenous**.
 - We need to be very careful in thinking what assumptions we have to make about the data generating process, and whether those assumptions are true.
-]
-]
+]]
+
 ---
-#More on randomisation
+# More on randomisation
 <br>
 
 - **Isolating front paths is always feasible**, just like identifying the effect of a treatment by closing back doors is always feasible, even if we do not have anything even remotely like purely-random variation as we would in a randomised experiment or even a lottery.
@@ -490,8 +489,5 @@ We can identify that  the only back doors are:
 We can identify Treatment → M and M → Outcome
 
 We just need to combine those two effects to get our effect: Treatment → M → Outcome.
-
 ]]
-
-
 

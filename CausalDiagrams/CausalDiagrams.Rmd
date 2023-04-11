@@ -77,7 +77,8 @@ htmltools::tagList(
 )
 ```
 
-##Motivation
+
+## Motivation
 
 Before going into all the technicalities of causality, we need to understand *why* we should worry so much about causality: **many interesting research questions are causal in nature.**
 
@@ -85,7 +86,7 @@ Before going into all the technicalities of causality, we need to understand *wh
 
 .blockquote[
 
-###Examples: Economic research questions
+### Examples: Economic research questions
 
 - We don’t want to know if countries with higher minimum wages have less poverty, we want to know if raising the minimum wage reduces poverty. 
 - We don’t want to know if people who take a popular common-cold-shortening medicine get better, we want to know if the medicine made them get better more quickly. 
@@ -99,7 +100,7 @@ Before going into all the technicalities of causality, we need to understand *wh
 .vcenter[
 .blockquote[
 
-###Definition: Causality
+### Definition: Causality
 
 We say that $X$ causes $Y$ when we interfere and change the value of $X$ without changing anything else, then the distribution of $Y$ would also change as a result.
 
@@ -129,7 +130,7 @@ Less obvious ones:
 Often we observe non-zero correlations that do not reflect causal relationships (or may be causal in the wrong direction!)
 
 .blockquote[
-###Examples: causality vs. correlation
+### Examples: Causality vs. correlation
 
 Obvious ones:
 - People tend to wear shorts on days when ice cream trucks are out
@@ -141,14 +142,14 @@ Less obvious ones:
 ]
 
 ---
-##Casusality 
+## Casusality 
 
 Not all $Y$ must be due to $X$: we still say $X$ causes $Y$ even if changing $X$ does not always change $Y$, but just changes the distribution of $Y$: the **probability** that $Y$ occurs. 
 
 <br>
 
 .blockquote[
-###Example: switches and bulbs
+### Example: Switches and bulbs
 
 Flipping a light switch ( $X$ ) on alters the distribution of the light coming on ( $Y$ ), but not that it  happens for certain:
 
@@ -161,11 +162,11 @@ Flipping a light switch ( $X$ ) on alters the distribution of the light coming o
 ]
 
 ---
-##Weasel words
+## Weasel words
 
 There are lots of words that are generally taken to imply causality, as well as words that describe relationships *without* implying causality. 
 
-There are also some “weasel words” that don’t technically say anything about causality but clearly really want you to hear it.
+There are also some “weasel words” that don’t technically say anything about causality but clearly want you to hear it.
 
 
 <br>
@@ -180,7 +181,7 @@ We can say $X$ causes $Y$ by saying:
 - $X$ influences $Y$ 
 
 ---
-##Why are Weasel words important?
+## Why are Weasel words important?
 
 - Knowing these terms can help interpreting what scientific studies are really saying, and when someone might be trying to be misleading:
 
@@ -197,7 +198,7 @@ The key is that all the weasel phrases are equally true if you swap the position
 
 ---
 exclude: true
-##The Problem of Causal Inference
+## The Problem of causal inference
 
 **Potential outcomes**
 
@@ -214,7 +215,7 @@ The other one, what Y would have been if we made X=0, is missing. We don’t kno
 
 ---
 exclude: true
-##A possible solution!
+## A possible solution!
 
 - We can take someone who actually DOES have X=0 and compare their Y?
 
@@ -227,7 +228,7 @@ exclude: true
 
 ---
 exclude: true
-##POTENTIAL OUTCOMES
+## Potential outcomes
 <br>
 The logic we just went through is the basis of the potential outcomes model, which is one way of thinking about causality.
 </br>
@@ -240,7 +241,7 @@ counterfactual - counter to the fact of what actually happened
 
 ---
 exclude: true
-##Experiments and Models
+## Experiments and models
 - A common way to do causal inference in many fields is an experiment.
 - When we’re working with people/firms/countries, running experiments is often infeasible, impossible, or unethical.
 - So we have to think hard about a model of what the world looks like.
@@ -251,7 +252,7 @@ exclude: true
 
 ---
 exclude: true
-#Model Identification
+# Model identification
 - We have “identified” a causal effect if the estimate that we generate gives us a causal effect.
 - In other words, when we see the estimate, we can claim that it’s isolating just the causal effect.
 - Identifying effects requires us to understand the data generating process (DGP).
@@ -261,14 +262,14 @@ exclude: true
 - Once we’re really comparing apples to apples, we can figure out, using only data we can actually observe, how things would be different if we reached in and changed X, and how Y would change as a result.
 
 ---
-##Causal Diagrams
+## Causal diagrams
 
 Causal diagrams were developed in the mid-1990s by the computer scientist Judea Pearl<sup>1</sup>   who was trying to develop a way for artificial intelligence to think about causality. 
 
 </br>
 
 .blockquote[
-### Definition: Causal Diagram
+### Definition: Causal diagram
 A causal diagram is a graphical representation of a data generating process (DGP). Variables in the DGP are represented by nodes. The causal relationships in the DGP, each represented by an arrow from the cause variable to the caused variable.
 ]
 
@@ -278,10 +279,10 @@ A causal diagram is a graphical representation of a data generating process (DGP
 
 
 ---
-##Causal Diagrams &mdash; A simple Example
+## Causal diagrams
 
 .blockquote[
-###Example: Flipping coins for cake
+### Example: Flipping coins for cake
 
 Two people A and B flip a coin. If they get head, then person A gets a slice of cake. If they get tail, then person B gets the slice.
 
@@ -296,7 +297,7 @@ We have...
 ]
 
 ---
-##Causal Diagrams &mdash; A simple Example
+## Causal diagrams
 
 .blockquote[
 ###Example: Flipping coins for cake
@@ -320,7 +321,8 @@ ggdag::ggdag(dag_object, # the dag object we created
 ]
  
 ---
-##Causal Diagrams
+## Causal diagrams
+
 **Some points to be noted**
 
 - Each variable on the graph may take multiple values. 
@@ -330,7 +332,7 @@ ggdag::ggdag(dag_object, # the dag object we created
 - All (non-trivial) variables relevant to the DGP should be included, even if we cannot measure or see them.
 
 ---
-##Causal Diagrams
+## Causal diagrams
 **Unmeasured Variables** (labelled U)
 
 Unmeasured Variables serve two purposes in causal diagrams:
@@ -340,10 +342,10 @@ Unmeasured Variables serve two purposes in causal diagrams:
 **Latent variables** (labelled L) are an example of unmeasured variables: They explain *why* two variables that are correlated but neither of them causes the other 
 
 ---
-##Causal Diagrams
+## Causal diagrams
 
 .blockquote[
-###Example: Ice-cream sales revisited
+### Example: Ice-cream sales revisited
 
 Ice-cream sales (X) are high when people wear shorts (Y). However, there is no causal relationship between ice-cream sales and people wearing sorts: weather (U) is latent variable causes them both.
 
@@ -375,7 +377,7 @@ library(ggpubr)
 library(ggplot2)
 ```
 
-##Causal Diagrams &mdash; The Real World: On an Omission Mission
+## Causal diagrams &mdash; the real world: on an omission mission
 
 ```{r, echo=F, cache=F, out.extra = 'style="color:black; display:block; margin-right:auto; margin-left:auto; margin-top:5%"', fig.height=5, out.width='55%', dpi=190, fig.cap=paste0(fig_counter(), ':  Police Presence and Crime Rate by County, North Carolina 1981-1987')}
 
@@ -401,7 +403,7 @@ Cornwell, Christopher, and William N. Trumbull. 1994. "Estimating the Economic M
 The raw correlation is picking up the fact that high-crime areas get assigned lots of police.
 
 ---
-##Causal Diagrams &mdash; The Real World: On an Omission Mission
+## Causal diagrams &mdash; the real world: on an omission mission
 
 To make a causal diagram, we think of following latent variables:
  - Expected crime payout (profitability of crime w.r.t. likelihood to get caught, sentencing law severity)
@@ -413,7 +415,7 @@ Some assumptions are:
  - Lagged police per capita does not cause current police per capita 
 
 ---
-##Causal Diagrams &mdash; The Real World: On an Omission Mission
+## Causal diagrams &mdash; the real world: on an omission mission
 
 ```{r, echo=F, cache=F, out.extra = 'style="color:black; display:block; margin-right:auto; margin-left:auto; margin-top:5%"', fig.width=10, fig.height=4, dpi=190, fig.cap=paste0(fig_counter(), ': Police presence and crime rate')}
 coord_dag <- list(
@@ -443,7 +445,7 @@ ggdag::ggdag(dag_object, # the dag object we created
 ```
 
 ---
-## Causal Diagrams and Research Questions
+## Causal diagrams and research questions
 
 **Does additional police presence reduce crime?**
 
@@ -458,7 +460,7 @@ The variation in our data that answers our research question thus relates to pol
 To get our answer, we have to dig out *that* part of the variation in crime and block out the alternative explanations.
 
 ---
-## Causal Diagrams: Moderators
+## Causal diagrams: Moderators
 
 - $X$ → $Y$ and $Z$ → $Y$
 - However, this could be consistent with any of the following two DGPs:
@@ -470,7 +472,7 @@ To get our answer, we have to dig out *that* part of the variation in crime and 
 
 
 ---
-## Causal Diagrams: Moderators
+## Causal diagrams: Moderators
 
 .vcenter[
 .blockquote[
@@ -479,7 +481,7 @@ Moderators are variables that do not necessarily cause another variable (althoug
 ]]
 
 ---
-## Causal Diagrams: Moderators
+## Causal diagrams: Moderators
 
 **Moderator effects are *not* shown in the causal diagram.**
 
@@ -496,11 +498,10 @@ ggdag::ggdag(dag_object, text = T ) +
 ```
 
 ---
-## Causal Diagrams: Moderators
+## Causal diagrams: Moderators
 
 .vcenter[
 .blockquote[
 ### Example: Fertility drug
 Consider the effect of a fertility drug (X) on the chances of getting pregnant (Y). The effect is *moderated* by the variable "having a uterus" (Z). If you don’t have a uterus, the drug cannot do much for you! But if you do have a uterus, it can increase your chances of conceiving.
-]] 
- 
+]]

@@ -4,15 +4,15 @@
     <title>Causal Paths</title>
     <meta charset="utf-8" />
     <meta name="author" content="Christoph Hanck" />
-    <script src="CausalPaths_files/header-attrs-2.20/header-attrs.js"></script>
+    <script src="CausalPaths_files/header-attrs-2.21/header-attrs.js"></script>
     <link href="CausalPaths_files/remark-css-0.0.1/default.css" rel="stylesheet" />
     <script src="CausalPaths_files/xaringanExtra-progressBar-0.0.1/progress-bar.js"></script>
     <script src="CausalPaths_files/clipboard-2.0.6/clipboard.min.js"></script>
     <link href="CausalPaths_files/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.css" rel="stylesheet" />
     <script src="CausalPaths_files/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.js"></script>
     <script>window.xaringanExtraClipboard(null, {"button":"<i class=\"fa fa-clipboard\"><\/i>","success":"<i class=\"fa fa-check\" style=\"color: #00ff00\"><\/i>","error":"<i class=\"fa fa-times-circle\" style=\"color: #F94144\"><\/i>"})</script>
-    <link href="CausalPaths_files/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
-    <link href="CausalPaths_files/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+    <link href="CausalPaths_files/font-awesome-6.2.1/css/all.min.css" rel="stylesheet" />
+    <link href="CausalPaths_files/font-awesome-6.2.1/css/v4-shims.min.css" rel="stylesheet" />
     <script type="text/x-mathjax-config">
       MathJax.Hub.Config({
         TeX: { equationNumbers: { autoNumber: "AMS" } },
@@ -71,7 +71,7 @@ class: center, middle, inverse, title-slide
 
 
 
-## Causal Paths
+## Causal paths
 
 .vcenter[
 .blockquote[
@@ -80,7 +80,7 @@ The path between two variables on a causal diagram is a description of the set o
 ]]
 
 ---
-## Causal Paths
+## Causal paths
 
 .vcenter[
 
@@ -92,7 +92,7 @@ The path between two variables on a causal diagram is a description of the set o
 ]
 
 ---
-## Causal Paths
+## Causal paths
 &lt;br&gt;
 
 - B and C are related: 
@@ -106,7 +106,7 @@ The path between two variables on a causal diagram is a description of the set o
 - The paths can tell us the road we want to walk on, and also the road we want to avoid.
 
 ---
-## Finding allpaths
+## Finding all paths
 &lt;br&gt;
 
 **Why is it important?**
@@ -186,7 +186,7 @@ The path between two variables on a causal diagram is a description of the set o
 ]]
 
 ---
-##Good Paths vs. Bad Paths &amp; Front Doors vs. Back Doors
+## Good paths vs. bad paths &amp; front doors vs. back doors
 
 &lt;br&gt;
 
@@ -201,7 +201,7 @@ The path between two variables on a causal diagram is a description of the set o
 - Usually, all the front door paths are good, and all the back door paths are bad.
 
 ---
-## Good Paths vs. Bad Paths &amp; Front Doors vs. Back Doors
+## Good paths vs. bad paths &amp; front doors vs. back doors
 
 .vcenter[
 .blockquote[
@@ -299,19 +299,20 @@ A path is *closed* by default when there is a collider.
 
 ---
 ## Colliders
-**Dealing with Colliders**
+**Dealing with colliders**
 
 - We may not control for the colliders. However, two problems are associated with that:
+ 
  1. We need to figure out that a variable is a collider so we know not to control for it.
  2. One common way we control for a collider, say *Z*, is by selecting a sample: picking a sample with no variation in *Z* is one way of controlling for *Z*. 
  
       So if we do a study, say, of college students, then we are inevitably controlling for college attendance. However, college attendance can be a collider!
 
-- To identify the answer to our research question, what we need to close all the bad paths while leaving all the good paths ppen.
+- To identify the answer to our research question, what we need is to close all the bad paths while leaving all the good paths open.
 
 - Once we accomplish that, any remaining relationship between treatment and control can only be going through the good paths, and all of the good paths we want are included.
  
- *This is exactly what we want.*
+- This is exactly what we want.
 
 ---
 ## Using paths to test a causal diagram
@@ -391,14 +392,13 @@ Tests like these, where we expect that a relationship should be zero because our
 
 &lt;br&gt;
 
-**What if we fail a placebo test?**
+**What if we *fail* a placebo test?**
 
 - Failing a placebo test proves that the model is incorrect and incomplete.
 
 - If we find a small nonzero relationship that, according to the diagram, should not be there, that might be a minor case for concern. 
 
 - If there is an enormous and strong relationship that should not be there, we should really worry and revise the causal diagram to come up with an improved model.
-
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

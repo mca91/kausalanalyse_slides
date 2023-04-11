@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>Instrumental Variables</title>
+    <title>Instrumental variables</title>
     <meta charset="utf-8" />
     <meta name="author" content="Christoph Hanck" />
     <script src="IV_files/header-attrs/header-attrs.js"></script>
@@ -11,8 +11,8 @@
     <link href="IV_files/xaringanExtra-clipboard/xaringanExtra-clipboard.css" rel="stylesheet" />
     <script src="IV_files/xaringanExtra-clipboard/xaringanExtra-clipboard.js"></script>
     <script>window.xaringanExtraClipboard(null, {"button":"<i class=\"fa fa-clipboard\"><\/i>","success":"<i class=\"fa fa-check\" style=\"color: #00ff00\"><\/i>","error":"<i class=\"fa fa-times-circle\" style=\"color: #F94144\"><\/i>"})</script>
-    <link href="IV_files/font-awesome/css/all.css" rel="stylesheet" />
-    <link href="IV_files/font-awesome/css/v4-shims.css" rel="stylesheet" />
+    <link href="IV_files/font-awesome/css/all.min.css" rel="stylesheet" />
+    <link href="IV_files/font-awesome/css/v4-shims.min.css" rel="stylesheet" />
     <script type="text/x-mathjax-config">
       MathJax.Hub.Config({
         TeX: { equationNumbers: { autoNumber: "AMS" } },
@@ -34,7 +34,7 @@
 class: center, middle, inverse, title-slide
 
 .title[
-# Instrumental Variables
+# <a href='https://github.com/mca91/kausalanalyse_slides/raw/main/IV/IV.pdf'>Instrumental variables</a>
 ]
 .author[
 ### Christoph Hanck
@@ -162,8 +162,8 @@ Any paths between the instrument `\(Z\)` and the outcome `\(Y\)` must either pas
 # Assumptions for IV
 &lt;br&gt;
 &lt;div class="figure" style="text-align: center"&gt;
-&lt;img src="IV_files/figure-html/unnamed-chunk-4-1.png" alt="2: A causal diagram amenable to IV estimation" width="65%" style="display:block; margin-right:auto; margin-left:auto;" /&gt;
-&lt;p class="caption"&gt;2: A causal diagram amenable to IV estimation&lt;/p&gt;
+&lt;img src="IV_files/figure-html/unnamed-chunk-4-1.png" alt="3: A causal diagram amenable to IV estimation" width="65%" style="display:block; margin-right:auto; margin-left:auto;" /&gt;
+&lt;p class="caption"&gt;3: A causal diagram amenable to IV estimation&lt;/p&gt;
 &lt;/div&gt;
 ---
 #Assumptions for IV
@@ -245,7 +245,7 @@ Clever instruments are often highly context-dependent. One good example of a can
 .blockquote[
 ###Example: Judge assignment (Aizer and Doyle Jr. 2015)
 
-- In many court systems, the process of assigning a judge to your trial is more or less random. This is important because some judges are harsher than and others.
+- In many court systems, the process of assigning a judge to your trial is more or less random. This is important because some judges are harsher than others.
 
 - This means `\(JudgeHarshness\)` can act as an instrument for `\(Punishment\)`
 
@@ -282,7 +282,7 @@ Instrumental Variable can be estimated using Two-stage least squares (2SLS). The
 &lt;br&gt;
 - 2SLS produces a *ratio of effects*, dividing the effect of `\(Z\)` on `\(Y\)` by the effect of `\(Z\)` on `\(X\)` 
 
-- It asks 'for each movement in `\(X\)` we get by changing `\(Z\)`, how much movement in `\(Y\)` does that lead to?'
+- It asks for each movement in `\(X\)` we get by changing `\(Z\)`, how much movement in `\(Y\)` does that lead to?'
 
   &amp;rarr; Since `\(Z\)` has no back doors, this should give us the causal effect of `\(X\)` on `\(Y\)`.
 
@@ -380,9 +380,9 @@ $$\frac{0.5\times (-2)+0.25\times (-8)+0\times (-10)}{(0.5+0.25+0)} =\frac{-1 + 
 
 - Different ways of IV estimation can produce different weighted average treatment effects
 
-- LATE is estimated in most cases, although the specifics on *which* LATE we are getting change from estimator to estimator
+- LATE is estimated in most cases, although the specifics on *which* LATE, are getting change from estimator to estimator
 
-- There is a common terminology for these weights, in particular the 0s. The sample can be devided into three groups.
+- There is a common terminology for these weights.. The sample can be divided into three groups.
 
  - **Compliers:** For compliers, the effect of the instrument on the treatment is in the expected direction.
  - **Always-takers/never-takers:** Always-takers/never-takers are completely unaffected by the instrument.

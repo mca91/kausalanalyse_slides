@@ -76,6 +76,7 @@ htmltools::tagList(
 ```
 
 # The data generating process
+</br>
 
 - A general way how scientists think about reality is that there are regular laws that govern the way the universe works.
 
@@ -217,6 +218,7 @@ rd %>%
 
 ---
 # DGPs 
+</br>
 
 What did we do?
 
@@ -231,8 +233,9 @@ What did we do?
     How can we use the DGP to be sure that the variation we look at is the right variation? Figuring out what sorts of problems in the data you need to clear away&mdash;like how we noticed that the non-college students dying their hair was giving us problems&mdash;is the process of identification.
 
 ---
-# Looking for Variation
+# Looking for variation
 
+.vcenter[
 .blockquote[
 
 #### **Example: Avocado sales**
@@ -252,12 +255,12 @@ avocado %>%
   geom_point() +
   theme_cowplot()
 ```
-
-]
+]]
 
 ---
-# Looking for Variation
+# Looking for variation
 
+.vcenter[
 .blockquote[
 
 #### **Example: Avocado sales**
@@ -268,14 +271,14 @@ avocado %>%
 
 - An interesting research question might be: 
 
-    What is the effect a 10% increase in price on the number of avocados people want to buy?
+    What is the effect of a 10% increase in price on the number of avocados people want to buy?
 
 - Can we answer our research question from using the data shown in Figure 2? Why or why not?
 
-]
+]]
 
 ---
-# Looking for Variation
+# Looking for variation
 
 .blockquote[
 
@@ -289,8 +292,9 @@ avocado %>%
 ]
 
 ---
-# Looking for Variation
+# Looking for variation
 
+.vcenter[
 .blockquote[
 
 #### **Example: Avocado sales**
@@ -318,12 +322,12 @@ avocado_cal %>%
                filter(Date %in% ymd("2015-02-01", "2015-01-25")), aes(label = as.character(Date))) +
   theme_cowplot()
 ```
-
-]
+]]
 
 ---
-# Looking for Variation
+# Looking for variation
 
+.vcenter[
 .blockquote[
 
 #### **Example: Avocado sales**
@@ -335,12 +339,12 @@ We still see a negative relationship in Figure 3. But why did price drop and qua
 - Is it because the high price in January made suppliers bring way more avocados to market in February?
 
 It’s probably a little bit of all of them: Variables move around for all sorts of reasons. Those reasons would be reflected in the DGP. But when we have a research question in mind, we are usually only interested in one of those reasons!
-
-]
+]]
 
 ---
-# Looking for Variation
+# Looking for variation
 
+.vcenter[
 .blockquote[
 
 #### **Example: Avocado sales**
@@ -352,12 +356,12 @@ It’s probably a little bit of all of them: Variables move around for all sorts
 - We’re going to be hopeless at doing this if we don’t know anything about the DGP: 
   
   *We need to use what we know about the DGP to learn a little more*. 
-
-]
+]]
 
 ---
-# Looking for Variation
+# Looking for variation
 
+.vcenter[
 .blockquote[
 
 #### **Example: Avocado sales**
@@ -367,25 +371,25 @@ It’s probably a little bit of all of them: Variables move around for all sorts
 - If that’s true, then the “suppliers set prices” and “suppliers set quantities” explanations only matter between months. The variation in price and quantity from week to week in the same month will isolate variation in people buying avocados and get rid of variation from people selling avocados. 
 
 - Further, because the price is set by the sellers, the variation in quantity we’re looking at can only be driven by changes in the price.
-
-]
+]]
 
 ---
-# Looking for Variation
+# Looking for variation
 
+.vcenter[
 .blockquote[
 
 #### **Example: Avocado sales**
 
 - Our ability to find this answer is entirely based on that assumption we made about sellers making their choices between months. The reason I’ve made this particular assumption is that it helps us isolate (identify) only the variation on the part of consumers, conveniently getting rid of variation on the part of sellers and letting us just look at buyers.
 
-- This assumption, which works so much magic for us, is entirely a fiction made up for the convenience of writing this book. Hopefully you will not find all assumptions made for the purposes of digging out variation to be convenient fictions. Some probably are.
-
-]
+- This assumption, which works so much magic for us, is entirely a fiction. Hopefully you will not find all assumptions made for the purposes of digging out variation to be convenient fictions. Some probably are.
+]]
 
 ---
-# Looking for Variation
+# Looking for variation
 
+.vcenter[
 .blockquote[
 
 #### **Example: Avocado sales**
@@ -393,12 +397,12 @@ It’s probably a little bit of all of them: Variables move around for all sorts
 - By tossing out any variation between months, we’re digging through explanations that rely on that variation and tossing them out. Since sellers only change behavior between months (given our assumption), that explanation gets tossed out when we get rid of between-month variation, leaving us only with buyer behavior.
 
 - If we just look at changes within months, as in Figure 4, we can see that there’s still a negative relationship. Note that for each of the months, there’s a negative relationship, ignoring any differences between the months. So, given the data and what we know about how sellers operate, an increase in price does reduce how many avocados people want to buy.
-
-]
+]]
 
 ---
-# Looking for Variation
+# Looking for variation
 
+.vcenter[
 .blockquote[
 
 #### **Example: Avocado sales**
@@ -428,12 +432,12 @@ avocado_cal %>%
     aes(label = lab)) +
   theme_cowplot()
 ```
-
-]
+]]
 
 ---
-# Looking for Variation
+# Looking for variation
 
+.vcenter[
 .blockquote[
 
 #### **Example: Avocado sales**
@@ -441,11 +445,11 @@ avocado_cal %>%
 - The task of figuring out how to answer our research question is really the task of figuring out where your variation is. It’s unlikely that the variation in the raw data answers the question you’re really interested in. So where is the variation that does answer your question? How can you find it and dig it out? What variation needs to be removed to unearth the good stuff underneath?
 
 - That process - finding where the variation you’re interested in is lurking and isolating just that part so you know that you’re answering your research question - is called identification.
-
-]
+]]
 
 ---
 # Identification
+</br>
 
 - Identification is the process of figuring out what part of the variation in your data answers your research question. 
 
@@ -463,15 +467,18 @@ We closed off undesirable explanations by getting rid of between-month variation
 
 ---
 # Identification
+</br>
 
-Identification requires statistical procedures in order to isolate the variation we are interested in. Therefore, **identification critically relies on the theory and the assumptions about DGP**
+Identification requires statistical procedures in order to isolate the variation we are interested in. Therefore, **identification critically relies on the theory and the assumptions about DGP**.
+
+</br>
 
 .blockquote[
 #### **Example: Avocado sales &mdash; Identification**
   
 Consider again the avocado example:
   
-- We used our knowledge about markets to realise that sellers might be setting price in response to the quantity&mdash;an alternate explanation we need to deal with in isolating the variation of interest. 
+- We used our knowledge about markets to realize that sellers might be setting price in response to the quantity&mdash;an alternate explanation we need to deal with in isolating the variation of interest. 
 
 - We then used an assumption about how sellers set prices to figure out how we can block out this alternate explanation by looking within-month.
 
@@ -479,6 +486,7 @@ Consider again the avocado example:
 
 ---
 # Identification
+</br>
 
 **Summary:** 
 
@@ -494,9 +502,10 @@ Let us see what may happen when we do not take identification seriously enough..
 
 
 ---
-# Study: Alcohol an Mortality
+# Study: Alcohol and mortality
+</br>
 
-A. M. Wood et al. (2018) investigate the relationship between drinking and outcomes like mortality and cardiovascular disease among nearly 600,000 people.
+A. M. Wood et al. (2018).fn[1] investigate the relationship between drinking and outcomes like mortality and cardiovascular disease among nearly 600,000 people.
 
   - no benefit of small amounts of drinking. 
     
@@ -504,14 +513,12 @@ A. M. Wood et al. (2018) investigate the relationship between drinking and outco
 
 Figure 5 shows the relationship they found between weekly alcohol consumption and the chances of mortality. Mortality starts to rise at around 100 grams of alcohol per week, and goes up sharply from there.
 
-.footnote[
-Wood, Angela M, Stephen Kaptoge, Adam S Butterworth, and 239 more. 2018. “Risk Thresholds for Alcohol Consumption: Combined Analysis of Individual-Participant Data for 599,912 Current Drinkers in 83 Prospective Studies.” The Lancet 391 (10129): 1513–23. https://doi.org/10.1016/S0140-6736(18)30134-X.
-]
+.footnote[[1] Wood, Angela M, Stephen Kaptoge, Adam S Butterworth, and 239 more. 2018. “Risk Thresholds for Alcohol Consumption: Combined Analysis of Individual-Participant Data for 599,912 Current Drinkers in 83 Prospective Studies.” The Lancet 391 (10129): 1513–23. https://doi.org/10.1016/S0140-6736(18)30134-X.]
 
 ---
-# Study: Alcohol an Mortality
+# Study: Alcohol and mortality
 
-```{r, echo=F, cache=F, out.extra = 'style="display:block; margin-top:5%; margin-right:auto; margin-left:auto;"', fig.height=5, out.width='55%', dpi=190, fig.cap=paste0(fig_counter(), ': Alcohol Consumption and Mortality from Wood et al. (2018). Minor changes from original.'), fig.align='center'}
+```{r, echo=F, cache=F, out.extra = 'style="display:block; margin-top:5%; margin-right:auto; margin-left:auto;"', fig.height=5, out.width='55%', dpi=190, fig.cap=paste0(fig_counter(), ': Alcohol consumption and mortality from Wood et al. (2018). Minor changes from original.'), fig.align='center'}
 
 alcohol_mort <- read_csv("alcohol_mortality_digitizer.csv")
 
@@ -526,7 +533,8 @@ alcohol_mort %>%
 ```
 
 ---
-# Study: Alcohol an Mortality
+# Study: Alcohol and mortality
+</br>
 
 **Think about the DGP:**
 
@@ -540,11 +548,12 @@ alcohol_mort %>%
     - Increased mortality risk may result from many bad-health indicators (including drinking and smoking)
 
 ---
-# Study: Alcohol an Mortality
+# Study: Alcohol and mortality
+</br>
 
 **Think of alternate explanations**
 
-Smoking is likely related alcohol consumption and high mortality and thus may be an alternate explanation for the results.
+Smoking is likely related to alcohol consumption and high mortality and thus may be an alternate explanation for the results.
 
 - Smokers could be more likely to drink:
 
@@ -553,19 +562,25 @@ Smoking is likely related alcohol consumption and high mortality and thus may be
 - Anything else that ends up on both lists is going to give us an alternate explanation.
 
 ---
-# Study: Alcohol an Mortality
+# Study: Alcohol and mortality
+</br>
 
 **Would non-drinkers would have very low mortality rates?**
 
-Maybe, but people...
+</br>
 
-- may choose not to drink at all because their health is too poor to handle it. 
-- wont't drink if they are recovering alcoholics. In these cases, we may actually see worse mortality for non-drinkers, but that relationship is almost certainly *not* because not-drinking is bad for them.
+Maybe, but people
+
+- ... may choose not to drink at all because their health is too poor to handle it. 
+- ... will not drink if they are recovering alcoholics. In these cases, we may actually see worse mortality for non-drinkers, but that relationship is almost certainly *not* because not-drinking is bad for them.
 
 ---
-# Study: Alcohol an Mortality
+# Study: Alcohol and mortality
+</br>
 
-**Did Woods et al. (2018) manage to deal with some of these alternate explanations.**
+**Did Woods et al. (2018) manage to deal with some of these alternate explanations?**
+
+</br>
 
 Yes:
 
@@ -576,9 +591,12 @@ Yes:
 - Woods et al. (2018) also use statistical adjustment to account for further alternate explanations like smoking, age, gender, and a few health variables like BMI and diabetes indicators
 
 ---
-# Study: Alcohol an Mortality
+# Study: Alcohol and mortality
+</br>
 
-**Did Woods et al. (2018) find the "true" effect of drinking on mortality**
+**Did Woods et al. (2018) find the "true" effect of drinking on mortality?**
+
+</br>
 
 Not necessarily:
 
@@ -594,12 +612,11 @@ Thus it might be a little premature to take these results, despite the hundreds 
 If it feels like they did their part in addressing some of the alternate explanations and what’s left over feels trivial, keep in mind that these alternate explanations can lead us to very strange conclusions...
 
 ---
-# Study: Alcohol an Mortality
+# Study: Alcohol and mortality
 
-If the methods can give us Figure 6 by Auld (2018), then even if there is really an effect of alcohol on mortality, how close do we think Figure 5.5 is to identifying that effect?
+If the methods can give us Figure 6 by Auld (2018).fn[2], then even if there is really an effect of alcohol on mortality, how close do we think Figure 5.5 is to identifying that effect?
 
 ```{r, echo=F, cache=F, out.extra = 'style="display:block; margin-right:auto; margin-top:5%; margin-left:auto;"', fig.height=4, out.width='55%', dpi=190, fig.cap=paste0(fig_counter(), ': Alcohol Consumption and Being a Man'), fig.align='center'}
-
 alcohol_male <- read_csv("alcohol_male_digitizer.csv")
 
 alcohol_male %>% 
@@ -614,16 +631,19 @@ alcohol_male %>%
   theme_cowplot()
 ```
 
-.footnote[
-  Auld, Chris. 2018. “Breaking News!” https://twitter.com/Chris_Auld/status/1035230771957485568.
-]
+.footnote[[2] Auld, Chris. 2018. “Breaking News!” https://twitter.com/Chris_Auld/status/1035230771957485568.]
 
 ---
 # Do we need to be *omniscient* ?
+</br>
 
-No research project is perfect. We should try to...
+**No research project is perfect.**
 
-- Learn what we can about the context so that we do not miss any hugely important part of the DGP
-- Be careful to acknowledge what assumptions we are making, and think about how they might be wrong
-- Spot gaps in our knowledge about the DGP, and make some realistic guesses about what might be in that gap
-- Not aim for perfection, but aim for getting as close as we can
+</br>
+
+We should try to
+
+- ... learn what we can about the context so that we do not miss any hugely important part of the DGP.
+- ... be careful to acknowledge what assumptions we are making, and think about how they might be wrong.
+- ... spot gaps in our knowledge about the DGP, and make some realistic guesses about what might be in that gap.
+- ... aim for getting as close as we can, instead of aiming for perfection.

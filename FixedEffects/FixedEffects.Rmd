@@ -1,5 +1,5 @@
 ---
-title: "Fixed Effects"
+title: "<a href='https://github.com/mca91/kausalanalyse_slides/raw/main/FixedEffects/FixedEffects.pdf'>Fixed Effects</a>"
 author: "Christoph Hanck"
 date: "Summer 2023 "
 output:
@@ -10,7 +10,7 @@ output:
     includes:
       in_header: "../assets/mathjax-equation-numbers.html"
     nature:
-      beforeInit: ["remark-zoom.js", "https://platform.twitter.com/widgets.js"]
+      beforeInit: ["../assets/remark-zoom.js"]
       highlightStyle: github
       highlightLines: true
       countIncrementalSlides: false

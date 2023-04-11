@@ -1,5 +1,5 @@
 ---
-title: "Simulation"
+title: "<a href='https://github.com/mca91/kausalanalyse_slides/raw/main/Simulation/Simulation.pdf'>Simulation</a>"
 author: "Christoph Hanck"
 date: "Summer 2023 "
 output:
@@ -98,9 +98,10 @@ Simulation refers to the process of using a random process that that can be cont
 
 ---
 # Anatomy of simulation
+</br>
+**The typical simulation study**
 
-<br>
-
+</br>
 A typical statistical simulation has only a few parts:
 
 - A procedure for **generating data** (an implementation of a DGP)
@@ -115,7 +116,7 @@ A typical statistical simulation has only a few parts:
 .vcenter[
 .blockquote[
 
-###Example: Flipping a coin 100 times and estimating probability of heads 
+### Example: Flipping a coin 100 times and estimating probability of heads 
 **Steps:**
 
 Decide upon the DGP. For example a coin that shows heads with probability 75%.
@@ -148,11 +149,13 @@ it can help to figure out the degree of sampling variation without having to wri
 
 <br>
 
-**The old man and the C**
+**Causal effects**
 
 In the context of causal inference, simulation can determine if a an estimator provides, *on average*, the true causal effect. 
 
 We may check whether the mean of the effect estimates is near the truth and their distribution is not too wide.
+
+<br>
 
 **Situations where simulation works well**
 
@@ -191,6 +194,7 @@ Simulation is a great tool for three main things:
 
 ---
 # Power analysis
+
 .vcenter[
 .blockquote[
 ### Definition: Power analysis
@@ -199,7 +203,6 @@ Power analysis is the process of trying to figure out if the amount of informati
 
 ---
 # Power analysis
-
 <br>
 **What can go wrong with statistical analysis?**
 <br>
@@ -246,10 +249,10 @@ Let $X$ represents treatment and $Y$ represents the outcome and consider
 .blockquote[
 ###Definition: Statistical precision and statistical power
 
-- **Statistical precision** in power analysis is measured by a target level of statistical power (hence the name *power analysis*). 
+- **Statistical precision** in power analysis is measured by a target level of statistical power (hence the name *power analysis*)
 
 - **Statistical power**, also known as the true-positive rate, is a concept specific to hypothesis testing:  
-It is the proportion of times we correctly reject the false null.
+It is the proportion of times we correctly reject the false null
 
 ]]
 
@@ -258,25 +261,27 @@ It is the proportion of times we correctly reject the false null.
 # Statistical precision and statistical power
 <br>
 **Some notes on statitical power**
-<br><br>
 
 - Statistical power depends on the test:
 
   For a hypothesis test at the 95% confidence level, it is more likely to reject the null (and thus will have higher statistical power) than for a hypothesis test at the 99% confidence level.
 
-- there is a tradeoff: the more careful one is about false positives, the more likely one will get a false negative.
+- There is a tradeoff: the more careful one is about false positives, the more likely one will get a false negative.
 
-- Power analyses do not have to be run with statistical power in mind. 
+- Power analyses do not have to be run with statistical power in mind 
 
 ---
-# Power Analysis
+# Power analysis
 <br>
 **Requirements**
-<br><br>
-- In order to do power analysis, one must fill in the values for four of the five pieces, so that power analysis can tell the fifth one.
+
+- In order to do power analysis, one must fill in the values for four of the five pieces, so that power analysis can tell the fifth one
+
 - A prior research needs to be done to fill in the gaps
-- If power research is not at all possible, then it can be substituted with an educated guess.
-- A measurement of standards (statistical power) needs to  be set.
+
+- If power research is not at all possible, then it can be substituted with an educated guess
+
+- A measurement of standards (statistical power) needs to  be set
 
 ---
 # Simulation with existing data: the bootstrap
@@ -293,78 +298,91 @@ Bootstrapping is the process of repeating an analysis many times after **resampl
 - In this way, we can run a simulation using actually-existing data.
 
 ---
-# The Bootstrap
+# The bootstrap
 <br>
 **Limitations**
-<br><br>
-- Unlike with a simulation where we sample data from a *known* DGP, in bootstrapping the true DGP is *unknown*.
 
-  As a simulation tool, the bootstrap is limited to cases where the question does not rely on comparing the results to the truth.
+<br>
+
+- Unlike with a simulation where we sample data from a *known* DGP, in bootstrapping the true DGP is *unknown*
+
+- As a simulation tool, the bootstrap is limited to cases where the question does not rely on comparing the results to the truth
   
 - The bootstrap is often is to estimate *standard errors*:
 
   By mimicking the whole sampling process, strange interdependencies between the variables are automatically simulated, allowing any oddities in the true sampling distribution to creep into the bootstrap-simulated sampling distribution.
 
 ---
-# The Bootstrap
+# The bootstrap
 <br>
 **Algorithm for boostrapping a standard error**
-<br><br>
-1. Start with a data set with $N$ observations.
+
+<br>
+
+1. Start with a data set with $N$ observations
+
 2. Randomly sample $N$ observations from that data set *with replacement*, allowing the same observation to be drawn more than once. This is called a **bootstrap sample.**
+
 3. Compute the statistic of interest using the bootstrap sample. This is called a **bootstrapped statistic**.
+
 4. Iteration: repeat steps 1-3 multiple times
+
 5. Examine the distribution of the simulated statistics. The **standard deviation** of that distribution is the **standard error of the estimate.** 
 
 ---
-# The Bootstrap
+# The bootstrap
 <br>
 **Asumptions**
-<br><br>
+
+<br>
+
 Bootstrapping comes with its own set of assumptions to provide good estimates of the standard error. 
 <br>
-- A reasonably large sample size is required.
-- The data should reasonably be well behaved. If the variables follow extremely highly skewed distributions, bootstrap will not work well. 
-- Care must be taken when accounting for how the observations might be related to each other. 
+- A reasonably large sample size is required
 
+- The data should reasonably be well behaved. If the variables follow extremely highly skewed distributions, bootstrap will not work well. 
+
+- Care must be taken when accounting for how the observations might be related to each other
 
 ---
 
-# The Bootstrap
+# The bootstrap
 <br>
-**Variants:**
-<br><br>
+**Variants**
+
+<br>
+
 There are many types of bootstrap. The most important ones are:
 <br>
 - **The cluster/block bootstrap**
-- **Residual Resampling**
-- **The Wild Bootstrap**
+- **Residual resampling**
+- **The wild bootstrap**
 
 ---
-# The Bootstrap
+# The bootstrap
 <br>
 **The cluster/block bootstrap**
 
-- The cluster bootstrap is  like the regular bootstrap, except instead of resampling individual observations, clusters of observations also known as **blocks** are resampled.
+- The cluster bootstrap is  like the regular bootstrap, except instead of resampling individual observations, clusters of observations also known as **blocks** are resampled
 
 - It is mainly used where the data is hierarchical in nature or panel data. Hierarchical data is when observations are nested within groups. In panel data the same individual (person, firm, etc.) is observed multiple times.
 
 ---
-# The Bootstrap
+# The bootstrap
 <br>
 **The cluster/block bootstrap**
- - Another place where the cluster/block bootstrap pops up is in the context of time series data, where the same value is measured across many time periods. This often means there is autocorrelation.
- - When applying a bootstrap to time series data, the time series is first divided into blocks of continuous time. The blocks themselves are often determined by one of several different available an optimal-block-length algorithms
 
-
----
-# The Bootstrap
+- Another place where the cluster/block bootstrap pops up is in the context of time series data, where the same value is measured across many time periods. This often means there is autocorrelation.
+- When applying a bootstrap to time series data, the time series is first divided into blocks of continuous time. The blocks themselves are often determined by one of several different available optimal-block-length algorithms
 
 **Residual Resampling**
 
 Instead of resampling observations, in residual resampling the residuals are resampled.
 
-**Algorithm**
+---
+# The bootstrap
+</br>
+**Residual Resampling: Algorithm**
 <br>
 1. Perform the analysis using the original data (e.g., OLS regression)
 2. Use the analysis to get a predicted outcome value $\widehat{Y}$ and also the residual $\hat{r}$ which is the difference between the actual outcome and the predicted outcome, $$r=Y-\widehat{Y}.$$
@@ -374,12 +392,11 @@ Instead of resampling observations, in residual resampling the residuals are res
 6. Store the result and iterate steps 3 to 5.
 
 ---
-#The Bootstrap
+# The bootstrap
+</br>
 **Residual resampling**
 
-<br>
-
-The idea of the algorithm is that the predictors in the model never change with this process. Hence, the residual bootstrap mimmicks whatever kind of interdependence they have. 
+The idea of the algorithm is that the predictors in the model never change with this process. Hence, the residual bootstrap mimics whatever kind of interdependence they have. 
 
 <br>
 **Caution:**
@@ -389,21 +406,12 @@ The idea of the algorithm is that the predictors in the model never change with 
 - This is a *stronger* assumption than even the OLS assumption that errors are on average unrelated to predictors!
 
 ---
-# The Bootstrap
+# The bootstrap
 <br>
-**The Wild Bootstrap**
+**The wild bootstrap**
 
 - The wild bootstrap is popular because it works under heteroskedasticity &mdash; even when the exact form of the heteroskedasticity is unknown!
 
 - It also performs well when the data is clustered and even when the clusters are of different size
 
 - For a wild bootstrap, the general outline of residual resampling is followed. Except that the residuals are not resampled. Each residual needs to be lined up with its original observation each time the bootstrap data is created.
-
-
-
-
-
-
-
-
-

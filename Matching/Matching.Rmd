@@ -1,5 +1,5 @@
 ---
-title: "Matching"
+title: "<a href='https://github.com/mca91/kausalanalyse_slides/raw/main/Matching/Matching.pdf'>Matching</a>"
 author: "Christoph Hanck"
 date: "Summer 2023 "
 output:
@@ -100,12 +100,12 @@ library(ggplot2)
 library(stfit)
 ```
 
-#Matching
+# Matching
 
 .vcenter[
 .blockquote[
 
-###Definition: Matching
+### Definition: Matching
 
 Matching is the process of closing back doors between a treatment and an outcome by constructing comparison groups that are similar according to a set of matching variables.
 
@@ -118,17 +118,17 @@ Matching is usually applied to binary treated/untreated treatment variables, whe
 .vcenter[
 .blockquote[
 
-### Example: The effect of job-training  on the chances of getting a good job
+### Example: The effect of job-training on the chances of getting a good job
 
 - The pool of unemployed people eligible for the job-training program was about 50% male and 50% female.
 
-- People actually in the program were 80% male and 20% female due to heavily advertizing to males.
+- People actually in the program were 80% male and 20% female due to heavily advertising to males.
 
 - The back door: $Outcome \leftarrow Gender \rightarrow Job Training Program$
 ]]
 
 ---
-#Matching
+# Matching
 .vcenter[
 .blockquote[
 
@@ -142,7 +142,7 @@ Matching is usually applied to binary treated/untreated treatment variables, whe
 ]]
 
 ---
-#Matching 
+# Matching 
 
 <br>
 
@@ -174,7 +174,7 @@ Matching is usually applied to binary treated/untreated treatment variables, whe
 .blockquote[
 ### Example: The effect of job-training on the chances of getting a good job
 
-- Assume that 60 out of 80 mean in the treated group end up with a job and 20 without. 12 out of 20 treated women end up with a job and 8 without.
+- Assume that 60 out of 80 men in the treated group end up with a job and 20 without. 12 out of 20 treated women end up with a job and 8 without.
 
 - In the control group, out of 500 men, 350 end up with a job and 150 without. Out of 500 women, 275 end up with a job and 225 without.
 
@@ -208,7 +208,7 @@ Matching is usually applied to binary treated/untreated treatment variables, whe
 **Choices:**
 
 1. What will be the matching criteria?
-2. Are matches being selected or a is matched weighted sample constructed?
+2. Are matches being selected or a matched weighted sample constructed?
 3. If matches were selected, then how many?
 4. If a matched weighted sample is constructed, then how will the weights decay with distance?
 5. What is the worst acceptable match?
@@ -381,8 +381,9 @@ ggplot(sub, aes(x = BillApril, y = yjit, shape = LateApril)) +
 
 
 ---
-## 2. Selecting matches or constructing a weighted sample?
-<br>
+# 2. Matching or constructing a weighted sample?
+</br>
+
 It depends:
 - The process of selecting matches means that control observations are picked to either be in or out of the matched control sample. If it is a good enough match, it will work, or else it will not. 
 - Everyone in the matched sample receives an equal weight
@@ -390,12 +391,13 @@ It depends:
 
 ---
 # Selecting matches vs. weighted-group approach 
+</br>
 
 **Selecting-matches approach**
 
 - Easier to implement than methods with more fine-tuned weights. Also easier to interpret.
 
-- Scenarios where one control observation is accidentally give an astronomical weight can be  avoided
+- Scenarios where one control observation is accidentally given an astronomical weight can be  avoided
 
 **Weighted-group approach**
 
@@ -407,8 +409,8 @@ It depends:
 
 
 ---
-# 3. If matches were selected then how many?
-
+# 3. If matches were selected, then how many?
+</br>
 
 There are three main approaches to figure out how many control matches are to be picked for each treatment observation:
 
@@ -423,8 +425,8 @@ There are three main approaches to figure out how many control matches are to be
 
 
 ---
-# 3. If matches were selected then how many?
-
+# 3. If matches were selected, then how many?
+</br>
 **When to choose which approach?** 
 
 It comes down to a tradeoff between bias and variance.
@@ -432,7 +434,7 @@ It comes down to a tradeoff between bias and variance.
 <br>
 
 .blockquote[
-### Example: One-to-one matching vs 2-nearest-neighbors matching
+### Example: One-to-one matching vs. 2-nearest-neighbors matching
 The 2-nearest-neighbors match will include some observations in the control group that are not quite as closely comparable to the treated group. 
 
 - Both approaches are likely to be biased: we cannot claim confidently that all the back doors are closed.
@@ -442,25 +444,27 @@ The 2-nearest-neighbors match will include some observations in the control grou
 
 
 ---
-# 3. If matches were selected then how many?
-
+# 3. If matches were selected, then how many?
+</br>
 **When to choose which approach?** 
 
-.vcenter[
+</br>
+
 .blockquote[
-### Example: One-to-one matching vs 2-nearest-neighbors matching&mdash;ctd.
+### Example: One-to-one matching vs. 2-nearest-neighbors matching&mdash;ctd.
 
 - If there are 100 treated observations, the mean of 100 matched control observations will have a wider sampling distribution than the mean of 200 matched control observations. 
 
 - So, the choice of how many matches to do will be based on how important bias and precision are in the estimate, and how bad the matches will get if doing matches.
-]]
+]
 
 
 ---
-# 3. If matches were selected then how many?
-
+# 3. If matches were selected, then how many?
+</br>
 **With replacement or without replacement?**
-<br><br>
+
+</br>
 
  - For matching without replacement, the control can only be a match for one of them, and the other treated observation needs to find someone different
  
@@ -470,10 +474,11 @@ The 2-nearest-neighbors match will include some observations in the control grou
 
 ---
 # 4. How will the weights decay with distance?
+</br>
 **Kernel matching**
-<br>
-<br>
-<br>
+
+</br>
+
 .blockquote[
 ###Definition: Kernel Functions and kernel-based matching
 - Kernel Functions are functions that a difference to is given, and it returns a weight. The highest value is at 0 (no difference), and then the value smoothly declines as the value move away from 0 in either direction
@@ -514,7 +519,7 @@ These differences are standardized (why?) to $\frac{21}{59.994}=0.35$ and $\frac
 
 ---
 # 4. How will the weights decay with distance?
-**Kernel Matching**
+**Kernel matching**
 <br>
 .blockquote[
 ### Example: Defaulting on credit card debt&mdash;ctd.
@@ -532,11 +537,14 @@ The treatment effect ist $0-0.561=-0.561$
 
 ---
 # 4. How will the weights decay with distance?
+</br>
 **Inverse probability weighting**
+
+</br>
 
 - Inverse probability weighting is specially designed for use with a **propensity score**. 
 
-- It weights each observation by the inverse of the probability that it had the treatment value it had. 
+- It weights each observation by the inverse of the probability of the treatment value it had. 
 
 - The treatment group observations that get the **biggest weights are the ones that are most like the untreated group** and the ones with **small propensities are least likely to have gotten treated who got treated anyway.**
 
@@ -544,6 +552,7 @@ The treatment effect ist $0-0.561=-0.561$
 
 ---
 # 4. How will the weights decay with distance?
+</br>
 **Inverse probability weighting**
 
 .blockquote[
@@ -558,8 +567,11 @@ The treatment effect ist $0-0.561=-0.561$
 
 ---
 # 5. What is the worst acceptable match?
+</br>
 **Bandwidth selection**
+
 <br>
+
 - Most approaches to matching use **caliper** or **bandwidth** to determine how far off a match can be before tossing it out.
 - The main idea is:
  - First a number is picked which is caliper/bandwidth.
@@ -570,7 +582,9 @@ The treatment effect ist $0-0.561=-0.561$
 # 5. What is the worst acceptable match?
 <br>
 **Bandwidth selection**
+
 <br>
+
 - Usually, the caliper/bandwidth is defined in terms of standard deviations of the value that is matching on rather than the value itself, to avoid scaling issues
 
 - Some matching approaches end up using calipers/bandwidths naturally:
@@ -585,14 +599,15 @@ The treatment effect ist $0-0.561=-0.561$
 
 ---
 # 5. What is the worst acceptable match?
-<br>
+</br>
 **Bandwidth selection**
 
-.vcenter[
+</br>
+
 .blockquote[
 ### Summary: Bias variance tradeoff in matching
 When making any sort of decision about matching, the choice is often between fewer, but better, matches that produce estimates with less bias but less precision, or more, but worse, matches that produce estimates with more bias but more precision.
-]]
+]
 
 ---
 # Multiple matching variables
@@ -625,10 +640,13 @@ When making any sort of decision about matching, the choice is often between few
 
 ---
 # Multiple matching variables
-<br>
+</br>
 **Mahalanobis distance**
-<br><br>
+
+</br>
+
 The following steps guides to obtain Mahalonobis distance:
+
 - Ensure that no variable ends up being weighted more heavily just because it’s on a bigger scale: take each matching variable and divide its value by its standard deviation.  
 
 - Compute the distance: for a given treated observation A and a given control observation B, the Mahalanobis distance $d$ is the sum of the squares of all the differences between A and B. Mahalanobis distance between two vectors $x_1$ and $x_2$ is $$\\d(x_1,x_2)= \sqrt[]{(x_1-x_2)'S^{-1}(x_1-x_2)}.$$
@@ -746,8 +764,10 @@ In coarsened exact matching we only match if observations exactly matches for ea
 
 ---
 # Coarsened exact matching
-<br>
+</br>
 **Steps**
+
+</br>
 
 1. Bin continuous variables.
 2. Look for exact matches. Only keep *treated* observations with at least one exact match in the control group and drop the others. Only keep *control* observations with at least one exact match in the treatment group and drop the others. 
@@ -760,14 +780,11 @@ $$\frac{Treated Matches}{ControlMatches} \cdot \frac{TotalControl Matches}{Total
 
 # Coarsened exact matching
 <br>
-**Curse of Dimensionality**
+**Curse of dimensionality**
 <br><br>
 - Coarsened exact matching, if applied to moderately-sized samples (or any size sample with too many matching variables), can lead to lots of treated observations being dropped. 
 - This makes the treatment effect estimates much noisier, and can also lead the result to be a poor representation of the average treatment effect if certain kinds of treated observations are more likely to find matches than others.
 
-**Advantages**
-<br><br>
-The need for a lot of observations, and the relative ease and low computational requirements of calculation makes coarsened exact matching fairly popular in the world of big-data data science. 
 
 ---
 # Entropy balancing
@@ -802,9 +819,11 @@ Entropy balancing enforces restrictions in terms of moment conditions (means, va
 
 ---
 ## Propensity score weighting with multiple matching variables
-<br>
+</br>
 **Boosted regression**
-<br><br><br>
+
+</br>
+
 .blockquote[
 ### Definiton: Boosted regression
 Boosted regression is an iterative method that starts with a binary regression model (like a logit), checks which observations are particularly poorly predicted, and then runs itself again, weighting the poorly-estimated observations more heavily so the prediction model pays more attention to them, reducing their prediction error. 
@@ -812,9 +831,10 @@ Boosted regression is an iterative method that starts with a binary regression m
 
 ---
 ## Propensity score weighting with multiple matching variables
+</br>
 **Good propensity scores should close backdoors**
 
-<br>
+</br>
 
 **Stratification test**
 
@@ -837,9 +857,11 @@ Boosted regression is an iterative method that starts with a binary regression m
 
 ---
 # Assumptions for matching
-<br>
-**Two Approaches to check for common support**
-<br><br>
+</br>
+
+**Two approaches to check for common support**
+
+</br>
 
 1. The first approach to checking for common support is simply to look at the distribution of a variable for the treated group against the distribution of that same variable for the untreated group.
 
@@ -929,7 +951,7 @@ A common way of checking for balance is a *balance table*.
 **Balance table: estimating mean differences**
 <br><br>
 
-- Usually to estimate the effect of treatment, the weighted means of the outcome for the treated and control groups are obtained compared
+- Usually to estimate the effect of treatment, the weighted means of the outcome for the treated and control groups are often compared
 
 - However, even if the treatment effect is that simple to estimate, the standard errors on that treatment effect will not  be quite as simple
 
@@ -956,9 +978,10 @@ Bootstrap standard errors can be applied to matching estimates.
 
 ---
 # Combining matching and regression
-<br>
+</br>
 **Regression adjustment**
-<br>
+
+</br>
 
 Our research design may depend on a specific functional form of the relationship between treatment and outcome that is difficult to capture with matching but easy with regression. But we still want to close back doors by matching.
 
@@ -980,23 +1003,25 @@ Double-robustness is a property that some estimators have rather than *being* a 
 
 ---
 # Combining matching and regression
+</br>
 **Doubly robust estimation**
 
-<br>
+</br>
 
-**Steps :**
+**Steps**
 
-1. Estimate the propensity score $p$ or each observation using the matching variables
+1. Estimate the propensity score $p$ on each observation using the matching variables
 
-2. Use the propensity score to produce the inverse probability weights: $\frac{1}{p}$ for treated observations and $\frac{1}{1-p}$ for untreated observations.
+2. Use the propensity score to produce the inverse probability weights: $1/p$ for treated observations and $1/(1-p)$ for untreated observations.
 
 3. Using only treated observations, estimate the regression model, using the matching variables as predictors (and perhaps some other predictors too, depending on the purpose), and inverse probability weights
 
 ---
 # Combining matching and regression
+</br>
 **Doubly robust estimation**
 
-<br>
+</br>
 
 **Steps**
 <ol start=4>
@@ -1008,8 +1033,10 @@ Double-robustness is a property that some estimators have rather than *being* a 
 
 ---
 # Matching and treatment effects
-<br>
+</br>
 **Key facts**
+
+</br>
 
 We can obtain the average treatment effect (ATE), the average treatment effect on the treated (ATT), and the average treatment on the untreated (ATUT) using matching.
 
@@ -1017,7 +1044,7 @@ We can obtain the average treatment effect (ATE), the average treatment effect o
 
 - For ATUT: instead of matching *control observations to treated observations*, match *treated observations to control observations*
 
-- The ATE can then be obtained as the average treatment affect for treated and untreated $$ATE = (p \times ATT ) + (1-p) \times ATUT,$$ where $p$ is the proportion of treated individuals.
+- The ATE can then be obtained as the average treatment affect for treated and untreated $$\text{ATE} = (p \times \text{ATT} ) + (1-p) \times \text{ATUT},$$ where $p$ is the proportion of treated individuals.
 
 
 ---
@@ -1061,8 +1088,10 @@ We can obtain the average treatment effect (ATE), the average treatment effect o
 
 ---
 # Matching and treatment effects
+</br>
 **Inverse probability weighting**
-<br><br>
+
+</br>
 
 - Remember: inverse probability weighting does not match to anything: we weight using inverse propensity scores!
 

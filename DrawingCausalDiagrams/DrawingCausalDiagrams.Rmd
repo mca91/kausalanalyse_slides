@@ -1,5 +1,5 @@
 ---
-title: "<a href='https://github.com/mca91/kausalanalyse_slides/raw/main/DrawingCausalDiagrams/DrawingCausalDiagrams.pdf'>Drawing Causal Diagrams</a>"
+title: "<a href='https://github.com/mca91/kausalanalyse_slides/raw/main/DrawingCausalDiagrams/DrawingCausalDiagrams.pdf'>Drawing causal diagrams</a>"
 author: "Christoph Hanck"
 date: "Summer 2023"
 output:
@@ -78,10 +78,9 @@ htmltools::tagList(
 )
 ```
 
+## Recap of causal diagrams
 
-##Recap of Causal Diagrams
-
-Causal diagrams are representations the DGP that got us our data. Causal diagrams help us in answering research questions.
+Causal diagrams are representations of the DGP that got us our data. Causal diagrams help us in answering research questions.
 
 Drawing our own causal diagram will come down to putting our idea of what the DGP is onto paper (or a computer screen).
 
@@ -102,7 +101,7 @@ ggdag::ggdag(dag_object, # the dag object we created
 ```
 
 ---
-## Causal Diagrams
+## Causal diagrams
 **Assumptions for causal diagrams**
 
 - Assumptions about the DPG are very important for causal diagrams.
@@ -149,15 +148,15 @@ ggdag::ggdag(dag_object, # the dag object we created
 ---
 ## Reducing the complexity of causal diagrams
 
-We can identify and reduce needless complexity with s few simple tests:
+We can identify and reduce needless complexity with some few simple tests:
 
 - **Unimportance**: We’ve already discussed this one&mdash;if the arrows coming in and out of a variable are likely to be tiny and unimportant effects, we can probably remove the variable.
 - **Redundancy**: If there are any variables on the diagram that occupy the same space - that is, they have the arrows coming in and going out of them from/to the same variables - we can probably combine them and describe them together.
 - **Mediators**: If one variable is only on the graph as a way for one variable to affect another, e.g. $B$ in $$A\to B\to C$$ where nothing else connects to $B$, then we can probably remove it and just have $A\to C$ directly.
-- **Irrelevance**: Some variables are an important part of the DGP but irrelevant to the research question at hand can be neglected.
+- **Irrelevance**: Some variables which are an important part of the DGP but irrelevant to the research question at hand can be neglected.
 
 ---
-## Drawing causal Diagrams
+## Drawing causal diagrams
 
 .vcenter[
 .blockquote[
@@ -174,7 +173,7 @@ Potential causes for people to take online classes (*classes*):
 ]]
 
 ---
-## Drawing causal Diagrams
+## Drawing causal diagrams
 
 .vcenter[
 .blockquote[
@@ -190,7 +189,7 @@ Think about which variables cause which others.
 ]]
 
 ---
-## Drawing causal Diagrams
+## Drawing causal diagrams
 
 .blockquote[
 ### Example: Online classes
@@ -262,7 +261,7 @@ ggdag::ggdag(dag_object, # the dag object we created
 
 
 ---
-## Drawing causal Diagrams
+## Drawing causal diagrams
 
 .vcenter[
 .blockquote[
@@ -278,7 +277,7 @@ Simplification of the Causal diagram:
 ]]
 
 ---
-## Drawing causal Diagrams
+## Drawing causal diagrams
 
 .blockquote[
 ### Example: Online classes
@@ -332,7 +331,7 @@ ggdag::ggdag(dag_object, # the dag object we created
 ]
 
 ---
-## Drawing causal Diagrams
+## Drawing causal diagrams
 **Avoiding cycles**
 
 - A causal diagram cannot have a cycles. 
@@ -344,7 +343,7 @@ ggdag::ggdag(dag_object, # the dag object we created
     If we just focus on the part of the variable driven by randomness, the effect cannot loop back on itself! 
  
 ---
-## Drawing causal Diagrams 
+## Drawing causal diagrams 
 **Avoiding cycles**
 
 .vcenter[

@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>Research Questions</title>
+    <title>Research questions</title>
     <meta charset="utf-8" />
     <meta name="author" content="Christoph Hanck" />
-    <script src="ResearchQuestions_files/header-attrs-2.20/header-attrs.js"></script>
-    <link href="ResearchQuestions_files/remark-css-0.0.1/default.css" rel="stylesheet" />
-    <script src="ResearchQuestions_files/xaringanExtra-progressBar-0.0.1/progress-bar.js"></script>
-    <script src="ResearchQuestions_files/clipboard-2.0.6/clipboard.min.js"></script>
-    <link href="ResearchQuestions_files/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.css" rel="stylesheet" />
-    <script src="ResearchQuestions_files/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.js"></script>
+    <script src="ResearchQuestions_files/header-attrs/header-attrs.js"></script>
+    <link href="ResearchQuestions_files/remark-css/default.css" rel="stylesheet" />
+    <script src="ResearchQuestions_files/xaringanExtra-progressBar/progress-bar.js"></script>
+    <script src="ResearchQuestions_files/clipboard/clipboard.min.js"></script>
+    <link href="ResearchQuestions_files/xaringanExtra-clipboard/xaringanExtra-clipboard.css" rel="stylesheet" />
+    <script src="ResearchQuestions_files/xaringanExtra-clipboard/xaringanExtra-clipboard.js"></script>
     <script>window.xaringanExtraClipboard(null, {"button":"<i class=\"fa fa-clipboard\"><\/i>","success":"<i class=\"fa fa-check\" style=\"color: #00ff00\"><\/i>","error":"<i class=\"fa fa-times-circle\" style=\"color: #F94144\"><\/i>"})</script>
-    <link href="ResearchQuestions_files/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
-    <link href="ResearchQuestions_files/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+    <link href="ResearchQuestions_files/font-awesome/css/all.min.css" rel="stylesheet" />
+    <link href="ResearchQuestions_files/font-awesome/css/v4-shims.min.css" rel="stylesheet" />
     <script type="text/x-mathjax-config">
       MathJax.Hub.Config({
         TeX: { equationNumbers: { autoNumber: "AMS" } },
@@ -34,7 +34,7 @@
 class: center, middle, inverse, title-slide
 
 .title[
-# <a href='https://github.com/mca91/kausalanalyse_slides/raw/main/ResearchQuestions/ResearchQuestions.pdf'>Research Questions</a>
+# <a href='https://github.com/mca91/kausalanalyse_slides/raw/main/ResearchQuestions/ResearchQuestions.pdf'>Research questions</a>
 ]
 .author[
 ### Christoph Hanck
@@ -75,12 +75,12 @@ class: center, middle, inverse, title-slide
 
 .vcenter[
 .blockquote[
-### Key Koncept: Research Question
+### Key Koncept: Research question
 
-A **research question** is a question...
+A **research question** is a question
 
-1. that *can be answered* and
-2. for which having that answer will *improve our understanding of how the world works*
+1. ... that *can be answered* and
+2. ... for which having that answer will *improve our understanding of how the world works*.
 
 A research questions takes us from a **theory** to an **hypothesis** that we can check using real world data. The data may provide **evidence** in favor or against our hypothesis.
 ]]
@@ -91,7 +91,7 @@ A research questions takes us from a **theory** to an **hypothesis** that we can
 &lt;img src="researchquestion.png" width="85%" style="display:block; margin-right:auto; margin-left:auto;margin-top:10%;" /&gt;
 
 ---
-# Research questions &amp;mdash; Examples
+# Research questions
 
 .vcenter[
 .blockquote[
@@ -109,13 +109,15 @@ A research questions takes us from a **theory** to an **hypothesis** that we can
 ---
 # Why not simply look for patterns in the data?
 
-&lt;br&gt;
+&lt;/br&gt;
 
 - We are living in an information economy, surrounding us by an increasing amount of readily available data
 
 - Why not skip hassling with theories and research questions and simply look for *patterns* in the data?
 
 - A lot of people do &amp;mdash; this commonly referred to as **data mining**
+
+&lt;br&gt;
 
 .blockquote[
 ### Definition: Data Mining
@@ -124,24 +126,23 @@ Data mining is the systematic application of computer-aided methods to discover 
 
 ---
 # Data mining
+&lt;/br&gt;
 
-... is a useful toolkit if we care more about the *what* rather than the *why*: 
+... is a useful toolkit if we care more about the *what* rather than the *why* : 
 
 - Data mining is often good at
 
-    - making *predictions under stability*.
+    - ... making *predictions under stability*.
 
-    -  finding patterns in the data. These may foster research questions that we can examine further in other data sources.
+    - ... finding patterns in the data. These may foster research questions that we can examine further in other data sources.
     
 - Data mining is less good at
 
-    - helping to come up with a good theory or to improve an existing one. 
+    - ... helping to come up with a good theory or to improve an existing one. 
     
-    - producing valid inference. It has a tendency to find **false positives**.&lt;sup&gt;1&lt;/sup&gt;
+    - ... producing valid inference. It has a tendency to find **false positives**.&lt;sup&gt;1&lt;/sup&gt;
 
-.footnote[
-&lt;sup&gt;1&lt;/sup&gt; A false positive is a result that incorrectly indicates the presence of a condition under examination.
-]
+.footnote[[1] A false positive is a result that incorrectly indicates the presence of a condition under examination.]
 
 ---
 # Data mining &amp;mdash; Predictions under stability
@@ -151,13 +152,13 @@ Data mining is the systematic application of computer-aided methods to discover 
 
 ### Example: Predicting die roll outcomes
 
-- By a stable mechanism we mean that the process giving us the data does not change.
+- By a stable mechanism we mean that the process giving us the data does not change
 
-- If the process is "rolling a six-sided die" data mining would based on a thousand rolls would be great at predicting that the probability of observing a 1 is 1/6. 
+- If the process is "rolling a six-sided die" data mining would based on a thousand rolls would be great at predicting that the probability of observing a 1 is 1/6 
 
-- If the process switches to "rolling a twenty-sided", that data mining prediction will be bad. It will still predict a 1/6 chance of a 1 until it gets a lot more data. 
+- If the process switches to "rolling a twenty-sided die", that data mining prediction will be bad: it will still predict a 1/6 chance of a 1 until it gets a lot more data. 
 
-- Probability theory will properly predict the switch to a 1/20 chance immediately.
+- Probability theory will properly predict the switch to a 1/20 chance immediately
 
 ]]
 
@@ -174,7 +175,7 @@ Example on predicting ice cream sales / digression on the non-causal relation wi
 ]
 
 ---
-# Data mining &amp;mdash; Looking for Patterns 
+# Data mining &amp;mdash; Looking for patterns 
 
 .vcenter[
 .blockquote[

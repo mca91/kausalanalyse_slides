@@ -1,5 +1,5 @@
 ---
-title: "Event Studies"
+title: "<a href='https://github.com/mca91/kausalanalyse_slides/raw/main/EventStudies/EventStudies.pdf'>Event Studies</a>"
 author: "Christoph Hanck"
 date: "Summer 2023"
 output:

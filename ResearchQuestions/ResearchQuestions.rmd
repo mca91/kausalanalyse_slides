@@ -1,5 +1,5 @@
 ---
-title: "<a href='https://github.com/mca91/kausalanalyse_slides/raw/main/ResearchQuestions/ResearchQuestions.pdf'>Research Questions</a>"
+title: "<a href='https://github.com/mca91/kausalanalyse_slides/raw/main/ResearchQuestions/ResearchQuestions.pdf'>Research questions</a>"
 author: "Christoph Hanck"
 date: "Summer 2023"
 output:
@@ -79,12 +79,12 @@ htmltools::tagList(
 
 .vcenter[
 .blockquote[
-### Key Koncept: Research Question
+### Key Koncept: Research question
 
-A **research question** is a question...
+A **research question** is a question
 
-1. that *can be answered* and
-2. for which having that answer will *improve our understanding of how the world works*
+1. ... that *can be answered* and
+2. ... for which having that answer will *improve our understanding of how the world works*.
 
 A research questions takes us from a **theory** to an **hypothesis** that we can check using real world data. The data may provide **evidence** in favor or against our hypothesis.
 ]]
@@ -97,7 +97,7 @@ knitr::include_graphics("researchquestion.png")
 ```
 
 ---
-# Research questions &mdash; Examples
+# Research questions
 
 .vcenter[
 .blockquote[
@@ -115,13 +115,15 @@ knitr::include_graphics("researchquestion.png")
 ---
 # Why not simply look for patterns in the data?
 
-<br>
+</br>
 
 - We are living in an information economy, surrounding us by an increasing amount of readily available data
 
 - Why not skip hassling with theories and research questions and simply look for *patterns* in the data?
 
 - A lot of people do &mdash; this commonly referred to as **data mining**
+
+<br>
 
 .blockquote[
 ### Definition: Data Mining
@@ -130,24 +132,23 @@ Data mining is the systematic application of computer-aided methods to discover 
 
 ---
 # Data mining
+</br>
 
-... is a useful toolkit if we care more about the *what* rather than the *why*: 
+... is a useful toolkit if we care more about the *what* rather than the *why* : 
 
 - Data mining is often good at
 
-    - making *predictions under stability*.
+    - ... making *predictions under stability*.
 
-    -  finding patterns in the data. These may foster research questions that we can examine further in other data sources.
+    - ... finding patterns in the data. These may foster research questions that we can examine further in other data sources.
     
 - Data mining is less good at
 
-    - helping to come up with a good theory or to improve an existing one. 
+    - ... helping to come up with a good theory or to improve an existing one. 
     
-    - producing valid inference. It has a tendency to find **false positives**.<sup>1</sup>
+    - ... producing valid inference. It has a tendency to find **false positives**.<sup>1</sup>
 
-.footnote[
-<sup>1</sup> A false positive is a result that incorrectly indicates the presence of a condition under examination.
-]
+.footnote[[1] A false positive is a result that incorrectly indicates the presence of a condition under examination.]
 
 ---
 # Data mining &mdash; Predictions under stability
@@ -157,13 +158,13 @@ Data mining is the systematic application of computer-aided methods to discover 
 
 ### Example: Predicting die roll outcomes
 
-- By a stable mechanism we mean that the process giving us the data does not change.
+- By a stable mechanism we mean that the process giving us the data does not change
 
-- If the process is "rolling a six-sided die" data mining would based on a thousand rolls would be great at predicting that the probability of observing a 1 is 1/6. 
+- If the process is "rolling a six-sided die" data mining would based on a thousand rolls would be great at predicting that the probability of observing a 1 is 1/6 
 
-- If the process switches to "rolling a twenty-sided", that data mining prediction will be bad. It will still predict a 1/6 chance of a 1 until it gets a lot more data. 
+- If the process switches to "rolling a twenty-sided die", that data mining prediction will be bad: it will still predict a 1/6 chance of a 1 until it gets a lot more data. 
 
-- Probability theory will properly predict the switch to a 1/20 chance immediately.
+- Probability theory will properly predict the switch to a 1/20 chance immediately
 
 ]]
 
@@ -180,7 +181,7 @@ Example on predicting ice cream sales / digression on the non-causal relation wi
 ]
 
 ---
-# Data mining &mdash; Looking for Patterns 
+# Data mining &mdash; Looking for patterns 
 
 .vcenter[
 .blockquote[

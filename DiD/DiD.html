@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>Difference-in-Differences</title>
+    <title>Difference-in-differences</title>
     <meta charset="utf-8" />
     <meta name="author" content="Christoph Hanck" />
     <script src="DiD_files/header-attrs/header-attrs.js"></script>
@@ -11,8 +11,8 @@
     <link href="DiD_files/xaringanExtra-clipboard/xaringanExtra-clipboard.css" rel="stylesheet" />
     <script src="DiD_files/xaringanExtra-clipboard/xaringanExtra-clipboard.js"></script>
     <script>window.xaringanExtraClipboard(null, {"button":"<i class=\"fa fa-clipboard\"><\/i>","success":"<i class=\"fa fa-check\" style=\"color: #00ff00\"><\/i>","error":"<i class=\"fa fa-times-circle\" style=\"color: #F94144\"><\/i>"})</script>
-    <link href="DiD_files/font-awesome/css/all.css" rel="stylesheet" />
-    <link href="DiD_files/font-awesome/css/v4-shims.css" rel="stylesheet" />
+    <link href="DiD_files/font-awesome/css/all.min.css" rel="stylesheet" />
+    <link href="DiD_files/font-awesome/css/v4-shims.min.css" rel="stylesheet" />
     <script type="text/x-mathjax-config">
       MathJax.Hub.Config({
         TeX: { equationNumbers: { autoNumber: "AMS" } },
@@ -34,7 +34,7 @@
 class: center, middle, inverse, title-slide
 
 .title[
-# Difference-in-Differences
+# <a href='https://github.com/mca91/kausalanalyse_slides/raw/main/DiD/DiD.pdf'>Difference-in-differences</a>
 ]
 .author[
 ### Christoph Hanck
@@ -134,7 +134,7 @@ class: center, middle, inverse, title-slide
   Compare the within variation in the treated group to the within variation in the untreated group. Because the within variation in the untreated group is affected by time, this controls for time differences and **closes the back door through *Time***.
 
 ---
-# Differences-in-differences
+# Difference-in-differences
 &lt;br&gt;
 
 **Treatment effects in DiD**
@@ -270,7 +270,7 @@ class: center, middle, inverse, title-slide
 
 - DiD cannot work without parallel trends: 
 
-  If the gap between the two groups would have changed from the pre-period to the post-period without treatmetn, then this non-treatment-related change will get mixed up with the treatment-related change.
+  If the gap between the two groups would have changed from the pre-period to the post-period without treatment, then this non-treatment-related change will get mixed up with the treatment-related change.
 
 ---
 # Untreated groups and parallel trends
@@ -309,8 +309,8 @@ There are a few good signs that can be looked for:
 .blockquote[
 ### Example: Plausible vs. implauslible prior trends
 &lt;div class="figure" style="text-align: center"&gt;
-&lt;img src="DiD_files/figure-html/unnamed-chunk-6-1.png" alt="3: A Graph Where the Prior Trends Test Looks Good for DID, and a Graph Where It Does not " width="80%" style="display:block; margin-right:auto; margin-left:auto;" /&gt;
-&lt;p class="caption"&gt;3: A Graph Where the Prior Trends Test Looks Good for DID, and a Graph Where It Does not &lt;/p&gt;
+&lt;img src="DiD_files/figure-html/unnamed-chunk-6-1.png" alt="5: A Graph Where the Prior Trends Test Looks Good for DID, and a Graph Where It Does not " width="80%" style="display:block; margin-right:auto; margin-left:auto;" /&gt;
+&lt;p class="caption"&gt;5: A Graph Where the Prior Trends Test Looks Good for DID, and a Graph Where It Does not &lt;/p&gt;
 &lt;/div&gt;
 ]
 
@@ -385,7 +385,7 @@ Another way to write the same model equation if only two groups and two time per
 
 &lt;br&gt;
 
-- Highly intuitive, straightforward to use with with software that implements fixed effects estimation
+- Highly intuitive, straightforward to use  with software that implements fixed effects estimation
 
 - Allows to account for *multi-group designs* where some groups are treated and some are not, rather than just one treated and untreated group.
 
@@ -468,8 +468,8 @@ The simplest form uses the regression model `$$Y =\alpha_g+\beta_1Time+\beta_2Ti
 .blockquote[
 ### Example: Effect of active choice on organ doner &amp;mdash; ctd.
 &lt;div class="figure" style="text-align: center"&gt;
-&lt;img src="DiD_files/figure-html/unnamed-chunk-7-1.png" alt="3: Dynamic effect of active-choice phrasing on organ donation rates" width="70%" style="display:block; margin-right:auto; margin-left:auto;" /&gt;
-&lt;p class="caption"&gt;3: Dynamic effect of active-choice phrasing on organ donation rates&lt;/p&gt;
+&lt;img src="DiD_files/figure-html/unnamed-chunk-7-1.png" alt="6: Dynamic effect of active-choice phrasing on organ donation rates" width="70%" style="display:block; margin-right:auto; margin-left:auto;" /&gt;
+&lt;p class="caption"&gt;6: Dynamic effect of active-choice phrasing on organ donation rates&lt;/p&gt;
 &lt;/div&gt;
 ]
 
@@ -688,7 +688,7 @@ The matching emphasizes comparisons that are especially subject to regression to
 
 
 ---
-# The unfurling logic of difference-in-differences
+# The unfurling logic of DiD
 
 .vcenter[
 .blockquote[
@@ -705,7 +705,7 @@ The matching emphasizes comparisons that are especially subject to regression to
 
 
 ---
-# The unfurling logic of difference-in-differences
+# The unfurling logic of DiD
 
 .vcenter[
 .blockquote[
@@ -722,7 +722,7 @@ The matching emphasizes comparisons that are especially subject to regression to
 ]]
 
 ---
-# The unfurling logic of difference-in-differences
+# The unfurling logic of DiD
 &lt;br&gt;
 .blockquote[
 ### Example: Training program on educational income disparities &amp;mdash; ctd.
@@ -743,7 +743,7 @@ TestScore = &amp;\, \beta_0+\beta_1 Income\\
 ]
 
 ---
-# The unfurling logic of difference-in-differences
+# The unfurling logic of DiD
 &lt;br&gt;
 **Applications**
 
@@ -755,7 +755,7 @@ TestScore = &amp;\, \beta_0+\beta_1 Income\\
 - DiD can also be applied to DiD itself and get the difference-in-difference-in-differences model, also known as triple-differences (DiDiD)
 
 ---
-# The unfurling logic of difference-in-differences
+# The unfurling logic of DiD
 &lt;br&gt;
 **Applications**
 
@@ -763,7 +763,6 @@ TestScore = &amp;\, \beta_0+\beta_1 Income\\
 - DiDiD could be used to see how a newly implemented policy *changes* a DID-estimated effect
 
 - However, DiDiD is also used to help strengthen the parallel trends assumption by finding a treated group that should not be affected at all, and subtracting out their effect
-
 
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
