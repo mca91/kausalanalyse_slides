@@ -18,6 +18,8 @@ output:
       navigation:
         scroll: false #disable slide transitions by scrolling
 ---
+class: center, middle, inverse
+# Synthetic control
 
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
@@ -91,9 +93,7 @@ library(haven)
 library(SortedEffects)
 ```
 
----
-class: center, middle, inverse
-# Synthetic control
+
 
 ---
 # Synthetic control
