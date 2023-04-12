@@ -142,7 +142,7 @@ Less obvious ones:
 ]
 
 ---
-## Casusality 
+## Causality 
 
 Not all $Y$ must be due to $X$: we still say $X$ causes $Y$ even if changing $X$ does not always change $Y$, but just changes the distribution of $Y$: the **probability** that $Y$ occurs. 
 
