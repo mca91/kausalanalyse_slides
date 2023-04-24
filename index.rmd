@@ -25,7 +25,7 @@ class: title-slide title-index
 .pull-left[
 
 <ol start=0>
-  <li> Introduction (t.b.d.) </li>
+  <li> <a href="Introduction/Introduction.html">Introduction</a></li>
 </ol>
 
 **Research Design**
@@ -43,7 +43,7 @@ class: title-slide title-index
 
 **Econometric Toolbox**
 
-<ol start=9>
+<ol start=8>
 <li><a href='Matching/Matching.html'>Matching</a></li>
 <li><a href='Simulation/Simulation.html'>Simulation</a></li>
 <li><a href='FixedEffects/FixedEffects.html'>Fixed Effects</a></li>

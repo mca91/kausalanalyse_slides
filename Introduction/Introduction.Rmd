@@ -1,0 +1,68 @@
+---
+title: "Causal Analysis"
+author: "Christoph Hanck"
+date: '`r Sys.Date()`'
+output:
+  xaringan::moon_reader:
+    seal: false
+    includes:
+      in_header: "../assets/meta.html"
+    self_contained: false # if true, fonts will be stored locally
+    lib_dir: libs
+    css: ["default", "../assets/ude_fonts.css", "../assets/ude.css", "../assets/custom.css", "../assets/title_slides.css"]
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: "16:9"
+---
+layout: true
+<a style="position: absolute;top:5px;left:10px;color:#004c93;" href="https://kaslides.netlify.app/">`r fontawesome::fa("home", height="20px")`</a>
+---
+
+# Preliminaries
+</br>
+
+**Moodle**
+
+Slides, exercises and announcements will be provided in [this moodle course](https://moodle.uni-due.de/course/view.php?id=40266) (PW: theeffect) 
+
+<p style="margin-bottom:40px"></p>
+
+**Lecture**
+
+<span>Christoph Hanck </span><span>(<a href = "mailto: christoph.hanck@vwl.uni-due.de">christoph.hanck@vwl.uni-due.de</a>)</span>
+
+Thursdays and Fridays from from 10:00 - 14:00 in room R12 R06 A93 (until May 19<sup>th</sup>)
+
+<p style="margin-bottom:40px"></p>
+
+**Tutorials**
+
+Lennard Maßmann <span>(<a href = "mailto:lennard.massmann@vwl.uni-due.de">lennard.massmann@vwl.uni-due.de</a>)</span>, Martin Arnold </span><span>(<a href = "mailto: martin.arnold@vwl.uni-due.de">martin.arnold@vwl.uni-due.de</a>)</span>
+
+May 11<sup>th</sup>, 12<sup>th</sup>, and 19<sup>th</sup>, 14:00 - 18:00 in room R11 T04 C84
+
+May 25<sup>th</sup>/26<sup>th</sup> and June 1<sup>st</sup>/2<sup>nd</sup>, 10:00 - 14:00 in room R11 T04 C84
+
+
+<!--On Moodle you will soon find a link to [Datacamp](https://www.datacamp.com) which will give you free access to all their paid content. -->
+<br>
+
+---
+background-size: 280px
+# Literature (click me)
+<br>
+
+.pull-left[
+<a href="https://theeffectbook.net">
+<img src="https://m.media-amazon.com/images/I/714TBPGbi7L.jpg"
+     width="300px" style="margin-left:160px"></a>
+]
+
+.pull-right[
+<a href="https://mixtape.scunning.com">
+<img src="https://m.media-amazon.com/images/I/71vNUOWzyaL.jpg"
+     width="288px" style="margin-left:50px"></a>
+]
+
