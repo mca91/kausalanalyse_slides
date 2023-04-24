@@ -1,5 +1,5 @@
 ---
-title: "Causal Analysis"
+title: "Overview"
 author: "Christoph Hanck"
 date: '`r Sys.Date()`'
 output:
@@ -17,7 +17,7 @@ output:
       ratio: "16:9"
 ---
 layout: true
-<a style="position: absolute;top:5px;left:10px;color:#004c93;" target="Causal Analysis"  href="https://kaslides.netlify.app/">`r fontawesome::fa("home", height="15px")`</a>
+<a style="position: absolute;top:5px;left:10px;color:#004c93;" target="Overview"  href="https://kaslides.netlify.app/">`r fontawesome::fa("home", height="15px")`</a>
 ---
 
 # Preliminaries
