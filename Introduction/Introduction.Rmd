@@ -20,7 +20,7 @@ layout: true
 <a style="position: absolute;top:5px;left:10px;color:#004c93;" target="Overview"  href="https://kaslides.netlify.app/">`r fontawesome::fa("home", height="15px")`</a>
 ---
 
-# Preliminaries
+## Preliminaries
 </br>
 
 **Moodle**
@@ -51,18 +51,21 @@ May 25<sup>th</sup>/26<sup>th</sup> and June 1<sup>st</sup>/2<sup>nd</sup>, 10:0
 
 ---
 background-size: 280px
-# Literature (click me)
+## Literature (click cover for free Gitbook version)
 <br>
 
 .pull-left[
 <a href="https://theeffectbook.net">
 <img src="https://m.media-amazon.com/images/I/714TBPGbi7L.jpg"
      width="300px" style="margin-left:160px"></a>
+<a style="margin-left:160px;font-size:18px;" href="https://primo.uni-due.de/permalink/49HBZ_UDE/1uttatt/alma99206662731706446">Primo</a> 
 ]
 
 .pull-right[
 <a href="https://mixtape.scunning.com">
 <img src="https://m.media-amazon.com/images/I/71vNUOWzyaL.jpg"
      width="288px" style="margin-left:50px"></a>
+     </br>
+<a style="margin-left:50px;font-size:18px;" href="https://primo.uni-due.de/permalink/49HBZ_UDE/1uttatt/alma990204629730206446">Primo</a>
 ]
 
