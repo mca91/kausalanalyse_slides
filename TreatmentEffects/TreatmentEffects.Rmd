@@ -164,7 +164,7 @@ AET for females: AET= $\frac{0.02 + 0.01}{2} = 0.015$
 
 .vcenter[
 .blockquote[
-###Example: Drug on Cervical Cancer &mdash; ctd.
+###Example: Treatment effect for each person
 Name     | Gender    | Untreated Outcome | Treated Outcome | Treatment Effect
 :--------|:---------:|:-----------------:|:---------------:|:----------------:
 Alfred   | Male      | 1                 | 2               | 1
@@ -191,7 +191,7 @@ Name   |   Treated     |  Outcome
 Alfred |  Treated      |    2     
 Alfred |  Untreated    |    1    
 Diego  |  Treated      |    4     
-Diego  |  Untreated    |   .2
+Diego  |  Untreated    |    2
 
 <br>
 
@@ -240,7 +240,7 @@ The **marginal treatment effect** is the treatment effect of a person who is jus
 ---
 # Weighted average treatment effect
 
-We may also include everyone but weight some people different than others to get a **weighted average treatment effect**.
+We may also include everyone but weight some people differently than others to get a **weighted average treatment effect**.
 
 </br>
 
@@ -254,7 +254,7 @@ The **Weighted Average Treatment Effect** is the treatment effect obtained by *p
 
 .vcenter[
 .blockquote[
-### Example: Drug on cervical cancer &mdash; ctd.
+### Example: Treatment effect for each person &mdash; ctd.
 Consider the table _Isolating the Average Effect_ again:
 
 - The mean of $1$, $2$, $3$, and $4$ is $2.5$
@@ -263,7 +263,7 @@ Consider the table _Isolating the Average Effect_ again:
 
 - In the context of treatment effects, we rarely get to literally pick weights. Instead, there is something about the study design that weights some people more than others.
 
-- A common way this shows up is as *variance-weighted average treatment effects*
+- A common way this shows up is as *variance-weighted average treatment effects*.
 ]]
 
 ---
@@ -286,7 +286,7 @@ A treatment effect average where each individual’s treatment effect (after clo
 
 .vcenter[
 .blockquote[
-### Example: Drug on cervical cancer &mdash; ctd.
+### Example: Treatment effect for each person &mdash; ctd.
  Let us consider the following table:
 
 
@@ -322,7 +322,7 @@ Diego    |  $100$ untreated   |  $2$
 .vcenter[
 .blockquote[
 ### Definition: Distribution-weighted average treatment effect
-In **distribution-weighted average treatment effect** we weight, individuals with **common values of the matching variable** more heavily.
+In **distribution-weighted average treatment effect**, individuals with **common values of the matching variable** are weighted more heavily.
 ]]
 
 ---
@@ -330,10 +330,10 @@ In **distribution-weighted average treatment effect** we weight, individuals wit
 </br>
 
 - Another form of weighted treatment effect that pops up often is based upon the **responsiveness** of treatment
-
+ 
 -  Heterogeneous treatment effects not only apply to the effect of treatment on an outcome but also apply to the effect of exogenous variation on treatment
 
-- There may be heterogeneous treatment effects due to (undesired) effects of treatment on assignment *on* treatment, rather than the effect of treatment on outcome
+- There may be heterogeneous treatment effects due to (undesired) effects of treatment assignment *on* treatment, rather than the effect of treatment on outcome
 
 ---
 # Intent-to-treat estimate

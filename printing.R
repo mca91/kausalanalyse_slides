@@ -28,5 +28,6 @@ walk(
   .f = ~ renderthis::to_pdf(.)
 )
 
+# renderthis::to_pdf("~/git_projects/KA_slides/Introduction/Introduction.Rmd")
 
 

@@ -75,6 +75,36 @@ htmltools::tagList(
 )
 ```
 
+# Emperical research
+.vcenter[
+
+- **Empirical research** is any research that uses structured observations from the real world to attempt to answer questions. 
+
+- **Quantitative empirical** research is just empirical research that uses quantitative measurements (numbers, usually). More data sets, fewer interviews.
+
+- One problem with quantitative empirical research is that the numbers that are observed, often don’t tell exactly what we want to know.
+
+- It turns out that, by doing right kind iof research, we can get the *right kind of numbers*. By carefully designing the right kind of analysis, we can get the answer the our research question from the numbers.
+]
+
+---
+# Why research needs a design
+
+.vcenter[
+
+- A lack of solid research design can be seen in the results, as well.
+
+- Different studies seem to give different answers to research questions because they are not actually answering that question in the first place.
+
+- For example:
+ - Scientists may claim $2+2$ only has one answer
+ - If you’re actually calculating something entirely different from $2+2$ ,  you might come back with an answer of $6$, or $1$, or $-52$
+ - Then you wake up to a news headline reading that scientists have determined that $2+2=-52$
+
+- There may not be a straight forward answer to our research question, but we must continue to try!
+]
+
+---
 # What is a research question anyway?
 
 .vcenter[
@@ -151,7 +181,7 @@ Data mining is the systematic application of computer-aided methods to discover 
 .footnote[[1] A false positive is a result that incorrectly indicates the presence of a condition under examination.]
 
 ---
-# Data mining &mdash; Predictions under stability
+# Data mining &mdash; predictions under stability
 
 .vcenter[
 .blockquote[
@@ -169,19 +199,7 @@ Data mining is the systematic application of computer-aided methods to discover 
 ]]
 
 ---
-# Data mining &mdash; the *what* vs. the *why*
-
-<br>
-<br>
-
-.content-box-red[
-
-Example on predicting ice cream sales / digression on the non-causal relation with the predictor (people wearing shorts)?
-
-]
-
----
-# Data mining &mdash; Looking for patterns 
+# Data mining &mdash; looking for patterns 
 
 .vcenter[
 .blockquote[

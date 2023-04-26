@@ -73,9 +73,7 @@ class: center, middle, inverse, title-slide
 
 ## Recap of causal diagrams
 
-Causal diagrams are representations of the DGP that got us our data. Causal diagrams help us in answering research questions.
-
-Drawing our own causal diagram will come down to putting our idea of what the DGP is onto paper (or a computer screen).
+Causal diagrams are representations of the DGP that got us our data. Causal diagrams help us in answering research questions.Hence, drawing our own causal diagram will come down to putting our idea of what the DGP is onto paper (or a computer screen).
 
 &lt;div class="figure"&gt;
 &lt;img src="DrawingCausalDiagrams_files/figure-html/unnamed-chunk-1-1.png" alt="1: A simple causal diagram" width="70%" style="color:black; display:block; margin-right:auto; margin-left:auto;" /&gt;
@@ -116,7 +114,7 @@ Drawing our own causal diagram will come down to putting our idea of what the DG
 &lt;ol start=3&gt;
 &lt;li&gt;Categorise the variables into &lt;b&gt;treatment variables&lt;/b&gt; and &lt;b&gt;outcome variables&lt;/b&gt;
     
-    &lt;p&gt;Think about how those variables might cause each other, or perhaps be caused by the treatment or outcome&lt;/p&gt;
+    &lt;p&gt;Think about how those  are causing each other or they are caused by the treatment or outcome&lt;/p&gt;
 
     &lt;p&gt;We might also want to consider whether any of the variables are related but neither causes the other, in which case they must have some sort of (unobserved) common cause we can include&lt;/p&gt;
 &lt;/li&gt;
@@ -135,7 +133,7 @@ We can identify and reduce needless complexity with some few simple tests:
 - **Unimportance**: We’ve already discussed this one &amp;mdash; if the arrows coming in and out of a variable are likely to be tiny and unimportant effects, we can probably remove the variable.
 - **Redundancy**: If there are any variables on the diagram that occupy the same space &amp;mdash; that is, they have the arrows coming in and going out of them from/to the same variables &amp;mdash; we can probably combine them and describe them together.
 - **Mediators**: If one variable is only on the graph as a way for one variable to affect another, e.g. `\(B\)` in `$$A\to B\to C$$` where nothing else connects to `\(B\)`, then we can probably remove it and just have `\(A\to C\)` directly.
-- **Irrelevance**: Some variables which are an important part of the DGP but irrelevant to the research question at hand can be neglected.
+- **Irrelevance**: Some variables which are an important part of the DGP but irrelevant to the research question at hand can be neglected. In this case we can get rid of more labels.
 
 ---
 ## Drawing causal diagrams
@@ -147,7 +145,7 @@ We can identify and reduce needless complexity with some few simple tests:
 
 Potential causes for people to take online classes (*classes*):
 
-- The preferences (*prefs*) of student might be driven by background factors like *race*, *gender*, *age*, and socioeconomic status (*SES*)
+- The preferences (*prefs*) of students might be driven by background factors like *race*, *gender*, *age*, and socioeconomic status (*SES*)
 - Those same background factors might influence how much available time (*time*) students have
 - *Time* might be influenced by how many work hours (*work*) a student is doing
 - Causes for people to drop out of community college (*DropOut*) may be *race*, *gender*, *SES*, *work*, and previous performance in academics (*academics*)
@@ -196,7 +194,6 @@ Simplification of the causal diagram:
 - *gender* and *race* have the exact same set of arrows coming in and going out. So we can combine those in to one, which we can call d*emographics*.
 - Instead of having *gender*, *race*, *SES*, and *age* affect *prefs* and then have *prefs* affect *classes*, we can just have those variables affect *classes* directly as mediators
 - We omit *webAccess* using the same logic
-- Other variables besides *hours* that cause *time* also cause *hours*. We omit *time* to have *hours* affect *classes* directly: we still have all those causes of *time* affecting *hours*. 
 
 ]]
 
@@ -253,6 +250,33 @@ After simplification, the causal diagram looks like:
 &lt;p class="caption"&gt;5: Another representation of the loop&lt;/p&gt;
 &lt;/div&gt;
 ]]]
+
+
+---
+# Getting comfortable with assumptions
+&lt;/br&gt;
+
+- Assumptions are important because causal diagram should be based as much as possible on real-world knowledge and prior research, but we cannot possibly know everything about every part of the data generating process.
+
+- The quality of our research will hinge on how accurate those assumptions are 
+
+- For a given assumption we should ask ourselves:
+ 
+ - "Is this probably true?"
+ - "What evidence can we provide to push this away from possible and towards probable?"
+ 
+---
+# Making assumptions accurate
+&lt;/br&gt;
+
+- Think about whether our assumptions are reasonable, try to base them as much on well-established knowledge and prior research as possible, and if we think there is reason to be skeptical of them, ask what evidence would support the assumption and try to provide that evidence.
+
+- There are a few other approaches that can be taken:
+ 
+ - The first is to get another set of eyes on it since it can be hard to be skeptical of your own assumptions 
+ 
+ - There are also some more formal tests that can be done. Once we have the diagram written down, it will tell us some relationships that should be zero. And we can check those relationships in our actual data using basic correlations. If they are not zero, something is wrong about our diagram 
+
  
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>

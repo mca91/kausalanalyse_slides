@@ -86,11 +86,11 @@ htmltools::tagList(
 # Motivation 
 
 .vcenter[
-- Modelling the DGP, listing all the paths, finding a set of variables that close all the back doors, and measuring and controlling for all of those variables is a lot of work by itself.
+- Modelling the DGP, listing all the paths, finding a set of variables that close all the back doors, and measuring and controlling for all of those variables is a lot of work.
 
-- Controlling for everything is difficult, especially in social science where  many things might matter and you might run into a variable you have to control for but you cannot.
-- There are so many variables that might be on back doors, there are high chances to forget some of them in your causal diagram.
-- An alternate approach to identifying the answer to a research question is to, instead of actively closing back doors, find ways of isolating just front doors. 
+- Controlling for everything is difficult, especially in social sciences where  many things might matter and you might run into a variable you have to control for but you cannot.
+- There are so many variables that might be on back doors, sometimes there are high chances to forget some of them in your causal diagram.
+- An alternative approach the answer a research question is to, instead of actively closing back doors, find ways of isolating just front doors. 
 ]
 
 ---
@@ -136,7 +136,8 @@ In a **randomised controlled experiment**, the researcher assigns treatment (or 
 **Why do they work?**
 
 - Experiments work because they create a form of *variation in the treatment* that has no back doors. 
-- If the treatment was assigned randomly, then for everyone in the experiment, variation in all the variables on all the back doors should be unrelated to whether they got the treatment or not. Hence, all the back doors will be closed.
+- If the treatment was assigned randomly, then for everyone in the experiment, variation in all the variables on all the back doors should be unrelated to whether they got the treatment or not.
+- Hence, all the back doors will be closed.
 
 ---
 # Randomised controlled experiments
@@ -146,8 +147,8 @@ In a **randomised controlled experiment**, the researcher assigns treatment (or 
 
 ### Example: Charter school's influence on grades
 
-- We are interested in figuring out whether charter schools improve students’ test scores than traditional public schools.
-- Many variable influence people's decision to attend Charter school,for example, background, personality, location, etc.
+- We are interested in figuring out whether charter schools improve students’ test scores more than traditional public schools.
+- Many variable influence people's decision to attend Charter school, e.g. background, personality, location, etc.
 
 
 ```{r, echo=F, cache=F, out.extra = 'style="display:block; margin-right:auto; margin-left:auto;"', fig.height=3.5, out.width='45%', dpi=190, fig.cap=paste0(fig_counter(), ': Causal diagram of Influence of Charter School on Grades'), fig.align='center'}
@@ -274,7 +275,7 @@ An ideal source of exogenous variation is not caused by any other variable that 
 
 ---
 # Sources of exogenous variation
-Anything which is random in context of our DGP can be considered as a source of exogenous variation.
+Anything which is random in the context of our DGP can be considered as a source of exogenous variation.
 
 The causal diagram for this looks almost exactly like a **randomised controlled trial.**
 <br>
@@ -305,11 +306,11 @@ ggdag::ggdag(dag_object, # the dag object we created
 # Sources of exogenous variation
 **Randomised controlled experiments vs. natural experiments**
 
-- Natural randomness can have *pure back doors to the outcome* but pure randomisation does not.
+- Natural randomness can have *back doors to the outcome* but pure randomisation does not.
 
-- Natural experiments are *more natural* than randomised controlled experiments. People may not even realize that, they are a part of an experiment.
+- Natural experiments are *more natural* than randomised controlled experiments. People may not even realize that they are a part of an experiment.
 
--  The observations from natural experiments are more realistic than randomised controlled experiments.
+-  The observations from natural experiments tends to be more realistic than randomised controlled experiments.
  
 
 ---
@@ -334,6 +335,8 @@ ggdag::ggdag(dag_object, # the dag object we created
 - **Pan He** and **Cheng Xu** in 2019 look at whether **air pollution being worse causes people to drive more**.
 
 - He and Xu get their data from Beijing. They look at **whether people drive more on days when there is more pollution**, and find that **they do**.
+
+- Problem: there's also obvious reverse causality issues as well as back doors (factories running, etc.)
 
 - They find an **exogenous source of pollution variation in the direction of the wind** - In Beijing, a west-blowing wind blows pollution into the city.
 
@@ -398,7 +401,7 @@ ggdag::ggdag(dag_object, # the dag object we created
 .blockquote[
 ###Example: the effect of uncompensated health care on patient experience
 
-- Camilleri and Diebold (2019), looked at the effect of uncompensated care (medical care given by hospitals that do not get paid for) on patient experience. 
+- Camilleri and Diebold (2019) looked at the effect of uncompensated care (medical care given by hospitals that do not get paid for) on patient experience. 
 - The amount of uncompensated care a hospital gives is related to some **back-doors**:
  - **The kinds of patients they get**
  - **How likely those patients are to pay**, etc
@@ -469,7 +472,7 @@ ggdag::ggdag(dag_object, # the dag object we created
 
   It is called, appropriately, the **front door method**.
 
-- The front door method works when your causal diagram looks something like the following figure, when there is a bad path that cannot be closed, such as if W in that diagram cannot be measured.
+- The front door method works when your causal diagram looks something like Figure 5, when there is a bad path that cannot be closed, such as if W in that diagram cannot be measured.
 
 - If W cannot be measured, then we cannot control for anything to identify the effect of Treatment on Outcome.
 
@@ -490,4 +493,65 @@ We can identify Treatment → M and M → Outcome
 
 We just need to combine those two effects to get our effect: Treatment → M → Outcome.
 ]]
+
+---
+# Identifying a causal effect
+
+.vcenter[
+.blockquote[
+### Example: Smoking causes cancer
+- By Pearl and Mackenzie 2018
+- It is difficult to figure out the effect of smoking on something like cancer rates because there are lots of things related to whether you smoke (background, income, health-mindedness, etc.) 
+- There are a lot of back doors that cannot be closed.
+- Let’s say that there is something called *TarInLungs* that sits between smoking and cancer. In this simplified fantasy, the only reason *Smoking* causes *Cancer* is because it causes *TarInLungs*, and *TarInLungs* causes *Cancer*.
+]]
+
+---
+# Identifying a causal effect
+
+.vcenter[
+.blockquote[
+### Example: Smoking causes cancer
+The causal diagram will look like:
+```{r , echo=F, cache=F, out.extra = 'style="display:block; margin-right:auto; margin-left:auto;"', fig.height=4, out.width='55%', dpi=190, fig.cap=paste0(fig_counter(), ': Causal Diagram for Smoking and Cancer'), fig.align='center'}
+coord_dag <- list(
+  x = c(a = 1, b = 2, c = 3, d = 2  ),
+  y = c(a = 1, b = 1, c = 1, d = 2 )
+)
+dag_object <- ggdag::dagify(b ~ a,
+                            c ~ b,
+                         
+                            a ~ d,
+                            c ~ d,
+                            
+                            coords = coord_dag,
+                            labels=c("a"="Smoking",
+                                     "b"="TarInLungs",
+                                     "c"="Cancer",
+                                     "d"="Lots of things"))
+ggdag::ggdag(dag_object, # the dag object we created
+             text = FALSE, # this means the original names won't be shown
+             use_labels = "label") + # instead use the new names
+   theme_void()
+```
+
+]]
+
+---
+# Identifying a causal effect
+
+.vcenter[
+.blockquote[
+### Example: Smoking causes cancer
+- Given this diagram, let’s say that we look at the raw, unadjusted relationship between *Smoking* and *TarInLungs* and find that an additional cigarette per day adds an additional 15 grams of tar to your lungs over 10 years.
+- Then, we look at the relationship between *TarInLungs* and *Cancer* while controlling for *Smoking* and find that an additional 15 grams of tar in your lungs increases the chances of getting cancer by 2% over your lifetime.
+- So, then an additional cigarette per day increases the tar in your lungs by 15 grams, which in turn increases your probability of cancer by 2%. So an additional cigarette per day increases your probability of cancer by 2%.
+- That is the front door method!
+]]
+
+
+
+
+
+
 

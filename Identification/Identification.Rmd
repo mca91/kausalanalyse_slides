@@ -131,9 +131,9 @@ What can we say about the effect of being brown-haired using *conditional distri
 
 ```{r, echo=F, cache=F, out.extra = 'style="color:black; display:block; margin-right:auto; margin-left:auto; margin-top:15px"', fig.height=5, out.width='45%', dpi=190, fig.cap=paste0(fig_counter(), ': log-income distributions')}
 ggplot(df %>% filter(Hair == "Brown"), aes(x = logIncome, linetype = Hair)) +
-  stat_density(geom = 'line', size = 1) +
+  stat_density(geom = 'line', linewidth = 1) +
   stat_density(data = df %>% filter(Hair == "Other Color"), 
-               geom = 'line', size = 1) +
+               geom = 'line', linewidth = 1) +
   labs(x = "Log Income", y = "Density") + 
   theme_cowplot() +
   theme(text         = element_text(size = 16),
@@ -272,6 +272,7 @@ avocado %>%
 ---
 # Looking for variation
 
+.vcenter[
 .blockquote[
 
 #### **Example: Avocado sales**
@@ -280,8 +281,7 @@ avocado %>%
 
 - All that we *can* see in the graph is the **covariation** or **correlation** between price and quantity of avocados&mdash;how they move together or apart. But these variables move around for *all sorts of reasons*!
 
-
-]
+]]
 
 ---
 # Looking for variation
@@ -461,7 +461,7 @@ We closed off undesirable explanations by getting rid of between-month variation
 # Identification
 </br>
 
-Identification requires statistical procedures in order to isolate the variation we are interested in. Therefore, **identification critically relies on the theory and the assumptions about DGP**.
+Identification requires statistical procedures in order to isolate the variation we are interested in. Just as important, **identification critically relies on the theory and the assumptions about DGP**.
 
 </br>
 
@@ -606,7 +606,7 @@ If it feels like they did their part in addressing some of the alternate explana
 ---
 # Study: Alcohol and mortality
 
-If the methods can give us Figure 6 by Auld (2018).fn[2], then even if there is really an effect of alcohol on mortality, how close do we think Figure 5.5 is to identifying that effect?
+If the methods can give us Figure 6 by Auld (2018).fn[2], then even if there is really an effect of alcohol on mortality, how close do we think Figure 6 is to identifying that effect?
 
 ```{r, echo=F, cache=F, out.extra = 'style="display:block; margin-right:auto; margin-top:5%; margin-left:auto;"', fig.height=4, out.width='55%', dpi=190, fig.cap=paste0(fig_counter(), ': Alcohol Consumption and Being a Man'), fig.align='center'}
 alcohol_male <- read_csv("alcohol_male_digitizer.csv")

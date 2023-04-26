@@ -197,7 +197,8 @@ Matching is usually applied to binary treated/untreated treatment variables, whe
  - Give a weight of $80/500 = 0.16$ to all untreated men
  - Give a weight of $20/500 = 0.04$ to all untreated women
 - The treated group will still be 80% men and the untreated group becomes $$\frac{(0.16\cdot500)+(0.04\cdot0)}{(0.16\cdot500)+(0.04\cdot500)} = 80\% \quad\Rightarrow\quad \text{backdoor closed!}$$
-
+- For the treatment effect, it is $72%$ for people in the treated group and for untreated group it is 
+$$\frac{(0.16\cdot350)+(0.04\cdot275)}{(0.16\cdot500)+(0.04\cdot500)}=67%$$
 ]]
 
 ---
@@ -301,16 +302,16 @@ ggdag::ggdag(dag_object, # the dag object we created
 
 ### Definition: Propensity score matching
 
-Propensity score matching is a matching criterion based on the notion that *observations are similar if they were equally likely to be treated,* in other words have equal treatment *propensity*.
+Propensity score matching is a criterion based on the notion that *observations are similar if they were equally likely to be treated,* in other words have equal treatment *propensity*.
 ]]
 
 
 ---
 # Propensity score matching
 
-- Identifying the effect of the treatment on the outcome and the matching variables being on back doors are of interest.
+- Identifying the effect of the treatment on the outcome is of interest and the matching variables being on back doors is the concern.
 
-- Propensity score matching takes this idea seriously and figures that if  treatment propensity are being matched.
+- Propensity score matching takes this idea seriously and figures that if you match on treatment propensity, you’re good to go.
 
 ```{r, echo=F, cache=F, out.extra = 'style="display:block; margin-right:auto; margin-left:auto;"', fig.height=3.5, out.width='55%', dpi=190, fig.cap=paste0(fig_counter(), ': A DGP with treatment propensity'), fig.align='center'}
 coord_dag <- list(
@@ -373,9 +374,9 @@ ggplot(sub, aes(x = BillApril, y = yjit, shape = LateApril)) +
 .blockquote[
 ### Example: Defaulting on credit card debt
 
-- A [logit regression](https://www.econometrics-with-r.org/11.2-palr.html) of treatment on _Bill April_ (thousands of NT$) yields an intercept of .091 and a coefficient on _Bill April_ of .0003 can be obtained. 
+- A [logit regression](https://www.econometrics-with-r.org/11.2-palr.html) of treatment on _Bill April_ (thousands of NT$) yields an intercept of .091 and a coefficient on _Bill April_ of .0003.
 - If a match for the treated person in row 10,305 with a of NT$91,630 is searched for, then first, the probability of treatment for that person is predicted. 
-- Plugging in 91.630 for _Bill April_ in thousands, a predicted probability of treatment of .116 can be obtained.
+- Plugging in 91.630 for _Bill April_ in thousands yields a predicted probability of treatment of .116.
 ]]
 
 
@@ -421,7 +422,7 @@ There are three main approaches to figure out how many control matches are to be
   
 - To pick all the acceptable matches **(radius matching)**
   
-  (Acceptable matches are decided on. *All* the acceptable matches are matched.)
+  Acceptable matches are decided on. *All* the acceptable matches are matched.
 
 
 ---
@@ -481,11 +482,11 @@ The 2-nearest-neighbors match will include some observations in the control grou
 
 .blockquote[
 ###Definition: Kernel Functions and kernel-based matching
-- Kernel Functions are functions that a difference to is given, and it returns a weight. The highest value is at 0 (no difference), and then the value smoothly declines as the value move away from 0 in either direction
+- Kernel Functions are functions that given a difference, returns a weight. The highest value is at 0 (no difference), and then the value (uniform weights) declines as the value move away from 0 in either direction
 
 - Kernel-based matching estimators use a kernel function to produce weights.
 
-- The weights given by the Kernel are used to calculate the weighted means.
+- The weights given by the kernel are used to calculate the weighted means.
 
 ]
 
@@ -546,9 +547,11 @@ The treatment effect ist $0-0.561=-0.561$
 
 - It weights each observation by the inverse of the probability of the treatment value it had. 
 
-- The treatment group observations that get the **biggest weights are the ones that are most like the untreated group** and the ones with **small propensities are least likely to have gotten treated who got treated anyway.**
+- The treatment group observations that get the **biggest weights are the ones that are most like the untreated group**
 
-- Similarly, the control group observations with the biggest weights are the ones most like the treated group, who were most likely to have gotten treated but did not for some reason.
+- The ones with **small propensities are least likely to have gotten treated who got treated anyway.**
+
+- Similarly, the control group observations with the biggest weights are the ones most like the treated group, i.e, who were most likely to have gotten treated but did not for some reason.
 
 ---
 # 4. How will the weights decay with distance?
@@ -576,7 +579,7 @@ The treatment effect ist $0-0.561=-0.561$
 - The main idea is:
  - First a number is picked which is caliper/bandwidth.
  - If the distance, or the difference in propensity scores, is bigger in absolute value than that number, then it is not counted as a match. 
- - If a match is encountered, then that observation is lost.
+ - If a match is encountered, then that observation gets dropped.
  
 ---
 # 5. What is the worst acceptable match?
@@ -595,7 +598,7 @@ The treatment effect ist $0-0.561=-0.561$
 
 - The wider the bandwidth, the more potential matches are obtained.
 
-- However a wider bandwidth alows for more bad matches, which makes the match quality worse: the idea that the back doors are getting close less plausible!
+- However a wider bandwidth allows for more bad matches, which makes the match quality worse: the idea that the back doors are getting closedy less plausible!
 
 ---
 # 5. What is the worst acceptable match?
@@ -606,7 +609,7 @@ The treatment effect ist $0-0.561=-0.561$
 
 .blockquote[
 ### Summary: Bias variance tradeoff in matching
-When making any sort of decision about matching, the choice is often between fewer, but better, matches that produce estimates with less bias but less precision, or more, but worse, matches that produce estimates with more bias but more precision.
+The choice is often between fewer, but better, matches that produce estimates with less bias but less precision, or more, but worse, matches that produce estimates with more bias but more precision.
 ]
 
 ---
@@ -635,6 +638,8 @@ When making any sort of decision about matching, the choice is often between few
  - Each email was sent by the fictional “Tyrone Washington,” which in the US is a name that strongly suggests it belongs to a Black man.
  
 - **Expectation:** Black legislators responds more often to out-of-district emails from black people. 
+
+- Matching is where we compare the in/out-of-district gap between Black and non-Black legislators. Those groups tend to be elected in very different kinds of places. Back doors abound. Matching can be used to make for a better comparison group.
 ]]
 
 
@@ -647,10 +652,9 @@ When making any sort of decision about matching, the choice is often between few
 
 The following steps guides to obtain Mahalonobis distance:
 
-- Ensure that no variable ends up being weighted more heavily just because it’s on a bigger scale: take each matching variable and divide its value by its standard deviation.  
+- In order to ensure that no variable ends up being weighted more heavily just because it’s on a bigger scale, we take $S$ (which is the covariance matrix for all matching variables) and  then divide the values of all matching variables by it. $S$ provides standardization and takes covariates into account.  
 
 - Compute the distance: for a given treated observation A and a given control observation B, the Mahalanobis distance $d$ is the sum of the squares of all the differences between A and B. Mahalanobis distance between two vectors $x_1$ and $x_2$ is $$\\d(x_1,x_2)= \sqrt[]{(x_1-x_2)'S^{-1}(x_1-x_2)}.$$
-$S$ is the covariance matrix for all matching variables.
 
 <!-- --- -->
 <!-- # Multiple Matching Variables -->
@@ -687,7 +691,7 @@ $S$ is the covariance matrix for all matching variables.
 
 - The standard deviation of _Age_ is 9.22, giving a distance of   $|2.49-4.91|=1.52$ sd.
 
--  The differences in standard-deviation terms  are squared up and added and square rooted to get Mahalanobis distance of $d=\sqrt{0.0004^2+1.52^2}=1.520$
+-  The differences in standard-deviation terms  are squared up and added and square rooted to get a simplified  Mahalanobis distance of $d=\sqrt{0.0004^2+1.52^2}=1.520$
 ]
 
 ---
@@ -710,8 +714,8 @@ $$d(x_1, x_2) = \left(
   \end{bmatrix}^{-1}
   \begin{bmatrix}
      21 \\ 14 
-  \end{bmatrix}^{-1/2}
-\right).$$
+  \end{bmatrix}
+\right)^{-1/2}=1.521$$
 
 ]
 
@@ -733,9 +737,9 @@ The curse of dimensionality means that the more matching variables are added, th
 **Curse of dimensionality**
 <br><br>
 - Mahalanobis distance suffers from curse of dimensionality.
-- Ways to deal with it:
+- Ways to (partially) deal with it:
  - Limit the number of matching variables
- - To have a sample of observations
+ - To have a large sample of observations
  - Compromise with the match quality, or with the value of the caliper/bandwidth, as the number of dimensions goes up
 
 
@@ -771,7 +775,7 @@ In coarsened exact matching we only match if observations exactly matches for ea
 
 1. Bin continuous variables.
 2. Look for exact matches. Only keep *treated* observations with at least one exact match in the control group and drop the others. Only keep *control* observations with at least one exact match in the treatment group and drop the others. 
-3. Assign a weight corresponding to the number of treatment group observation matches it has, divided by the number of control observations matched to that treated observation and multiply by the total number of matched control observations divided by the total number of matched treatment observations:
+3. Assign a weight corresponding to the number of treatment group observation matches it has, divided by the number of control observations matched to the treated observation and multiply by the total number of matched control observations divided by the total number of matched treatment observations:
 
 $$\frac{Treated Matches}{ControlMatches} \cdot \frac{TotalControl Matches}{TotalTreatedlMatches}$$
 
@@ -784,7 +788,7 @@ $$\frac{Treated Matches}{ControlMatches} \cdot \frac{TotalControl Matches}{Total
 <br><br>
 - Coarsened exact matching, if applied to moderately-sized samples (or any size sample with too many matching variables), can lead to lots of treated observations being dropped. 
 - This makes the treatment effect estimates much noisier, and can also lead the result to be a poor representation of the average treatment effect if certain kinds of treated observations are more likely to find matches than others.
-
+- Hence, large samples are necessary. 
 
 ---
 # Entropy balancing
@@ -811,7 +815,7 @@ Entropy balancing enforces restrictions in terms of moment conditions (means, va
 **Other ways to estimate the propensity score**
 <br>
 
-- Methods that can deal with high degrees of nonlinearity and high dimensions are particularly favored in the estimation.
+- Methods that can deal with high degrees of nonlinearity and high dimensions are particularly useful.
 - Two popular approaches to propensity score estimation using machine learning methods are:
  - **Regularized regression**
  - **Boosted regression**
@@ -865,7 +869,7 @@ Boosted regression is an iterative method that starts with a binary regression m
 
 1. The first approach to checking for common support is simply to look at the distribution of a variable for the treated group against the distribution of that same variable for the untreated group.
 
-2. Another way to check for common support when matches are being selected is simply to see success rate at finding matches. If 1% of the treated observations fail to find an acceptable match, that is considered good. If 90% of the treated observations fail to find an acceptable match, then there is lack common support.
+2. Another way to check for common support when matches are being selected is simply to see success rate at finding matches. If 1% of the treated observations fail to find an acceptable match, that is considered good. If 90% of the treated observations fail to find an acceptable match, then there is lack of common support.
 
 ---
 #Assumptions for matching
@@ -904,17 +908,18 @@ Boosted regression is an iterative method that starts with a binary regression m
 
 - One way in dealing with support is to avoid trying to match where there is no support. 
 
-- Another way of dealing is treating the treated and control groups separately and looking  for the range of values of the propensity score where the density distribution is zero. Then, dropping all observations in the other group that have propensity scores in the range that does not exist in the group.
+- Another way of dealing is treating the treated and control groups separately and looking  for the range of values in the density of the propensity which are zero (or close to zero, below some cutoff value). Then, dropping all observations in the other group that have propensity scores in the range that does not exist in the group.
 
 - A common approach is to trim outliers&mdash;any observation with a propensity score in the top or bottom X% gets trimmed. 
 
+- Still, if a lot of such fixes are needed, this entails losing a lot of data and/or not being able to close back doors.
 ---
 # Assumptions for matching
 <br>
 **2. Balance**
 <br><br>
 
-- Balance is the assumption that the approach to selecting a matched group has closed back doors for the variables of interested
+- Balance is the assumption that the approach to selecting a matched group has closed back doors for the variables of interest.
 
 - In theory, the selected weights should lead to treated and control groups with the exact same values of the backdoor variables
 
@@ -1008,7 +1013,7 @@ Double-robustness is a property that some estimators have rather than *being* a 
 
 </br>
 
-**Steps**
+**An example of such such an estimator involves the following steps:**
 
 1. Estimate the propensity score $p$ on each observation using the matching variables
 
@@ -1102,3 +1107,5 @@ We can obtain the average treatment effect (ATE), the average treatment effect o
   This serves to both upweight the members of the untreated group that are most like the treated group and upweight the members of the treated group that are most like the untreated group. 
 
   $\Rightarrow$ We obtain the ATE.
+- Other schemes can give other effects.  
+  

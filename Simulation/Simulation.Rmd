@@ -222,10 +222,10 @@ All of the above problems can be fixed by increasing the **sample size.** Power 
 <br>
 **When can power analysis be used?**
 <br><br>
-Power Analysis can be mainly used in three situations:
-- If the analyst has a impression that an effect is probably not that central or important or has a small effect on a part of a system where a lot of other "stuff" is going on, a power analysis can be performed. 
+Power Analysis can mainly be used in three situations:
+- If the analyst has a impression that an effect is probably not that central or important or has a small effect on a part of the system where a lot of other "stuff" is going on, a power analysis should be performed to see a necessary sample size. 
 - If the variation of an effect over a group is of interest, then a power analysis is a good idea. Finding differences between groups in an effect takes more data to find than the effect itself.
-- In a randomized experiment a power analysis is most importance as the sample size can be controlled
+- In a randomized experiment a power analysis is most important as the sample size can be controlled and therefore should.
 
 ---
 # Power analysis
@@ -277,11 +277,11 @@ It is the proportion of times we correctly reject the false null
 
 - In order to do power analysis, one must fill in the values for four of the five pieces, so that power analysis can tell the fifth one
 
-- A prior research needs to be done to fill in the gaps
+- Prior research needs to be done to fill in the gaps
 
-- If power research is not at all possible, then it can be substituted with an educated guess
+- If prior research is not possible, then it can be substituted with an educated guess. 
 
-- A measurement of standards (statistical power) needs to  be set
+- Standards (e.g, desired statistical power) 
 
 ---
 # Simulation with existing data: the bootstrap
@@ -401,7 +401,7 @@ The idea of the algorithm is that the predictors in the model never change with 
 <br>
 **Caution:**
 
-- A downsie of residual resampling is that it does not perform well if the errors are in any way related to the predictors.
+- A downside of residual resampling is that it does not perform well if the errors are in any way related to the predictors.
 
 - This is a *stronger* assumption than even the OLS assumption that errors are on average unrelated to predictors!
 
@@ -414,4 +414,4 @@ The idea of the algorithm is that the predictors in the model never change with 
 
 - It also performs well when the data is clustered and even when the clusters are of different size
 
-- For a wild bootstrap, the general outline of residual resampling is followed. Except that the residuals are not resampled. Each residual needs to be lined up with its original observation each time the bootstrap data is created.
+- For a wild bootstrap, the general outline of residual resampling is followed. Except that suitably transformed residuals are not resampled. Each residual needs to be lined up with its original observation each time the bootstrap data is created.

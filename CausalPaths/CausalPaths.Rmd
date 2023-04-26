@@ -149,7 +149,7 @@ ggdag::ggdag(dag_object, # the dag object we created
 2. Then, follow one of the arrows coming in or out of that variable
 3. Repeat step 2 until you either... 
   
-    come to a variable that has been already visited (_a loop which is not a path_)
+    come to a variable that has been already visited (_a loop that is not a path_)
     
     or find the outcome variable, _which is a path_ &mdash; _write it down!_
     
@@ -249,7 +249,7 @@ ggdag::ggdag(dag_object, # the dag object we created
   
   Wine ← Health → Lifespan
   
-  Wine ←Health ← U1 → Income → Lifespan
+  Wine ← Health ← U1 → Income → Lifespan
 ]]
 
 ---
@@ -305,7 +305,7 @@ Assumption: *Wine* → *Drugs* → *Lifespan*
 
 - If we had data with wine drinkers and non-wine drinkers, drug-users and non-drug users, and people with shorter and longer lifespans, then all the variables along this path *have variation*.
 
-- If we had data in which nobody uses drugs, we had no variation in *Drugs*, and thus none of the relationship between *Wine* and *Lifespan* could possibly be driven by *Drugs*. This is a *closed* path.
+- If we had data in which nobody uses drugs, we would have no variation in *Drugs*, and thus none of the relationship between *Wine* and *Lifespan* could possibly be driven by *Drugs*. This is a *closed* path.
 
 ]]
 
@@ -316,9 +316,9 @@ Assumption: *Wine* → *Drugs* → *Lifespan*
 
 **Why we wish to close paths**
 
-- *Closing a paths* means that we can remove all the variation due to a variable along that path: 
+- *Closing a path* means that we can remove all the variation due to a variable along that path: 
 
- **We eliminates a threat to the identification of the variation we are interested in!**
+ **We eliminate a threat to the identification of the variation we are interested in!**
 
 - If we can control for at least one variable on each of our Bad Paths without controlling for anything on one of our Good Paths, we have identified the answer to our research question.
 
@@ -338,7 +338,7 @@ Assumption: *Wine* → *Drugs* → *Lifespan*
   *Wine* → *Lifespan*
   *Wine* → *Drugs* → *Lifespan*
   
-  The rest are bad paths.
+  The rest are bad paths, i.e, control for *Health* and *Income*
 ]]
 
 ---
@@ -359,16 +359,15 @@ A path is *closed* by default when there is a collider.
 **Colliders hinder closing of paths**
 
 - We have defined paths to be *open* as long as every variable along the path is allowed to vary. Removing the variation from a variable on the path (controlling/adjusting for it) *closes* the path.
-
-- If we are looking for alternate explanations of why treatment and outcome might be related, the collider shuts down that alternate explanation
-
+- If we are looking for alternate explanations of why treatment and outcome might be related, the collider shuts down that alternate explanation.
+ - If the path were *Treatment* ← *C* → *Outcome* without a collider, then one reason why *Teatment* and *Outcome* vary together is because *C* causes them both. But with a collider, *Treatment* ←  *A* → *B* ←   C  → Outcome ,  C can affect *Outcome*, and *C* can affect *B*, but because *B* doesn’t affect *Treatment*, *C* can no longer induce a relationship between *Treatment* and *Outcome*. *B* saved us.
 - Once we control for the collider, the two variables pointing to the collider become related: the alternate explanation returns.
 
 ---
 ## Colliders
 **Dealing with colliders**
 
-- We may not control for the colliders. However, two problems are associated with that:
+- We may just not control for the colliders. However, two problems are associated with that:
  
  1. We need to figure out that a variable is a collider so we know not to control for it.
  2. One common way we control for a collider, say *Z*, is by selecting a sample: picking a sample with no variation in *Z* is one way of controlling for *Z*. 
@@ -399,7 +398,7 @@ Look for paths between any two variables to determine whether we have the right 
 .blockquote[
 ### Example: Wine-drinking and lifespan revisited
 
-Consider *Income* and *Drugs*. We list all paths between *Wine* and *Drugs*
+Consider *Income* and *Drugs*. We list all paths between *Wine* and *Income*
 
 Drugs ← Wine ← Income
 

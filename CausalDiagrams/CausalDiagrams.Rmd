@@ -327,7 +327,7 @@ ggdag::ggdag(dag_object, # the dag object we created
 
 - Each variable on the graph may take multiple values. 
 - The arrow just tells us that one variable causes another. It does not say anything about whether that causal effect is positive or negative.
-- Other events that might effect the outcomes are ignores.
+- Other events that might effect the outcomes are ignored.
 - Outcomes of outcomes are not taken into consideration.
 - All (non-trivial) variables relevant to the DGP should be included, even if we cannot measure or see them.
 
@@ -336,7 +336,7 @@ ggdag::ggdag(dag_object, # the dag object we created
 **Unmeasured Variables** (labelled U)
 
 Unmeasured Variables serve two purposes in causal diagrams:
-- they are the key parts of the data generating process
+- they are key parts of the data generating process
 - they can sometimes fill in for variables that we know must be there, but we have no idea what they are.
 
 **Latent variables** (labelled L) are an example of unmeasured variables: They explain *why* two variables that are correlated but neither of them causes the other 
