@@ -25,6 +25,11 @@ file_nms <- Rmd_files %>% str_remove(pattern = "\\.rmd|.Rmd$")
 # generate HTML and then PDF files (takes a moment)
 walk(
   .x = paste0(base, "/", Rmd_files),
+  .f = ~ renderthis::to_html(.)
+)
+
+walk(
+  .x = paste0(base, "/", Rmd_files),
   .f = ~ renderthis::to_pdf(.)
 )
 
