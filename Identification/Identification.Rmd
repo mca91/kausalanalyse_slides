@@ -114,27 +114,12 @@ Assume that we have [income data](https://observablehq.com/embed/a2046a4b2b3d459
 
 ```{r, cache=T, echo=F}
 # DGP
-set.seed(1337)
-n <- 1e4
-rd <- data.frame(
-  haircolor = sample(c("brown", "other"), prob = c(.2,.8),size = n, replace = T),
-  degree = sample(c("college", "none"), prob = c(.3,.7),size = n, replace = T)
-)
-
-rd <- rd %>% 
-  mutate(
-    haircolor = map2_chr(rd$degree, rd$haircolor, 
-        ~ if(.x == "none" & .y == "other") {
-            sample(c("brown", "other"), size = 1, prob = c(.4,.6)) 
-        } else {
-            .y
-        }),
-   income = exp(rnorm(n, 
-                      mean = 5 + c(haircolor == "brown") * .1 + 
-                        c(degree == "college") * .2, 
-                      sd = .5)),
-   lincome = log(income)
-)
+set.seed(987987)
+df <- tibble(College = runif(5000) < .3) %>%
+  mutate(Hair = case_when(
+    runif(5000) < .2+.8*.4*(!College) ~ "Brown",
+    TRUE ~ "Other Color")) %>%
+  mutate(logIncome = .1*(Hair == "Brown") + .2*College + rnorm(5000) + 5)
 ```
 
 .vcenter[
@@ -145,10 +130,17 @@ rd <- rd %>%
 What can we say about the effect of being brown-haired using *conditional distributions*?
 
 ```{r, echo=F, cache=F, out.extra = 'style="color:black; display:block; margin-right:auto; margin-left:auto; margin-top:15px"', fig.height=5, out.width='45%', dpi=190, fig.cap=paste0(fig_counter(), ': log-income distributions')}
-ggplot(rd, aes(x = lincome, lty = haircolor)) + 
-  geom_density() +
+ggplot(df %>% filter(Hair == "Brown"), aes(x = logIncome, linetype = Hair)) +
+  stat_density(geom = 'line', size = 1) +
+  stat_density(data = df %>% filter(Hair == "Other Color"), 
+               geom = 'line', size = 1) +
+  labs(x = "Log Income", y = "Density") + 
   theme_cowplot() +
-  theme(legend.position = c(.15, .7))
+  theme(text         = element_text(size = 16),
+        axis.title.x = element_text(size = 16),
+        axis.title.y = element_text(size = 16),
+        legend.position = c(.05, .8),
+        legend.background = element_rect()) 
 ```
 
 ]]
@@ -164,10 +156,10 @@ ggplot(rd, aes(x = lincome, lty = haircolor)) +
 What can we say about the effect of being brown-haired using *conditional distributions*?
 
 ```{r, echo = F}
-rd %>% 
-  group_by(haircolor) %>% 
-  summarise(`mean log income` = mean(lincome)) %>%
-  kbl(caption = paste0(tbl_counter(), ": log-income for all individuals"))
+df %>% 
+  group_by(Hair) %>% 
+  summarise(`mean log income` = mean(logIncome)) %>%
+  kbl(caption = paste0(tbl_counter(), ": log-income for all individuals"), digits = 3)
 ```
 
 <br>
@@ -205,11 +197,11 @@ Knowing about the DGP also lets us figure out what we need to do to the data to 
 Limiting things just to college students, we see that brown-haired students get a bump of about 10%.
 
 ```{r, echo = F}
-rd %>% 
-  group_by(haircolor) %>% 
-  filter(degree == "college") %>%
-  summarise(`mean log income` = mean(lincome)) %>%
-  kbl(caption = paste0(tbl_counter(), ": log-income for college students"))
+df %>% 
+  group_by(Hair) %>% 
+  filter(College == T) %>%
+  summarise(`mean log income` = mean(logIncome)) %>%
+  kbl(caption = paste0(tbl_counter(), ": log-income for college students"), digits = 3)
 ```
 
 <br>

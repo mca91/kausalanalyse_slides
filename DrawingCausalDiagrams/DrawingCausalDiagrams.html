@@ -86,10 +86,10 @@ Drawing our own causal diagram will come down to putting our idea of what the DG
 ## Causal diagrams
 **Assumptions for causal diagrams**
 
-- Assumptions about the DPG are very important for causal diagrams.
+- Assumptions about the data generating process are very important for causal diagrams.
 - The quality of our research will hinge on how accurate those assumptions are. 
-- Think about whether our assumptions are reasonable, try to base them as much on well-established knowledge and prior research as possible. 
-- If we think that there is reason to be skeptical of assumption, we should ask ourselves what evidence would support the assumption and try to provide that evidence.
+- Think about whether assumptions are reasonable, try to base them as much on well-established knowledge and prior research as possible. 
+- If we think that there is reason to be skeptical of an assumption, we should ask ourselves what evidence would support the assumption and try to *provide* that evidence.
 
 ---
 ## How to get from DGP to causal diagram?
@@ -132,8 +132,8 @@ Drawing our own causal diagram will come down to putting our idea of what the DG
 
 We can identify and reduce needless complexity with some few simple tests:
 
-- **Unimportance**: We’ve already discussed this one&amp;mdash;if the arrows coming in and out of a variable are likely to be tiny and unimportant effects, we can probably remove the variable.
-- **Redundancy**: If there are any variables on the diagram that occupy the same space - that is, they have the arrows coming in and going out of them from/to the same variables - we can probably combine them and describe them together.
+- **Unimportance**: We’ve already discussed this one &amp;mdash; if the arrows coming in and out of a variable are likely to be tiny and unimportant effects, we can probably remove the variable.
+- **Redundancy**: If there are any variables on the diagram that occupy the same space &amp;mdash; that is, they have the arrows coming in and going out of them from/to the same variables &amp;mdash; we can probably combine them and describe them together.
 - **Mediators**: If one variable is only on the graph as a way for one variable to affect another, e.g. `\(B\)` in `$$A\to B\to C$$` where nothing else connects to `\(B\)`, then we can probably remove it and just have `\(A\to C\)` directly.
 - **Irrelevance**: Some variables which are an important part of the DGP but irrelevant to the research question at hand can be neglected.
 
@@ -164,7 +164,7 @@ Potential causes for people to take online classes (*classes*):
 
 Think about which variables cause which others.
 
-- *classes* `\(\to\)` *DropOut*, *prefs* `\(\to\)` *classes*, *race* `\(\to\)` *DropOut*, *gender* `\(\to\)` *DropOut*, *gender* `\(\to\)` *DropOut*, *WebAccess* `\(\to\)` *classes*, and so on.
+- *prefs* `\(\to\)` *classes*, *race* `\(\to\)` *DropOut*, *gender* `\(\to\)` *DropOut*, *gender* `\(\to\)` *DropOut*, *WebAccess* `\(\to\)` *classes*, and so on.
 
 - If variables are related to each other without there necessarily being a clear causal arrow in either direction, we add on common (unobserved) causes we just call U1, U2, etc.
 
@@ -175,8 +175,6 @@ Think about which variables cause which others.
 
 .blockquote[
 ### Example: Online classes
-
-The causal diagram becomes messy.
 
 &lt;div class="figure"&gt;
 &lt;img src="DrawingCausalDiagrams_files/figure-html/unnamed-chunk-2-1.png" alt="2: Online classes" style="color:black; display:block; margin-right:auto; margin-left:auto; margin-top:15px" /&gt;
@@ -193,12 +191,12 @@ The causal diagram becomes messy.
 .blockquote[
 ### Example: Online classes
 
-Simplification of the Causal diagram:
+Simplification of the causal diagram:
 
 - *gender* and *race* have the exact same set of arrows coming in and going out. So we can combine those in to one, which we can call d*emographics*.
 - Instead of having *gender*, *race*, *SES*, and *age* affect *prefs* and then have *prefs* affect *classes*, we can just have those variables affect *classes* directly as mediators
 - We omit *webAccess* using the same logic
-- Other variables besides *hours* that cause *time* also cause *hours*. We omit *time* to have *hours* affect *classes* directly: we still have all those same *time* causes affecting *hours*. 
+- Other variables besides *hours* that cause *time* also cause *hours*. We omit *time* to have *hours* affect *classes* directly: we still have all those causes of *time* affecting *hours*. 
 
 ]]
 
@@ -208,7 +206,7 @@ Simplification of the Causal diagram:
 .blockquote[
 ### Example: Online classes
 
-After Simplification, the causal diagram looks like:
+After simplification, the causal diagram looks like:
 
 
 &lt;div class="figure"&gt;

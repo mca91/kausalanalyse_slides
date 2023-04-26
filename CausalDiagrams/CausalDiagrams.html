@@ -368,6 +368,11 @@ Some assumptions are:
  - Lagged crime does not cause law and order politics
  - The poverty rate is not a part of the DGP
  - Lagged police per capita does not cause current police per capita 
+ - Recent popular crime movies do not cause crime
+
+There are arrows that are &lt;u&gt;not&lt;/u&gt; there. These are just as important parts of a DAG!
+
+It's a balancing act &amp;mdash; omitting movies is okay, omitting the poverty rate likely is not!
 
 ---
 ## Causal diagrams &amp;mdash; the real world: on an omission mission
@@ -390,18 +395,18 @@ We may identify parts of the diagram that indicate how police per capita to caus
 
 The variation in our data that answers our research question thus relates to police per capita causing crime, and to police per capita causing expected crime payout, which *then* affects crime. 
 
-To get our answer, we have to dig out *that* part of the variation in crime and block out the alternative explanations.
+To get our answer, we have to dig out *that* part of the variation in crime and block out the alternative explanations (e.g. lagged crime causes both).
 
 ---
 ## Causal diagrams: Moderators
 
 - `\(X\)` → `\(Y\)` and `\(Z\)` → `\(Y\)`
-- However, this could be consistent with any of the following two DGPs:
- - `\(Y = .2X + .3Z\)`
- - `\(Y= 2X + 3XZ\)` 
+- However, this could be consistent with any of the following DGPs
+ 1. `\(Y = .2X + .3Z\)`
+ 2. `\(Y= 2X + 3XZ\)` 
  
  ...and infinite many more!
-- We say that `\(Z\)` has a *moderating influence* on the effect of `\(X\)` on `\(Y\)`
+- We say that `\(Z\)` has a *moderating influence* on the effect of `\(X\)` on `\(Y\)` in DGP 2
 
 
 ---
