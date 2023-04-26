@@ -50,9 +50,9 @@ May 25<sup>th</sup>/26<sup>th</sup> and June 1<sup>st</sup>/2<sup>nd</sup>, 10:0
 </br>
 
 
-- As announced, we are pleased to offer you the opportunity to improve your skills in statistical programming during this semester on [Datacamp](http://datacamp.com) for free!
+- We are pleased to offer you the opportunity to improve your skills in statistical programming during this semester on [Datacamp](http://datacamp.com)!
 
-- The offer is *optional*. 
+- This offer is *optional*. 
 
     During the semester we will recommend courses that we feel are beneficial for revisiting and/or expanding on the `R` related material. 
 
