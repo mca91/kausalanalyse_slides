@@ -18,8 +18,8 @@ output:
 ---
 layout: true
 <a style="position: absolute;top:5px;left:10px;color:#004c93;" target="Overview"  href="https://kaslides.netlify.app/">`r fontawesome::fa("home", height="15px")`</a>
----
 
+---
 ## Preliminaries
 </br>
 
@@ -33,21 +33,34 @@ Slides, exercises and announcements will be provided in [this moodle course](htt
 
 <span>Christoph Hanck </span><span>(<a href = "mailto: christoph.hanck@vwl.uni-due.de">christoph.hanck@vwl.uni-due.de</a>)</span>
 
-Thursdays and Fridays from from 10:00 - 14:00 in room R12 R06 A93 (until May 19<sup>th</sup>)
+Thursdays and Fridays from from 10:00 - 14:00 in room R12 R06 A48 (until May 19<sup>th</sup>)
 
 <p style="margin-bottom:40px"></p>
 
 **Tutorials**
 
-Lennard Maßmann <span>(<a href = "mailto:lennard.massmann@vwl.uni-due.de">lennard.massmann@vwl.uni-due.de</a>)</span>, Martin Arnold </span><span>(<a href = "mailto: martin.arnold@vwl.uni-due.de">martin.arnold@vwl.uni-due.de</a>)</span>
+Lennard Maßmann <span>(<a href = "mailto:lennard.massmann@uni-due.de">lennard.massmann@uni-due.de</a>)</span>, Martin Arnold </span><span>(<a href = "mailto: martin.arnold@vwl.uni-due.de">martin.arnold@vwl.uni-due.de</a>)</span>
 
-May 11<sup>th</sup>, 12<sup>th</sup>, and 19<sup>th</sup>, 14:00 - 18:00 in room R11 T04 C84
+May 11<sup>th</sup>, 12<sup>th</sup>, and 19<sup>th</sup>, 14:00 - 18:00 in room R12 R06 A48
 
-May 25<sup>th</sup>/26<sup>th</sup> and June 1<sup>st</sup>/2<sup>nd</sup>, 10:00 - 14:00 in room R11 T04 C84
+May 25<sup>th</sup>/26<sup>th</sup> and June 1<sup>st</sup>/2<sup>nd</sup>, 10:00 - 14:00 in room R12 R04 A48
+
+---
+## Datacamp
+</br>
 
 
-<!--On Moodle you will soon find a link to [Datacamp](https://www.datacamp.com) which will give you free access to all their paid content. -->
-<br>
+- As announced, we are pleased to offer you the opportunity to improve your skills in statistical programming during this semester on [Datacamp](http://datacamp.com) for free!
+
+- The offer is *optional*. 
+
+    During the semester we will recommend courses that we feel are beneficial for revisiting and/or expanding on the `R` related material. 
+
+- You are welcome to take other courses as well&mdash;you have access to the entire catalog for free!
+
+- Please register [in our group](https://www.datacamp.com/groups/shared_links/8991c6451fb16068f4a184e47577bf689af3173fedd94401f2df2da98e65846e) with your @stud.uni-due.de mail adress.
+
+
 
 ---
 background-size: 280px
@@ -68,4 +81,21 @@ background-size: 280px
      </br>
 <a style="margin-left:50px;font-size:18px;" href="https://primo.uni-due.de/permalink/49HBZ_UDE/1uttatt/alma990204629730206446">Primo</a>
 ]
+
+---
+
+## Assessment
+</br>
+
+- Deviating from the info on the [faculty page](https://www.wiwi.uni-due.de/studium/studienorganisation/pruefungen/pruefungstermine/), examinations will be *oral*.
+
+  You will present a (`R`-based) solution to a small case study assignment and answer further questions on topics covered in both lectures and tutorials in a subsequent discussion (40 minutes total).
+
+- Tentative examination dates are July 20<sup>th</sup> and September 21<sup>st</sup>. Please see the [faculty page](https://www.wiwi.uni-due.de/studium/studienorganisation/pruefungen/pruefungstermine/) for updates.
+
+- Please note that you need to register for the exams during the regular registration period via HISinOne
+
+
+
+
 
