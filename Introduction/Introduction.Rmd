@@ -43,7 +43,7 @@ Lennard Maßmann <span>(<a href = "mailto:lennard.massmann@uni-due.de">lennard.m
 
 May 11<sup>th</sup>, 12<sup>th</sup>, and 19<sup>th</sup>, 14:00 - 18:00 in room R12 R06 A48
 
-May 25<sup>th</sup>/26<sup>th</sup> and June 1<sup>st</sup>/2<sup>nd</sup>, 10:00 - 14:00 in room R12 R04 A48
+May 25<sup>th</sup>/26<sup>th</sup> and June 1<sup>st</sup>/2<sup>nd</sup>, 10:00 - 14:00 in room R12 R06 A48
 
 ---
 ## Datacamp
