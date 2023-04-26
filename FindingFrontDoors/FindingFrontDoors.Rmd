@@ -18,6 +18,11 @@ output:
       navigation:
         scroll: false #disable slide transitions by scrolling
 ---
+layout: true
+<a style="position: absolute;top:5px;left:10px;color:#004c93;" target="Overview"  href="https://kaslides.netlify.app/">`r fontawesome::fa("home", height="15px")`</a>
+
+---
+
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
 ```

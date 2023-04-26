@@ -45,6 +45,9 @@ class: center, middle, inverse, title-slide
 
 ---
 
+layout: true
+&lt;a style="position: absolute;top:5px;left:10px;color:#004c93;" target="Overview"  href="https://kaslides.netlify.app/"&gt;<svg aria-hidden="true" role="img" viewBox="0 0 576 512" style="height:15px;width:16.88px;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M575.8 255.5c0 18-15 32.1-32 32.1h-32l.7 160.2c0 2.7-.2 5.4-.5 8.1V472c0 22.1-17.9 40-40 40H456c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1H416 392c-22.1 0-40-17.9-40-40V448 384c0-17.7-14.3-32-32-32H256c-17.7 0-32 14.3-32 32v64 24c0 22.1-17.9 40-40 40H160 128.1c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2H104c-22.1 0-40-17.9-40-40V360c0-.9 0-1.9 .1-2.8V287.6H32c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z"/></svg>&lt;/a&gt;
+---
 
 
 
@@ -159,7 +162,7 @@ AET for females: AET= `\(\frac{0.02 + 0.01}{2} = 0.015\)`
 
 .vcenter[
 .blockquote[
-###Example: Drug on Cervical Cancer &amp;mdash; ctd.
+###Example: Treatment effect for each person
 Name     | Gender    | Untreated Outcome | Treated Outcome | Treatment Effect
 :--------|:---------:|:-----------------:|:---------------:|:----------------:
 Alfred   | Male      | 1                 | 2               | 1
@@ -186,7 +189,7 @@ Name   |   Treated     |  Outcome
 Alfred |  Treated      |    2     
 Alfred |  Untreated    |    1    
 Diego  |  Treated      |    4     
-Diego  |  Untreated    |   .2
+Diego  |  Untreated    |    2
 
 &lt;br&gt;
 
@@ -235,7 +238,7 @@ The **marginal treatment effect** is the treatment effect of a person who is jus
 ---
 # Weighted average treatment effect
 
-We may also include everyone but weight some people different than others to get a **weighted average treatment effect**.
+We may also include everyone but weight some people differently than others to get a **weighted average treatment effect**.
 
 &lt;/br&gt;
 
@@ -249,7 +252,7 @@ The **Weighted Average Treatment Effect** is the treatment effect obtained by *p
 
 .vcenter[
 .blockquote[
-### Example: Drug on cervical cancer &amp;mdash; ctd.
+### Example: Treatment effect for each person &amp;mdash; ctd.
 Consider the table _Isolating the Average Effect_ again:
 
 - The mean of `\(1\)`, `\(2\)`, `\(3\)`, and `\(4\)` is `\(2.5\)`
@@ -258,7 +261,7 @@ Consider the table _Isolating the Average Effect_ again:
 
 - In the context of treatment effects, we rarely get to literally pick weights. Instead, there is something about the study design that weights some people more than others.
 
-- A common way this shows up is as *variance-weighted average treatment effects*
+- A common way this shows up is as *variance-weighted average treatment effects*.
 ]]
 
 ---
@@ -281,7 +284,7 @@ A treatment effect average where each individual’s treatment effect (after clo
 
 .vcenter[
 .blockquote[
-### Example: Drug on cervical cancer &amp;mdash; ctd.
+### Example: Treatment effect for each person &amp;mdash; ctd.
  Let us consider the following table:
 
 
@@ -317,7 +320,7 @@ Diego    |  `\(100\)` untreated   |  `\(2\)`
 .vcenter[
 .blockquote[
 ### Definition: Distribution-weighted average treatment effect
-In **distribution-weighted average treatment effect** we weight, individuals with **common values of the matching variable** more heavily.
+In **distribution-weighted average treatment effect**, individuals with **common values of the matching variable** are weighted more heavily.
 ]]
 
 ---
@@ -325,10 +328,10 @@ In **distribution-weighted average treatment effect** we weight, individuals wit
 &lt;/br&gt;
 
 - Another form of weighted treatment effect that pops up often is based upon the **responsiveness** of treatment
-
+ 
 -  Heterogeneous treatment effects not only apply to the effect of treatment on an outcome but also apply to the effect of exogenous variation on treatment
 
-- There may be heterogeneous treatment effects due to (undesired) effects of treatment on assignment *on* treatment, rather than the effect of treatment on outcome
+- There may be heterogeneous treatment effects due to (undesired) effects of treatment assignment *on* treatment, rather than the effect of treatment on outcome
 
 ---
 # Intent-to-treat estimate
