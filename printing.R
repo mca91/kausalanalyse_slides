@@ -36,3 +36,10 @@ renderthis::to_html("~/git_projects/KA_slides/TreatmentEffects/TreatmentEffects.
 
 renderthis::to_pdf("~/git_projects/KA_slides/Matching/Matching.Rmd")
 renderthis::to_html("~/git_projects/KA_slides/Matching/Matching.Rmd")
+
+renderthis::to_pdf("~/git_projects/KA_slides/Simulation/Simulation.Rmd")
+renderthis::to_html("~/git_projects/KA_slides/Simulation/Simulation.Rmd")
+
+renderthis::to_pdf("~/git_projects/KA_slides/EventStudies/EventStudies.Rmd")
+renderthis::to_html("~/git_projects/KA_slides/EventStudies/EventStudies.Rmd")
+

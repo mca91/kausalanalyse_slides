@@ -132,7 +132,7 @@ ggdag::ggdag(dag_object, # the dag object we created
 
 - Event studies solve this problem by using before-treatment information to *construct* a counterfactual
 
-- Differences-in-differences (DiD) considers a second group that is *never* treated (another back door) to introduce within variation to compare too
+- Difference-in-differences (DiD) considers a second group that is *never* treated (another back door) to introduce within variation to compare too
 
 
 ---
