@@ -85,7 +85,7 @@ library(ggplot2)
 library(stfit)
 ```
 
-# Event Studies
+# Event studies
 <br>
 **An event as old as time**
 <br><br>
@@ -99,7 +99,7 @@ The event study is probably the oldest and simplest causal inference research de
 - Whatever changed from before the event to after is the treatment effect
 
 ---
-# Event Studies
+# Event studies
 .vcenter[
 .blockquote[
 ### Examples: Event studies
