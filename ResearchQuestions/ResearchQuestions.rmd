@@ -79,7 +79,7 @@ htmltools::tagList(
 )
 ```
 
-# Emperical research
+# Empirical research
 .vcenter[
 
 - **Empirical research** is any research that uses structured observations from the real world to attempt to answer questions. 
