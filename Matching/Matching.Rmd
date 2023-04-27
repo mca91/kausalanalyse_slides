@@ -20,6 +20,7 @@ output:
 ---
 layout: true
 <a style="position: absolute;top:5px;left:10px;color:#004c93;" target="Overview"  href="https://kaslides.netlify.app/">`r fontawesome::fa("home", height="15px")`</a>
+
 ---
 
 ```{r setup, include=FALSE}
@@ -195,11 +196,11 @@ Matching is usually applied to binary treated/untreated treatment variables, whe
 ### Example: The effect of job-training on the chances of getting a good job&mdash;ctd.
 
 - There is a back door through $Gender$.
-- The weights are constructed as:
- - Give a weight of 1 to *everyone* who is treated
- - Give a weight of $80/500 = 0.16$ to all untreated men
- - Give a weight of $20/500 = 0.04$ to all untreated women
+
+- The weights are constructed as: Give a weights of 1 to *everyone* who is treated, $80/500 = 0.16$ to all untreated men, and $20/500 = 0.04$ to all untreated women
+
 - The treated group will still be 80% men and the untreated group becomes $$\frac{(0.16\cdot500)+(0.04\cdot0)}{(0.16\cdot500)+(0.04\cdot500)} = 80\% \quad\Rightarrow\quad \text{backdoor closed!}$$
+
 - For the treatment effect, it is $72%$ for people in the treated group and for untreated group it is 
 $$\frac{(0.16\cdot350)+(0.04\cdot275)}{(0.16\cdot500)+(0.04\cdot500)}=67%$$
 ]]
@@ -1099,9 +1100,8 @@ We can obtain the average treatment effect (ATE), the average treatment effect o
 </br>
 **Inverse probability weighting**
 
-</br>
 
-- Remember: inverse probability weighting does not match to anything: we weight using inverse propensity scores!
+- Remember: inverse probability weighting does not match to anything &mdash; we weight using inverse propensity scores!
 
 - The specific way which is chosen to turn propensity scores into inverse probability weights determines the kind of treatment effect average obtained.
 
