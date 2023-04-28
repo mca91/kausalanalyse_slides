@@ -389,9 +389,12 @@ ggplot(sub, aes(x = BillApril, y = yjit, shape = LateApril)) +
 # 2. Matching or constructing a weighted sample?
 </br>
 
-It depends:
+**It depends**
+
 - The process of selecting matches means that control observations are picked to either be in or out of the matched control sample. If it is a good enough match, it will work, or else it will not. 
+
 - Everyone in the matched sample receives an equal weight
+
 - Both approaches have their pros and cons and none of them dominates the other.
 
 ---
@@ -656,7 +659,7 @@ The choice is often between fewer, but better, matches that produce estimates wi
 
 The following steps guides to obtain Mahalonobis distance:
 
-- In order to ensure that no variable ends up being weighted more heavily just because it’s on a bigger scale, we take $S$ (which is the covariance matrix for all matching variables) and  then divide the values of all matching variables by it. $S$ provides standardization and takes covariates into account.  
+- In order to ensure that no variable ends up being weighted more heavily just because it’s on a bigger scale, we take $S$ (which is the covariance matrix for all matching variables) and  then divide the values of all matching variables by it. $S$ provides standardization and takes covariation into account.  
 
 - Compute the distance: for a given treated observation A and a given control observation B, the Mahalanobis distance $d$ is the sum of the squares of all the differences between A and B. Mahalanobis distance between two vectors $x_1$ and $x_2$ is $$\\d(x_1,x_2)= \sqrt[]{(x_1-x_2)'S^{-1}(x_1-x_2)}.$$
 

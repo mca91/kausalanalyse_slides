@@ -390,11 +390,25 @@ dag_object <- ggdag::dagify(b ~ a,
                                      "d"="Seasons",
                                      "e"="Weather",
                                      "f"="Economic activity",
-                                     "g"="U1"))
-ggdag::ggdag(dag_object, # the dag object we created
-             text = FALSE, # this means the original names won't be shown
-             use_labels = "label") + # instead use the new names
-   theme_void()
+                                     "g"="U1")) %>%
+  tidy_dagitty() %>%
+  mutate(
+    colour = ifelse(name %in% c("b", "c"), T, F),
+    edgecolour = ifelse(name == "b" & to == "c" | name == "c" & to == "b" , "red", "black")
+  )
+
+dag_object  %>%
+  ggplot(aes(
+    x = x,
+    y = y,
+    xend = xend,
+    yend = yend
+  )) +
+  geom_dag_point(aes(colour = colour), show.legend = F) +
+  geom_dag_edges(aes(edge_colour = edgecolour)) +
+  geom_dag_label_repel(aes(label = label), force = 3, ) +
+  scale_color_manual(values = c("TRUE" = "red", "FALSE" = "black")) +
+  theme_dag()
 ```
 
 ]]

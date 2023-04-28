@@ -65,6 +65,8 @@ May 25<sup>th</sup>/26<sup>th</sup> and June 1<sup>st</sup>/2<sup>nd</sup>, 10:0
 ---
 background-size: 280px
 ## Literature (click cover for free Gitbook version)
+<p style="margin-bottom:20px;margin-top:25px">
+The slides closely follow the exposition in _The Effect_ by Nick Huntington-Klein.
 <br>
 
 .pull-left[
