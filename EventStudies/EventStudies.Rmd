@@ -614,6 +614,7 @@ ggplot(hosp, aes(x = Weeks, y = AMI)) +
 
 ---
 # Event studies with multiple affected groups
+*(How the Pros Do It)*
 <br>
 
 - All the methods that are discussed so far have assumed that an event that affects only one group
@@ -629,6 +630,7 @@ ggplot(hosp, aes(x = Weeks, y = AMI)) +
 ---
 
 # Event studies with multiple affected groups
+*(How the Pros Do It)*
 <br>
 **Pretending not having many groups**
 
@@ -641,6 +643,7 @@ ggplot(hosp, aes(x = Weeks, y = AMI)) +
 
 ---
 # Event studies with multiple affected groups
+*(How the Pros Do It)*
 <br>
 **Each group can be treated separately**
 
@@ -659,6 +662,7 @@ ggplot(hosp, aes(x = Weeks, y = AMI)) +
 
 ---
 # Event studies with multiple affected groups
+*(How the Pros Do It)*
 <br>
 **Groups can be aggregated with regression**
 
@@ -673,6 +677,7 @@ ggplot(hosp, aes(x = Weeks, y = AMI)) +
 
 ---
 # Event studies with multiple affected groups
+*(How the Pros Do It)*
 <br>
 **Groups can be aggregated with regression**
 
@@ -685,6 +690,7 @@ ggplot(hosp, aes(x = Weeks, y = AMI)) +
 
 ---
 # Event studies with multiple affected groups
+*(How the Pros Do It)*
 <br>
 **Groups can be aggregated with regression**
 
@@ -700,6 +706,7 @@ ggplot(hosp, aes(x = Weeks, y = AMI)) +
 
 ---
 # Forecasting properly with time series methods
+*(How the Pros Do It)*
 <br>
 
 - Remember that an event study requires that some actual data in the after-event period is present and that we can conduct a comparison and a prediction of what would have happened in the after-event period if the event had not occurred
@@ -710,6 +717,7 @@ ggplot(hosp, aes(x = Weeks, y = AMI)) +
 
 ---
 # Forecasting properly with time series methods
+*(How the Pros Do It)*
 <br>
 ** The ARMA Model**
 
@@ -720,6 +728,7 @@ ggplot(hosp, aes(x = Weeks, y = AMI)) +
 
 ---
 # Forecasting properly with time series methods
+*(How the Pros Do It)*
 <br>
 ** The ARMA Model**
 
@@ -738,7 +747,7 @@ $\epsilon_t$ and $\epsilon_{t-1}$ are error terms at times $t$ and $t-1$. Since 
 
 ---
 # Forecasting properly with time series methods
-
+*(How the Pros Do It)*
 .vcenter[
 .blockquote[
 ### Example: ARMA(2,1) model
@@ -747,7 +756,7 @@ An ARMA(2,1) model includes two autoregressive terms and one moving-average term
 
 ---
 # Forecasting properly with time series methods
-
+*(How the Pros Do It)*
 <br>
 
 ```{r , echo=F, cache=F, out.extra = 'style="display:block; margin-right:auto; margin-left:auto;"', fig.height=4.25, out.width='70%', dpi=190, fig.cap=paste0(fig_counter(), ': Different time series processes'), fig.align='center'}
@@ -780,6 +789,7 @@ plot_grid(p[[1]],p[[2]],p[[3]],p[[4]], ncol = 2)
 
 ---
 # The joint-test problem
+*(How the Pros Do It)*
 <br>
 
 - Results obtained from an event study are a combination of two things:
@@ -804,6 +814,7 @@ plot_grid(p[[1]],p[[2]],p[[3]],p[[4]], ncol = 2)
 
 ---
 # The joint-test problem
+*(How the Pros Do It)*
 
 .vcenter[
 .blockquote[
@@ -814,13 +825,14 @@ A placebo test is a test performed under conditions where there should be zero e
 
 ---
 # The joint-test problem
+*(How the Pros Do It)*
 <br>
 **Placebo testing**
 
 The application of placebo testing in event studies has been around a long time.
 
 <br>
-**Idea**
+**Idea** 
 
 - When there is supposed to be an effect, and tested for it, we cannot tease apart what part of the findings is the effect and what part is due to the counterfactual model being wrong.
 

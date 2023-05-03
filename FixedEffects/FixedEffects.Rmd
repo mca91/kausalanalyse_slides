@@ -587,7 +587,7 @@ If the estimates of fixed effects and random effects are found to *not* be diffe
 
 
 ---
-exclude: true
+
 # Fixed effects
 <br>
 **Clustered standard errors**
@@ -626,6 +626,7 @@ Standard errors clustered at the same level as the fixed effect are called *clus
 
 ---
 # Clustered standard errors
+*(Not Necessary)*
 <br>
 **Conditions**
 
@@ -636,6 +637,7 @@ Standard errors clustered at the same level as the fixed effect are called *clus
 
 ---
 # Fixed effects in nonlinear models
+*(Not Necessary)*
 <br>
 **Why might this be a problem?**
 
@@ -662,6 +664,7 @@ Recall that adding a set of binary control variables is a method to get rid of b
 
 ---
 #Fixed effects in nonlinear models
+*(How the Pros Do It)*
 <br>
 **What to do then?**
 
@@ -676,6 +679,7 @@ There are two common approaches to use a fixed effects design when there is  a n
 
 ---
 # Advanced random effects
+*(How the Pros Do It)*
 
 <br>
 **Hierachical modeling**
@@ -692,6 +696,7 @@ where $Z_i$ is a set of individual-level variables that determine the individual
 
 ---
 # Advanced random effects
+*(How the Pros Do It)*
 
 <br>
 **Hierarchical modeling**
@@ -707,6 +712,7 @@ where $Z_i$ is a set of individual-level variables that determine the individual
 
 ---
 # Advanced random effects
+*(How the Pros Do It)*
 <br>
 **Hierarchical modeling**
 
@@ -726,6 +732,7 @@ There are two directions to go with this multi-level intuition.
 
 ---
 #Advanced random effects
+*(How the Pros Do It)*
 <br>
 **Hierarchical modeling**
 

@@ -1107,6 +1107,7 @@ ggplot(gt, aes(x = inc_bins, y = N)) + geom_col() +
 
 ---
 # Regression kink
+*(How the Pros Do It)*
 <br>
 
 - Another thing to inspect is a change in the slope of the relationship between the outcome and the running variable. 
@@ -1136,7 +1137,7 @@ ggplot(tb, aes(x = run, y = Y , group = run > .6)) +
 
 ---
 # Regression kink
-
+*(How the Pros Do It)*
 .vcenter[
 .blockquote[
 ### Example: Effect of unemployment benifits on job findings (Card et al. 2015.fn[4])
@@ -1155,7 +1156,7 @@ ggplot(tb, aes(x = run, y = Y , group = run > .6)) +
 
 ---
 # Regression kink
-
+*(How the Pros Do It)*
 .vcenter[
 .blockquote[
 ###Example: Treatment-has-a-kink regression kink design (Bana et al. 2020.fn[5])
@@ -1172,6 +1173,7 @@ ggplot(tb, aes(x = run, y = Y , group = run > .6)) +
 
 ---
 # Regression kink
+*(How the Pros Do It)*
 .vcenter[
 .blockquote[
 ### Example: Treatment-has-a-kink
@@ -1678,7 +1680,7 @@ ggplot(tb, aes(x = x, y = y)) + geom_point() +
 
 ---
 # Regression kink
-
+*(How the Pros Do It)*
 .vcenter[
 .blockquote[
 ### Example: Treatment-has-a-kink
@@ -1694,6 +1696,7 @@ ggplot(tb, aes(x = x, y = y)) + geom_point() +
 
 ---
 # Regression kink
+*(How the Pros Do It)*
 .vcenter[
 .blockquote[
 ### Example: Treatment-has-a-kink regression kink design
@@ -2888,6 +2891,7 @@ tb1 <- read.csv(text = 'x,y
 
 ---
 # When running variables misbehave
+*(How the Pros Do It)*
 <br>
 **Granularity and heaping**
 
@@ -2900,6 +2904,7 @@ Two potential issues are
 
 ---
 # When running variables misbehave
+*(How the Pros Do It)*
 <br>
 **Granularity**
 
@@ -2915,6 +2920,7 @@ Two potential issues are
 
 ---
 # When running variables misbehave
+*(How the Pros Do It)*
 <br>
 **Heaping**
 
@@ -2932,6 +2938,7 @@ Two potential issues are
   
 ---
 # Dealing with bandwidths
+*(How the Pros Do It)*
 <br>
 
 How far away from the cutoff can we get and still have comparable observations on either side of it?
@@ -2946,6 +2953,7 @@ The answer to this question is a tradeoff:
 
 ---
 # Dealing with bandwidths
+*(How the Pros Do It)*
 <br>
 **How to proceed?**
 
@@ -2964,6 +2972,7 @@ The answer to this question is a tradeoff:
 
 ---
 # Dealing with bandwidths
+*(How the Pros Do It)*
 <br>
 **Data-based bandwidth selection**
 

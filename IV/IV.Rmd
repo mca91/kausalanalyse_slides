@@ -504,7 +504,7 @@ Using assumptions and theory, construct statistical moments (means, variances, c
 .blockquote[
 ### Example: The sample mean is a GMM estimator of the expected value
 
-- To use GMM to estimate the expected value of a variable $Y$, it can be said that the difference between the estimator $\mu$ and the population expected value $E(Y)$ should be zero 
+- To use GMM to estimate the expected value of a variable $Y$, it can be said that the difference between the estimator of  $\mu$ and the population expected value $E(Y)$ should be zero 
 
   &rarr; $\mu - E(Y) = 0$ is a moment condition for the estimation.
 
@@ -655,8 +655,6 @@ An F-test on *all* instruments in the first stage regression is the most common 
 2. Do a joint F-test on the instruments
 3. Decide if the instruments are relevant
 
-**Q: Why is sequential testing of instrument validity using t-tests *invalid?* **
-
 ---
 # Checking the IV assumptions
 <br>
@@ -731,7 +729,7 @@ In the context of IV estimation, Durbin-Wu-Hausman is used in two ways:
  
  2. Durbin-Wu-Hausman can be used to compare two different *IV models* in an **overidentification test**
  
-Either way, you need an estimator whose validity you're unsure about.
+Either way, you need an estimator which validity you're certain about.
 
 Also recall what a non-rejection tells. 
 
@@ -739,6 +737,7 @@ Also recall LATE effects.
 
 ---
 # Fixing instrument weakness
+*(How the Pros Do It)*
 <br>
 **There are several ways to cope with (possibly) weak instruments**
 
@@ -751,6 +750,7 @@ Also recall LATE effects.
 
 ---
 # Fixing instrument weakness
+*(How the Pros Do It)*
 <br>
 **Limited-information maximum likelihood (LIML)**
 
@@ -762,6 +762,7 @@ Also recall LATE effects.
 
 ---
 # Fixing instrument weakness
+*(How the Pros Do It)*
 <br>
 **Limited-information maximum likelihood (LIML)**
 
@@ -773,6 +774,7 @@ Also recall LATE effects.
  
 ---
 # Nonlinear IV estimation
+*(How the Pros Do It)*
 <br>
 **Binary treatments**
 <br>
@@ -789,6 +791,7 @@ There is a handy and easy-to-implement method for incorporating a binary treatme
 
 ---
 # Nonlinear IV estimation
+*(How the Pros Do It)*
 <br>
 **What if the *outcome* is binary?**
 
@@ -801,6 +804,7 @@ A common fix is the **control function approach**.
 
 ---
 # Validity violation
+*(How the Pros Do It)*
 </br>
 
 There are two popular approaches which can be taken if the validity of the assumptions does *not perfectly* hold:
@@ -813,7 +817,7 @@ There are two popular approaches which can be taken if the validity of the assum
 
 ---
 # Validity violation
-
+*(How the Pros Do It)*
 <br>
 
 **Partial identification**
@@ -827,6 +831,7 @@ There are two popular approaches which can be taken if the validity of the assum
 
 ---
 # Lasso in IV estimation
+*(How the Pros Do It)* 
 <br>
 
 - Lasso is a method that modifies OLS to tell it to minimize a sum of the absolute values of the coefficients, in addition to the sum of squared residuals, in effect encouraging it to toss variables out of the model entirely
