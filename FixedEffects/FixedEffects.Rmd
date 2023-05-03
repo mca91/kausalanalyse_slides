@@ -18,10 +18,6 @@ output:
       navigation:
         scroll: false #disable slide transitions by scrolling
 ---
-layout: true
-<a style="position: absolute;top:5px;left:10px;color:#004c93;" target="Overview"  href="https://kaslides.netlify.app/">`r fontawesome::fa("home", height="15px")`</a>
-
----
 
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
@@ -97,10 +93,10 @@ library(stfit)
 <br>
 **Motivation**
 <br><br>
-Fixed effects are often remedy for two problems:
+Fixed effects are often a remedy for two problems:
 <br>
 - Difficulty in figuring out the correct causal diagram that tells what to control for.
-- Difficulty in measuring all the variables that needs to be controlled for.
+- Difficulty in measuring all the variables that need to be controlled for.
 
 <br>
 
@@ -185,7 +181,7 @@ ggdag::ggdag(dag_object, # the dag object we created
 .blockquote[
 ### Example: Effect of a visit from the German chancellor on a country’s level of trade with Germany
 
-The effect can be identified *without* controling for each of the variables&mdash; Controlling only for country would be enough.
+The effect can be identified *without* controling for each of the variables&mdash; controlling only for country would be enough.
 
 ```{r, echo=F, cache=F, out.extra = 'style="display:block; margin-right:auto; margin-left:auto; margin-top:30px"', fig.height=3, out.width='55%', dpi=190, fig.cap=paste0(fig_counter(), ': Simplified causes of trade with Germany'), fig.align='center'}
 coord_dag <- list(
@@ -333,7 +329,7 @@ ggplot(tb, aes(x = IntensityOfReminders,
   theme(text         = element_text(size = 13),
         axis.title.x = element_text(size = 13),
         axis.ticks.y = element_blank(),
-        legend.position = c(.7, .8),
+        legend.position = c(.8, .8),
         legend.background = element_rect(color = 'black'))
 ```
 
@@ -362,7 +358,7 @@ ggplot(tb, aes(x = IntensityOfReminders,
   theme(text         = element_text(size = 13),
         axis.title.x = element_text(size = 13),
         axis.ticks.y = element_blank(),
-        legend.position = c(.7, .8),
+        legend.position = c(.85, .8),
         legend.background = element_rect(color = 'black'))
 ```
 
@@ -386,7 +382,7 @@ ggplot(tb, aes(x = IntensityOfReminders,
 .blockquote[
 ### Example: Effects of healthy-eating reminders on actual healthy eating&mdash;ctd.
 
-With the different individuals moved on top of each other, a more clear picture emerging can be seen, with a positive relationship between the intensity of reminders and the scores. 
+With the different individuals moved on top of each other, a more clear picture emerges, with a positive relationship between the intensity of reminders and the scores. 
 ```{r, echo=F, cache=F, out.extra = 'style="display:block; margin-right:auto; margin-left:auto;"', fig.height=4, out.width='60%', dpi=190, fig.cap=paste0(fig_counter(), ': Healthy eating reminders and healthy eating for four individuals with individual means'), fig.align='center'}
 
 
@@ -419,7 +415,7 @@ Fixed effects regressions generally start with a regression equation
 $$Y_{it}=\beta_i+\beta_1X_{it} +\epsilon_{it}$$
  - $X$ has subscript $it$ indicating that the data varies both between individuals $i$ over time $t$
  
- - the intercept term $\beta$ has subscript $i$, indexing individuals 
+ - The intercept term $\beta$ has subscript $i$, indexing individuals 
 
 **Why do individual-specific intercepts yield fixed effect estimates where only within variation is used?**
 
@@ -454,7 +450,7 @@ Run the regression $$Y_{it} = \beta_0 + \beta_{0,1} + \dots +\beta_{0,N-1} + \be
 
 - If the model includes an intercept, then including every individual will make the model impossible to estimate, so leave one out, or leave the intercept out (we leave out $\beta_{0,N}$ here)!
 
-- That individual without an own intercept is still in the analysis, but it does not get it's own coefficient: estimates are interpreted *relative* to that individual.
+- That individual without an own intercept is still in the analysis, but it does not get its own coefficient: estimates are interpreted *relative* to that individual.
   
   
 ---
@@ -466,9 +462,9 @@ Run the regression $$Y_{it} = \beta_0 + \beta_{0,1} + \dots +\beta_{0,N-1} + \be
 
 - The interpretation of the slope coefficient in a fixed effects model is the same as when controlled for any other variable
 
-- The value of $R^2$ gives an insight to the interpretation. $R^2$ is a measure based on how much variation there is in the residuals relative to the dependent variable
+- The value of $R^2$ gives an insight to the interpretation. $R^2$ is a measure based on how much variation there is in the residuals relative to the dependent variable. The value of $R^2$ lies between 0 and 1 with 0 means that the fitted regressions explains the data well and 0 means it does not
 
-- Sometimes researchers will use the fixed effects estimates to make claims about the individuals being evaluated 
+- Sometimes researchers will use the fixed individual effects estimates to make claims about the individuals being evaluated 
   
 
 
@@ -508,9 +504,9 @@ This gives the variation that is left as being variation relative to what is exp
 .blockquote[
 ### Example: The effect of experience of in-job training on pay at that job
 
-- Data is on how much each person earns per year $Y_{it}$ and on how many hours of training they received that year $X_{it}$. Earnings in 2009 were $10,000 below what they normally are (due to recession)
+- Data is on how much each person earns per year $Y_{it}$ and on how many hours of training they received that year $X_{it}$. Overall earnings in 2009 were $10,000 below what they normally are (due to recession)
 
-- Anthony, earns $120,000 per year, a lot more money than the average person ($40,000). In 2009 Anthony only earned $116,000 which is above average, but that can be explained by the fact that Anthony earns a lot.
+- Anthony earns $120,000 per year, a lot more money than the average person ($40,000). In 2009 Anthony only earned $116,000 which is above average, but that can be explained by the fact that Anthony earns a lot.
 
   - Given that the individual is Anthony, it is $4,000 below average. 
   - But given that the year is 2009, most people are earning $10,000 less, but Anthony is only earning $4,000 less. 
@@ -540,7 +536,7 @@ designed to handle multiple sets of fixed effects.
 **What it is**
 - Instead of letting the $\beta_is$ be anything, random effects puts some structure on them 
 
-- Random effects assumes that the $\beta_is$ come from a known random distribution, for example assuming that the $\beta_is$ follow a normal distribution
+- Random effects assumes that the $\beta_i$ come from a known distribution, for example assuming that the $\beta_is$ follow a normal distribution
 
 - The idea is to use a weighted average of within and between variation (instead of just the within variation)
 
@@ -557,7 +553,7 @@ designed to handle multiple sets of fixed effects.
 ---
 # Fixed effects vs. random effects
 <br>
-**Comparision**
+**Comparison**
 <br><br>
 
 - Fixed effects are used to *solve a research design problem*.
@@ -569,7 +565,7 @@ variables*, including our treatment variable
 
 - For this reason, fixed effects is almost always preferred to random effects
 
-- One common way around this problem is to use the **Durbin-Wu-Hausman test*
+- One common way around this problem is to use the **Durbin-Wu-Hausman test**
 
 ---
 # Fixed effects vs. random effects
@@ -591,6 +587,7 @@ If the estimates of fixed effects and random effects are found to *not* be diffe
 
 
 ---
+exclude: true
 # Fixed effects
 <br>
 **Clustered standard errors**
@@ -634,8 +631,8 @@ Standard errors clustered at the same level as the fixed effect are called *clus
 
 <br>
 
-- There needs to be **treatment effect heterogeneity.** That is, the treatment effect must be *different for different individuals*.
-- Either the fixed effect groups/individuals in the data need to be a non-random sample of the population, or, within fixed effect groups/individuals, the treatment variable is assigned in a clustered way.
+- Clustered Standard Errors are necessary when there is **treatment effect heterogeneity.** That is, the treatment effect must be *different for different individuals*.
+- Also, either the fixed effect groups/individuals in the data need to be a non-random sample of the population, or, within fixed effect groups/individuals, the treatment variable is assigned in a clustered way.
 
 ---
 # Fixed effects in nonlinear models
@@ -646,11 +643,10 @@ Standard errors clustered at the same level as the fixed effect are called *clus
 
 Recall that adding a set of binary control variables is a method to get rid of between variation.
 
-- This method will not work when there are lots of groups, as there might be in many **fixed effects for individual** settings
 
 - That is fine in a linear model, but in a nonlinear model we might run into the **incidental parameters problem**, i.e. we can not handle well estimating that many groups
   
-  &rarr; The estimates start getting noisy!
+  &rarr; The estimates start getting bad.
 
 ---
 # Fixed effects in nonlinear models

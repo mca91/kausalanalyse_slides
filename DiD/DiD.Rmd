@@ -18,10 +18,6 @@ output:
       navigation:
         scroll: false #disable slide transitions by scrolling
 ---
-layout: true
-<a style="position: absolute;top:5px;left:10px;color:#004c93;" target="Overview"  href="https://kaslides.netlify.app/">`r fontawesome::fa("home", height="15px")`</a>
-
----
 
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE, warn = F)
@@ -132,7 +128,7 @@ ggdag::ggdag(dag_object, # the dag object we created
 
 - Event studies solve this problem by using before-treatment information to *construct* a counterfactual
 
-- Difference-in-differences (DiD) considers a second group that is *never* treated (another back door) to introduce within variation to compare too
+- Differences-in-differences (DiD) considers a second group that is *never* treated (another back door) to introduce within variation to compare to that group which may be different!
 
 
 ---
@@ -232,12 +228,13 @@ ggdag::ggdag(dag_object, # the dag object we created
 
 .vcenter[
 .blockquote[
-###Example: Effect of lambeth on cholera
+###Example: Effect of Lambeth on cholera
 | <div style="width:350px">Region supplier</div> | <div style="width:200px">Death rates (1849)</div> | <div style="width:200px">Death rates (1854)</div>  |
 | :------------- |:-------------:|:-----:|
 | Non-Lambeth only (dirty)	     | 134.9	| 146.6 |
 | Lambeth + others (mix dirty and clean)     | 130.1      |   84.9 |
 
+i.e, a treatment effect of $(85-130)-(147-135) \approx -57$
 <br>
 .font80[(Death rates are deaths per 10,000 of the 1851 population.)]
 ]]
@@ -265,7 +262,7 @@ ggdag::ggdag(dag_object, # the dag object we created
 
 .vcenter[
 .blockquote[
-### Example: Effect of active choice on organ doner
+### Example: Effect of active choice on organ donor
 
 - Kessler and Roth (2014).fn[2] compare California against the twenty-five states that either have opt-in or a verbally given question with no fixed response (a difference). 
 
@@ -277,7 +274,7 @@ ggdag::ggdag(dag_object, # the dag object we created
 # Mechanics of DiD
 
 .blockquote[
-### Example: Effect of active choice on organ doner
+### Example: Effect of active choice on organ donor
 <br>
 ```{r, echo=F, cache=T, out.extra = 'style="display:block; margin-right:auto; margin-left:auto;"', fig.height=4, out.width='65%', dpi=190, fig.cap=paste0(fig_counter(), ': Organ donation rates in California and other states'), fig.align='center', warning=F}
 d <- read_tsv('kessler_roth.tsv') %>%
@@ -448,7 +445,7 @@ $$\text{EffectOfTreatment} +\text{OtherTreatedGroupChanges}$$
 ---
 # Untreated groups and parallel trends
 <br><br>
-**How to pick an untreated comparison group is a parallel trend is required?**
+**How to pick an untreated comparison group if a parallel trend is required?**
 
 <br>
 
@@ -458,7 +455,7 @@ There are a few good signs that can be looked for:
 
 - The treated group and untreated groups are generally similar
 
-- The untreated group would never suddenly change around the time of treatment
+- The untreated group is unlikely to suddenly change around the time of treatment
 
 - The treated group and untreated groups had similar trajectories for the dependent variable before treatment
 
@@ -468,7 +465,7 @@ There are a few good signs that can be looked for:
 # Untreated groups and parallel trends
 <br>
 .blockquote[
-### Example: Plausible vs. implauslible prior trends
+### Example: Plausible vs. implausible prior trends
 ```{r, echo=F, cache=T, out.extra = 'style="display:block; margin-right:auto; margin-left:auto;"', fig.height=4, fig.width=9, out.width='80%', dpi=120, fig.cap=paste0(fig_counter(), ': A Graph Where the Prior Trends Test Looks Good for DID, and a Graph Where It Does not '), fig.align='center'}
 set.seed(1000)
 set.seed(1000)
@@ -538,13 +535,13 @@ suppressWarnings({
 <br>
 In a placebo test, a situation is taken where a treatment was applied.
 
-1. Ignoring all the data from the periods where treatment was actually applied
+1. Ignore all the data from the periods where treatment was actually applied
 
-2. Using pre-treatment data, pick a few different periods and pretend that a treatment was applied at that time. 
+2. Use pre-treatment data, pick a few different periods and pretend that a treatment was applied at that time. 
 
 3. Obtain DiD estimates at the pretended treatment dates. 
 
-If a DID “effect” is found consistently at those pretended treatment dates, that gives a clue that something may be awry about the parallel trends assumption.
+If a DID “effect” is found consistently at those pretended treatment dates, that indicates that something may be awry about the parallel trends assumption.
 
 ---
 # How to perform DiD?
@@ -587,9 +584,9 @@ $$Y = \beta_0 + \beta_1 \text{TreatedGroup} + \beta_2 \text{AfterTreatment} + \b
 <br>
 - This third term is equivalent to $\text{Treated}$ in the last equation, and $\widehat{\beta}_3$ is the DiD estimate 
 
-- By standard interaction-term interpretation, $\beta_3$ tells us how much bigger the $\text{TreatedGroup}$ effect is in the $\text{AfterTreatmen}$ than in the before-period
+- By standard interaction-term interpretation, $\beta_3$ tells us how much bigger the $\text{TreatedGroup}$ effect is in the $\text{AfterTreatment}$ than in the before-period
 
-- Whichever the equation is written, this approach is called the *two-way fixed effects DiD estimator* since it has two sets of fixed effects, one for group and one for time period 
+- Whichever way the equation is written, this approach is called the *two-way fixed effects DiD estimator* since it has two sets of fixed effects, one for group and one for time period 
 
 - This model is generally estimated using standard errors that are clustered at the group level
 
@@ -636,12 +633,12 @@ The simplest form uses the regression model $$Y =\alpha_g+\beta_1Time+\beta_2Tim
 
 - A common way of doing this is to first generate a centered time variable, which is just the original time variable minus the treatment period:
 
-  Time in the last period before treatment is $t=0$ the first period with treatment implemented is $t=1$ the second-to-last period before treatment is $t=-1$ and so on.
+  Time in the last period before treatment is $t=0$, the first period with treatment implemented is $t=1$ the second-to-last period before treatment is $t=-1$ and so on.
 
 - Estimate
-$$Y_k = \alpha_g + \alpha_t + \beta_{-T_1}\text{Treated}+\beta_{-(T_1-1)} \text{Treated} + \dots + \beta_1 \text{Treated} + \dots + \beta_{T_2} \text{Treated} + \epsilon,$$
+$$Y_k = \alpha_g + \alpha_t + \beta_{-T_1}\text{Treated}+\beta_{-(T_1-1)} \text{Treated} + \dots + \beta_{-1} \text{Treated} + \dots + \beta_{T_2} \text{Treated} + \epsilon,$$
  
-  where the $\text{Treated}$ regressors are interactions of $\text{Treatment}$ and each of the time periods (for $T_1$ periods before the treatment period and $T_2$ periods afterwards).
+  where the $\text{Treated}$ regressors are interactions of $\text{Treatment}$ given and each of the time periods (for $T_1$ periods before the treatment period and $T_2$ periods afterwards).
 
  
 
@@ -651,7 +648,7 @@ $$Y_k = \alpha_g + \alpha_t + \beta_{-T_1}\text{Treated}+\beta_{-(T_1-1)} \text{
 
 **Advantages**
 
-- The before-treatment coefficients $\beta_{T_1},\beta_{-(T_1-1)},...,\beta_{-1}$ should be close to zero
+- The before-treatment coefficients $\beta_{T_1},\beta_{-(T_1-1)},...,\beta_{-1}$ should be (close to) zero
 
 - The after-treatment coefficients  $\beta_1,...,\beta_{T_2}$ show the DiD estimated effect in the relevant period: 
 
@@ -682,7 +679,7 @@ $$Y_k = \alpha_g + \alpha_t + \beta_{-T_1}\text{Treated}+\beta_{-(T_1-1)} \text{
 # Long-term effects
 
 .blockquote[
-### Example: Effect of active choice on organ doner &mdash; ctd.
+### Example: Effect of active choice on organ donor &mdash; ctd.
 ```{r, echo=F, cache=T, out.extra = 'style="display:block; margin-right:auto; margin-left:auto;"', fig.height=4.5, fig.width=8, out.width='70%', dpi=190, fig.cap=paste0(fig_counter(), ': Dynamic effect of active-choice phrasing on organ donation rates'), fig.align='center'}
 od <- causaldata::organ_donations
 
@@ -714,10 +711,10 @@ coefplot(clfe, grid.par = list(vert = F))
 
 .vcenter[
 .blockquote[
-###Example: High Speed Internet on new businesses
+###Example: High Speed internet on new businesses
 - We are interested in the impact of having access to high-speed Internet on the formation of new businesses
 
-- Prior knowledge: King County got broadband in 2001, Pierce County got it in 2002, and Snohomish County got it in 2003 
+- King County got broadband in 2001, Pierce County got it in 2002, and Snohomish County got it in 2003 
 
 - They each have a before and after period, but those treatment times are not all the same
 ]]
@@ -954,7 +951,7 @@ $$\beta_1^{Treated,\, After} - \beta_1^{Treated,\, Before}$$
 .blockquote[
 ### Example: Training program on educational income disparities &mdash; ctd.
 
-- For the treated group, $\beta_3$ gives us
+- For the untreated group, $\beta_3$ gives us
 $$\beta_1^{Untreated,After}-\beta_1^{Unreated,Before}$$
 
 - Everything can be combined into one regression with a triple-interaction term:

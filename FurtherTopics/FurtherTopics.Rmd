@@ -18,10 +18,6 @@ output:
       navigation:
         scroll: false #disable slide transitions by scrolling
 ---
-layout: true
-<a style="position: absolute;top:5px;left:10px;color:#004c93;" target="Overview"  href="https://kaslides.netlify.app/">`r fontawesome::fa("home", height="15px")`</a>
-
----
 class: center, middle, inverse
 # Synthetic control
 
@@ -119,7 +115,7 @@ Synthetic control is a variant of **DiD with matching**. The same basic setup as
 **Synthetic Control vs. DiD**
 
 <br>
-- Unlike with DiD, the pre-treatment difference adjustments are not done with regression, but rather using matching. 
+- The pre-treatment difference adjustments are not done with regression, but rather using matching. 
 
 - Unlike DiD with matching, the purpose of matching is to eliminate these prior differences, not to account for the propensity of treatment.
 
@@ -321,5 +317,5 @@ DiD is
 
 - Matching on the outcome variable seems problematic: using the outcome itself to close back doors is cheating.
 
-- Synthetic control only matches on pre-treatment outcomes, not the post-treatment outcomes where we actually estimate the effect
+- That's said, synthetic control only matches on pre-treatment outcomes, not the post-treatment outcomes where we actually estimate the effect
 

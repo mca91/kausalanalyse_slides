@@ -18,10 +18,6 @@ output:
       navigation:
         scroll: false #disable slide transitions by scrolling
 ---
-layout: true
-<a style="position: absolute;top:5px;left:10px;color:#004c93;" target="Overview"  href="https://kaslides.netlify.app/">`r fontawesome::fa("home", height="15px")`</a>
-
----
 
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
@@ -85,7 +81,7 @@ library(ggplot2)
 library(stfit)
 ```
 
-# Event studies
+# Event Studies
 <br>
 **An event as old as time**
 <br><br>
@@ -99,14 +95,14 @@ The event study is probably the oldest and simplest causal inference research de
 - Whatever changed from before the event to after is the treatment effect
 
 ---
-# Event studies
+# Event Studies
 .vcenter[
 .blockquote[
 ### Examples: Event studies
 
-- Someone who has a late-night beer, immediately falls asleep, and concludes the next day that beer makes them sleepy is an event study
+- Someone has a late-night beer and immediately falls asleep, and concludes the next day that beer makes them sleepy: an event study
 
-- When someone puts up a “no solicitors” sign on the door and then notices fewer solicitors afterwards, and conclude the sign worked is again an event study
+- When someone puts up a “no solicitors” sign on the door and then notices fewer solicitors afterwards, and concludes the sign worked is again an event study
 
 - When a dog is hungry, then finds its master and whines, and becomes fed and full, then concludes that whining leads to getting fed is also an event study 
 ]]
@@ -161,9 +157,9 @@ $$Treatment \leftarrow AfterEvent \leftarrow Time \rightarrow Outcome $$
 
 - For an event study to work, the backdoor needs to be closed
 
-- $AfterEvent$ cannot be controlled for and that would in effect control for $Treatment$
+- $AfterEvent$ cannot be controlled for as that would in effect control for $Treatment$
 
-- Because $Time$ only effects $Treatment$ through $AfterEvent$ there is the possibility that we can close the back door by controlling for some elements of $Time$ while still leaving variation in $AfterLife$
+- Because $Time$ only affects $Treatment$ through $AfterEvent$ there is the possibility that we can close the back door by controlling for some elements of $Time$ while still leaving variation in $AfterEvent$
 
 ---
 # Event studies
@@ -177,7 +173,7 @@ $$Treatment \leftarrow AfterEvent \leftarrow Time \rightarrow Outcome $$
 
 - *Treatment needs to be the only thing that is changing* 
 
-- If the outcome would have changed some reason  which cannot be accounted for, the event study will go poorly
+- If the outcome would have changed for some reason which cannot be accounted for, the event study will go poorly
 
 ---
 # Prediction and deviation
@@ -185,7 +181,7 @@ $$Treatment \leftarrow AfterEvent \leftarrow Time \rightarrow Outcome $$
 **Treatment effect**
 <br><br>
 
-There is a way of *predicting the counterfactual* :
+we need to *predict the counterfactual* :
 
 - Often we have plenty of information from the before-event times. 
 
@@ -302,9 +298,9 @@ Use patterns in the outcome data up to the event to predict what the outcome wou
 
 **Approach 3: Predict after-event data using *after*-event data**
 
-- Use before-event data to establish some pattern in the data. Also look for relationships between the outcome and some other variables
+- Like in approach 2 use before-event data to establish some pattern in the data. Additionally look for relationships between the outcome and some other variables. E.g, stock price and market index.
 
-- Extrapolate to the after-event period to get the predictions. Prediction can be made by also seeing how those other variables change.
+- Extrapolate to the after-event period to get the predictions. Prediction can incorporate how those other variables change.
 
 ---
 # Prediction and deviation
@@ -393,7 +389,7 @@ $$AR=R-\hat{R}$$
 
 - Estimate one regression of the outcome on the time period before the event. Then estimate another time series of the outcome on the time period after the event. See how the two are different.
 
-- This approach can be implemented with the simple use of an interaction term (**segmented regression**), $$Outcome = \beta_0 + \beta_{1t} + \beta_2 After + \beta_{3t} \cdot After + \epsilon,$$
+- This approach can be implemented with the simple use of an interaction term (**segmented regression**), $$Outcome = \beta_0 + \beta_{1}t + \beta_2 After + \beta_{3}t \cdot After + \epsilon,$$
 where $t$ is the time period and $After$ is a binary variable equal to 1 in any time after the event.
 
 ---
@@ -405,7 +401,7 @@ A more-precise estimate of the time trend than going day by day (or second by se
 
 **Disadvantage**
 
-- The exact shape that the effect takes will get limited to be seen. We need a decent (polynomial) representation of the time series on either side of the event. Results may be bad if the time trend is misspecified!
+- The exact shape that the effect takes may not be captured. We need a decent (polynomial) representation of the time series on either side of the event. Results may be bad if the time trend is misspecified!
 
 - For autocorrelated data there is a high chance of obtaining a statistically significant effect of the event, even if it truly had no effect!
 
@@ -600,7 +596,7 @@ ggplot(hosp, aes(x = Weeks, y = AMI)) +
 
 - The jump is represented by the change in prediction at the event time, $Week=27$  
 
-- Comparing the lines on the left and the right at that time, a prediction of $\beta_0$ on the left and $\beta_0+\beta_1$ on the right is obtained.
+- Comparing the lines on the left and the right at that time, a prediction of $\beta_0$ on the left and $\beta_0+\beta_2$ on the right is obtained.
 ]]
 
 ---
@@ -610,7 +606,8 @@ ggplot(hosp, aes(x = Weeks, y = AMI)) +
 .blockquote[
 ### Example: Effect of ambulance quality control policy on heart attack care
 
-- The difference is $$(\beta_2+\beta_0)-\beta_0=\beta_2\cdot \beta_2$$ is the jump in the prediction at the moment the treatment goes into effect
+- The difference is $$(\beta_2+\beta_0)-\beta_0=\beta_2$$ 
+- $\beta_2$ is the jump in the prediction at the moment the treatment goes into effect
 
 - This is the **event study estimate** of the treatment effect
 ]]
@@ -626,8 +623,8 @@ ggplot(hosp, aes(x = Weeks, y = AMI)) +
 - To run an event study in a case like that, the followings can be done:
 
  - Pretending not having many groups
- - Each groups can be treated separately
- - Groups can be aggregated with Regression
+ - Each group can be treated separately
+ - Groups can be aggregated with regression
  
 ---
 
@@ -668,7 +665,7 @@ ggplot(hosp, aes(x = Weeks, y = AMI)) +
 <br>
 - The regression approach to event study estimation allows to have more than one observation per time period 
 
-- The regression model is nearly the same as when there is just one time series: $$Outcome=\beta_i+\beta_{1t} + \beta_2 After + \beta_{3t}\cdot After + \epsilon$$
+- The regression model is nearly the same as when there is just one time series: $$Outcome=\beta_i+\beta_{1}t + \beta_2 After + \beta_{3}t \cdot After + \epsilon$$
 
 - The only difference is the switch from $\beta_0$ to a group to a group fixed effect of $\beta_i$
 
@@ -737,7 +734,7 @@ $t$ and $t-1$ indicate that the predictor for $Y$ in a given period is $Y$ from 
 **MA(1) model**
 
 $$Y_t = \beta_0+(\epsilon_t + \theta \epsilon_{t-1})$$
-$\epsilon_t$ and $\epsilon_{t-1}$ are error terms at times $t$ and $t-1$. Since $\epsilon_t$ and $\epsilon_{t-1}$ cannot be observed, $\theta$ cannot be estimated by regular regression (there are alternate methods).
+$\epsilon_t$ and $\epsilon_{t-1}$ are error terms at times $t$ and $t-1$. Since $\epsilon_t$ and $\epsilon_{t-1}$ cannot be observed, $\theta$ cannot be estimated by regular regression (there are alternative methods).
 
 ---
 # Forecasting properly with time series methods
@@ -802,7 +799,7 @@ plot_grid(p[[1]],p[[2]],p[[3]],p[[4]], ncol = 2)
  
 - These two parts *cannot* be separated!
 
-  &rarr; **The counterfactual-prediction model is made as good as possible**
+  &rarr; **The counterfactual-prediction model is made as well as possible**
  
 
 ---
@@ -820,13 +817,13 @@ A placebo test is a test performed under conditions where there should be zero e
 <br>
 **Placebo testing**
 
-The application of placebo testing in event studies has been around a long time and the approach seems to have been largely codified by the time of Brown and Warner (1985).
+The application of placebo testing in event studies has been around a long time.
 
 <br>
 **Idea**
 
 - When there is supposed to be an effect, and tested for it, we cannot tease apart what part of the findings is the effect and what part is due to the counterfactual model being wrong.
 
-- If it is known from before that there were no effect, then anything estimated could only be the counterfactual model being wrong
+- If it is known from before that there was no effect, then anything estimated could only be the counterfactual model being wrong
 
   &rarr; If an effect were obtained under those conditions, then the model was fishy and we would have to try something else

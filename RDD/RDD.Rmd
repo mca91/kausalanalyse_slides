@@ -18,10 +18,6 @@ output:
       navigation:
         scroll: false #disable slide transitions by scrolling
 ---
-layout: true
-<a style="position: absolute;top:5px;left:10px;color:#004c93;" target="Overview"  href="https://kaslides.netlify.app/">`r fontawesome::fa("home", height="15px")`</a>
-
----
 
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
@@ -210,9 +206,9 @@ ggdag::ggdag(dag_object, # the dag object we created
  
  - ... a direct effect on $\text{Outcome}$.
 
-- Controlling for $\text{Running variable}$ closes the back door $\text{Z}\rightarrow\text{Treatment}$
+- Controlling for $\text{Running variable}$ would close the back door $\text{Z}\rightarrow\text{Treatment}$
 
-- We are interested in the effect of $\text{Treatment}$ having a back door through $\text{Running Variable}$
+- We are however primarily interested in the effect of $\text{Treatment}$ which has a back door through $\text{Running Variable}$
 
 - Instead of closing back doors, a front-door path can be isolated:
 
@@ -458,7 +454,7 @@ x, y
 
   &rarr; The effect of treatment for people who are just around the cutoff is obtained. 
 
-- This is called a **local average treatment effect** (LATE):
+- This is a **local average treatment effect** (LATE):
 
   A LATE is a weighted average treatment effect for those just on the margin of being given treatment.
 
@@ -474,6 +470,7 @@ A a simple linear approach to (sharp) regression discontinuity is $$Y = \beta_0 
 
 - $\text{Treated}$ is both an indicator for being treated and an indicator for being above the cutoff
 
+- $\beta_2$ then is our treatment effect.
 
 ---
 # Regression discontinuity with OLS
@@ -527,7 +524,7 @@ ggplot(tib, aes(x = X, y = Y, group = X > .5)) +
 <br>
 - Applying a fitted shape only works with the right fitted shape. Picking up a wrong shape will lead to *wrong predictions*!
 
-- The problem is especially bad here because fitted shapes tend to be at their most wrong *at the edges* of the available data (can you given an example?) 
+- The problem is especially bad here because fitted shapes tend to be at their most wrong *at the edges* of the available data (can you give an example?) 
 
 - An obvious instinct is to just try a more flexible shape 
 
@@ -540,6 +537,102 @@ ggplot(tib, aes(x = X, y = Y, group = X > .5)) +
 The model can be modified as
 $$Y = \beta_0 + f(\text{Running} -\text{Cutoff},\,\text{Treated}) + \beta_2 \text{Treated} + \epsilon.$$
 $f$ is some non-linear function of $\text{Running} - \text{Cutoff}$ with one version of $\text{Treated} = 0$ and another for $\text{Treated} = 1$.
+
+
+E.g., second order polynomials could be used.
+
+
+---
+# Regression discontinuity with OLS
+<br>
+
+```{r , echo=F, cache=F, out.extra = 'style="display:block; margin-right:auto; margin-left:auto;"', fig.height=4, out.width='60%', dpi=190, fig.cap=paste0(fig_counter(), ': Regression Discontinuity Estimated with Linear Regression with an Interaction, both Without and With a Bandwidth Restriction'), fig.align='center'}
+suppressWarnings({
+set.seed(1000)
+tib <- tibble(X = runif(200)) %>%
+  mutate(Y = rnorm(200)*.05 + case_when(
+    X < .5 ~ -2*X + 4*X^2,
+    TRUE ~ .4-X + X^2
+  ))  
+ggplot(tib, aes(x = X, y = Y, group = X > .5)) +
+  geom_point() +
+  geom_smooth(size = 1, se = FALSE, method = 'lm', color = 'black', linetype = 'dashed') +
+  geom_smooth(size = 1, se = FALSE, method = 'lm', color = 'black', data = tib %>% filter(abs(X - .5) <= .1))+
+  geom_vline(aes(xintercept = .5), linetype = 'dashed') +
+  scale_x_continuous(breaks = .5, labels = 'Cutoff')+
+  labs(x = 'Running Variable',
+       y = 'Outcome') +
+  theme_pubr() +
+  theme(text         = element_text(size = 14),
+        axis.text.y = element_blank(),
+        axis.ticks.y = element_blank())
+})  
+```
+
+---
+# Regression discontinuity with OLS
+<br>
+
+```{r , echo=F, cache=F, out.extra = 'style="display:block; margin-right:auto; margin-left:auto;"', fig.height=4, out.width='60%', dpi=190, fig.cap=paste0(fig_counter(), ': Regression Discontinuity with Different Polynomials'), fig.align='center'}
+suppressWarnings({
+set.seed(1000)
+tib <- tibble(X = runif(200)) %>%
+  mutate(Y = rnorm(200)*.05 + case_when(
+    X < .5 ~ -2*X + 4*X^2,
+    TRUE ~ .4-X + X^2
+  ))  
+p1 <- ggplot(tib, aes(x = X, y = Y, group = X > .5)) +
+  geom_point(alpha = .05) +
+  geom_smooth(size = 1, se = FALSE, method = 'lm', color = 'black', formula = y ~ poly(x, 2))+
+  geom_vline(aes(xintercept = .5), linetype = 'dashed') +
+  scale_x_continuous(breaks = .5, labels = 'Cutoff')+
+  labs(x = 'Running Variable',
+       y = 'Outcome',
+       title = '(a) Order-2 Polynomial RDD') +
+  theme_pubr() +
+  theme(text         = element_text(size = 14,),
+        axis.text.y = element_blank(),
+        axis.ticks.y = element_blank())
+p2 <- ggplot(tib, aes(x = X, y = Y, group = X > .5)) +
+  geom_point(alpha = .05) +
+  geom_smooth(size = 1, se = FALSE, method = 'lm', color = 'black', formula = y ~ poly(x, 6))+
+  geom_vline(aes(xintercept = .5), linetype = 'dashed') +
+  scale_x_continuous(breaks = .5, labels = 'Cutoff')+
+  labs(x = 'Running Variable',
+       y = 'Outcome',
+       title = '(b) Order-6 Polynomial RDD') +
+  theme_pubr() +
+  theme(text         = element_text(size = 14),
+        axis.text.y = element_blank(),
+        axis.ticks.y = element_blank())
+p3 <- ggplot(tib, aes(x = X, y = Y, group = X > .5)) +
+  geom_point(alpha = .05) +
+  geom_smooth(size = 1, se = FALSE, method = 'lm', color = 'black', formula = y ~ poly(x, 25))+
+  geom_vline(aes(xintercept = .5), linetype = 'dashed') +
+  scale_x_continuous(breaks = .5, labels = 'Cutoff')+
+  labs(x = 'Running Variable',
+       y = 'Outcome',
+       title = '(c) Order-25 Polynomial RDD') +
+  theme_pubr() +
+  theme(text         = element_text(size = 14),
+        axis.text.y = element_blank(),
+        axis.ticks.y = element_blank())
+p4 <- ggplot(tib, aes(x = X, y = Y, group = X > .5)) +
+  geom_point(alpha = .05) +
+  geom_smooth(size = 1, se = FALSE, method = 'lm', color = 'black', data = tib %>% filter(abs(X - .5) <= .1))+
+  geom_vline(aes(xintercept = .5), linetype = 'dashed') +
+  scale_x_continuous(breaks = .5, labels = 'Cutoff')+
+  labs(x = 'Running Variable',
+       y = 'Outcome',
+       title = '(d) Linear with Bandwidth') +
+  theme_pubr() +
+  theme(text         = element_text(size = 14),
+        axis.text.y = element_blank(),
+        axis.ticks.y = element_blank())
+plot_grid(p1,p2,p3,p4, ncol = 2)
+})
+```
+
 
 
 ---
@@ -560,8 +653,8 @@ Local regression is how most researchers choose to implement their regression di
 
 </br>
 
-- For each value of $X$, we estimate the corresponding valueof $Y$ by running its own regression
-- This 'dedicated' regression fits a regression specific shape
+- For each value of $X$, we estimate the corresponding value of $Y$ by running its own regression
+- This 'dedicated' regression fits a specific shape
 - The idea of local regression is to weight observations more heavily the closer they are to the specific value of $X$
 - The weighting function is a **kernel**
 
@@ -760,7 +853,7 @@ ggdag::ggdag(dag_object, # the dag object we created
 
 - Instead we apply IV: 
   
-  - The first stage uses $\text{AboveCutoff}$ as an instrument for $\text{Treated}$
+  - The first stage uses $\text{AboveCutoff}$ as an instrument for $\text{Treated}$ (as well as $\text{Interactions}$ )
 
   - Estimate regression discontinuity equations as for the sharp RDD in the second-stage equation
 

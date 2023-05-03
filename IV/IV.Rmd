@@ -18,10 +18,6 @@ output:
       navigation:
         scroll: false #disable slide transitions by scrolling
 ---
-layout: true
-<a style="position: absolute;top:5px;left:10px;color:#004c93;" target="Overview"  href="https://kaslides.netlify.app/">`r fontawesome::fa("home", height="15px")`</a>
-
----
 
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
@@ -107,7 +103,7 @@ For instrumental variables to work, two assumptions must be satisfied:
 ---
 # Isolating variation
 <br>
-**A typical setting**
+**A typical setting with randomization**
 <br>
 
 ```{r, echo=F, cache=F, out.extra = 'style="display:block; margin-right:auto; margin-left:auto; margin-top:50px;"', fig.height=3, out.width='65%', dpi=190, fig.cap=paste0(fig_counter(), ': Causal Diagram'), fig.align='center'}
@@ -135,7 +131,7 @@ ggdag::ggdag(dag_object, # the dag object we created
 # Isolating variation
 <br>
 
-An IV design works in the exact same way:
+An IV design works in as above:
 
 - An IV design does not remove the requirement to closing back doors in order to identify an effect 
 
@@ -542,7 +538,7 @@ A recent set of TV ads encourages people to exercise more. Exposure to the adver
 |Name|Effect of Ads on Exercise Hours| Effect of Exercise Hours on Blood Pressure|
 |:----|:-----:|:-----:|
 |Jakeila| $0.5$ | $-2$ |
-|Kyle| $0.25$ | $-0.8$ |
+|Kyle| $0.25$ | $-8$ |
 |Li| $0.00$ | $-10$ |
 
 <br>
@@ -583,7 +579,7 @@ $$\frac{(-2)+(-8)+(-10)}{3} = -6.67$$
 
 **Some more terminology**
 
-- Different ways of IV estimation can produce different weighted average treatment effects
+- Different IVs tend to produce different weighted average treatment effects
 
 - LATE is estimated in most cases, although the specifics on *which* LATE, are getting change from estimator to estimator
 
@@ -689,7 +685,7 @@ An F-test on *all* instruments in the first stage regression is the most common 
 
 - This can be done by checking whether $Z$ is related to the *second-stage* error term $\epsilon$ 
 
-- If $Z$ and $\epsilon$ are unrelated, the validity assumption is violated
+- If $Z$ and $\epsilon$ are related, the validity assumption is violated
 
 - Testing for validity has some obvious hurdles: 
 
@@ -705,7 +701,7 @@ $\epsilon$ cannot be observed, hence the relationship between $Z$ and $\epsilon$
 
 **Approach 1**
 
-- Run the second-stage model but include the instrument as a control, i.e., to estimate
+- Run the second-stage model but include the instrument as a control, i.e., estimate
 $$Y = \beta_0 + \beta_1X + \beta_2Z + \epsilon$$
 
 - A nonzero coefficient on the instrument $Z$ suggests a violation of the validity assumption
@@ -714,7 +710,7 @@ $$Y = \beta_0 + \beta_1X + \beta_2Z + \epsilon$$
 # Checking the IV assumptions
 <br>
 
-**Approach 2**
+**Approach 2, more principled**
 
 - Run a **Durbin-Wu-Hausman test**:
 
@@ -734,6 +730,12 @@ In the context of IV estimation, Durbin-Wu-Hausman is used in two ways:
  1. It can be used to compare OLS &mdash; which is inconsistent if $X$ is related to $\epsilon$ &mdash; to IV (which is less precise). If the results are different, that means that $X$ has open back doors.
  
  2. Durbin-Wu-Hausman can be used to compare two different *IV models* in an **overidentification test**
+ 
+Either way, you need an estimator whose validity you're unsure about.
+
+Also recall what a non-rejection tells. 
+
+Also recall LATE effects.
 
 ---
 # Fixing instrument weakness
@@ -763,11 +765,11 @@ In the context of IV estimation, Durbin-Wu-Hausman is used in two ways:
 <br>
 **Limited-information maximum likelihood (LIML)**
 
-- If $\kappa = 1$, then the prediction is scaled by 1, and we ending up with 2SLS
+- If $\kappa = 1$, then the prediction is scaled by 1, and we end up with 2SLS
 
 - If $\kappa<1$, then a little of the original endogenous variable is brought back, that would have been used in OLS, relying less on that weak instrument
 
-- **Fuller’s  $\alpha$ adjustment** can be made to $\kappa$ as $$\kappa = \hat{\kappa}-\frac{\alpha}{(N-N_1)},$$ where $N$ is the number of observation and $N_1$ is the number of instruments
+- **Fuller’s  $\alpha$ adjustment** can be made to $\kappa$ as $$\kappa = \hat{\kappa}-\frac{\alpha}{(N-N_I)},$$ where $N$ is the number of observation and $N_I$ is the number of instruments
  
 ---
 # Nonlinear IV estimation
@@ -803,9 +805,9 @@ A common fix is the **control function approach**.
 
 There are two popular approaches which can be taken if the validity of the assumptions does *not perfectly* hold:
 
-- The first tries to do what it can with a mostly-valid instrument:
+- The first tries to do what it can with a mostly-valid instrument: 
 
-  As long as the instrument impacts treatment, we can get useful inferences. This may require a very differentiated analysis. The inferences we get might not be quite as precise as when you do have a 'fully valid' IV.
+  As long as the instrument impacts treatment, we can get useful partial inferences. The inferences we get are not as narrow as when you do have a 'fully valid' IV.
 
 - The second makes up for invalidity by using a large number of instruments
 
@@ -819,10 +821,9 @@ There are two popular approaches which can be taken if the validity of the assum
 <br>
 
 - Instead of treating an invalid instrument as a reason to throw out the analysis, instead think about how bad that validity violation is &mdash; how strongly the instrument is related to the second stage error term &mdash; and construct a *range* of plausible estimates based on the plausible range of violations.
-
+ 
 - This approach gives something called *partial identification*, since instead of giving a single estimate (identifying an estimate *exactly*), it gives a range, based on a range of different assumptions.
 
-- Another common approach is to replace your validity assumption with some other assumption about the instrument that may be more plausible than validity, and seeing how far that assumption can take you. 
 
 ---
 # Lasso in IV estimation
