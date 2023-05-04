@@ -18,8 +18,13 @@ output:
       navigation:
         scroll: false #disable slide transitions by scrolling
 ---
+layout: true
+<a style="position: absolute;top:5px;left:10px;color:#004c93;" target="Overview"  href="https://kaslides.netlify.app/">`r fontawesome::fa("home", height="15px")`</a>
+
+---
 
 ```{r setup, include=FALSE}
+stairs <- fontawesome::fa(name = "stairs", height = "45px")
 options(htmltools.dir.version = FALSE, warn = F)
 ```
 
@@ -467,8 +472,7 @@ There are a few good signs that can be looked for:
 <br>
 .blockquote[
 ### Example: Plausible vs. implausible prior trends
-```{r, echo=F, cache=T, out.extra = 'style="display:block; margin-right:auto; margin-left:auto;"', fig.height=4, fig.width=9, out.width='80%', dpi=120, fig.cap=paste0(fig_counter(), ': A Graph Where the Prior Trends Test Looks Good for DID, and a Graph Where It Does not '), fig.align='center'}
-set.seed(1000)
+```{r, echo=F, cache=T, out.extra = 'style="display:block; margin-right:auto; margin-left:auto;"', fig.height=4, fig.width=9.5, out.width='80%', dpi=120, fig.cap=paste0(fig_counter(), ': A Graph Where the Prior Trends Test Looks Good for DID, and a Graph Where It Does not '), fig.align='center'}
 set.seed(1000)
 suppressWarnings({
   tb <- tibble(Time = rep(1:10 ,2),
@@ -736,8 +740,7 @@ From a statistical perspective, tossing a bunch of valid DiD designs together ma
 
 
 ---
-# Doing multiple treatment periods right
-*(How the Pros Do It)*
+# `r stairs` Doing multiple treatment periods right
 <br>
 **Rollout designs are tricky**
 
@@ -753,8 +756,7 @@ From a statistical perspective, tossing a bunch of valid DiD designs together ma
 <br>
 
 ---
-# Doing multiple treatment periods right
-*(How the Pros Do It)*
+# `r stairs` Doing multiple treatment periods right
 <br>
 **1. Dynamic treatment effects approach (Sun and Abraham 2020)**
 
@@ -770,8 +772,7 @@ Dynamic treatment effect models modified for staggered rollout can help in the c
   &rarr; Opportunity to separate things out and fix them.
 
 ---
-# Doing multiple treatment periods right
-*(How the Pros Do It)*
+# `r stairs` Doing multiple treatment periods right
 <br>
 **1. Dynamic treatment effects approach (Sun and Abraham 2020).fn[5]**
 
@@ -786,8 +787,7 @@ Dynamic treatment effect models modified for staggered rollout can help in the c
 .footnote[[5] In R the method is implemented in the `sunab` function of the `fixest` package.]
 
 ---
-# Doing multiple treatment periods right
-*(How the Pros Do It)*
+# `r stairs` Doing multiple treatment periods right
 <br>
 **2. Callaway and Sant’Anna (2020) **
 <br>
@@ -800,10 +800,8 @@ Dynamic treatment effect models modified for staggered rollout can help in the c
 - 'Summarising' treatment effects can than be obtained as a weighted averages of the group-time treatment effects
 
 ---
-# Picking an untreated group with matching
-*(How the Pros Do It)*
+# `r stairs` Picking an untreated group with matching
 <br>
-
 **Good control groups are important**
 
 - DiD only works if the comparison group is good (parallel trends)
@@ -818,8 +816,7 @@ Dynamic treatment effect models modified for staggered rollout can help in the c
 - Run the the usual DiD with the matching groups/weights applied
 
 ---
-# Picking an untreated group with matching
-*(How the Pros Do It)*
+# `r stairs` Picking an untreated group with matching
 <br>
 **A step further: Synthetic control**
 
@@ -835,8 +832,7 @@ In synthetic control, one matches the treated group to a bunch of untreated grou
 Successful synthetic control matching forces prior trends are to be the same because weights have been specifically chosen for the untreated groups that have the same average outcomes as your treated group in each prior period.
 
 ---
-# Picking an untreated group with matching
-*(How the Pros Do It)*
+# `r stairs` Picking an untreated group with matching
 <br>
 **Combined matching and DiD**
 <br>
@@ -852,8 +848,7 @@ Successful synthetic control matching forces prior trends are to be the same bec
 - Matching can close the back doors between *which groups become treated and when* and the outcome, thus getting parallel trends back!
 
 ---
-# Picking an untreated group with matching
-*(How the Pros Do It)*
+# `r stairs` Picking an untreated group with matching
 <br>
 **A general problem: Regression to the mean**
 
@@ -869,8 +864,7 @@ The basic idea:
   &rarr; The effect estimate will be biased!
 
 ---
-# Picking an untreated group with matching
-*(How the Pros Do It)*
+# `r stairs` Picking an untreated group with matching
 <br>
 **A general problem: Regression to the mean**
 
@@ -885,8 +879,7 @@ The basic idea:
 ]
 
 ---
-# Picking an untreated group with matching
-*(How the Pros Do It)*
+# `r stairs` Picking an untreated group with matching
 <br>
 **A general problem: Regression to the mean**
 
@@ -905,8 +898,7 @@ DiD cannot tell the two apart!
 
 
 ---
-# Picking an untreated group with matching
-*(How the Pros Do It)*
+# `r stairs` Picking an untreated group with matching
 <br>
 **A general problem: Regression to the mean**
 
@@ -924,8 +916,8 @@ The matching emphasizes comparisons that are especially subject to regression to
 
 
 ---
-# The unfurling logic of DiD
-*(How the Pros Do It)*
+# `r stairs` The unfurling logic of DiD
+
 .vcenter[
 .blockquote[
 ###Example: Training program on educational income disparities
@@ -941,8 +933,8 @@ $$TestScore=\beta_0+\beta_1Income+\epsilon$$
 
 
 ---
-# The unfurling logic of DiD
-*(How the Pros Do It)*
+# `r stairs` The unfurling logic of DiD
+
 .vcenter[
 .blockquote[
 ###Example: Training program on educational income disparities &mdash; ctd.
@@ -958,8 +950,7 @@ $$\beta_1^{Treated,\, After} - \beta_1^{Treated,\, Before}$$
 ]]
 
 ---
-# The unfurling logic of DiD
-*(How the Pros Do It)*
+# `r stairs` The unfurling logic of DiD
 <br>
 .blockquote[
 ### Example: Training program on educational income disparities &mdash; ctd.
@@ -980,8 +971,7 @@ TestScore = &\, \beta_0+\beta_1 Income\\
 ]
 
 ---
-# The unfurling logic of DiD
-*(How the Pros Do It)*
+# `r stairs` The unfurling logic of DiD
 <br>
 **Applications**
 
@@ -993,8 +983,7 @@ TestScore = &\, \beta_0+\beta_1 Income\\
 - DiD can also be applied to DiD itself and get the difference-in-difference-in-differences model, also known as triple-differences (DiDiD)
 
 ---
-# The unfurling logic of DiD
-*(How the Pros Do It)*
+# `r stairs` The unfurling logic of DiD
 <br>
 **Applications**
 

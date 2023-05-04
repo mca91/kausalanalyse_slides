@@ -18,6 +18,10 @@ output:
       navigation:
         scroll: false #disable slide transitions by scrolling
 ---
+layout: true
+<a style="position: absolute;top:5px;left:10px;color:#004c93;" target="Overview"  href="https://kaslides.netlify.app/">`r fontawesome::fa("home", height="15px")`</a>
+
+---
 
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
@@ -117,7 +121,9 @@ A typical statistical simulation has only a few parts:
 .blockquote[
 
 ### Example: Flipping a coin 100 times and estimating probability of heads 
-**Steps:**
+**Steps**
+
+</br>
 
 Decide upon the DGP. For example a coin that shows heads with probability 75%.
 
@@ -141,7 +147,7 @@ it can help to figure out the degree of sampling variation without having to wri
 
 - Simulation is crucial to **check robustness against violations of the assumptions of an estimator**, and how sensitive its estimates are to changes in the DGP.
 
-  If a true model has a second-order polynomial for $X$, but we estimate a linear regression without that polynomial, the results will be wrong. Simulation can help to know *how wrong*.
+  For example, if a true model has a second-order polynomial for $X$, but we estimate a linear regression without that polynomial, the results will be wrong. Simulation can help to know *how wrong*.
 
 
 ---
@@ -155,7 +161,6 @@ In the context of causal inference, simulation can determine if a an estimator p
 
 We may check whether the mean of the effect estimates is near the truth and their distribution is not too wide.
 
-<br>
 
 **Situations where simulation works well**
 
@@ -185,7 +190,7 @@ Simulation is a great tool for three main things:
 .blockquote[
 ###Example: Linear regression 
 
-- If we want a linear regression coefficient on $X$ to be an unbiased estimate of the causal effect of $X$, we need to assume that $X$ is unrelated to the error term (*no open back doors*).
+- If we want a linear regression coefficient on $X$ to be an unbiased estimate of the causal effect of $X$, we need to assume that $X$ is unrelated to the error term (no open back doors).
 
 - In social sciences there are always some thing we cannot measure or control for which is unfortunately related to both $X$ and the outcome. 
 - Simulation can be used to probe these kinds of issues using a simulation function that is flexible enough to gauge the effect of different kinds of assumption violations or degrees of those violations. 
@@ -207,10 +212,10 @@ Power analysis is the process of trying to figure out if the amount of informati
 **What can go wrong with statistical analysis?**
 <br>
 
-- Small effects are very hard to identify.
+- Small effects are very hard to identify
 - Most statistical analyses involve looking at variation. If there is little variation in the data, the analysis will be tricky.
-- If the data is very noisy, then analysis becomes very difficult.
-- If the standards of evidence are set very high, then a lot of good evidence can get ignored and more evidence is required to make up for that.
+- If the data is very noisy, then analysis becomes very difficult
+- If the standards of evidence are set very high, then a lot of good evidence can get ignored and more evidence is required to make up for that
 
 **Why is it a good idea to do power analysis?**
 
@@ -222,9 +227,12 @@ All of the above problems can be fixed by increasing the **sample size.** Power 
 <br>
 **When can power analysis be used?**
 <br><br>
-Power Analysis can mainly be used in three situations:
+Power Analysis is mainly used in three situations:
+
 - If the analyst has a impression that an effect is probably not that central or important or has a small effect on a part of the system where a lot of other "stuff" is going on, a power analysis should be performed to see a necessary sample size. 
+
 - If the variation of an effect over a group is of interest, then a power analysis is a good idea. Finding differences between groups in an effect takes more data to find than the effect itself.
+
 - In a randomized experiment a power analysis is most important as the sample size can be controlled and therefore should.
 
 ---
@@ -232,12 +240,12 @@ Power Analysis can mainly be used in three situations:
 <br>
 **What power analysis does**
 <br><br>
-Let $X$ represents treatment and $Y$ represents the outcome and consider
+Let $X$ represent the treatment and be $Y$ the outcome and consider
 
 1. the **true effect size** (coefficient in a regression, a correlation, etc.),
-2. the **amount of variation in the treatment** ( $Var(X)$ ),
+2. the **amount of variation in the treatment** ( $\text{Var}(X)$ ),
 3. the **amount of other variation in** $Y$ (either the variation from the residual after explaining $Y$ with $X$, or just $\text{Var}(Y)$ ),
-4. **statistical precision** (the standard error of the estimate or statistical power, i.e., the true-positive rate),
+4. **statistical precision** (the standard error of the estimate or statistical power, i.e., the *true-positive rate*),
 5. the **sample size**.
 
 **A power analysis holds four things constant and allows conclusion about the fifth.**

@@ -18,8 +18,13 @@ output:
       navigation:
         scroll: false #disable slide transitions by scrolling
 ---
+layout: true
+<a style="position: absolute;top:5px;left:10px;color:#004c93;" target="Overview"  href="https://kaslides.netlify.app/">`r fontawesome::fa("home", height="15px")`</a>
+
+---
 
 ```{r setup, include=FALSE}
+stairs <- fontawesome::fa(name = "stairs", height = "45px")
 options(htmltools.dir.version = FALSE)
 ```
 
@@ -736,8 +741,7 @@ Also recall what a non-rejection tells.
 Also recall LATE effects.
 
 ---
-# Fixing instrument weakness
-*(How the Pros Do It)*
+# `r stairs` Fixing instrument weakness
 <br>
 **There are several ways to cope with (possibly) weak instruments**
 
@@ -749,8 +753,7 @@ Also recall LATE effects.
 
 
 ---
-# Fixing instrument weakness
-*(How the Pros Do It)*
+# `r stairs` Fixing instrument weakness
 <br>
 **Limited-information maximum likelihood (LIML)**
 
@@ -761,8 +764,7 @@ Also recall LATE effects.
 - LIML in the context of instrumental variables does the same thing, except that it scales down the prediction (making it weaker) using a parameter $\kappa$ which is generally estimated from the data
 
 ---
-# Fixing instrument weakness
-*(How the Pros Do It)*
+# `r stairs` Fixing instrument weakness
 <br>
 **Limited-information maximum likelihood (LIML)**
 
@@ -773,8 +775,7 @@ Also recall LATE effects.
 - **Fuller’s  $\alpha$ adjustment** can be made to $\kappa$ as $$\kappa = \hat{\kappa}-\frac{\alpha}{(N-N_I)},$$ where $N$ is the number of observation and $N_I$ is the number of instruments
  
 ---
-# Nonlinear IV estimation
-*(How the Pros Do It)*
+# `r stairs` Nonlinear IV estimation
 <br>
 **Binary treatments**
 <br>
@@ -790,8 +791,7 @@ There is a handy and easy-to-implement method for incorporating a binary treatme
 4. Use those predicted values *in place of the instrument* in 2SLS
 
 ---
-# Nonlinear IV estimation
-*(How the Pros Do It)*
+# `r stairs` Nonlinear IV estimation
 <br>
 **What if the *outcome* is binary?**
 
@@ -803,8 +803,7 @@ A common fix is the **control function approach**.
 
 
 ---
-# Validity violation
-*(How the Pros Do It)*
+# `r stairs` Validity violation
 </br>
 
 There are two popular approaches which can be taken if the validity of the assumptions does *not perfectly* hold:
@@ -816,8 +815,7 @@ There are two popular approaches which can be taken if the validity of the assum
 - The second makes up for invalidity by using a large number of instruments
 
 ---
-# Validity violation
-*(How the Pros Do It)*
+# `r stairs` Validity violation
 <br>
 
 **Partial identification**
@@ -830,8 +828,7 @@ There are two popular approaches which can be taken if the validity of the assum
 
 
 ---
-# Lasso in IV estimation
-*(How the Pros Do It)* 
+# `r stairs` Lasso in IV estimation
 <br>
 
 - Lasso is a method that modifies OLS to tell it to minimize a sum of the absolute values of the coefficients, in addition to the sum of squared residuals, in effect encouraging it to toss variables out of the model entirely

@@ -58,3 +58,4 @@ renderthis::to_html("~/git_projects/KA_slides/RDD/RDD.Rmd")
 
 renderthis::to_pdf("~/git_projects/KA_slides/FurtherTopics/FurtherTopics.Rmd")
 renderthis::to_html("~/git_projects/KA_slides/FurtherTopics/FurtherTopics.Rmd")
+

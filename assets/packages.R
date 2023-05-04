@@ -17,7 +17,9 @@ pacman::p_load(dplyr,
                xaringan,
                leaflet,
                plotly,
-               emoji)
+               emoji,
+               fixest
+               )
 
 # install packages from Github (no CRAN version at the moment)
 if (!require("icons")) devtools::install_github('mitchelloharawild/icons')

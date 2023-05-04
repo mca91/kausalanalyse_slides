@@ -32,13 +32,6 @@ stfit
 vtable
 modelsummary
 fixest
-wooldridge
 extrafont
-ggpubr
 gapminder
-broom
-Synth
-haven
-SortedEffects
-gghighlight
-rdrobust
+ggpubr

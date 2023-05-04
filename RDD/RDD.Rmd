@@ -18,8 +18,13 @@ output:
       navigation:
         scroll: false #disable slide transitions by scrolling
 ---
+layout: true
+<a style="position: absolute;top:5px;left:10px;color:#004c93;" target="Overview"  href="https://kaslides.netlify.app/">`r fontawesome::fa("home", height="15px")`</a>
+
+---
 
 ```{r setup, include=FALSE}
+stairs <- fontawesome::fa(name = "stairs", height = "45px")
 options(htmltools.dir.version = FALSE)
 ```
 
@@ -1106,8 +1111,7 @@ ggplot(gt, aes(x = inc_bins, y = N)) + geom_col() +
 ]]
 
 ---
-# Regression kink
-*(How the Pros Do It)*
+# `r stairs` Regression kink
 <br>
 
 - Another thing to inspect is a change in the slope of the relationship between the outcome and the running variable. 
@@ -1136,8 +1140,8 @@ ggplot(tb, aes(x = run, y = Y , group = run > .6)) +
 ```
 
 ---
-# Regression kink
-*(How the Pros Do It)*
+# `r stairs` Regression kink
+
 .vcenter[
 .blockquote[
 ### Example: Effect of unemployment benifits on job findings (Card et al. 2015.fn[4])
@@ -1155,8 +1159,8 @@ ggplot(tb, aes(x = run, y = Y , group = run > .6)) +
 .footnote[[4] Card, David, David S Lee, Zhuan Pei, and Andrea Weber. 2015. *Inference on Causal Effects in a Generalized Regression Kink Design*. Econometrica 83 (6): 2453–83.]
 
 ---
-# Regression kink
-*(How the Pros Do It)*
+# `r stairs` Regression kink
+
 .vcenter[
 .blockquote[
 ###Example: Treatment-has-a-kink regression kink design (Bana et al. 2020.fn[5])
@@ -1172,8 +1176,8 @@ ggplot(tb, aes(x = run, y = Y , group = run > .6)) +
 .footnote[[5] Bana, Sarah H, Kelly Bedard, and Maya Rossin-Slater. 2020. *The Impacts of Paid Family Leave Benefits: Regression Kink Evidence from California Administrative Data*. Journal of Policy Analysis and Management 39 (4): 888–929.]
 
 ---
-# Regression kink
-*(How the Pros Do It)*
+# `r stairs` Regression kink
+
 .vcenter[
 .blockquote[
 ### Example: Treatment-has-a-kink
@@ -1679,8 +1683,8 @@ ggplot(tb, aes(x = x, y = y)) + geom_point() +
 
 
 ---
-# Regression kink
-*(How the Pros Do It)*
+# `r stairs` Regression kink
+
 .vcenter[
 .blockquote[
 ### Example: Treatment-has-a-kink
@@ -1695,8 +1699,8 @@ ggplot(tb, aes(x = x, y = y)) + geom_point() +
 ]]
 
 ---
-# Regression kink
-*(How the Pros Do It)*
+# `r stairs` Regression kink
+
 .vcenter[
 .blockquote[
 ### Example: Treatment-has-a-kink regression kink design
@@ -2890,8 +2894,7 @@ tb1 <- read.csv(text = 'x,y
 
 
 ---
-# When running variables misbehave
-*(How the Pros Do It)*
+# `r stairs` When running variables misbehave
 <br>
 **Granularity and heaping**
 
@@ -2903,8 +2906,7 @@ Two potential issues are
 - ... the running variable exhibiting **heaping:** it has some values that are suspiciously much more common than others.
 
 ---
-# When running variables misbehave
-*(How the Pros Do It)*
+# `r stairs` When running variables misbehave
 <br>
 **Granularity**
 
@@ -2919,8 +2921,7 @@ Two potential issues are
   The real solution here is 'find a running variable that is granular enough'. But no variable is infinitely granular. So when worried about granularity, it is better to pick an estimator that will account for that granularity.
 
 ---
-# When running variables misbehave
-*(How the Pros Do It)*
+# `r stairs` When running variables misbehave
 <br>
 **Heaping**
 
@@ -2937,8 +2938,7 @@ Two potential issues are
   A common approach to this is **donut hole regression discontinuity**, where one simply drops observations just around the cutoff so as to clear out heaps near the cutoff.
   
 ---
-# Dealing with bandwidths
-*(How the Pros Do It)*
+# `r stairs` Dealing with bandwidths
 <br>
 
 How far away from the cutoff can we get and still have comparable observations on either side of it?
@@ -2952,8 +2952,7 @@ The answer to this question is a tradeoff:
 - This is a **efficiency-robustness tradeoff**
 
 ---
-# Dealing with bandwidths
-*(How the Pros Do It)*
+# `r stairs` Dealing with bandwidths
 <br>
 **How to proceed?**
 
@@ -2971,8 +2970,7 @@ The answer to this question is a tradeoff:
   Pick an objective of 'what a good bandwidth looks like' and then use the data to figure out how wide a bandwidth is the best one by that criterion
 
 ---
-# Dealing with bandwidths
-*(How the Pros Do It)*
+# `r stairs` Dealing with bandwidths
 <br>
 **Data-based bandwidth selection**
 

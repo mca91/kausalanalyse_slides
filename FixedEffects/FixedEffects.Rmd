@@ -18,9 +18,14 @@ output:
       navigation:
         scroll: false #disable slide transitions by scrolling
 ---
+layout: true
+<a style="position: absolute;top:5px;left:10px;color:#004c93;" target="Overview"  href="https://kaslides.netlify.app/">`r fontawesome::fa("home", height="15px")`</a>
+
+---
 
 ```{r setup, include=FALSE}
-options(htmltools.dir.version = FALSE)
+stairs <- fontawesome::fa(name = "stairs", height = "45px")
+options(htmltools.dir.version = FALSE, warn = F)
 ```
 
 ```{r , load_refs, include = FALSE, echo=FALSE, cache=FALSE}
@@ -181,7 +186,7 @@ ggdag::ggdag(dag_object, # the dag object we created
 .blockquote[
 ### Example: Effect of a visit from the German chancellor on a country’s level of trade with Germany
 
-The effect can be identified *without* controling for each of the variables&mdash; controlling only for country would be enough.
+The effect can be identified *without* controling for each of the variables &mdash; controlling only for country would be enough.
 
 ```{r, echo=F, cache=F, out.extra = 'style="display:block; margin-right:auto; margin-left:auto; margin-top:30px"', fig.height=3, out.width='55%', dpi=190, fig.cap=paste0(fig_counter(), ': Simplified causes of trade with Germany'), fig.align='center'}
 coord_dag <- list(
@@ -609,7 +614,7 @@ If the estimates of fixed effects and random effects are found to *not* be diffe
 - For this reason **clustered standard errors** are used
 
 ---
-# Clustered standard errors
+# `r stairs` Clustered standard errors
 
 .vcenter[
 .blockquote[
@@ -625,8 +630,7 @@ Standard errors clustered at the same level as the fixed effect are called *clus
 ]]
 
 ---
-# Clustered standard errors
-*(Not Necessary)*
+# `r stairs` Clustered standard errors
 <br>
 **Conditions**
 
@@ -636,8 +640,7 @@ Standard errors clustered at the same level as the fixed effect are called *clus
 - Also, either the fixed effect groups/individuals in the data need to be a non-random sample of the population, or, within fixed effect groups/individuals, the treatment variable is assigned in a clustered way.
 
 ---
-# Fixed effects in nonlinear models
-*(Not Necessary)*
+# `r stairs` Fixed effects in nonlinear models
 <br>
 **Why might this be a problem?**
 
@@ -651,7 +654,7 @@ Recall that adding a set of binary control variables is a method to get rid of b
   &rarr; The estimates start getting bad.
 
 ---
-# Fixed effects in nonlinear models
+# `r stairs` Fixed effects in nonlinear models
 <br>
 **Why might this be a problem?**
 
@@ -661,10 +664,8 @@ Recall that adding a set of binary control variables is a method to get rid of b
  - the mean is no longer a good representation of _what needed to be substracted out to get rid of the between variation._
 
 
-
 ---
-#Fixed effects in nonlinear models
-*(How the Pros Do It)*
+# `r stairs` Fixed effects in nonlinear models
 <br>
 **What to do then?**
 
@@ -678,9 +679,7 @@ There are two common approaches to use a fixed effects design when there is  a n
 (Examples will be discussed in the R tutorials.)
 
 ---
-# Advanced random effects
-*(How the Pros Do It)*
-
+# `r stairs` Advanced random effects
 <br>
 **Hierachical modeling**
 
@@ -695,9 +694,7 @@ $$\beta_i=\beta_0+\gamma_1Z_i+\mu_i$$
 where $Z_i$ is a set of individual-level variables that determine the individual effect and $\mu_i$ is an error.
 
 ---
-# Advanced random effects
-*(How the Pros Do It)*
-
+# `r stairs` Advanced random effects
 <br>
 **Hierarchical modeling**
 
@@ -711,8 +708,7 @@ where $Z_i$ is a set of individual-level variables that determine the individual
 
 
 ---
-# Advanced random effects
-*(How the Pros Do It)*
+# `r stairs` Advanced random effects
 <br>
 **Hierarchical modeling**
 
@@ -731,8 +727,7 @@ There are two directions to go with this multi-level intuition.
 
 
 ---
-#Advanced random effects
-*(How the Pros Do It)*
+# `r stairs` Advanced random effects
 <br>
 **Hierarchical modeling**
 
