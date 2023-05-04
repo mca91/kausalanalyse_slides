@@ -327,15 +327,15 @@ ggplot(tb, aes(x = IntensityOfReminders,
                y = HealthyEatingScore, 
                shape = Individual)) + 
   geom_point() + 
-  theme_pubr()+
+  theme_cowplot()+
   labs(x = "Intensity of Reminders",
        y = "Healthy Eating Score")+
+  scale_x_continuous(limits = c(0, 11)) + 
   theme_cowplot() + 
   theme(text         = element_text(size = 13),
         axis.title.x = element_text(size = 13),
         axis.ticks.y = element_blank(),
-        legend.position = c(.8, .8),
-        legend.background = element_rect(color = 'black'))
+        legend.position = c(.85, .8))
 ```
 
 ]

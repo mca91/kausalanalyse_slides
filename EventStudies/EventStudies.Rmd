@@ -18,8 +18,13 @@ output:
       navigation:
         scroll: false #disable slide transitions by scrolling
 ---
+layout: true
+<a style="position: absolute;top:5px;left:10px;color:#004c93;" target="Overview"  href="https://kaslides.netlify.app/">`r fontawesome::fa("home", height="15px")`</a>
+
+---
 
 ```{r setup, include=FALSE}
+stairs <- fontawesome::fa(name = "stairs", height = "45px")
 options(htmltools.dir.version = FALSE)
 ```
 
@@ -81,7 +86,7 @@ library(ggplot2)
 library(stfit)
 ```
 
-# Event Studies
+# Event studies
 <br>
 **An event as old as time**
 <br><br>
@@ -95,7 +100,7 @@ The event study is probably the oldest and simplest causal inference research de
 - Whatever changed from before the event to after is the treatment effect
 
 ---
-# Event Studies
+# Event studies
 .vcenter[
 .blockquote[
 ### Examples: Event studies
@@ -368,8 +373,9 @@ Then, in the observation period, use that model and the actual $R_m$ to predict 
 
 
 ---
-#Event Studies in the Stock Market
+# Event studies in the stock market
 <br>
+
 **Process for doing a stock market event study**
 <br>
 - In the observation period, subtract the prediction from the actual return to get the **abnormal return,**
@@ -613,8 +619,7 @@ ggplot(hosp, aes(x = Weeks, y = AMI)) +
 ]]
 
 ---
-# Event studies with multiple affected groups
-*(How the Pros Do It)*
+# `r stairs` Event studies with multiple affected groups
 <br>
 
 - All the methods that are discussed so far have assumed that an event that affects only one group
@@ -629,8 +634,7 @@ ggplot(hosp, aes(x = Weeks, y = AMI)) +
  
 ---
 
-# Event studies with multiple affected groups
-*(How the Pros Do It)*
+# `r stairs` Event studies with multiple affected groups
 <br>
 **Pretending not having many groups**
 
@@ -642,8 +646,7 @@ ggplot(hosp, aes(x = Weeks, y = AMI)) +
 - One disadvantage is that a lot of information can be lost by doing this and the estimate will be less precise
 
 ---
-# Event studies with multiple affected groups
-*(How the Pros Do It)*
+# `r stairs` Event studies with multiple affected groups
 <br>
 **Each group can be treated separately**
 
@@ -661,8 +664,7 @@ ggplot(hosp, aes(x = Weeks, y = AMI)) +
 - From there the distribution of effects across all the groups can be insepcted (and summarized, think averages)
 
 ---
-# Event studies with multiple affected groups
-*(How the Pros Do It)*
+# `r stairs` Event studies with multiple affected groups
 <br>
 **Groups can be aggregated with regression**
 
@@ -676,8 +678,7 @@ ggplot(hosp, aes(x = Weeks, y = AMI)) +
 - This is not always necessary, but if the different groups have different baseline levels of $Outcome$ the fixed effect will help deal with that
 
 ---
-# Event studies with multiple affected groups
-*(How the Pros Do It)*
+# `r stairs` Event studies with multiple affected groups
 <br>
 **Groups can be aggregated with regression**
 
@@ -689,8 +690,7 @@ ggplot(hosp, aes(x = Weeks, y = AMI)) +
   (regression on a set of *time-period fixed effects*)
 
 ---
-# Event studies with multiple affected groups
-*(How the Pros Do It)*
+# `r stairs` Event studies with multiple affected groups
 <br>
 **Groups can be aggregated with regression**
 
@@ -698,15 +698,13 @@ ggplot(hosp, aes(x = Weeks, y = AMI)) +
 - The fixed effects are done in a particular way. The last time period before the event should have an effect as the reference category is selected. 
 
 - The fixed effect for a given period is then just an estimate of the mean outcome in that period relative to the period just before the event 
-
 - If time-period fixed effects themselves is plotted, it will be a single time series
 
 - The only difference is that now standard errors for each of the periods are present, and everything is made relative to the period just before the event
 
 
 ---
-# Forecasting properly with time series methods
-*(How the Pros Do It)*
+# `r stairs` Forecasting properly with time series methods
 <br>
 
 - Remember that an event study requires that some actual data in the after-event period is present and that we can conduct a comparison and a prediction of what would have happened in the after-event period if the event had not occurred
@@ -716,8 +714,7 @@ ggplot(hosp, aes(x = Weeks, y = AMI)) +
 - In other words, time series data from before the event is used to predict beyond the event. This is **time series forecasting.**
 
 ---
-# Forecasting properly with time series methods
-*(How the Pros Do It)*
+# `r stairs` Forecasting properly with time series methods
 <br>
 ** The ARMA Model**
 
@@ -727,8 +724,7 @@ ggplot(hosp, aes(x = Weeks, y = AMI)) +
  - **MA stands for moving-average**, meaning that transitory effects on something last a little while and then fade out. 
 
 ---
-# Forecasting properly with time series methods
-*(How the Pros Do It)*
+# `r stairs` Forecasting properly with time series methods
 <br>
 ** The ARMA Model**
 
@@ -746,8 +742,8 @@ $$Y_t = \beta_0+(\epsilon_t + \theta \epsilon_{t-1})$$
 $\epsilon_t$ and $\epsilon_{t-1}$ are error terms at times $t$ and $t-1$. Since $\epsilon_t$ and $\epsilon_{t-1}$ cannot be observed, $\theta$ cannot be estimated by regular regression (there are alternative methods).
 
 ---
-# Forecasting properly with time series methods
-*(How the Pros Do It)*
+# `r stairs` Forecasting properly with time series methods
+
 .vcenter[
 .blockquote[
 ### Example: ARMA(2,1) model
@@ -755,10 +751,8 @@ An ARMA(2,1) model includes two autoregressive terms and one moving-average term
 ]]
 
 ---
-# Forecasting properly with time series methods
-*(How the Pros Do It)*
-<br>
-
+# `r stairs` Forecasting properly with time series methods
+</br>
 ```{r , echo=F, cache=F, out.extra = 'style="display:block; margin-right:auto; margin-left:auto;"', fig.height=4.25, out.width='70%', dpi=190, fig.cap=paste0(fig_counter(), ': Different time series processes'), fig.align='center'}
 set.seed(10)
 suppressWarnings({
@@ -788,8 +782,7 @@ plot_grid(p[[1]],p[[2]],p[[3]],p[[4]], ncol = 2)
 
 
 ---
-# The joint-test problem
-*(How the Pros Do It)*
+# `r stairs` The joint-test problem
 <br>
 
 - Results obtained from an event study are a combination of two things:
@@ -813,8 +806,7 @@ plot_grid(p[[1]],p[[2]],p[[3]],p[[4]], ncol = 2)
  
 
 ---
-# The joint-test problem
-*(How the Pros Do It)*
+# `r stairs` The joint-test problem
 
 .vcenter[
 .blockquote[
@@ -824,8 +816,7 @@ A placebo test is a test performed under conditions where there should be zero e
 
 
 ---
-# The joint-test problem
-*(How the Pros Do It)*
+# `r stairs` The joint-test problem
 <br>
 **Placebo testing**
 

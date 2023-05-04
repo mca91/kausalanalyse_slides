@@ -136,7 +136,7 @@ ggdag::ggdag(dag_object, # the dag object we created
 # Isolating variation
 <br>
 
-An IV design works in as above:
+An IV design works as above:
 
 - An IV design does not remove the requirement to closing back doors in order to identify an effect 
 
@@ -801,7 +801,7 @@ A common fix is the **control function approach**.
 - The control function approach is a lot like 2SLS, except that instead of isolating the explained part of $X$, and using that in the second stage, one uses $X$ and also *controls for the unexplained part* of $X$ 
 - In regular linear instrumental variables, 2SLS and the control function give the same point estimates
 
-
+ 
 ---
 # `r stairs` Validity violation
 </br>

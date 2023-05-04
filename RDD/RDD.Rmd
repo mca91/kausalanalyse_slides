@@ -180,7 +180,6 @@ coord_dag <- list(
 )
 dag_object <- ggdag::dagify(b ~ a,
                             c ~ b,
-                            d ~ c,
                             a ~ d,
                             c ~ d,
                             d ~ e,
