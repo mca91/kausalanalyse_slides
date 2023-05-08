@@ -364,12 +364,25 @@ dag_object <- ggdag::dagify(a ~ g,
                                      "d"="D",
                                      "e"="X",
                                      "f"="Y",
-                                     "g"="Z"))
-ggdag::ggdag(dag_object, # the dag object we created
-             text = FALSE, # this means the original names won't be shown
-             use_labels = "label") + # instead use the new names
-  theme_void()
+                                     "g"="Z")) %>%
+  tidy_dagitty() %>%
+  mutate(
+    colour = ifelse(name %in% c("e", "f"), T, F),
+    edgecolour = ifelse(name == "e" & to == "f", "red", "black")
+  )
 
+dag_object  %>%
+  ggplot(aes(
+    x = x,
+    y = y,
+    xend = xend,
+    yend = yend
+  )) +
+  geom_dag_point(aes(colour = colour), show.legend = F) +
+  geom_dag_edges(aes(edge_colour = edgecolour)) +
+  geom_dag_label_repel(aes(label = label), force = 3, ) +
+  scale_color_manual(values = c("TRUE" = "red", "FALSE" = "black")) +
+  theme_dag()
 ```
 ---
 #Assumptions for IV
@@ -614,7 +627,7 @@ $$\frac{(-2)+(-8)+(-10)}{3} = -6.67$$
 
 .vcenter[
 .blockquote[
-### Example: Children and Their Parents (Angrist and Evans 1998)
+### Example: Children and their parents (Angrist and Evans 1998)
 - Families appear to have a preference for having both a boy and a girl
 
 - A family that happens to have two boys as their first two children, or two girls, would be more likely to have a third child so as to try for a mix 

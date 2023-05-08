@@ -341,7 +341,7 @@ Bootstrapping is the process of repeating an analysis many times after **resampl
 ---
 # The bootstrap
 <br>
-**Asumptions**
+**Assumptions**
 
 <br>
 
@@ -394,7 +394,7 @@ Instead of resampling observations, in residual resampling the residuals are res
 **Residual Resampling: Algorithm**
 <br>
 1. Perform the analysis using the original data (e.g., OLS regression)
-2. Use the analysis to get a predicted outcome value $\widehat{Y}$ and also the residual $\hat{r}$ which is the difference between the actual outcome and the predicted outcome, $$r=Y-\widehat{Y}.$$
+2. Use the analysis to get a predicted outcome value $\widehat{Y}$ and also the residual $\hat{r}$ which is the difference between the actual outcome and the predicted outcome, $$\hat{r}=Y-\widehat{Y}.$$
 3. Perform bootstrap resampling to get resampled residuals $r_b$ .
 4. Create a new outcome variable by adding the residual to the actual outcome, $Y_b=Y+r_b$.
 5. Estimate the model as normal using $Y_b$.

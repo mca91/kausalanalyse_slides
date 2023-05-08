@@ -152,16 +152,30 @@ dag_object <- ggdag::dagify(c ~ a,
                             d ~ b,
                             coords = coord_dag,
                             labels=c("a"="CurrentPolitics",
-                                     "b"="HistorywithGermany",
+                                     "b"="HistoryWithGermany",
                                      "c"="ChancellorVisit",
                                      "d"="TradewithGermany",
                                      "e"="Geography",
-                                     "f"="CultureofPopulation"
-                                     ))
-ggdag::ggdag(dag_object, # the dag object we created
-             text = FALSE, # this means the original names won't be shown
-             use_labels = "label") + # instead use the new names
-  theme_void()
+                                     "f"="CultureOfPopulation"
+                                     ))%>%
+  tidy_dagitty() %>%
+  mutate(
+    colour = ifelse(name %in% c("c", "d"), T, F),
+    edgecolour = ifelse(name == "c" & to == "d", "red", "black")
+  )
+
+dag_object  %>%
+  ggplot(aes(
+    x = x,
+    y = y,
+    xend = xend,
+    yend = yend
+  )) +
+  geom_dag_point(aes(colour = colour), show.legend = F) +
+  geom_dag_edges(aes(edge_colour = edgecolour)) +
+  geom_dag_label_repel(aes(label = label), force = 3) +
+  scale_color_manual(values = c("TRUE" = "red", "FALSE" = "black")) +
+  theme_dag()
 ```
 ]]
 
@@ -229,6 +243,7 @@ ggdag::ggdag(dag_object, # the dag object we created
 We isolate **within variation** by finding differences between groups (individuals) and subtract them out. 
 
 ---
+exclude: true
 # Fixed effects
 
 .vcenter[
@@ -247,7 +262,9 @@ Consider two people A and B. There are variables like “genetics” that are fi
 
 <br>
 ]]
+
 ---
+exclude: true
 # Fixed effects
 
 .vcenter[
@@ -268,6 +285,7 @@ Consider two people A and B. There are variables like “genetics” that are fi
 ]]
 
 ---
+exclude: true
 # Fixed effects
 
 .vcenter[
@@ -596,7 +614,6 @@ If the estimates of fixed effects and random effects are found to *not* be diffe
 # Fixed effects
 <br>
 **Clustered standard errors**
-
 <br>
 
 **Motivation**
@@ -614,7 +631,7 @@ If the estimates of fixed effects and random effects are found to *not* be diffe
 - For this reason **clustered standard errors** are used
 
 ---
-# `r stairs` Clustered standard errors
+# Clustered standard errors
 
 .vcenter[
 .blockquote[
@@ -630,7 +647,7 @@ Standard errors clustered at the same level as the fixed effect are called *clus
 ]]
 
 ---
-# `r stairs` Clustered standard errors
+# Clustered standard errors
 <br>
 **Conditions**
 
@@ -647,7 +664,6 @@ Standard errors clustered at the same level as the fixed effect are called *clus
 <br>
 
 Recall that adding a set of binary control variables is a method to get rid of between variation.
-
 
 - That is fine in a linear model, but in a nonlinear model we might run into the **incidental parameters problem**, i.e. we can not handle well estimating that many groups
   
