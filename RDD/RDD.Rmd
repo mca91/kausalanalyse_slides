@@ -931,7 +931,7 @@ p1 <- ggplot(vet, aes(x = qob_minus_kw, y = mean_out, group = qob_minus_kw > 0))
   scale_y_continuous(labels = function(x) scales::percent(x, accuracy = 1)) +
   labs(x = 'Birth Months Relative to Eligibility',
        y = 'Home Ownership Rates',
-       title = '(a) RD for Home Ownership') +
+       title = '(b)') +
   theme_cowplot() +
   theme(text = element_text(size = 14))
 
@@ -942,7 +942,7 @@ p2 <- ggplot(vet, aes(x = qob_minus_kw, y = mean_treat, group = qob_minus_kw > 0
   scale_y_continuous(labels = function(x) scales::percent(x, accuracy = 1)) +
   labs(x = 'Birth Months Relative to Eligibility',
        y = 'Eligible Veteran Rates',
-       title = '(b) RD for Eligible Vet Status') +
+       title = '(a)') +
   theme_cowplot() +
   theme(text = element_text(size = 14))
 
@@ -989,7 +989,7 @@ Anything we would normally use as a control variable should not be affected by t
 
 Keep in mind that, since we can run placebo tests on a long list of potential placebo outcomes, it is likely that we find a few nonzero effects just by random chance. 
 
-  &rarr; If one tests a long list of variables and find a few differences, that is not a fatal problem with the design.
+  &rarr; If one tests a long list of variables and finds a few differences, that is not a fatal problem with the design.
   
   In these cases, it is better to add the variables with the failed placebo tests to the model as control variables. 
  
@@ -1159,11 +1159,11 @@ ggplot(tb, aes(x = run, y = Y , group = run > .6)) +
 .blockquote[
 ###Example: Treatment-has-a-kink regression kink design (Bana et al. 2020.fn[5])
 
-- Bana et al. look at the impact of paid family leave (Elternzeit) in California
+- Bana et al. look at the impact of paid family leave in California
 
 - In California, the state pays 55% of regular earnings up to a maximum benefit amount. Family leave payment (treatment) increases with regular earnings (running variable), until a maximum amount (cutoff) is reached
 
-- After that, additional regular earnings does not increase the family leave payment
+- After that, additional regular earnings do not increase the family leave payment
 
 ]]
 
