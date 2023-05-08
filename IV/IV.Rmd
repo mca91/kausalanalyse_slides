@@ -96,7 +96,7 @@ library(ggpubr)
 .vcenter[
 .blockquote[
 ### Definition: Instrumental variable
-Instead of trying to strip away all the undesirable variation using controls, an instrumental variable (IV) is a source of variation that allows to isolate just the interested front-door path. IV designs attempt to mimic a randomized experiment, but using statistics and opportune settings instead of actually being able to influence or randomize anything.
+Instead of trying to strip away all the undesirable variation using controls, an instrumental variable (IV) is a source of variation that allows to isolate just the front-door path of interest. IV designs attempt to mimic a randomized experiment, but using statistics and opportune settings instead of actually being able to influence or randomize anything.
 
 For instrumental variables to work, two assumptions must be satisfied:
 
@@ -325,7 +325,7 @@ plot_grid(p1,p2,p3,p4,p5,p6, ncol = 3)
 <br>
 **Relevance of the instrument**
 <br>
-- The key idea of IV is to use that part of treatment $X$ that is explained by the instrument $Z$ is used to explain the outcome $Y$. In its basic form, IV gives us $\frac{\text{Cov}(Z,\,Y)}{\text{Cov}(Z,\,X)}$. 
+- The key idea of IV is to use that part of treatment $X$ that is explained by the instrument $Z$ to explain the outcome $Y$. In its basic form, IV gives us $\frac{\text{Cov}(Z,\,Y)}{\text{Cov}(Z,\,X)}$. 
 
 - If no part of $X$ is explained by $Z$ then $\text{Cov}(Z,\,X)=0$ and hence we get $\frac{\text{Cov}(Z,\,Y)}{0}$ 
 
@@ -367,8 +367,17 @@ dag_object <- ggdag::dagify(a ~ g,
                                      "g"="Z")) %>%
   tidy_dagitty() %>%
   mutate(
-    colour = ifelse(name %in% c("e", "f"), T, F),
-    edgecolour = ifelse(name == "e" & to == "f", "red", "black")
+    colour = case_when(
+      name %in%  c("e", "f") ~ "red",
+      name == c("g") ~ "steelblue",
+      T ~ "black"
+    ),
+    edgecolour = case_when(
+      name == "e" & to == "f" ~ "red", 
+      name == "g" & to == "e" ~ "steelblue",
+      T ~ "black"  
+    )
+    
   )
 
 dag_object  %>%
@@ -381,7 +390,7 @@ dag_object  %>%
   geom_dag_point(aes(colour = colour), show.legend = F) +
   geom_dag_edges(aes(edge_colour = edgecolour)) +
   geom_dag_label_repel(aes(label = label), force = 3, ) +
-  scale_color_manual(values = c("TRUE" = "red", "FALSE" = "black")) +
+  scale_color_manual(values = c( "black", "red", "steelblue")) +
   theme_dag()
 ```
 ---
@@ -501,7 +510,7 @@ Instrumental Variable can be estimated using Two-stage least squares (2SLS). The
 <br>
 - 2SLS produces a *ratio of effects*, dividing the effect of $Z$ on $Y$ by the effect of $Z$ on $X$ 
 
-- It asks for each movement in $X$ we get by changing $Z$, how much movement in $Y$ does that lead to?'
+- It asks for each movement in $X$ we get by changing $Z$, how much movement in $Y$ does that lead to?
 
   &rarr; Since $Z$ has no back doors, this should give us the causal effect of $X$ on $Y$.
 
@@ -599,9 +608,9 @@ $$\frac{(-2)+(-8)+(-10)}{3} = -6.67$$
 
 - Different IVs tend to produce different weighted average treatment effects
 
-- LATE is estimated in most cases, although the specifics on *which* LATE, are getting change from estimator to estimator
+- LATE is estimated in most cases, although the specifics on *which* LATE change from estimator to estimator
 
-- There is a common terminology for these weights.. The sample can be divided into three groups.
+- There is a common terminology for these weights. The sample can be divided into three groups.
 
  - **Compliers:** For compliers, the effect of the instrument on the treatment is in the expected direction.
  - **Always-takers/never-takers:** Always-takers/never-takers are completely unaffected by the instrument.
@@ -749,7 +758,7 @@ In the context of IV estimation, Durbin-Wu-Hausman is used in two ways:
  
 Either way, you need an estimator which validity you're certain about.
 
-Also recall what a non-rejection tells. 
+Also recall what a non-rejection tells us. 
 
 Also recall LATE effects.
 
@@ -770,9 +779,7 @@ Also recall LATE effects.
 <br>
 **Limited-information maximum likelihood (LIML)**
 
-<br>
-
-- Remamber that IV regression uses the parts of the treatment/endogenous variable $X$ and the outcome $Y$ that are predicted by the instrument $Z$
+- Remember that IV regression uses the parts of the treatment/endogenous variable $X$ and the outcome $Y$ that are predicted by the instrument $Z$
 
 - LIML in the context of instrumental variables does the same thing, except that it scales down the prediction (making it weaker) using a parameter $\kappa$ which is generally estimated from the data
 

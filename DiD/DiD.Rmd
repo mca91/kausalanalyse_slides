@@ -240,9 +240,10 @@ ggdag::ggdag(dag_object, # the dag object we created
 | Non-Lambeth only (dirty)	     | 134.9	| 146.6 |
 | Lambeth + others (mix dirty and clean)     | 130.1      |   84.9 |
 
-i.e, a treatment effect of $(85-130)-(147-135) \approx -57$
+<p style="margin-left:145px;font-size:12pt">Note: Death rates are deaths per 10,000 of the 1851 population.</p>
 <br>
-.font80[(Death rates are deaths per 10,000 of the 1851 population.)]
+
+This yields a treatment effect of $(85-130)-(147-135) \approx -57.$
 ]]
 
 
@@ -620,7 +621,7 @@ Two-way fixed effects does not work very well for **rollout designs** also known
 
 <br>
 
-The simplest form uses the regression model $$Y =\alpha_g+\beta_1Time+\beta_2Time\times Group+\epsilon$$ to test  $H_0: \beta_2=0$, i.e., the prior trends do not differ across group.
+The simplest form uses the regression model $$Y =\alpha_g+\beta_1Time+\beta_2Time\times Group+\epsilon$$ to test  $H_0: \beta_2=0$, i.e.., the prior trends do not differ across group.
 
 - $\alpha_g$ are group-specific intercepts
 
@@ -641,7 +642,7 @@ The simplest form uses the regression model $$Y =\alpha_g+\beta_1Time+\beta_2Tim
   Time in the last period before treatment is $t=0$, the first period with treatment implemented is $t=1$ the second-to-last period before treatment is $t=-1$ and so on.
 
 - Estimate
-$$Y_k = \alpha_g + \alpha_t + \beta_{-T_1}\text{Treated}+\beta_{-(T_1-1)} \text{Treated} + \dots + \beta_{-1} \text{Treated} + \dots + \beta_{T_2} \text{Treated} + \epsilon,$$
+$$Y_k = \alpha_g + \alpha_t + \beta_{-T_1}\text{Treated}+\beta_{-(T_1-1)} \text{Treated} + \dots + \beta_{-1}\text{Treated} + \beta_1\text{Treated} + \dots + \beta_{T_2} \text{Treated} + \epsilon,$$
  
   where the $\text{Treated}$ regressors are interactions of $\text{Treatment}$ given and each of the time periods (for $T_1$ periods before the treatment period and $T_2$ periods afterwards).
 
@@ -778,7 +779,7 @@ Dynamic treatment effect models modified for staggered rollout can help in the c
 
 <br>
 
-- Sun and Abraham (2020) propose to interact time-centered-on-treatment-time dummies with group membership, i.e., each group and time period has its own coefficient.
+- Sun and Abraham (2020) propose to interact time-centered-on-treatment-time dummies with group membership, i.e.., each group and time period has its own coefficient.
 
   &rarr; Avoids comparisons we do not want to make, since now the regression model is barely comparing anything. 
 
@@ -855,7 +856,7 @@ Successful synthetic control matching forces prior trends are to be the same bec
 <br>
 The basic idea:
 
-- if a variable is far above its typical average of this period, then it’s likely to go down next period, i.e., it *regresses back* towards the mean
+- if a variable is far above its typical average of this period, then it’s likely to go down next period, i.e.., it *regresses back* towards the mean
 
 - A problem arises if the pre-period outcome levels are related to the probability of treatment:
 
@@ -926,7 +927,7 @@ The matching emphasizes comparisons that are especially subject to regression to
 
 - The relationship between parental income and student test scores should be weaker with the introduction of the training program.
 
-- We know
+- We consider
 $$TestScore=\beta_0+\beta_1Income+\epsilon$$
 ]]
 
