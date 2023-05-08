@@ -108,7 +108,7 @@ library(SortedEffects)
 ### Definition: Synthetic control
 Synthetic control is a variant of **DiD with matching**. The same basic setup as for DiD is used with a policy that goes into effect at a particular time, but only for a particular group:
 
-- The data from the pre-treatment period is used to adjust for differences between the treatment and control groups. We then checked how they differ after treatment goes into effect. 
+- The data from the pre-treatment period is used to adjust for differences between the treatment and control groups. We then check how they differ after treatment goes into effect. 
 
 - The post-treatment difference, adjusting for pre-treatment differences, is the effect.
 
@@ -321,7 +321,7 @@ DiD is
   
 - It has a tendency to overfit noise in the outcome variable when matching
 
-- Matching on the outcome variable seems problematic: using the outcome itself to close back doors is cheating.
+- Matching on the outcome variable seems problematic: using the outcome itself to close back doors feels a bit like cheating.
 
-- That's said, synthetic control only matches on pre-treatment outcomes, not the post-treatment outcomes where we actually estimate the effect
+- That said, synthetic control only matches on pre-treatment outcomes, not the post-treatment outcomes where we actually estimate the effect
 

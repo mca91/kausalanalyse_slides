@@ -303,7 +303,7 @@ Use patterns in the outcome data up to the event to predict what the outcome wou
 
 **Approach 3: Predict after-event data using *after*-event data**
 
-- Like in approach 2 use before-event data to establish some pattern in the data. Additionally look for relationships between the outcome and some other variables. E.g, stock price and market index.
+- Like in approach 2 use before-event data to establish some pattern in the data. Additionally look for relationships between the outcome and some other variables. E.g., stock price and market index.
 
 - Extrapolate to the after-event period to get the predictions. Prediction can incorporate how those other variables change.
 

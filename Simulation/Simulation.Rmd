@@ -290,7 +290,7 @@ It is the proportion of times we correctly reject the false null
 
 - If prior research is not possible, then it can be substituted with an educated guess. 
 
-- Standards (e.g, desired statistical power) 
+- Standards (e.g., desired statistical power) 
 
 ---
 # Simulation with existing data: the bootstrap

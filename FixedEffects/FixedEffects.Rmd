@@ -665,7 +665,7 @@ Standard errors clustered at the same level as the fixed effect are called *clus
 
 Recall that adding a set of binary control variables is a method to get rid of between variation.
 
-- That is fine in a linear model, but in a nonlinear model we might run into the **incidental parameters problem**, i.e. we can not handle well estimating that many groups
+- That is fine in a linear model, but in a nonlinear model we might run into the **incidental parameters problem**, i.e., we can not handle well estimating that many groups
   
   &rarr; The estimates start getting bad.
 

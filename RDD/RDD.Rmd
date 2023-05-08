@@ -101,7 +101,7 @@ library(broom)
 
 </br>
 
-- There are plenty situations where treatment is assigned *discontinuously* : 
+- There are plenty of situations where treatment is assigned *discontinuously* : 
 
   People on one side of some **cutoff** get it, and people on the other side do not.
 
@@ -161,7 +161,7 @@ The core of RDD is to
 
 People close to the cutoff need to effectively be randomly assigned. We must rule out any obvious impediments to that randomness:
 
-  1. People cannot manipulate the running variable (i.e., choose of treatment or not) 
+  1. People cannot manipulate the running variable (i.e., choose treatment or not) 
   
   2. People who choose what the cutoff is should not be able to make that choice in response to finding out who has which running variable values.
 
@@ -428,14 +428,14 @@ x, y
 
 - Their approach is to account for fuzziness by *scaling* the effect of the cutoff:
 
-- Roughly, Battistin et al. divide the estimate the observed 30% jump to see how big the change would have been *if everyone got treated*.
+- Roughly, Battistin et al. divide the estimate by the observed 30% jump to see how big the change would have been *if everyone got treated*.
 
 ]
 
 ---
 # Regression discontinuity
 <br>
-**Fuzzy Regression **
+**Fuzzy RDD**
 
 <br>
 
@@ -481,14 +481,13 @@ A a simple linear approach to (sharp) regression discontinuity is $$Y = \beta_0 
 <br>
 
 **Notes**
-
 <br>
 
 - The model is generally estimated using heteroskedasticity-robust standard errors, as one might expect the discontinuity and general shape of the line are being fitted to exhibit heteroskedasticity in most cases.
 
 - Control variables are not required because the design itself should close any back doors. 
  
-- Controls may be necessary for FRDDs, where there are determinants of treatment other than the cutoff: then there maybe back doors to be worried about. 
+- Controls may be necessary for FRDDs, where there are determinants of treatment other than the cutoff: there may then be back doors to be worried about. 
  
 ---
 # Regression discontinuity with OLS
@@ -550,7 +549,7 @@ E.g., second order polynomials could be used.
 # Regression discontinuity with OLS
 <br>
 
-```{r , echo=F, cache=F, out.extra = 'style="display:block; margin-right:auto; margin-left:auto;"', fig.height=4, out.width='60%', dpi=190, fig.cap=paste0(fig_counter(), ': Regression Discontinuity Estimated with Linear Regression with an Interaction, both Without and With a Bandwidth Restriction'), fig.align='center'}
+```{r , echo=F, cache=F, out.extra = 'style="display:block; margin-right:auto; margin-left:auto;"', fig.height=4, out.width='60%',dpi=190, fig.cap=paste0(fig_counter(), ': Regression Discontinuity Estimated with Linear Regression with an Interaction, both Without and With a Bandwidth Restriction'), fig.align='center'}
 suppressWarnings({
 set.seed(1000)
 tib <- tibble(X = runif(200)) %>%
@@ -575,9 +574,8 @@ ggplot(tib, aes(x = X, y = Y, group = X > .5)) +
 
 ---
 # Regression discontinuity with OLS
-<br>
 
-```{r , echo=F, cache=F, out.extra = 'style="display:block; margin-right:auto; margin-left:auto;"', fig.height=4, out.width='60%', dpi=190, fig.cap=paste0(fig_counter(), ': Regression Discontinuity with Different Polynomials'), fig.align='center'}
+```{r, echo=F, cache=F, out.extra = 'style="display:block; margin-right:auto; margin-left:auto; margin-top:40px;"', fig.height=5.25, fig.width=10, out.width='80%', dpi=190, fig.cap=paste0(fig_counter(), ': Regression Discontinuity with Different Polynomials'), fig.align='center'}
 suppressWarnings({
 set.seed(1000)
 tib <- tibble(X = runif(200)) %>%
@@ -806,7 +804,8 @@ msummary(
   estimate = "estimate",
   stars = c('*' = .1, '**' = .05, '***' = .01), 
   vcov = 'robust', gof_omit = "") %>%
-  huxtable::set_font_size(12) %>%
+  huxtable::set_text_color(row = 6:7, col = 1:ncol(.), value = 'red') %>%
+  huxtable::set_font_size(13) %>%
   huxtable::set_bottom_padding(4) %>% 
   huxtable::set_top_padding(4) %>% 
   huxtable::set_width(.75)
@@ -902,17 +901,18 @@ IV divides the effect of the instrument on the outcome by the effect of the inst
 
 - The “treatment” of being eligible for mortgage subsidies would only apply to some people born at the right time: 
 
-  Treatment rates jump from 0% to some value below 100% (fuzzy).
+  Treatment rates jump from 0% to some value below 100% (this is fuzzy).
 
 - Veteran status at this margin increases home ownership rates by 17%
+
+- The RDD effect is the *ratio of the jumps* in eligible veteran rates and home ownership rates at the cutoff.
 
 ]]
 
 ---
 # Fuzzy regression discontinuity
 
-</br>
-
+.vcenter[
 .blockquote[
 ### Example: Effect of mortgage subsidies on home ownership (Fetter 2013)
 ```{r, echo=F, cache=F, out.extra = 'style="display:block; margin-right:auto; margin-left:auto;"', fig.height=4, fig.width=8, out.width='70%', dpi=190, fig.cap=paste0(fig_counter(), ': Eligibility for mortgage subsidies for being a Korean war veteran and home ownership from Fetter (2013)'), fig.align='center'}
@@ -948,8 +948,7 @@ p2 <- ggplot(vet, aes(x = qob_minus_kw, y = mean_treat, group = qob_minus_kw > 0
 
 plot_grid(p2, p1)
 ```
-</br>
-]
+]]
 
 
 
@@ -963,7 +962,7 @@ plot_grid(p2, p1)
 
 - That is the whole idea:
 
-  Isolate variation in such a narrow window of the running variable so that it is plausible to claim that the *only* thing changing at the cutoff is treatment&mdash;and by extension anything that treatment affects (like the outcome)!
+  Isolate variation in such a narrow window of the running variable so that it is plausible to claim that the *only* thing changing at the cutoff is treatment &mdash; and by extension anything that treatment affects (like the outcome)!
 
 
 
@@ -972,7 +971,7 @@ plot_grid(p2, p1)
 </br>
 **Idea**
 
-Anything we would normally use as a control variable should not affect treatment.
+Anything we would normally use as a control variable should not be affected by treatment.
 
 <br>
 **Procedure**
@@ -990,7 +989,7 @@ Anything we would normally use as a control variable should not affect treatment
 
 Keep in mind that, since we can run placebo tests on a long list of potential placebo outcomes, it is likely that we find a few nonzero effects just by random chance. 
 
-  &rarr; If one test a long list of variables and find a few differences, that is not a fatal problem with the design.
+  &rarr; If one tests a long list of variables and find a few differences, that is not a fatal problem with the design.
   
   In these cases, it is better to add the variables with the failed placebo tests to the model as control variables. 
  
@@ -1068,7 +1067,6 @@ For this we inspect the distribution of the running variable around the cutoff:
 
 ---
 # The density discontinuity test
-</br>
 **Steps**
 
 </br>
@@ -1085,11 +1083,9 @@ For this we inspect the distribution of the running variable around the cutoff:
 ---
 # The density discontinuity test
 
-.vcenter[
 .blockquote[
 ### Example: Manacorda et al. (2011)
-</br>
-```{r, echo=F, warning=F, cache=F, out.extra = 'style="display:block; margin-right:auto; margin-left:auto;"', fig.height=4, fig.width=8, out.width='70%', dpi=190, fig.cap=paste0(fig_counter(), ': Distribution of the binned running variable'), fig.align='center'}
+```{r, echo=F, warning=F, cache=F, out.extra = 'style="display:block; margin-right:auto; margin-left:auto;margin-top:40px;"', fig.height=4, fig.width=8, out.width='75%', dpi=190, fig.cap=paste0(fig_counter(), ': Distribution of the binned running variable'), fig.align='center'}
 gt <- read_csv('Government_Transfers_McCrary.csv') %>%
   filter(abs(Income_Centered) <= .02) %>%
   mutate(inc_bins = cut(Income_Centered, breaks = .02*(-29:29)/29)) %>%
@@ -1106,8 +1102,7 @@ ggplot(gt, aes(x = inc_bins, y = N)) + geom_col() +
         axis.text.y = element_blank(),
         axis.ticks.y = element_blank())
 ```
-<br>
-]]
+]
 
 ---
 # `r stairs` Regression kink
@@ -1700,11 +1695,10 @@ ggplot(tb, aes(x = x, y = y)) + geom_point() +
 ---
 # `r stairs` Regression kink
 
-.vcenter[
 .blockquote[
 ### Example: Treatment-has-a-kink regression kink design
 
-```{r, echo=F, cache=F, out.extra = 'style="display:block; margin-right:auto; margin-left:auto;"', fig.height=4, fig.width=10, out.width='80%', dpi=190, fig.cap=paste0(fig_counter(), ': Log leave duration or proportion claiming leave again and pre-leave earnings'), fig.align='center'}
+```{r, echo=F, cache=F, out.extra = 'style="display:block; margin-right:auto; margin-left:auto;margin-top:40px;"', fig.height=4, fig.width=10, out.width='90%', dpi=190, fig.cap=paste0(fig_counter(), ': Log leave duration or proportion claiming leave again and pre-leave earnings'), fig.align='center'}
 tb1 <- read.csv(text = 'x,y
                 -5930.199939920836, 2.404218447220091
 -5934.8262563613225, 2.394413986517529
@@ -2261,8 +2255,8 @@ tb1 <- read.csv(text = 'x,y
     geom_point() +
     geom_smooth(se = FALSE, method = 'lm', color = 'black') +
     geom_vline(aes(xintercept = 0), linetype = 'dashed') + 
-    labs(x = 'Log Duration of Family Leave',
-         y = 'Log Weekly Benefit Amount') + 
+    labs(y = 'Log duration of family leave',
+         x = 'Regular earnings - cutoff') + 
     theme_pubr() +
     theme(text = element_text( size = 14)) +
     
@@ -2871,8 +2865,8 @@ tb1 <- read.csv(text = 'x,y
     geom_point() +
     geom_smooth(se = FALSE, method = 'lm', color = 'black') +
     geom_vline(aes(xintercept = 0), linetype = 'dashed') + 
-    labs(x = 'Log Duration of Family Leave',
-         y = 'Proportion Claiming Leave Again') + 
+    labs(y = 'Proportion claiming leave again',
+         x = 'Regular earnings - cutoff') + 
     theme_pubr() +
     theme(text = element_text( size = 14)) +
     
@@ -2886,10 +2880,9 @@ tb1 <- read.csv(text = 'x,y
     )
   
   plot_grid(p1,p2)  
-
 ```
 <br>
-]]
+]
 
 
 ---
@@ -2906,35 +2899,36 @@ Two potential issues are
 
 ---
 # `r stairs` When running variables misbehave
-<br>
+</br>
 **Granularity**
 
-<br>
+Granularity is when a variable is measured at a coarse level.
 
-- **Example**
+Too coarse a variable makes it difficult to justify that the treatment is the only thing separating observations below and above the cutoff.
 
-  on measuring annual income, it can be said that a person earned $40,231.36 last year, or can also be said say that he earned $40,231, or  say that he earned $40,000. Or we could even say that he earned '$40-50,000'. Or,  say 'less than $100,000'. These are measurements of his income in decreasing order of granularity.
+</br>
+**Example: Annual income**
 
-- **Solution** 
+'$40,231.36', '$40,231', '$40-50,000', and 'less than $100,000' are measurements of income in decreasing order of granularity.
 
-  The real solution here is 'find a running variable that is granular enough'. But no variable is infinitely granular. So when worried about granularity, it is better to pick an estimator that will account for that granularity.
+We would like to find a running variable that is granular enough. So when worried about granularity, it is better to pick an estimator that will account for that granularity.
 
 ---
 # `r stairs` When running variables misbehave
 <br>
 **Heaping**
 
+Non-random heaping is when the running variable takes certain values more often than others.
+
 <br>
 
-**Non-random heaping** is when the running variable seems to be much more likely to take certain values than others. Often this can come in the form of rounding.
+**Example: quantitative surveys** 
 
-- **Example** 
+  Free response surveys with quantitative questions are mostly answered with a whole number ('How old are you?'). Some answers will be more precise ('36 years vs. 36 years, eight months, and two days'). 
 
-  If one asks people how old they are and the vast majority of them are going to give a round number, like '36 years old'. However, some of them will be more precise and say '36 years, eight months, and two days'. 
+<br>
 
-- **Solution** 
-
-  A common approach to this is **donut hole regression discontinuity**, where one simply drops observations just around the cutoff so as to clear out heaps near the cutoff.
+**Donut hole regression discontinuity** drops observations just around the cutoff so as to clear out heaps near the cutoff.
   
 ---
 # `r stairs` Dealing with bandwidths
@@ -2954,7 +2948,6 @@ The answer to this question is a tradeoff:
 # `r stairs` Dealing with bandwidths
 <br>
 **How to proceed?**
-
 <br>
 - **Just pick a bandwidth** 
 
@@ -2962,22 +2955,28 @@ The answer to this question is a tradeoff:
 
 - **Pick a bunch of bandwidths** 
 
-  This sensitivity test-based approach is also fairly common. For this approach, the biggest bandwidth is picked which seems to makes some sense for the research design, and then start shrinking it. Each time, estimate the regression discontinuity model.
+  Sensitivity check: Pick the biggest bandwidth that seems sensible for the research design and then shrink it. Estimate the regression discontinuity model each time and compare.
 
 -  **Data based bandwidth selection** 
 
-  Pick an objective of 'what a good bandwidth looks like' and then use the data to figure out how wide a bandwidth is the best one by that criterion
+  Pick an objective of 'what a good bandwidth looks like' and then use the data to figure out how wide a bandwidth is the best one by that criterion.
 
 ---
 # `r stairs` Dealing with bandwidths
 <br>
 **Data-based bandwidth selection**
 
-<br>
  - **Cross-validation** 
  
-  The basic idea is to try to get the best out-of-sample predictive power. So the data is splitted into random chunks. For each chunk, the model is estimated  using all the other chunks, and then make predictions for the now out-of-sample chunk which is left out. Repeat this for every chunk, and then see overall how well your out-of-sample prediction went. Then, repeat that whole process for each potential bandwidth and see which one does the best.
+  Compare estimates of out-of-sample predictive power: 
+  
+  1. Randomly split the data into chunks 
+  
+  2. For each chunk, obtain predictions from a model estimated using all the other chunks. Compute a measure of the overall prediction performance 
+  
+  3. Repeat that whole process for each potential bandwidth and see which one does the best
  
  - **Optimal bandwidth rules** 
  
-  This approach takes as its goal getting the best prediction right at the cutoff, just on either side. 
+  This approach aims to get the best prediction on either side right at the cutoff.
+  

@@ -756,7 +756,7 @@ In the context of IV estimation, Durbin-Wu-Hausman is used in two ways:
  
  2. Durbin-Wu-Hausman can be used to compare two different *IV models* in an **overidentification test**
  
-Either way, you need an estimator which validity you're certain about.
+Either way, you need an estimator whose validity you are certain about.
 
 Also recall what a non-rejection tells us. 
 
