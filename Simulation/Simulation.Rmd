@@ -1,7 +1,7 @@
 ---
 title: "<a href='https://github.com/mca91/kausalanalyse_slides/raw/main/Simulation/Simulation.pdf'>Simulation</a>"
 author: "Christoph Hanck"
-date: "Summer 2023 "
+date: "Summer 2023"
 output:
   xaringan::moon_reader:
     css: ["default", "../assets/ude_fonts.css", "../assets/ude.css", "../assets/custom.css"]
@@ -192,7 +192,8 @@ Simulation is a great tool for three main things:
 
 - If we want a linear regression coefficient on $X$ to be an unbiased estimate of the causal effect of $X$, we need to assume that $X$ is unrelated to the error term (no open back doors).
 
-- In social sciences there are always some thing we cannot measure or control for which is unfortunately related to both $X$ and the outcome. 
+- In social sciences there are always some things we cannot measure or control for which are unfortunately related to both $X$ and the outcome. 
+
 - Simulation can be used to probe these kinds of issues using a simulation function that is flexible enough to gauge the effect of different kinds of assumption violations or degrees of those violations. 
 
 ]]
@@ -203,7 +204,7 @@ Simulation is a great tool for three main things:
 .vcenter[
 .blockquote[
 ### Definition: Power analysis
-Power analysis is the process of trying to figure out if the amount of information present in the data is enough. While there are calculators and analytical methods out there for performing power analysis, power analysis is very commonly done by simulation, especially for non-experimental studies.
+Power analysis is the process of trying to figure out if the amount of information present in the data is enough. While there are calculators and analytic methods out there for performing power analysis, power analysis is very commonly done by simulation, especially for non-experimental studies.
 ]]
 
 ---
@@ -269,13 +270,13 @@ It is the proportion of times we correctly reject the false null
 ---
 # Statistical precision and statistical power
 <br>
-**Some notes on statitical power**
+**Some notes on statistical power**
 
 - Statistical power depends on the test:
 
   For a hypothesis test at the 95% confidence level, it is more likely to reject the null (and thus will have higher statistical power) than for a hypothesis test at the 99% confidence level.
 
-- There is a tradeoff: the more careful one is about false positives, the more likely one will get a false negative.
+- There is a trade-off: the more careful one is about false positives, the more likely one will get a false negative.
 
 - Power analyses do not have to be run with statistical power in mind 
 
@@ -324,7 +325,7 @@ Bootstrapping is the process of repeating an analysis many times after **resampl
 ---
 # The bootstrap
 <br>
-**Algorithm for boostrapping a standard error**
+**Algorithm for bootstrapping a standard error**
 
 <br>
 

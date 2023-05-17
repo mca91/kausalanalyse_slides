@@ -1,7 +1,7 @@
 ---
 title: "<a href='https://github.com/mca91/kausalanalyse_slides/raw/main/FixedEffects/FixedEffects.pdf'>Fixed Effects</a>"
 author: "Christoph Hanck"
-date: "Summer 2023 "
+date: "Summer 2023"
 output:
   xaringan::moon_reader:
     css: ["default", "../assets/ude_fonts.css", "../assets/ude.css", "../assets/custom.css"]
@@ -122,7 +122,7 @@ Fixed effects is a method of controlling for all variables, whether they are obs
 
 - By observing the town in different years, any variation explained by town can be removed
 
-- Since there is no variation in geography that is not explained by town, after controlling for town geography will be controlled too
+- Since there is no variation in geography that is not explained by town, after controlling for town geography will be controlled for too
 
   &rarr; There will be no variation in geography left!
 
@@ -135,7 +135,7 @@ Fixed effects is a method of controlling for all variables, whether they are obs
 .blockquote[
 ### Example: Effect of a visit from the German chancellor on a country’s level of trade with Germany
 
-```{r, echo=F, cache=F, out.extra = 'style="display:block; margin-right:auto; margin-left:auto;"', fig.height=4, out.width='55%', dpi=190, fig.cap=paste0(fig_counter(), ': Causes of trade with Germany'), fig.align='center'}
+```{r, echo=F, cache=F, out.extra = 'style="display:block; margin-right:auto; margin-left:auto;"', fig.height=4, out.width='55%', dpi=290, fig.cap=paste0(fig_counter(), ': Causes of trade with Germany'), fig.align='center'}
 coord_dag <- list(
   x = c(a = 0, b = 2, c = 0, d = 2, e=1, f=1),
   y = c(a = 1, b = 1, c = 0, d = 0, e=1, f=1.5)
@@ -200,9 +200,9 @@ dag_object  %>%
 .blockquote[
 ### Example: Effect of a visit from the German chancellor on a country’s level of trade with Germany
 
-The effect can be identified *without* controling for each of the variables &mdash; controlling only for country would be enough.
+The effect can be identified *without* controlling for each of the variables &mdash; controlling only for country would be enough.
 
-```{r, echo=F, cache=F, out.extra = 'style="display:block; margin-right:auto; margin-left:auto; margin-top:30px"', fig.height=3, out.width='55%', dpi=190, fig.cap=paste0(fig_counter(), ': Simplified causes of trade with Germany'), fig.align='center'}
+```{r, echo=F, cache=F, out.extra = 'style="display:block; margin-right:auto; margin-left:auto; margin-top:30px"', fig.height=3, out.width='55%', dpi=290, fig.cap=paste0(fig_counter(), ': Simplified causes of trade with Germany'), fig.align='center'}
 coord_dag <- list(
   x = c(a = 0, b = 2, c = 0, d = 2),
   y = c(a = 1, b = 1, c = 0, d = 0)
@@ -324,7 +324,7 @@ exclude: true
 
 There might be back doors that influence reminder frequency and also general healthy-eating level. 
 
-```{r, echo=F, cache=F, out.extra = 'style="display:block; margin-right:auto; margin-left:auto;"', fig.height=4, out.width='65%', dpi=190, fig.cap=paste0(fig_counter(), ': Healthy eating reminders and healthy eating for four individuals'), fig.align='center'}
+```{r, echo=F, cache=F, out.extra = 'style="display:block; margin-right:auto; margin-left:auto;"', fig.height=4, out.width='65%', dpi=290, fig.cap=paste0(fig_counter(), ': Healthy eating reminders and healthy eating for four individuals'), fig.align='center'}
 set.seed(2000)
 tb <- tibble(Individual = factor(c(rep('Person_B',8),rep('Person_A',8),
                             rep('Shamma',8),rep('Liqing',8)),levels = c('Person_A','Person_B','Liqing','Shamma')),
@@ -365,7 +365,7 @@ ggplot(tb, aes(x = IntensityOfReminders,
 
 Compute the mean number of reminders and mean healthy eating scores for each individual.
 
-```{r, echo=F, cache=F, out.extra = 'style="display:block; margin-right:auto; margin-left:auto;"', fig.height=4, out.width='65%', dpi=190, fig.cap=paste0(fig_counter(), ': Healthy eating reminders and healthy eating for four individuals with individual means'), fig.align='center'}
+```{r, echo=F, cache=F, out.extra = 'style="display:block; margin-right:auto; margin-left:auto;"', fig.height=4, out.width='65%', dpi=290, fig.cap=paste0(fig_counter(), ': Healthy eating reminders and healthy eating for four individuals with individual means'), fig.align='center'}
 ggplot(tb, aes(x = IntensityOfReminders,
                y = HealthyEatingScore, 
                shape = Individual)) + 
@@ -395,7 +395,7 @@ ggplot(tb, aes(x = IntensityOfReminders,
 
 - The next task is to remove any variation *between* individuals 
 
-- All four crosses are slided on top of each other
+- All four crosses are slid on top of each other
 
 - The data gets centered at 0 on both the $X$ and $Y$ axis when plotted with the four individuals’ within-variation alone
 ]]
@@ -406,7 +406,7 @@ ggplot(tb, aes(x = IntensityOfReminders,
 ### Example: Effects of healthy-eating reminders on actual healthy eating&mdash;ctd.
 
 With the different individuals moved on top of each other, a more clear picture emerges, with a positive relationship between the intensity of reminders and the scores. 
-```{r, echo=F, cache=F, out.extra = 'style="display:block; margin-right:auto; margin-left:auto;"', fig.height=4, out.width='60%', dpi=190, fig.cap=paste0(fig_counter(), ': Healthy eating reminders and healthy eating for four individuals with individual means'), fig.align='center'}
+```{r, echo=F, cache=F, out.extra = 'style="display:block; margin-right:auto; margin-left:auto;"', fig.height=4, out.width='60%', dpi=290, fig.cap=paste0(fig_counter(), ': Healthy eating reminders and healthy eating for four individuals with individual means'), fig.align='center'}
 
 
 ggplot(tb, aes(x = Intensity.R,
@@ -485,8 +485,6 @@ Run the regression $$Y_{it} = \beta_0 + \beta_{0,1} + \dots +\beta_{0,N-1} + \be
 
 - The interpretation of the slope coefficient in a fixed effects model is the same as when controlled for any other variable
 
-- The value of $R^2$ gives an insight to the interpretation. $R^2$ is a measure based on how much variation there is in the residuals relative to the dependent variable. The value of $R^2$ lies between 0 and 1 with 0 means that the fitted regressions explains the data well and 0 means it does not
-
 - Sometimes researchers will use the fixed individual effects estimates to make claims about the individuals being evaluated 
   
 
@@ -529,7 +527,7 @@ This gives the variation that is left as being variation relative to what is exp
 
 - Data is on how much each person earns per year $Y_{it}$ and on how many hours of training they received that year $X_{it}$. Overall earnings in 2009 were $10,000 below what they normally are (due to recession)
 
-- Anthony earns $120,000 per year, a lot more money than the average person ($40,000). In 2009 Anthony only earned $116,000 which is above average, but that can be explained by the fact that Anthony earns a lot.
+- Anthony earns $120,000 per year, more than the average person ($40,000). In 2009 Anthony only earned $116,000 which is above average, but that can be explained by the fact that Anthony earns a lot.
 
   - Given that the individual is Anthony, it is $4,000 below average. 
   - But given that the year is 2009, most people are earning $10,000 less, but Anthony is only earning $4,000 less. 
@@ -588,7 +586,7 @@ variables*, including our treatment variable
 
 - For this reason, fixed effects is almost always preferred to random effects
 
-- One common way around this problem is to use the **Durbin-Wu-Hausman test**
+- **Durbin-Wu-Hausman test** is useful in this context.
 
 ---
 # Fixed effects vs. random effects
@@ -620,7 +618,7 @@ If the estimates of fixed effects and random effects are found to *not* be diffe
 
 - An assumption of the regression model is that the errors are independent. Then parts of the DGP for the outcome variable that are not in the model are effectively random.
 
-   This assumption is *necessary to obtain correct regression standard errors* !
+   This assumption can be *useful to obtain correct regression standard errors* !
 
 - However, this assumption is difficult when it comes to fixed effects:
 
@@ -644,13 +642,15 @@ Standard errors clustered at the same level as the fixed effect are called *clus
 - For person fixed effects, using standard errors clustered at the person level
 - For city fixed effects, using standard errors clustered at the city level
 
+
+
 ]]
 
 ---
 # Clustered standard errors
 <br>
 **Conditions**
-
+ 
 <br>
 
 - Clustered Standard Errors are necessary when there is **treatment effect heterogeneity.** That is, the treatment effect must be *different for different individuals*.
@@ -665,7 +665,7 @@ Standard errors clustered at the same level as the fixed effect are called *clus
 
 Recall that adding a set of binary control variables is a method to get rid of between variation.
 
-- That is fine in a linear model, but in a nonlinear model we might run into the **incidental parameters problem**, i.e., we can not handle well estimating that many groups
+- That is fine in a linear model, but in a nonlinear model we might run into the so-called **incidental parameters problem**
   
   &rarr; The estimates start getting bad.
 
@@ -677,7 +677,7 @@ Recall that adding a set of binary control variables is a method to get rid of b
 <br>
 - The other methods for getting rid of between variation is subtracting out the within-group means. 
  - This no longer works because the outcome variable is not a continuous variable any more
- - the mean is no longer a good representation of _what needed to be substracted out to get rid of the between variation._
+ - The mean is no longer a good representation of _what needed to be subtracted out to get rid of the between variation._
 
 
 ---
@@ -697,7 +697,7 @@ There are two common approaches to use a fixed effects design when there is  a n
 ---
 # `r stairs` Advanced random effects
 <br>
-**Hierachical modeling**
+**Hierarchical modeling**
 
 - Modern approaches to random effects consider models that contain *multiple levels*
 
@@ -714,7 +714,7 @@ where $Z_i$ is a set of individual-level variables that determine the individual
 <br>
 **Hierarchical modeling**
 
-- This allows us to deal with the correlation between the $\beta_i$ and the $X_{it}$ becaused it is *modelled directly*
+- This allows us to deal with the correlation between the $\beta_i$ and the $X_{it}$ because it is *modeled directly*
 
 - The approach has the nice statistical properties that random effects gives over fixed effects, but *without imposing as many additional assumptions*.
 
@@ -737,7 +737,7 @@ There are two directions to go with this multi-level intuition.
 
 - Obtain the within variation for each predictor $(X_{it}-\bar{X_i})$
 
-- Regress the dependent variable on the within-individual means $\bar{X_i}$ , the within variation $(X_{it}-\bar{X_i})$ and any other individual-level controls $Z_i$ , and use random effects for the intercept
+- Regress the dependent variable on the within-individual means $\bar{X_i}$, the within variation $(X_{it}-\bar{X_i})$ and any other individual-level controls $Z_i$, and use random effects for the intercept
 
 - This is referred to as **correlated random effects**
 
@@ -753,7 +753,7 @@ There are two directions to go with this multi-level intuition.
 - The other way is the multi-level intuition, which is whole hog into mixed models, also known as **hierarchical linear models.**
 
 - In mixed models stopping at the intercept following a random distribution is not required
-
+ 
 - The following models can get complex, but they can be used to represent very complex interactions between variables:
 $$Y_{it}=\beta_{0i}+\beta_{1i}X_{it}+\epsilon_{it}$$
 $$\beta_{0i}=\beta_0+\gamma_1Z_i+\mu_i$$

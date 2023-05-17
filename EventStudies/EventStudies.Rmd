@@ -96,7 +96,7 @@ The event study is probably the oldest and simplest causal inference research de
 <br>
 **Idea**
 
-- At a certain time, an event occurred, leading a treatment to be put into place at that time
+- At a certain time, an event occurred, leading a treatment put into place at that time
 - Whatever changed from before the event to after is the treatment effect
 
 ---
@@ -174,7 +174,7 @@ $$Treatment \leftarrow AfterEvent \leftarrow Time \rightarrow Outcome $$
 
 - The whole design of an event study is based around the idea that something changes over time &mdash; the event occurs, the treatment goes into effect. 
 
-- Then before-event to after-event is compared and get the effect of treatment. 
+- Then before-event and to after-event is compared and get the effect of treatment. 
 
 - *Treatment needs to be the only thing that is changing* 
 
@@ -186,7 +186,7 @@ $$Treatment \leftarrow AfterEvent \leftarrow Time \rightarrow Outcome $$
 **Treatment effect**
 <br><br>
 
-we need to *predict the counterfactual* :
+We need to *predict the counterfactual* :
 
 - Often we have plenty of information from the before-event times. 
 
@@ -234,8 +234,7 @@ p1 <- ggplot(d[[1]], aes(x = Date, y = value, color = name)) +
   theme(text         = element_text(size = 13),
         axis.title.x = element_text(size = 13),
         axis.ticks.y = element_blank(),
-        legend.position = c(.1, .8),
-        legend.background = element_rect(color = 'black'))
+        legend.position = c(.1, .8))
 
 d[[2]] <- tibble(Date = ymd('2018-01-01') + days(0:199),
              y = c(rnorm(150,0,.5) + (1:150)/75, rnorm(50,0,.5) + (151:200)/75 - 1),
@@ -272,8 +271,8 @@ plot_grid(p1,p2)
 .blockquote[
 ###Example: Extent of the deviation is the effect of treatment.
 - To get the event study estimate, just compare the black line of real data to the gray line of predicted counterfactual data after the event goes into place. 
-- Looks like the treatment had an immediate positive effect on the outcome, with the black line far above the gray right after the treatment, but then that effect fades out over time and the lines come back together.
-- The same idea applies to the second fiqure as well.
+- It looks like the treatment had an immediate positive effect on the outcome, with the black line far above the gray right after the treatment, but then that effect fades out over time and the lines come back together.
+- The same idea applies to the second figure as well.
 ]]
 
 ---
@@ -310,10 +309,10 @@ Use patterns in the outcome data up to the event to predict what the outcome wou
 ---
 # Prediction and deviation
 <br>
-**Notes on these approches**
+**Notes on these approaches**
 <br><br>
 
-- All three of the methods makes it clear that the event studies are generally intended for a fairly short post-event window (*short horizon*)
+- All three methods make it clear that the event studies are generally intended for a fairly short post-event window (*short horizon*)
 
 - The farther out one gets from the event, the worse a job one's pre-event-based predictions are going to do, and the more likely it is that the $Time$ back door will creep in, inspite of the controls! 
 
@@ -343,7 +342,7 @@ Event studies are highly popular in studies of the stock market when the outcome
 
 - The only reason the price should have any sort of sharp change is if there is surprising new information revealed about the company
 
-  &rarr; This can be considred a *treatment* !
+  &rarr; This can be considered a *treatment* !
 
 
 ---
@@ -355,7 +354,7 @@ Event studies are highly popular in studies of the stock market when the outcome
 
 -  Use the data from the estimation period to estimate a model that can make a prediction $\hat{R}$ of the stock’s return $R$ in each period. Three popular ways of doing this are:
 
-Means-adjusted returns models, market-adjusted returns models and risk-adjusted returns models
+-  Means-adjusted returns models, market-adjusted returns models and risk-adjusted returns models
 
 ---
 # Event studies in the stock market
@@ -393,7 +392,7 @@ $$AR=R-\hat{R}$$
 <br>
 **Idea**
 
-- Estimate one regression of the outcome on the time period before the event. Then estimate another time series of the outcome on the time period after the event. See how the two are different.
+- Estimate one regression of the outcome on the time period before the event. Then estimate another regression of the outcome on the time period after the event. See how the two are different.
 
 - This approach can be implemented with the simple use of an interaction term (**segmented regression**), $$Outcome = \beta_0 + \beta_{1}t + \beta_2 After + \beta_{3}t \cdot After + \epsilon,$$
 where $t$ is the time period and $After$ is a binary variable equal to 1 in any time after the event.
@@ -622,11 +621,11 @@ ggplot(hosp, aes(x = Weeks, y = AMI)) +
 # `r stairs` Event studies with multiple affected groups
 <br>
 
-- All the methods that are discussed so far have assumed that an event that affects only one group
+- All the methods that are discussed so far have assumed an event that affects only one group
 
 - However, there are many events that can be applied to lots of groups. 
 
-- To run an event study in a case like that, the followings can be done:
+- To run an event study in a case like that, the following can be done:
 
  - Pretending not having many groups
  - Each group can be treated separately
@@ -651,17 +650,17 @@ ggplot(hosp, aes(x = Weeks, y = AMI)) +
 **Each group can be treated separately**
 
 <br>
-- Running one event study per group if study methods for single groups are present and there are lots of groups will will give a different effect for each group.
+- Running one event study per group if study methods for single groups are present and there are lots of groups will give a different effect for each group.
 
 - At this point we have effects for each group &mdash; this could be an immediate effect of 
 
     - a single post-event time period or
     
-    - the coefficient on $After$ in a regression, or 
+    - the coefficient of $After$ on slide 19, or 
     
     - an average effect over the entire post-event period, or a cumulative effect. 
 
-- From there the distribution of effects across all the groups can be insepcted (and summarized, think averages)
+- From there the distribution of effects across all the groups can be inspected (and summarized, think averages)
 
 ---
 # `r stairs` Event studies with multiple affected groups
@@ -683,7 +682,7 @@ ggplot(hosp, aes(x = Weeks, y = AMI)) +
 **Groups can be aggregated with regression**
 
 <br>
-- This regression will produce very similar results to what can be expected if first, averaged all the data together and then estimated a regression on that single time series
+- This regression will produce results very similar to what can be expected if we first average all the data together and then estimate a regression on that single time series.
 
 - If an event matters only for a day or the interest is to know the full shape of the event, a different type of regression is required: $$Outcome = \beta_0+\beta_t+ \epsilon$$
 
@@ -695,10 +694,10 @@ ggplot(hosp, aes(x = Weeks, y = AMI)) +
 **Groups can be aggregated with regression**
 
 <br>
-- The fixed effects are done in a particular way. The last time period before the event should have an effect as the reference category is selected. 
+- The fixed effects are done in a particular way. The last time period before the event should have an effect is selected as the reference category. 
 
 - The fixed effect for a given period is then just an estimate of the mean outcome in that period relative to the period just before the event 
-- If time-period fixed effects themselves is plotted, it will be a single time series
+- If time-period fixed effects themselves are plotted, they give a single time series
 
 - The only difference is that now standard errors for each of the periods are present, and everything is made relative to the period just before the event
 
@@ -707,7 +706,7 @@ ggplot(hosp, aes(x = Weeks, y = AMI)) +
 # `r stairs` Forecasting properly with time series methods
 <br>
 
-- Remember that an event study requires that some actual data in the after-event period is present and that we can conduct a comparison and a prediction of what would have happened in the after-event period if the event had not occurred
+- Remember that an event study requires that data in the after-event period is present and that we can conduct a comparison and a prediction of what would have happened in the after-event period if the event had not occurred
 
 - The prediction is invariably based on the idea that, *without the event*, whatever was going on before the event would have continued
 
@@ -722,7 +721,7 @@ ggplot(hosp, aes(x = Weeks, y = AMI)) +
 - The ARMA model is an acronym for two common features that can be seen in time series data. 
  - **AR stands for autoregression**, meaning that the value of something today influences its value tomorrow. 
  - **MA stands for moving-average**, meaning that transitory effects on something last a little while and then fade out. 
-
+ 
 ---
 # `r stairs` Forecasting properly with time series methods
 <br>
@@ -733,7 +732,7 @@ The ARMA model consists of an autoregressive (AR) and a moving-average (MA) comp
 <br>
 **AR(1) model**
 
-$$Y_t = \beta_0+\beta_1Y_{t-1}+ \epsilon$$
+$$Y_t = \beta_0+\beta_1Y_{t-1}+ \epsilon_t$$
 $t$ and $t-1$ indicate that the predictor for $Y$ in a given period is $Y$ from the previous period: the **lag** of $Y$.
 
 **MA(1) model**
