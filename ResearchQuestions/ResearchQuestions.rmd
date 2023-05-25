@@ -78,7 +78,7 @@ htmltools::tagList(
   rmarkdown::html_dependency_font_awesome()
 )
 ```
-
+exclude: true
 # Empirical research
 .vcenter[
 
@@ -92,6 +92,7 @@ htmltools::tagList(
 ]
 
 ---
+exclude: true
 # Why research needs a design
 
 .vcenter[
@@ -110,6 +111,7 @@ htmltools::tagList(
 ]
 
 ---
+
 # What is a research question anyway?
 
 .vcenter[
@@ -191,17 +193,21 @@ Data mining is the systematic application of computer-aided methods to discover 
 .vcenter[
 .blockquote[
 
-### Example: Predicting die roll outcomes
+### Example: Russia-Ukraine war
 
 - By a stable mechanism we mean that the process giving us the data does not change
 
-- If the process is "rolling a six-sided die" data mining would based on a thousand rolls would be great at predicting that the probability of observing a 1 is 1/6 
+- The prices of crude oil in the global market was approximately 76 U.S dollars per barrel during the start of January 2022.
 
-- If the process switches to "rolling a twenty-sided die", that data mining prediction will be bad: it will still predict a 1/6 chance of a 1 until it gets a lot more data. 
+- A prediction of future oil prices would have been around this price.
 
-- Probability theory will properly predict the switch to a 1/20 chance immediately
+- After the Russia-Ukraine war, there was a sudden increase in the oil prices to 110 U.S dollars per barrel at around March 2022.
+
+- Due to this instability, the previous predictions of future oil prices became inaccurate.
 
 ]]
+
+.footnote[[2] reference taken from the website: https://www.gep.com/blog/mind/russia-ukraine-wars-effects-oil-and-gas-industry#:~:text=Oil%20prices%20were%20rising%20globally,barrel%20on%204%20March%202022.]
 
 ---
 # Data mining &mdash; looking for patterns 
@@ -238,7 +244,7 @@ Data mining is the systematic application of computer-aided methods to discover 
 
   - A good research question can be answered using the right data. 
     
-  - Data acquisition is often subject to constraints. Think time, money, data protection laws.
+  - Data acquisition is often subject to constraints &mdash; think time, money, data protection laws.
 
 **Suitable research design**
 
