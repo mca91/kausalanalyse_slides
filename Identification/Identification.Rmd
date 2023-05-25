@@ -88,9 +88,9 @@ htmltools::tagList(
 
 - DGPs are unknown but we observe the data that result from them. 
 
-We have a two-part concept of DGPs&mdash;the characteristics we do know about (by combining everything we already know about a topic and its underlying laws) and those we do not know.
+We have a two-part concept of DGPs&mdash;the characteristics we do know about (by combining everything we already know about a topic and its underlying laws) and those we do not know.  
 
-- The parts we do not know are what we are hoping to learn about using research!
+- The parts we do not know are what we are hoping to learn about using research!     
 
 
 ---
