@@ -110,13 +110,12 @@ If the effect of a treatment varies across individuals of the population, we spe
 Individuals are heterogeneous. If their characteristics impact the effect of treatment, the effects will be heterogeneous across individuals
 
 &rarr; It is often useful to think of each individual as having their own treatment effect. 
-
+ 
 <br>
 
 **How do deal with heterogeneous treatment effects?**
 
-- We can try to **estimate the heterogeneous treatment effects**
-- We can **estimate the distribution of the treatment effects** and try to predict individual treatment effects given individual attributes
+- We can try to **estimate the heterogeneous treatment effects** &mdash; often it difficult to do so we will instead focus on the other thing we can do with the concept of heterogeneous treatment effects like getting answer to the question that of what is being identified if effects are so heterogeneous.
 
 ---
 # Average treatment effect

@@ -153,7 +153,7 @@ In a **randomised controlled experiment**, the researcher assigns treatment (or 
 ### Example: Charter school's influence on grades
 
 - We are interested in figuring out whether charter schools improve students’ test scores more than traditional public schools.
-- Many variable influence people's decision to attend Charter school, e.g. background, personality, location, etc.
+- Many variables influence people's decision to attend Charter school, e.g. background, personality, location, etc.
 
 
 ```{r, echo=F, cache=F, out.extra = 'style="display:block; margin-right:auto; margin-left:auto;"', fig.height=3.5, out.width='45%', dpi=190, fig.cap=paste0(fig_counter(), ': Causal diagram of Influence of Charter School on Grades'), fig.align='center'}
@@ -200,7 +200,7 @@ ggdag::ggdag(dag_object, # the dag object we created
 .vcenter[
 .blockquote[
 
-###Example: Charter school's influnece on grades
+###Example: Charter school's influence on grades
 
 ```{r, echo=F, cache=F, out.extra = 'style="display:block; margin-right:auto; margin-left:auto;"', fig.height=4, out.width='65%', dpi=190, fig.cap=paste0(fig_counter(), ': Causal diagram of infkuence of Charter schools on grades '), fig.align='center'}
 coord_dag <- list(
@@ -254,7 +254,7 @@ The data from the experiment can be analysed in two ways:
 .blockquote[
 ### Definition: Natural experiment
 
-Natural experiments are a real-world settings in which randomisation of treatment and control conditions has been already done by nature or by other factors that are outside our control
+Natural experiments are a real-world setting in which randomisation of treatment and control conditions has been already done by nature or by other factors that are outside our control
 
 Natural experiments work because they fix some of the variation in treatment to *have no back doors*.
 
@@ -296,7 +296,7 @@ dag_object <- ggdag::dagify(b ~ a,
                             a ~ d,
                            
                             coords = coord_dag,
-                            labels=c("a"="Treatmentr",
+                            labels=c("a"="Treatments",
                                      "b"="Outcome",
                                      "c"="All Kinds of stuff",
                                      "d"="Natural Randomness"))
@@ -315,14 +315,14 @@ ggdag::ggdag(dag_object, # the dag object we created
 
 - Natural experiments are *more natural* than randomised controlled experiments. People may not even realize that they are a part of an experiment.
 
--  The observations from natural experiments tends to be more realistic than randomised controlled experiments.
+-  The observations from natural experiments tend to be more realistic than randomised controlled experiments.
  
 
 ---
 # Sources of exogenous variation
 **Randomised controlled experiments vs. natural experiments.**
 
-- Sample sizes are *bigger* in natural experiments than randomised controlled experiments. 
+- Sample sizes are *bigger* in natural experiments than in randomised controlled experiments. 
 
 - We *isolate the variation in treatment* that is driven by the natural randomness. So we are seeing the effect only among people who are sensitive to NaturalRandomness. 
 
@@ -339,7 +339,7 @@ ggdag::ggdag(dag_object, # the dag object we created
 
 - **Pan He** and **Cheng Xu** in 2019 look at whether **air pollution being worse causes people to drive more**.
 
-- He and Xu get their data from Beijing. They look at **whether people drive more on days when there is more pollution**, and find that **they do**.
+- He and Xu get their data in Beijing. They look at **whether people drive more on days when there is more pollution**, and find that **they do**.
 
 - Problem: there's also obvious reverse causality issues as well as back doors (factories running, etc.)
 
@@ -373,7 +373,7 @@ coord_dag <- list(
 )
 dag_object <- ggdag::dagify(b ~ a,
                             c ~ b,
-                            b ~ c,
+                           # b ~ c,
                             a ~ d,
                             b ~ d,
                             c ~ d,

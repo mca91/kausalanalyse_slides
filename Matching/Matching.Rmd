@@ -111,7 +111,7 @@ library(stfit)
 
 ### Definition: Matching
 
-Matching is the process of closing back doors between a treatment and an outcome by constructing comparison groups that are similar according to a set of matching variables.
+Matching is the process of closing back doors between a treatment and an outcome by constructing comparison groups that are similar according to a set of matching variables.       
 
 Matching is usually applied to binary treated/untreated treatment variables, where the control group is very similar to the treatment group.
 ]]
@@ -126,7 +126,7 @@ Matching is usually applied to binary treated/untreated treatment variables, whe
 
 - The pool of unemployed people eligible for the job-training program was about 50% male and 50% female.
 
-- People actually in the program were 80% male and 20% female due to heavily advertising to males.
+- People actually in the program were 80% male and 20% female due to heavily advertising to males.  
 
 - The back door: $Outcome \leftarrow Gender \rightarrow Job Training Program$
 ]]
@@ -488,8 +488,8 @@ The 2-nearest-neighbors match will include some observations in the control grou
 </br>
 
 .blockquote[
-###Definition: Kernel Functions and kernel-based matching
-- Kernel Functions are functions that given a difference, returns a weight. The highest value is at 0 (no difference), and then the value (uniform weights) declines as the value move away from 0 in either direction
+###Definition: Kernel functions and kernel-based matching
+- Kernel functions are functions that given a difference, returns a weight. The highest value is at 0 (no difference), and then the value declines as the value move away from 0 in either direction
 
 - Kernel-based matching estimators use a kernel function to produce weights.
 
@@ -586,7 +586,7 @@ The treatment effect ist $0-0.561=-0.561$
 - The main idea is:
  - First a number is picked which is caliper/bandwidth.
  - If the distance, or the difference in propensity scores, is bigger in absolute value than that number, then it is not counted as a match. 
- - If a match is encountered, then that observation gets dropped.
+ - If no match is encountered, then that observation gets dropped.
  
 ---
 # 5. What is the worst acceptable match?
@@ -722,7 +722,7 @@ $$d(x_1, x_2) = \left(
   \begin{bmatrix}
      21 \\ 14 
   \end{bmatrix}
-\right)^{-1/2}=1.521$$
+\right)^{1/2}=1.521$$
 
 ]
 
@@ -784,7 +784,7 @@ In coarsened exact matching we only match if observations exactly matches for ea
 2. Look for exact matches. Only keep *treated* observations with at least one exact match in the control group and drop the others. Only keep *control* observations with at least one exact match in the treatment group and drop the others. 
 3. Assign a weight corresponding to the number of treatment group observation matches it has, divided by the number of control observations matched to the treated observation and multiply by the total number of matched control observations divided by the total number of matched treatment observations:
 
-$$\frac{Treated Matches}{ControlMatches} \cdot \frac{TotalControl Matches}{TotalTreatedlMatches}$$
+$$\frac{Treated Matches}{ControlMatches} \cdot \frac{TotalControl Matches}{TotalTreatedMatches}$$
 
 
 ---
@@ -923,7 +923,7 @@ Boosted regression is an iterative method that starts with a binary regression m
 ---
 # Assumptions for matching
 <br>
-**2. Balance**
+** Balance**
 <br><br>
 
 - Balance is the assumption that the approach to selecting a matched group has closed back doors for the variables of interest.
@@ -958,6 +958,7 @@ A common way of checking for balance is a *balance table*.
 
 
 ---
+exclude: true
 # Assumptions for matching
 <br>
 **Balance table: estimating mean differences**
