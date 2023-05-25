@@ -125,7 +125,7 @@ ggdag::ggdag(dag_object, # the dag object we created
       
       ...causes something that causes something that causes something
   
-      is a good candidate for inclusion `r emoji::emoji('slightly_smiling_face')`.
+      is a good candidate for inclusion.
   
 2. Filter the variables to the ones that are (strongly) causing the outcome.
 
@@ -226,7 +226,7 @@ dag_object <- ggdag::dagify(f ~ a,
                             j ~ k,
                             o ~ k,
                             l ~ k,
-                            k ~ l,
+                           # k ~ l,
                             i ~ l,
                             n ~ m,
                             l ~ m,
@@ -365,7 +365,6 @@ dag_object  %>%
 - A cycle depicts that a variable causes itself&mdash;we cannot isolate the cause from effect.
 - In the true DGP there cannot be any cycles either.
 - Whenever we have a cycle in our diagram, we can get out of it by adding a **time dimension**.
-- Cycles can also be broken using a source of random variation for one of the variables in the cycle:
 
     If we just focus on the part of the variable driven by randomness, the effect cannot loop back on itself! 
  
@@ -389,7 +388,7 @@ coord_dag <- list(
 dag_object <- ggdag::dagify(a ~ b,
                             b ~ a,
                             coords = coord_dag,
-                            labels=c("a"="You Punch You",
+                            labels=c("a"="I Punch You",
                                      "b"="You Punch me"))
 ggdag::ggdag(dag_object, # the dag object we created
              text = FALSE, # this means the original names won't be shown
