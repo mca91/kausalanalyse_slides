@@ -139,7 +139,7 @@ ggdag::ggdag(dag_object, # the dag object we created
 **Why is it important?**
 
 - We want to be able to write out every single path that starts with the treatment variable and ends with the outcome variable.
-- This is because, each path explains one way in which the treatment and outcome variables might be related. 
+- This is because each path explains one way in which the treatment and outcome variables might be related. 
 - The alternative paths are alternate explanations for the causation.
 - If we want to really show how much your treatment causes the outcome, we have to be able to find those alternate explanations to account for them in your research and identify just the explanation of interest.
 
@@ -340,9 +340,10 @@ Assumption: *Wine* → *Drugs* → *Lifespan*
   We have two good (front door) paths:
   
   *Wine* → *Lifespan*
+  
   *Wine* → *Drugs* → *Lifespan*
   
-  The rest are bad paths, i.e, control for *Health* and *Income*
+  The rest are bad paths, i.e., control for *Health* and *Income*
 ]]
 
 ---
@@ -364,7 +365,7 @@ A path is *closed* by default when there is a collider.
 
 - We have defined paths to be *open* as long as every variable along the path is allowed to vary. Removing the variation from a variable on the path (controlling/adjusting for it) *closes* the path.
 - If we are looking for alternate explanations of why treatment and outcome might be related, the collider shuts down that alternate explanation.
- - If the path were *Treatment* ← *C* → *Outcome* without a collider, then one reason why *Teatment* and *Outcome* vary together is because *C* causes them both. But with a collider, *Treatment* ←  *A* → *B* ←   C  → Outcome ,  C can affect *Outcome*, and *C* can affect *B*, but because *B* doesn’t affect *Treatment*, *C* can no longer induce a relationship between *Treatment* and *Outcome*. *B* saved us.
+ - If the path were *Treatment* ← *C* → *Outcome* without a collider, then one reason why *Teatment* and *Outcome* vary together is because *C* causes them both. But with a collider, *Treatment* ←  *A* → *B* ←   *C*  → Outcome ,  *C* can affect *Outcome*, and *C* can affect *B*, but because *B* doesn’t affect *Treatment*, *C* can no longer induce a relationship between *Treatment* and *Outcome*. *B* saved us.
 - Once we control for the collider, the two variables pointing to the collider become related: the alternate explanation returns.
 
 ---
@@ -383,15 +384,15 @@ A path is *closed* by default when there is a collider.
 - Once we accomplish that, any remaining relationship between treatment and control can only be going through the good paths, and all of the good paths we want are included.
  
 - This is exactly what we want.
-
+ 
 ---
 ## Using paths to test a causal diagram
 
 Look for paths between any two variables to determine whether we have the right diagram in the first place:
 
-1. Pick two variables on our diagram other than Treatment and Outcome. Let us call them A and B. 
-2. List all of the paths between A and B. Then, we do what we need to do to ensure they are all closed.
-3. If A and B are still related to each other, that means there must be some other path we did not account for.
+1. Pick two variables on our diagram other than Treatment and Outcome. Let us call them *A* and *B* . 
+2. List all of the paths between *A* and *B* . Then, we do what we need to do to ensure they are all closed.
+3. If *A* and *B* are still related to each other, that means there must be some other path we did not account for.
    
    Our diagram is *deficient*, and perhaps in an important way.
 
