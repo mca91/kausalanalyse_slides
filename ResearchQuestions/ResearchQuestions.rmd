@@ -1,5 +1,5 @@
 ---
-title: "<a href='https://github.com/mca91/kausalanalyse_slides/raw/main/ResearchQuestions/ResearchQuestions.pdf'>Research questions</a>"
+title: "<a href='https://github.com/mca91/kausalanalyse_slides/raw/main/ResearchQuestions/ResearchQuestions.pdf'>Research Questions</a>"
 author: "Christoph Hanck"
 date: "Summer 2023"
 output:
@@ -22,6 +22,7 @@ layout: true
 <a style="position: absolute;top:5px;left:10px;color:#004c93;" target="Overview"  href="https://kaslides.netlify.app/">`r fontawesome::fa("home", height="15px")`</a>
 
 ---
+exclude: true
 
 ```{r, load_refs, include = FALSE, echo=FALSE, cache=FALSE}
 library(RefManageR)
@@ -78,7 +79,7 @@ htmltools::tagList(
   rmarkdown::html_dependency_font_awesome()
 )
 ```
-exclude: true
+
 # Empirical research
 .vcenter[
 
@@ -193,21 +194,17 @@ Data mining is the systematic application of computer-aided methods to discover 
 .vcenter[
 .blockquote[
 
-### Example: Russia-Ukraine war
+### Example: War in Ukraine and Oil prices
 
-- By a stable mechanism we mean that the process giving us the data does not change
+- The global market price of crude oil was ~$76 per barrel in January 2022..fn[2] The war drove prices to $110 at around March 2022 and increased volatility substantially &rarr; an *unstable* DGP.
 
-- The prices of crude oil in the global market was approximately 76 U.S dollars per barrel during the start of January 2022.
+- Data mining methods tend to make bad forecasts given such DGP change and also fail to provide reliable measures of forecast uncertainty.
 
-- A prediction of future oil prices would have been around this price.
-
-- After the Russia-Ukraine war, there was a sudden increase in the oil prices to 110 U.S dollars per barrel at around March 2022.
-
-- Due to this instability, the previous predictions of future oil prices became inaccurate.
+- Models based on economic and statistical theory better adapt to new (market) conditions.
 
 ]]
 
-.footnote[[2] reference taken from the website: https://www.gep.com/blog/mind/russia-ukraine-wars-effects-oil-and-gas-industry#:~:text=Oil%20prices%20were%20rising%20globally,barrel%20on%204%20March%202022.]
+.footnote[[2] see https://www.gep.com/blog/mind/russia-ukraine-wars-effects-oil-and-gas-industry#:~:text=Oil%20prices%20were%20rising%20globally,barrel%20on%204%20March%202022.]
 
 ---
 # Data mining &mdash; looking for patterns 
