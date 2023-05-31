@@ -522,7 +522,7 @@ ggplot(data.frame(x = (-150:150)/100), aes(x = x)) +
 Two differences are calculated:
  - The difference between the $Bill April$ matching variable in rows 10,305 and 27,281 was $|91630-91609|=21$ .
  - The difference between row 10,305 and row 27,719 was $|91630-91596|=34$ .
-These differences are standardized (why?) to $\frac{21}{59.994}=0.35$ and $\frac{34}{59.994}=0.56$ . 
+ - These differences are standardized (why?) to $\frac{21}{59.994}=0.35$ and $\frac{34}{59.994}=0.56$ . 
 ]]
 
 ---
