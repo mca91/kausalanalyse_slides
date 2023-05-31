@@ -197,7 +197,7 @@ Matching is usually applied to binary treated/untreated treatment variables, whe
 
 - There is a back door through $Gender$.
 
-- The weights are constructed as: Give a weights of 1 to *everyone* who is treated, $80/500 = 0.16$ to all untreated men, and $20/500 = 0.04$ to all untreated women
+- The weights may be constructed as: Give a weights of 1 to *everyone* who is treated, $80/500 = 0.16$ to all untreated men, and $20/500 = 0.04$ to all untreated women
 
 - The treated group will still be 80% men and the untreated group becomes $$\frac{(0.16\cdot500)+(0.04\cdot0)}{(0.16\cdot500)+(0.04\cdot500)} = 80\% \quad\Rightarrow\quad \text{backdoor closed!}$$
 
@@ -391,7 +391,7 @@ ggplot(sub, aes(x = BillApril, y = yjit, shape = LateApril)) +
 
 **It depends**
 
-- The process of selecting matches means that control observations are picked to either be in or out of the matched control sample. If it is a good enough match, it will work, or else it will not. 
+- The process of selecting matches means that control observations are picked to either be in or out of the matched control sample.
 
 - Everyone in the matched sample receives an equal weight
 
@@ -489,7 +489,7 @@ The 2-nearest-neighbors match will include some observations in the control grou
 
 .blockquote[
 ###Definition: Kernel functions and kernel-based matching
-- Kernel functions are functions that given a difference, returns a weight. The highest value is at 0 (no difference), and then the value declines as the value move away from 0 in either direction
+- Kernel functions are functions that given a difference, returns a weight. The highest value is at 0 (no difference), and then the valued uniform weights declines as the value move away from 0 in either direction
 
 - Kernel-based matching estimators use a kernel function to produce weights.
 
@@ -644,7 +644,7 @@ The choice is often between fewer, but better, matches that produce estimates wi
 
  - Each email was sent by the fictional “Tyrone Washington,” which in the US is a name that strongly suggests it belongs to a Black man.
  
-- **Expectation:** Black legislators responds more often to out-of-district emails from black people. 
+- **Expectation:** Black legislators respond more often to out-of-district emails from black people. 
 
 - Matching is where we compare the in/out-of-district gap between Black and non-Black legislators. Those groups tend to be elected in very different kinds of places. Back doors abound. Matching can be used to make for a better comparison group.
 ]]
@@ -798,6 +798,7 @@ $$\frac{Treated Matches}{ControlMatches} \cdot \frac{TotalControl Matches}{Total
 - Hence, large samples are necessary. 
 
 ---
+exclude : true
 # Entropy balancing
 
 .vcenter[
