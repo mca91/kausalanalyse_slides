@@ -494,7 +494,7 @@ To get our answer, we have to dig out *that* part of the variation in crime and 
  
  ...and infinitely many more!
 - We say that $Z$ has a *moderating influence* on the effect of $X$ on $Y$ in DGP 2
-
+ 
 
 ---
 ## Causal diagrams: Moderators
