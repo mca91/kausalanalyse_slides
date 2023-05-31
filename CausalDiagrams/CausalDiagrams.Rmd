@@ -502,7 +502,7 @@ To get our answer, we have to dig out *that* part of the variation in crime and 
 .vcenter[
 .blockquote[
 ### Definition: Moderators in causal diagrams
-Moderators are variables that do not necessarily cause another variable (although they might do that too). Instead, they *moderate the effect of one variable on another*.
+Moderators are variables that do not necessarily cause another variable (although they might do that too). Instead, they *moderate the effect of one variable on another*. 
 ]]
 
 ---
