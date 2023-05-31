@@ -476,7 +476,7 @@ dag_object <- ggdag::dagify(E ~ D,
 
 The causal diagram can be used to figure out how to identify the answer to our research question.
 
-We may identify parts of the diagram that indicate how police per capita to causes crime)
+We may identify parts of the diagram that indicate how police per capita causes crime
 - Police per capita → Crime (direct effect) 
 - Expected crime payout → Crime (indirect effect)
 
