@@ -718,7 +718,7 @@ coefplot(clfe, grid.par = list(vert = F))
 .vcenter[
 .blockquote[
 ###Example: High Speed internet on new businesses
-- We are interested in the impact of having access to high-speed Internet on the formation of new businesses
+- We are interested in the impact of having access to high-speed internet on the formation of new businesses
 
 - King County got broadband in 2001, Pierce County got it in 2002, and Snohomish County got it in 2003 
 
