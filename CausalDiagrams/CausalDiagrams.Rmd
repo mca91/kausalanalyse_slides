@@ -182,7 +182,7 @@ We can say $X$ causes $Y$ by saying:
 - $X$ causes $Y$ ("Many studies suggest that eating chocolate causes weight gain")
 - $X$ affects $Y$ ("Various factors affect the success of a business")
 - The effect of $X$ on $Y$ ("The effect of social media on mental health is thought to be significant")
-- $X$ influences $Y$ (T"he effect of diet influences overall health")
+- $X$ influences $Y$ ("The effect of diet influences overall health")
 
 ---
 
