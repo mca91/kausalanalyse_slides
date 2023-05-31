@@ -620,7 +620,7 @@ If the estimates of fixed effects and random effects are found to *not* be diffe
 
    This assumption can be *useful to obtain correct regression standard errors* !
 
-- However, this assumption is difficult when it comes to fixed effects:
+- However, such an assumption is difficult when it comes to fixed effects:
 
 - If parts of the DGP that are left out are shared across all an individual's or a group’s observations, there will be correlation. 
 
