@@ -325,7 +325,7 @@ Diego    |  $100$ untreated   |  $2$
 .vcenter[
 .blockquote[
 ### Definition: Distribution-weighted average treatment effect
-In **distribution-weighted average treatment effect**, individuals with **common values of the matching variable** are weighted more heavily.
+In **Distribution-weighted average treatment effect**, individuals with **common values of the matching variable** are weighted more heavily.
 ]]
 
 ---
