@@ -798,7 +798,6 @@ $$\frac{Treated Matches}{ControlMatches} \cdot \frac{TotalControl Matches}{Total
 - Hence, large samples are necessary. 
 
 ---
-exclude : true
 # Entropy balancing
 
 .vcenter[
@@ -959,7 +958,6 @@ A common way of checking for balance is a *balance table*.
 
 
 ---
-exclude: true
 # Assumptions for matching
 <br>
 **Balance table: estimating mean differences**
