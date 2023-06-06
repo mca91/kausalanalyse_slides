@@ -202,7 +202,7 @@ ggdag::ggdag(dag_object, # the dag object we created
 
 ###Example: Charter school's influence on grades
 
-```{r, echo=F, cache=F, out.extra = 'style="display:block; margin-right:auto; margin-left:auto;"', fig.height=4, out.width='65%', dpi=190, fig.cap=paste0(fig_counter(), ': Causal diagram of infkuence of Charter schools on grades '), fig.align='center'}
+```{r, echo=F, cache=F, out.extra = 'style="display:block; margin-right:auto; margin-left:auto;"', fig.height=4, out.width='65%', dpi=190, fig.cap=paste0(fig_counter(), ': Causal diagram of influence of Charter schools on grades '), fig.align='center'}
 coord_dag <- list(
   x = c(a = 1, b = 3, c = 2, d= 1 ),
   y = c(a = 1, b = 1, c = 2, d=2 )

@@ -1057,7 +1057,7 @@ There are two ways manipulation could happen:
 
 </br>
 
-In the case of indirect control we do have a test we can perform to check whether manipulation seems to be occurring at the cutoff.
+In the case of indirect control we do have a test to check whether manipulation seems to be occurring at the cutoff.
 
 For this we inspect the distribution of the running variable around the cutoff:
 

@@ -98,7 +98,7 @@ Simulation refers to the process of using a random process that that can be cont
 
 - Using a controlled random process, we can simulate data from a true DGP of our choice
 
-- Simulation allows to choose whether there is a back door, or a collider, or whether the error terms are correlated, or whether there is common support
+- Simulation allows to specify whether there is a back door, or a collider, or whether the error terms are correlated, or whether there is common support
 
 ---
 # Anatomy of simulation
@@ -128,7 +128,7 @@ A typical statistical simulation has only a few parts:
 Decide upon the DGP. For example a coin that shows heads with probability 75%.
 
 1. Use the computer to produce a sample of 100 coin flips with 75% probability of heads.
-2. Apply the estimator to the sample of 100 coin flips. In other words, calculate the proportion of heads in that sample.
+2. Apply an estimator to the sample of 100 coin flips. E.g. calculate the proportion of heads in that sample.
 3. Store the estimate
 4. Iterate steps 1-3
 5. Examine the distribution of heads
@@ -190,7 +190,7 @@ Simulation is a great tool for three main things:
 .blockquote[
 ###Example: Linear regression 
 
-- If we want a linear regression coefficient on $X$ to be an unbiased estimate of the causal effect of $X$, we need to assume that $X$ is unrelated to the error term (no open back doors).
+- If we want a linear regression coefficient estimator on $X$ to be unbiased  for the causal effect of $X$, we need to assume that $X$ is unrelated to the error term (no open back doors).
 
 - In social sciences there are always some things we cannot measure or control for which are unfortunately related to both $X$ and the outcome. 
 
@@ -204,7 +204,7 @@ Simulation is a great tool for three main things:
 .vcenter[
 .blockquote[
 ### Definition: Power analysis
-Power analysis is the process of trying to figure out if the amount of information present in the data is enough. While there are calculators and analytic methods out there for performing power analysis, power analysis is very commonly done by simulation, especially for non-experimental studies.
+Power analysis is the process of trying to figure out if the amount of information present in the data is sufficient.
 ]]
 
 ---
@@ -274,7 +274,7 @@ It is the proportion of times we correctly reject the false null
 
 - Statistical power depends on the test:
 
-  For a hypothesis test at the 95% confidence level, it is more likely to reject the null (and thus will have higher statistical power) than for a hypothesis test at the 99% confidence level.
+  A hypothesis test at the 95% confidence level is more likely to reject the null (and thus will have higher statistical power) than a hypothesis test at the 99% confidence level.
 
 - There is a trade-off: the more careful one is about false positives, the more likely one will get a false negative.
 
@@ -318,7 +318,7 @@ Bootstrapping is the process of repeating an analysis many times after **resampl
 
 - As a simulation tool, the bootstrap is limited to cases where the question does not rely on comparing the results to the truth
   
-- The bootstrap is often is to estimate *standard errors*:
+- The bootstrap is often used to estimate *standard errors*:
 
   By mimicking the whole sampling process, strange interdependencies between the variables are automatically simulated, allowing any oddities in the true sampling distribution to creep into the bootstrap-simulated sampling distribution.
 
@@ -350,7 +350,7 @@ Bootstrapping comes with its own set of assumptions to provide good estimates of
 <br>
 - A reasonably large sample size is required
 
-- The data should reasonably be well behaved. If the variables follow extremely highly skewed distributions, bootstrap will not work well. 
+- The data should be reasonably well behaved. E.g. if the variables follow extremely highly skewed distributions, bootstrap will not work well. 
 
 - Care must be taken when accounting for how the observations might be related to each other
 

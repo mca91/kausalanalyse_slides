@@ -182,7 +182,7 @@ We can say $X$ causes $Y$ by saying:
 - $X$ causes $Y$ ("Many studies suggest that eating chocolate causes weight gain")
 - $X$ affects $Y$ ("Various factors affect the success of a business")
 - The effect of $X$ on $Y$ ("The effect of social media on mental health is thought to be significant")
-- $X$ influences $Y$ (T"he effect of diet influences overall health")
+- $X$ influences $Y$ ("The effect of diet influences overall health")
 
 ---
 
@@ -476,7 +476,7 @@ dag_object <- ggdag::dagify(E ~ D,
 
 The causal diagram can be used to figure out how to identify the answer to our research question.
 
-We may identify parts of the diagram that indicate how police per capita to causes crime)
+We may identify parts of the diagram that indicate how police per capita causes crime
 - Police per capita → Crime (direct effect) 
 - Expected crime payout → Crime (indirect effect)
 
@@ -494,7 +494,7 @@ To get our answer, we have to dig out *that* part of the variation in crime and 
  
  ...and infinitely many more!
 - We say that $Z$ has a *moderating influence* on the effect of $X$ on $Y$ in DGP 2
-
+ 
 
 ---
 ## Causal diagrams: Moderators
@@ -502,7 +502,7 @@ To get our answer, we have to dig out *that* part of the variation in crime and 
 .vcenter[
 .blockquote[
 ### Definition: Moderators in causal diagrams
-Moderators are variables that do not necessarily cause another variable (although they might do that too). Instead, they *moderate the effect of one variable on another*.
+Moderators are variables that do not necessarily cause another variable (although they might do that too). Instead, they *moderate the effect of one variable on another*. 
 ]]
 
 ---

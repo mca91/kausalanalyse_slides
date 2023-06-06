@@ -325,7 +325,7 @@ Diego    |  $100$ untreated   |  $2$
 .vcenter[
 .blockquote[
 ### Definition: Distribution-weighted average treatment effect
-In **distribution-weighted average treatment effect**, individuals with **common values of the matching variable** are weighted more heavily.
+In **Distribution-weighted average treatment effect**, individuals with **common values of the matching variable** are weighted more heavily.
 ]]
 
 ---
@@ -446,7 +446,7 @@ ggdag::ggdag(dag_object, # the dag object we created
 
 - We want to identify the effect by measuring and controlling for your own bad driving skills
 
-- This will identify the effect, but it will also shut out any variation in _TrafficSchool_ that is driven by _YourBadDriving_
+- This will identify the effect, but it will also shut out any variation in _TrafficSchool_ that is driven by _YourBadDriving_ 
 ]]
 
 ---
