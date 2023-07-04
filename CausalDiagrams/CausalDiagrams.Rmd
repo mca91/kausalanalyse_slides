@@ -305,10 +305,11 @@ We have...
 ---
 ## Causal diagrams
 
+.vcenter[
 .blockquote[
 ###Example: Flipping coins for cake
 
-```{r, echo=F, cache=F, out.extra = 'style="color:black; display:block; margin-right:auto; margin-left:auto; margin-top:15px"', fig.height=4.5, out.width='60%', dpi=190, fig.cap=paste0(fig_counter(), ': A simple causal diagram')}
+```{r, echo=F, cache=F, out.extra = 'style="color:black; display:block; margin-right:auto; margin-left:auto; margin-top:15px"', fig.height=4.5, out.width='60%', dpi=190, fig.cap=paste0(fig_counter(), ': A simple causal diagram'), include = F}
 coord_dag <- list(
   x = c(Y = 3, X = 1),
   y = c(Y = 1, X = 1)
@@ -324,7 +325,12 @@ ggdag::ggdag(dag_object, # the dag object we created
 
 ```
 
-]
+```{r, echo=F, cache=F, fig.cap=paste0(fig_counter(), ': A simple causal diagram')}
+m <- DiagrammeR::grViz("dot_files/CoinFlip.dot", height = 80, width = "100%")
+widgetframe::frameableWidget(m)
+```
+
+]]
  
 ---
 ## Causal diagrams

@@ -1,0 +1,58 @@
+digraph "Causal Diagramm RDD" {
+  layout=neato
+  fontname="Helvetica,Arial,sans-serif"
+  bgcolor=transparent
+  node [fontname="Helvetica,Arial,sans-serif"]
+  edge [fontname="Helvetica,Arial,sans-serif"]
+  node [shape=none];
+  "U 3" [pos="12,8!"]
+  "U 4" [pos="4,9!"]
+  "U 2" [pos="4,8!"]
+  "gender" [pos="4,10.5!"]
+  "hours" [pos="4,12!"]
+  "U 1" [pos="12,7!"]
+  "race" [pos="8,7!"]
+  "prefs" [pos="8,11!"]
+  "time" [pos="8,12!"]
+  "age" [pos="13,11!"]
+  "SES" [pos="13,9!"]
+  "acedemics" [pos="16,7!"]
+  "U 5" [pos="16,8!"]
+  "dropOut" [pos="15,10.5!",  fontcolor="red"]
+  "classes" [pos="14,12!",  fontcolor="red"]
+  "location" [pos="16,9!"]
+  "webAccess" [pos="16,12!"]
+ 
+  "U 3" -> "gender"
+  "U 3" -> "acedemics"
+  "U 4" -> "gender"
+  "U 4" -> "SES"
+  "U 2" -> "race"
+  "U 2" -> "SES"
+  "gender" -> "time"
+  "gender" -> "prefs"
+  "gender" -> "SES"
+  "hours" -> "time"
+  "U 1" -> "race"
+  "U 1" -> "acedemics"
+  "race" -> "prefs"
+  "race" -> "hours"
+  "prefs" -> "time"
+  "time" -> "classes"
+  "age" -> "time"
+  "age" -> "hours"
+  "age" -> "prefs"
+  "age" -> "dropOut"
+  "age" -> "SES"
+  "SES" -> "age"
+  "SES" -> "prefs"
+  "acedemics" -> "hours"
+  "acedemics" -> "U 5"
+  "U 5" -> "dropOut"
+  "U 5" -> "SES"
+  "U 5" -> "location"
+  "location" -> "webAccess"
+  "webAccess" -> "classes"
+  "gender" -> "dropOut"
+  "classes" -> "dropOut" [color="red"]
+}
