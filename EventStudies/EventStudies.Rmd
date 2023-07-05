@@ -120,7 +120,7 @@ The event study is probably the oldest and simplest causal inference research de
 
 Event studies are designed to work in cases where the relevant causal diagram looks like the following:
 
-```{r , echo=F, cache=F, out.extra = 'style="display:block; margin-right:auto; margin-left:auto;"', fig.height=3.5, out.width='65%', dpi=190, fig.cap=paste0(fig_counter(), ': Causal diagram that event studies work for'), fig.align='center'}
+```{r , echo=F, cache=F, out.extra = 'style="display:block; margin-right:auto; margin-left:auto;"', fig.height=3.5, out.width='65%', dpi=190, fig.cap=paste0(fig_counter(), ': Causal diagram that event studies work for'), fig.align='center',include=FALSE}
 coord_dag <- list(
   x = c(a = 1, b = 0, c = 1, d = 2),
   y = c(a = 1, b = 0, c = 0, d = 0)
@@ -140,7 +140,10 @@ ggdag::ggdag(dag_object, # the dag object we created
   theme_void()
 ```
 
-
+```{r, echo=F, cache=F, fig.cap=paste0(fig_counter(), ': Causal diagram that event studies work for')}
+m <- DiagrammeR::grViz("dot_files/Time_outcome.dot", height = 300, width = "100%")
+widgetframe::frameableWidget(m)
+```
 ---
 # Event studies
 <br>
