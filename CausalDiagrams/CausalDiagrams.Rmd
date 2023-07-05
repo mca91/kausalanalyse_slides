@@ -379,7 +379,7 @@ ggdag::ggdag(dag_object, # the dag object we created
 ```
 
 ```{r, echo=F, cache=F, fig.cap=paste0(fig_counter(), ': Unobserved variable')}
-m <- DiagrammeR::grViz("dot_files/IceCream_Shorts.dot", height = 200, width = "100%")
+m <- DiagrammeR::grViz("dot_files/IceCream_Shorts.dot", height = 300, width = "100%")
 widgetframe::frameableWidget(m)
 ```
 
@@ -482,7 +482,7 @@ dag_object <- ggdag::dagify(E ~ D,
 
 
 ```{r, echo=F, cache=F, fig.cap=paste0(fig_counter(), ': Police presence and crime rate')}
-m <- DiagrammeR::grViz("dot_files/Police_Crime.dot", height = 240, width = "100%")
+m <- DiagrammeR::grViz("dot_files/Police_Crime.dot", height = 350, width = "100%")
 widgetframe::frameableWidget(m)
 ```
 ---

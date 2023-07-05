@@ -7,10 +7,10 @@ digraph "Causal Diagramm RDD" {
   node [fontname="Helvetica,Arial,sans-serif"]
   edge [fontname="Helvetica,Arial,sans-serif"]
   node [shape=none];
-  "Law and Order politics" [pos="0,4!",  fontcolor="red"]
-  "Sentencing Laws" [pos="3,4!"]
-  "Expected Crime Payouts" [pos="6,4!", fontcolor="red"]
-   "Police per Capita" [pos="3,2!"]
+  "Law and Order politics" [pos="0,2!",  fontcolor="red"]
+  "Sentencing Laws" [pos="3,2!"]
+  "Expected Crime Payouts" [pos="6,2!", fontcolor="red"]
+   "Police per Capita" [pos="3,1!"]
   "Lagged crime" [pos="0,0!"]
   "Crime" [pos="6,0!"]
   "Law and Order politics" -> "Police per Capita"
