@@ -539,7 +539,7 @@ ggdag::ggdag(dag_object, text = T ) +
 ```
 
 ```{r, echo=F, cache=F, fig.cap=paste0(fig_counter(), ': Z moderates X')}
-m <- DiagrammeR::grViz("dot_files/ZModeratesX.dot", height = 200, width = "100%")
+m <- DiagrammeR::grViz("dot_files/ZModeratesX.dot", height = 350, width = "100%")
 widgetframe::frameableWidget(m)
 ```
 ---

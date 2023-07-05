@@ -6,9 +6,9 @@ digraph "Causal Diagramm RDD" {
   node [fontname="Helvetica,Arial,sans-serif"]
   edge [fontname="Helvetica,Arial,sans-serif"]
   node [shape=none];
-  "X" [pos="0,2!"]
-  "Y" [pos="2,0!"]
-  "Z" [pos="4,2!"]
+  "X" [pos="0,1!"]
+  "Y" [pos="1,0!"]
+  "Z" [pos="2,1!"]
   "X" -> "Y"
   "Z" -> "Y"
 }
