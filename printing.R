@@ -25,6 +25,8 @@ walk(
   .f = ~ renderthis::to_pdf(.)
 )
 
+# for the individual chapters
+
 renderthis::to_pdf("~/git_projects/KA_slides/Introduction/Introduction.Rmd")
 renderthis::to_html("~/git_projects/KA_slides/Introduction/Introduction.Rmd")
 
