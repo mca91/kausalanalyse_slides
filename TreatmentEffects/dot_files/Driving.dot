@@ -1,0 +1,21 @@
+digraph "Causal Diagramm RDD" {
+  layout=neato
+  fontname="Helvetica,Arial,sans-serif"
+  bgcolor=transparent
+  imagescale=both
+  node [fontname="Helvetica,Arial,sans-serif"]
+  edge [fontname="Helvetica,Arial,sans-serif"]
+  node [shape=none];
+  "Others Bad Driving" [pos="0,4!"]
+  "Traffic School" [pos="0,2!"]
+  "Your Bad Driving" [pos="2,4!"]
+  "Your Furure Driving" [pos="4,2!"]
+
+  
+  "Your Bad Driving" -> "Traffic School"
+   "Your Bad Driving" ->  "Your Furure Driving"
+  "Others Bad Driving" -> "Traffic School"
+  "Traffic School" -> "Your Furure Driving"
+
+  
+}

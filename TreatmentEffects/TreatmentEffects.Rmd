@@ -408,7 +408,7 @@ The local average treatment effect (**LATE**) is a **weighted average treatment 
 .blockquote[
 ### Example: Effect of traffic school on future driving performance
 
-```{r, echo=F, cache=F, out.extra = 'style="display:block; margin-right:auto; margin-left:auto;"', fig.height=3.5, out.width='70%', dpi=190, fig.cap=paste0(fig_counter(), ': Causal diagram of Effect of traffic school on future driving performance '), fig.align='center'}
+```{r, echo=F, cache=F, out.extra = 'style="display:block; margin-right:auto; margin-left:auto;"', fig.height=3.5, out.width='70%', dpi=190, fig.cap=paste0(fig_counter(), ': Causal diagram of Effect of traffic school on future driving performance '), fig.align='center',include=FALSE}
 coord_dag <- list(
   x = c(a = 1, b = 3, c = 2, d= 1 ),
   y = c(a = 1, b = 1, c = 2, d=2 )
@@ -430,6 +430,11 @@ ggdag::ggdag(dag_object, # the dag object we created
              use_labels = "label") + # instead use the new names
   theme_void()
 
+```
+
+```{r, echo=F, cache=F, fig.cap=paste0(fig_counter(), ': Causal diagram of Effect of traffic school on future driving performance')}
+m <- DiagrammeR::grViz("dot_files/Driving.dot", height = 300, width = "100%")
+widgetframe::frameableWidget(m)
 ```
 ]]
 
