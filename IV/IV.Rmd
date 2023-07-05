@@ -111,7 +111,7 @@ For instrumental variables to work, two assumptions must be satisfied:
 **A typical setting with randomization**
 <br>
 
-```{r, echo=F, cache=F, out.extra = 'style="display:block; margin-right:auto; margin-left:auto; margin-top:50px;"', fig.height=3, out.width='65%', dpi=190, fig.cap=paste0(fig_counter(), ': Causal Diagram'), fig.align='center'}
+```{r, echo=F, cache=F, out.extra = 'style="display:block; margin-right:auto; margin-left:auto; margin-top:50px;"', fig.height=3, out.width='65%', dpi=190, fig.cap=paste0(fig_counter(), ': Causal Diagram'), fig.align='center',include=FALSE}
 coord_dag <- list(
   x = c(a = 1, b = 3, c = 5, d = 7 ),
   y = c(a = 2, b = 1, c = 2, d = 1)
@@ -132,6 +132,11 @@ ggdag::ggdag(dag_object, # the dag object we created
   theme_void()
 ```
 
+
+```{r, echo=F, cache=F, fig.cap=paste0(fig_counter(), ':Causal Diagram')}
+m <- DiagrammeR::grViz("dot_files/Treatment_Outcome_pg3.dot", height = 300, width = "100%")
+widgetframe::frameableWidget(m)
+```
 ---
 # Isolating variation
 <br>
@@ -341,7 +346,7 @@ Any paths between the instrument $Z$ and the outcome $Y$ must either pass throug
 ---
 # Assumptions for IV
 <br>
-```{r, echo=F, cache=F, out.extra = 'style="display:block; margin-right:auto; margin-left:auto;"', fig.height=4, out.width='65%', dpi=190, fig.cap=paste0(fig_counter(), ': A causal diagram amenable to IV estimation'), fig.align='center'}
+```{r, echo=F, cache=F, out.extra = 'style="display:block; margin-right:auto; margin-left:auto;"', fig.height=4, out.width='65%', dpi=190, fig.cap=paste0(fig_counter(), ': A causal diagram amenable to IV estimation'), fig.align='center',include=FALSE}
 
 coord_dag <- list(
   x = c(a = 3, b = 3, c = 1, d = 5,e=3 ,f= 5,g=1 ),
@@ -392,6 +397,11 @@ dag_object  %>%
   geom_dag_label_repel(aes(label = label), force = 3, ) +
   scale_color_manual(values = c( "black", "red", "steelblue")) +
   theme_dag()
+```
+
+```{r, echo=F, cache=F, fig.cap=paste0(fig_counter(), ': A causal diagram amenable to IV estimation')}
+m <- DiagrammeR::grViz("dot_files/Treatment_Outcome_pg8.dot", height = 400, width = "100%")
+widgetframe::frameableWidget(m)
 ```
 ---
 #Assumptions for IV
