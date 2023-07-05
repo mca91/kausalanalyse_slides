@@ -1,0 +1,28 @@
+digraph "Causal Diagramm RDD" {
+  layout=neato
+  fontname="Helvetica,Arial,sans-serif"
+  bgcolor=transparent
+  imagescale=both
+  node [fontname="Helvetica,Arial,sans-serif"]
+  edge [fontname="Helvetica,Arial,sans-serif"]
+  node [shape=none];
+  "A" [pos="2,0!"]
+  "B" [pos="2,2!"]
+  "C" [pos="0,2!"]
+  "D" [pos="4,2!"]
+  "X" [pos="2,1!",  fontcolor="red"]
+  "Y" [pos="4,1!",  fontcolor="red"]
+  "Z" [pos="0,1!",  fontcolor="lightblue"]
+
+  
+  "A" -> "Y"
+   "B" ->  "Z"
+   "B" -> "Y"
+   "C" -> "Z"
+   "C" ->  "X"
+   "D" -> "X"
+   "D" -> "Y"
+   "X" ->  "Y"[color="red"]
+   "Z" -> "X" [color="lightblue"]
+   "Z" -> "A"
+}

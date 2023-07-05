@@ -1,0 +1,25 @@
+digraph "Causal Diagramm RDD" {
+  layout=neato
+  fontname="Helvetica,Arial,sans-serif"
+   bgcolor=transparent
+  imagescale=both
+  fontsize=25
+  node [fontname="Helvetica,Arial,sans-serif"]
+  edge [fontname="Helvetica,Arial,sans-serif"]
+  node [shape=none];
+  "Law and Order politics" [pos="0,2!",  fontcolor="red"]
+  "Sentencing Laws" [pos="3,2!"]
+  "Expected Crime Payouts" [pos="6,2!", fontcolor="red"]
+   "Police per Capita" [pos="3,1!"]
+  "Lagged crime" [pos="0,0!"]
+  "Crime" [pos="6,0!"]
+  "Law and Order politics" -> "Police per Capita"
+  "Lagged crime" -> "Sentencing Laws"
+  "Sentencing Laws" -> "Law and Order politics"
+  "Lagged crime" -> "Police per Capita" 
+  "Lagged crime" -> "Crime"
+  "Sentencing Laws" ->  "Expected Crime Payouts"
+  "Crime"  -> "Expected Crime Payouts"
+  "Police per Capita" -> "Expected Crime Payouts"
+  "Police per Capita" -> "Crime"
+}

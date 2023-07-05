@@ -1,0 +1,15 @@
+digraph "Causal Diagramm RDD" {
+  layout=neato
+  fontname="Helvetica,Arial,sans-serif"
+  bgcolor=transparent
+  imagescale=both
+  node [fontname="Helvetica,Arial,sans-serif"]
+  edge [fontname="Helvetica,Arial,sans-serif"]
+  node [shape=none];
+  "Weather (U)" [pos="1,1!"]
+  "Shorts (X)" [pos="0,0!"]
+  "Ice-Cream (Y)" [pos="2,0!"]
+  "Weather (U)" -> "Shorts (X)"
+  "Weather (U)" -> "Ice-Cream (Y)"
+  
+}

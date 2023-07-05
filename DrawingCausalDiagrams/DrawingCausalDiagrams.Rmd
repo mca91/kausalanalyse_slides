@@ -86,7 +86,7 @@ htmltools::tagList(
 
 Causal diagrams are representations of the DGP that got us our data. Causal diagrams help us in answering research questions.Hence, drawing our own causal diagram will come down to putting our idea of what the DGP is onto paper (or a computer screen).
 
-```{r, echo=F, cache=F, out.extra = 'style="color:black; display:block; margin-right:auto; margin-left:auto;"', fig.height=2, out.width='70%', dpi=190, fig.cap=paste0(fig_counter(), ': A simple causal diagram')}
+```{r, echo=F, cache=F, out.extra = 'style="color:black; display:block; margin-right:auto; margin-left:auto;"', fig.height=2, out.width='70%', dpi=190, fig.cap=paste0(fig_counter(), ': A simple causal diagram'), include=FALSE}
 coord_dag <- list(
   x = c(Y = 3, X = 1),
   y = c(Y = 1, X = 1)
@@ -100,6 +100,11 @@ ggdag::ggdag(dag_object, # the dag object we created
              use_labels = "label") + # instead use the new names
   theme_void()
 
+```
+
+```{r, echo=F, cache=F, fig.cap=paste0(fig_counter(), ': A simple causal diagram')}
+m <- DiagrammeR::grViz("dot_files/Simple_Causal_Diagram.dot", height = 140, width = "100%")
+widgetframe::frameableWidget(m)
 ```
 
 ---
@@ -303,7 +308,7 @@ Simplification of the causal diagram:
 After simplification, the causal diagram looks like:
 
 
-```{r, echo=F, cache=F, out.extra = 'style="color:black; display:block; margin-right:auto; margin-left:auto; margin-top:15px"', fig.width=12, fig.height=4.5, dpi=190, fig.cap=paste0(fig_counter(), ': Simplified causal diagram for online classes')}
+```{r, echo=F, cache=F, out.extra = 'style="color:black; display:block; margin-right:auto; margin-left:auto; margin-top:15px"', fig.width=12, fig.height=4.5, dpi=190, fig.cap=paste0(fig_counter(), ': Simplified causal diagram for online classes'),include=FALSE}
 coord_dag <- list(
   x = c(a = 1, b = 1, c = 1, d = 1, e = 3, f = 5,g=7 ,h=7 ,i=9 ,j=7 ,k=5  ),
   y = c(a = 1, b = 2, c = 3, d = 4, e = 1, f = 1,g=1 ,h=2 ,i=3 ,j=4 ,k=4 )
@@ -360,6 +365,12 @@ dag_object  %>%
   theme_dag()
 ```
 
+```{r, echo=F, cache=F, fig.cap=paste0(fig_counter(), ': Simplified causal diagram for online classes')}
+m <- DiagrammeR::grViz("dot_files/Simplified_CD.dot", height = 400, width = "100%")
+widgetframe::frameableWidget(m)
+```
+
+
 ]
 
 ---
@@ -385,7 +396,7 @@ dag_object  %>%
 
 .pull-left[
 
-```{r, echo=F, cache=F, fig.height=4, out.width='100%', dpi=190, fig.cap=paste0(fig_counter(), ': A simple loop in a causal diagram')}
+```{r, echo=F, cache=F, fig.height=4, out.width='100%', dpi=190, fig.cap=paste0(fig_counter(), ': A simple loop in a causal diagram'),include=FALSE}
 coord_dag <- list(
   x = c(a = 1, b = 3),
   y = c(a = 1, b = 2)
@@ -401,11 +412,17 @@ ggdag::ggdag(dag_object, # the dag object we created
   theme_void()
 
 ```
+
+```{r, echo=F, cache=F, fig.cap=paste0(fig_counter(), ': A simple loop in a causal diagram')}
+m <- DiagrammeR::grViz("dot_files/loop_1.dot", height = 300, width = "100%")
+widgetframe::frameableWidget(m)
+```
+
  ]
 
 .pull-right[
 
-```{r, echo=F, cache=F, fig.height=4, out.width='100%', dpi=190, fig.cap=paste0(fig_counter(), ': Another representation of the loop')}
+```{r, echo=F, cache=F, fig.height=4, out.width='100%', dpi=190, fig.cap=paste0(fig_counter(), ': Another representation of the loop'),include=FALSE}
 coord_dag <- list(
   x = c(a = 4, b = 1, c = 4, d = 1),
   y = c(a = 3, b = 1, c = 1, d = 3)
@@ -421,6 +438,11 @@ ggdag::ggdag(dag_object, # the dag object we created
              text = FALSE, # this means the original names won't be shown
              use_labels = "label") + # instead use the new names
   theme_void()
+```
+
+```{r, echo=F, cache=F, fig.cap=paste0(fig_counter(), ': Another representation of the loop')}
+m <- DiagrammeR::grViz("dot_files/loop_2.dot", height = 300, width = "100%")
+widgetframe::frameableWidget(m)
 ```
 ]]]
 

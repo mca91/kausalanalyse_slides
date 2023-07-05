@@ -1,0 +1,16 @@
+digraph "Causal Diagramm RDD" {
+  layout=neato
+  fontname="Helvetica,Arial,sans-serif"
+  bgcolor=transparent
+  imagescale=both
+  node [fontname="Helvetica,Arial,sans-serif"]
+  edge [fontname="Helvetica,Arial,sans-serif"]
+  node [shape=none];
+  "I Punch you" [pos="0,0!"]
+  "You Punch me" [pos="2,2!"]
+  
+  "I Punch you" -> "You Punch me"
+  "You Punch me" -> "I Punch you"
+
+  
+}

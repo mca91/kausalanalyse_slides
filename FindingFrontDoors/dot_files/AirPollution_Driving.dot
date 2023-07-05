@@ -1,0 +1,31 @@
+digraph "Causal Diagramm RDD" {
+  layout=neato
+  fontname="Helvetica,Arial,sans-serif"
+  bgcolor=transparent
+  imagescale=both
+  node [fontname="Helvetica,Arial,sans-serif"]
+  edge [fontname="Helvetica,Arial,sans-serif"]
+  node [shape=none];
+  "U 1" [pos="0,4!"]
+  "Wind Direction" [pos="0,2!"]
+  "Weather" [pos="2,4!"]
+  "Pollution" [pos="4,2!",  fontcolor="red"]
+  "Economic activity" [pos="6,0!"]
+  "Seasons" [pos="6,4!"]
+  "Driving" [pos="8,2!",  fontcolor="red"]
+  
+  "Wind Direction" -> "Pollution"
+  "U 1" -> "Weather"
+  "U 1" -> "Wind Direction"
+  "Seasons" -> "Wind Direction"
+  "Seasons" -> "Pollution"
+  "Weather" -> "Pollution"
+  "Seasons" -> "Driving"
+  "Weather" -> "Driving"
+
+  "Pollution" -> "Driving" [color = "red"]
+  "Economic activity" -> "Driving" 
+  "Economic activity" -> "Pollution"
+
+  
+}

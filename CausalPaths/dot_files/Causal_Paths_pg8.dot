@@ -1,0 +1,27 @@
+digraph "Causal Diagramm RDD" {
+  layout=neato
+  fontname="Helvetica,Arial,sans-serif"
+  bgcolor=transparent
+  imagescale=both
+  node [fontname="Helvetica,Arial,sans-serif"]
+  edge [fontname="Helvetica,Arial,sans-serif"]
+  node [shape=none];
+  "Income" [pos="0,3!"]
+  "Wine" [pos="0,2!"]
+  "Drugs" [pos="3,1!"]
+  "U 1" [pos="3,4!"]
+  "Lifespan" [pos="6,2!"]
+  "Health" [pos="6,3!"]
+
+  
+  "Wine" -> "Lifespan"
+   "Wine" ->  "Drugs"
+  "Drugs" -> "Lifespan"
+  "Income" -> "Wine"
+  "Income" -> "Lifespan"
+  "U 1" -> "Health"
+"U 1" -> "Income"
+"Health" -> "Lifespan"
+  "Health" -> "Wine"
+  
+}

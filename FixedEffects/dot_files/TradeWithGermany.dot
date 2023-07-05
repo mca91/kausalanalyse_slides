@@ -1,0 +1,26 @@
+digraph "Causal Diagramm RDD" {
+  layout=neato
+  fontname="Helvetica,Arial,sans-serif"
+   bgcolor=transparent
+  imagescale=both
+  node [fontname="Helvetica,Arial,sans-serif"]
+  edge [fontname="Helvetica,Arial,sans-serif"]
+  node [shape=none];
+  "ChancellorVisit" [pos="0,0!",  fontcolor="red"]
+  "CurrentPolitics" [pos="0,1!"]
+  "CultureOfPopulation" [pos="2,2!"]
+  "Geography" [pos="2,1!"]
+  "TradeWithGermany" [pos="4,0!",  fontcolor="red"]
+  "HistoryWithGermany" [pos="4,1!"]
+
+  
+  "ChancellorVisit" -> "TradeWithGermany" [color = "red"]
+   "CurrentPolitics" ->  "ChancellorVisit"
+  "CurrentPolitics" -> "TradeWithGermany"
+  "HistoryWithGermany" -> "ChancellorVisit"
+  "HistoryWithGermany" -> "TradeWithGermany"
+  "Geography" -> "ChancellorVisit"
+   "Geography"  -> "TradeWithGermany"
+   "CultureOfPopulation" -> "ChancellorVisit"
+   "CultureOfPopulation"  -> "TradeWithGermany"
+}

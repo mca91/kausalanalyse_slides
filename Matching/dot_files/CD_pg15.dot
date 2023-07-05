@@ -1,0 +1,25 @@
+digraph "Causal Diagramm RDD" {
+  layout=neato
+  fontname="Helvetica,Arial,sans-serif"
+  bgcolor=transparent
+  imagescale=both
+  node [fontname="Helvetica,Arial,sans-serif"]
+  edge [fontname="Helvetica,Arial,sans-serif"]
+  node [shape=none];
+  "A" [pos="0,2!"]
+  "B" [pos="2,2!"]
+  "C" [pos="4,2!"]
+  "Treatment" [pos="0,0!"]
+  "Outcome" [pos="4,0!"]
+  "Treatment propensity" [pos="0,1!"]
+
+  
+  "A" -> "Treatment propensity"
+   "B" ->  "Treatment propensity"
+  "B" -> "Outcome"
+  "A" -> "Outcome"
+  "C" -> "Treatment propensity"
+  "C" -> "Outcome"
+   "Treatment"  -> "Outcome"
+   "Treatment propensity"  -> "Treatment"
+}

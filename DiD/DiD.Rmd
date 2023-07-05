@@ -96,7 +96,7 @@ library(modelsummary)
 **Time can be a back door**
 
 .vcenter[
-```{r, echo=F, cache=F, out.extra = 'style="display:block; margin-right:auto; margin-left:auto;"', fig.height=4, out.width='65%', dpi=190, fig.cap=paste0(fig_counter(), ':  Basic time backdoor'), fig.align='center'}
+```{r, echo=F, cache=F, out.extra = 'style="display:block; margin-right:auto; margin-left:auto;"', fig.height=4, out.width='65%', dpi=190, fig.cap=paste0(fig_counter(), ':  Basic time backdoor'), fig.align='center',include=FALSE}
 
 coord_dag <- list(
   x = c(a = 5, b = 1, c = 3 ),
@@ -115,6 +115,11 @@ ggdag::ggdag(dag_object, # the dag object we created
              use_labels = "label") + # instead use the new names
   theme_void()
 
+```
+
+```{r, echo=F, cache=F, fig.cap=paste0(fig_counter(), ': Basic time backdoor')}
+m <- DiagrammeR::grViz("dot_files/Treatment_Outcome.dot", height = 300, width = "100%")
+widgetframe::frameableWidget(m)
 ```
 ]
 
@@ -141,7 +146,7 @@ ggdag::ggdag(dag_object, # the dag object we created
 <br>
 
 .vcenter[
-```{r, echo=F, cache=F, out.extra = 'style="display:block; margin-right:auto; margin-left:auto;"', fig.height=4, out.width='65%', dpi=190, fig.cap=paste0(fig_counter(), ': Two back doors that can be closed by DiD'), fig.align='center'}
+```{r, echo=F, cache=F, out.extra = 'style="display:block; margin-right:auto; margin-left:auto;"', fig.height=4, out.width='65%', dpi=190, fig.cap=paste0(fig_counter(), ': Two back doors that can be closed by DiD'), fig.align='center',include=FALSE}
 
 coord_dag <- list(
   x = c(a = 3, b = 1, c = 3, d = 5 ),
@@ -164,7 +169,10 @@ ggdag::ggdag(dag_object, # the dag object we created
 
 ```
 
-
+```{r, echo=F, cache=F, fig.cap=paste0(fig_counter(), ':  Two back doors that can be closed by DiD')}
+m <- DiagrammeR::grViz("dot_files/Treatment_Outcome_pg4.dot", height = 400, width = "100%")
+widgetframe::frameableWidget(m)
+```
 ]
 
 ---

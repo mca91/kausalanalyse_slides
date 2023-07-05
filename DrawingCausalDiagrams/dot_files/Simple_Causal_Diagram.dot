@@ -1,0 +1,11 @@
+digraph "Causal Diagramm RDD" {
+  layout=neato
+  fontname="Helvetica,Arial,sans-serif"
+  node [fontname="Helvetica,Arial,sans-serif"]
+  edge [fontname="Helvetica,Arial,sans-serif"]
+  node [shape=none];
+  "Coin flip (X)" [pos="0,0!"]
+  "Cake (Y)" [pos="2,0!"]
+ 
+  "Coin flip (X)" -> "Cake (Y)"
+}

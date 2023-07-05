@@ -1,0 +1,41 @@
+digraph "Causal Diagramm RDD" {
+  layout=neato
+  fontname="Helvetica,Arial,sans-serif"
+   bgcolor=transparent
+  imagescale=both
+  node [fontname="Helvetica,Arial,sans-serif"]
+  edge [fontname="Helvetica,Arial,sans-serif"]
+  node [shape=none];
+  "U 3" [pos="1,4!"]
+  "U 4" [pos="1,0!"]
+  "hours" [pos="5,5!"]
+  "age" [pos="8,5!"]
+  "SES" [pos="3,0!"]
+  "acedemics" [pos="1,5!"]
+  "U 5" [pos="5,0!"]
+  "dropOut" [pos="10,3!",  fontcolor="red"]
+  "classes" [pos="8,2!",  fontcolor="red"]
+  "demographics" [pos="1,2!"]
+   "location" [pos="7,0!"]
+ 
+  "U 4" -> "SES"
+  "U 4" -> "demographics"
+  "demographics" -> "hours"
+  "demographics" -> "dropOut"
+  "demographics" -> "classes"
+  "demographics" -> "U 5"
+  "U 3" -> "demographics"
+  "U 3" -> "acedemics"
+  "acedemics" -> "hours"
+  "acedemics" -> "dropOut"
+  "SES" -> "classes"
+  "U 5" -> "SES"
+  "U 5" -> "location"
+  "location" -> "classes"
+  "hours" -> "classes"
+  "classes" -> "dropOut" [color="red"]
+  "age" -> "hours"
+  "age" -> "dropOut"
+  "age" -> "classes"
+  
+}
