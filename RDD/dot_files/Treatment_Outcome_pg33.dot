@@ -1,0 +1,24 @@
+digraph "Causal Diagramm RDD" {
+  layout=neato
+  fontname="Helvetica,Arial,sans-serif"
+  bgcolor=transparent
+  imagescale=both
+  node [fontname="Helvetica,Arial,sans-serif"]
+  edge [fontname="Helvetica,Arial,sans-serif"]
+  node [shape=none];
+  "Running Variable" [pos="0,2!"]
+  "Above Cutoff" [pos="0,0!"]
+  "Treatment" [pos="2,0!"]
+  "Z" [pos="2,2!"]
+  "Outcome" [pos="4,0!"]
+
+  
+  "Above Cutoff" -> "Treatment"
+   "Running Variable" ->  "Above Cutoff"
+   "Running Variable" -> "Outcome"
+   "Z" -> "Treatment"
+   "Treatment" -> "Outcome"
+   "Z" ->  "Running Variable"
+   "Z" -> "Outcome"
+ 
+}
