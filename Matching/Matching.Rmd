@@ -239,7 +239,7 @@ Distance matching is matching based on the notion that observations are similar 
 
 <br>
 
-```{r, echo=F, cache=F, out.extra= 'style="display:block; margin-right:auto; margin-left:auto;"', fig.height=3, out.width='55%', dpi=190, fig.cap=paste0(fig_counter(), ': Causal Diagram'), fig.align='center'}
+```{r, echo=F, cache=F, out.extra= 'style="display:block; margin-right:auto; margin-left:auto;"', fig.height=3, out.width='55%', dpi=190, fig.cap=paste0(fig_counter(), ': Causal Diagram'), fig.align='center',include=FALSE}
 coord_dag <- list(
   x = c(a = 2, b = 5, c = 8, d = 2,e=8 ),
   y = c(a = 2, b = 2, c = 2, d = 1,e=1 )
@@ -264,7 +264,10 @@ ggdag::ggdag(dag_object, # the dag object we created
   theme_void()
 ```
 
-
+```{r, echo=F, cache=F, fig.cap=paste0(fig_counter(), ': Causal diagram')}
+m <- DiagrammeR::grViz("dot_files/CD_pg11.dot", height = 280, width = "100%")
+widgetframe::frameableWidget(m)
+```
 ---
 # Distance matching
 
@@ -317,7 +320,7 @@ Propensity score matching is a criterion based on the notion that *observations 
 
 - Propensity score matching takes this idea seriously and figures that if you match on treatment propensity, you’re good to go.
 
-```{r, echo=F, cache=F, out.extra = 'style="display:block; margin-right:auto; margin-left:auto;"', fig.height=3.5, out.width='55%', dpi=190, fig.cap=paste0(fig_counter(), ': A DGP with treatment propensity'), fig.align='center'}
+```{r, echo=F, cache=F, out.extra = 'style="display:block; margin-right:auto; margin-left:auto;"', fig.height=3.5, out.width='55%', dpi=190, fig.cap=paste0(fig_counter(), ': A DGP with treatment propensity'), fig.align='center',include=FALSE}
 coord_dag <- list(
   x = c(a = 2, b = 5, c = 8, d = 2,e=2,f=8 ),
   y = c(a = 3, b = 3, c = 3, d = 2,e=1,f=1 )
@@ -342,6 +345,12 @@ ggdag::ggdag(dag_object, # the dag object we created
              text = FALSE, # this means the original names won't be shown
              use_labels = "label") + # instead use the new names
   theme_void()
+```
+
+
+```{r, echo=F, cache=F, fig.cap=paste0(fig_counter(), ': A DGP with treatment propensity')}
+m <- DiagrammeR::grViz("dot_files/CD_pg15.dot", height = 250, width = "100%")
+widgetframe::frameableWidget(m)
 ```
 
 ---
