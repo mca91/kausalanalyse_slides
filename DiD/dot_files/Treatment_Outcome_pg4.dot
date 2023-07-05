@@ -1,0 +1,21 @@
+digraph "Causal Diagramm RDD" {
+  layout=neato
+  fontname="Helvetica,Arial,sans-serif"
+  bgcolor=transparent
+  imagescale=both
+  node [fontname="Helvetica,Arial,sans-serif"]
+  edge [fontname="Helvetica,Arial,sans-serif"]
+  node [shape=none];
+  "Time" [pos="2,2!"]
+  "Treatment" [pos="0,1!"]
+  "Outcome" [pos="4,1!"]
+   "Group" [pos="2,0!"]
+
+  
+  "Time" -> "Treatment"
+   "Time" ->  "Outcome"
+   "Treatment" -> "Outcome"
+   "Group" -> "Treatment"
+   "Group" ->  "Outcome"
+  
+}
