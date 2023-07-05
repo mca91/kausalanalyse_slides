@@ -93,7 +93,7 @@ The path between two variables on a causal diagram is a description of the set o
 
 .vcenter[
 
-```{r , echo=F, cache=F, out.extra = 'style="display:block; margin-right:auto; margin-left:auto;"', fig.height=4, out.width='65%', dpi=190, fig.cap=paste0(fig_counter(), ': Causal paths'), fig.align='center'}
+```{r , echo=F, cache=F, out.extra = 'style="display:block; margin-right:auto; margin-left:auto;"', fig.height=4, out.width='65%', dpi=190, fig.cap=paste0(fig_counter(), ': Causal paths'), fig.align='center', include=FALSE}
 coord_dag <- list(
   x = c(a = 1, b = 2, c = 3, d = 3,e=2 ),
   y = c(a = 1, b = 1, c = 1, d = 2,e=2 )
@@ -116,6 +116,11 @@ ggdag::ggdag(dag_object, # the dag object we created
   theme_void()
 ```
 
+
+```{r, echo=F, cache=F, fig.cap=paste0(fig_counter(), ': Causal paths')}
+m <- DiagrammeR::grViz("dot_files/Causal_Paths.dot", height = 400, width = "100%")
+widgetframe::frameableWidget(m)
+```
 ]
 
 ---
@@ -167,7 +172,7 @@ ggdag::ggdag(dag_object, # the dag object we created
 .blockquote[
 ### Example: Can you find all the paths?
 .pull-left[
-```{r, out.width='90%', out.extra = 'style="display:block; margin-right:auto; margin-left:auto;"', fig.height=5.5, dpi=190, echo=FALSE}
+```{r, out.width='90%', out.extra = 'style="display:block; margin-right:auto; margin-left:auto;"', fig.height=5.5, dpi=190, echo=FALSE, include=FALSE}
 coord_dag <- list(
   x = c(a = 2, b = 1, c = 3, d = 1,e=3 ),
   y = c(a = 2, b = 3, c = 3, d = 1,e=1 )
@@ -190,6 +195,13 @@ ggdag::ggdag(dag_object, # the dag object we created
              use_labels = "label") + # instead use the new names
   theme_void()
 ```
+
+
+```{r, echo=F, cache=F, fig.cap=paste0(fig_counter(), ': Causal paths')}
+m <- DiagrammeR::grViz("dot_files/Causal_Paths_pg7.dot", height = 300, width = "100%")
+widgetframe::frameableWidget(m)
+```
+
 ]
 
 .pull-right[
@@ -207,7 +219,7 @@ ggdag::ggdag(dag_object, # the dag object we created
 .blockquote[
 ### Example: Wine-drinking and lifespan
 
-```{r,  echo=FALSE, out.width='70%', out.extra='style="display:block; margin-right:auto; margin-left:auto;"', fig.height=3.5, dpi=190, fig.cap=paste0(fig_counter(), ': Causal paths')}
+```{r,  echo=FALSE, out.width='70%', out.extra='style="display:block; margin-right:auto; margin-left:auto;"', fig.height=3.5, dpi=190, fig.cap=paste0(fig_counter(), ': Causal paths'),include=FALSE}
 coord_dag <- list(
   x = c(a = 2, b = 1, c = 3, d = 1,e=3,f=2 ),
   y = c(a = 1, b = 2, c = 2, d = 3,e=3,f=4 )
@@ -233,6 +245,13 @@ ggdag::ggdag(dag_object, # the dag object we created
              use_labels = "label") + # instead use the new names
   theme_void()
 ```
+
+
+```{r, echo=F, cache=F, fig.cap=paste0(fig_counter(), ': Causal paths')}
+m <- DiagrammeR::grViz("dot_files/Causal_Paths_pg8.dot", height = 300, width = "100%")
+widgetframe::frameableWidget(m)
+```
+
 ]]
 
 ---
