@@ -4,20 +4,20 @@
     <title>Causal Paths</title>
     <meta charset="utf-8" />
     <meta name="author" content="Christoph Hanck" />
-    <script src="CausalPaths_files/header-attrs-2.14/header-attrs.js"></script>
-    <link href="CausalPaths_files/remark-css-0.0.1/default.css" rel="stylesheet" />
-    <script src="CausalPaths_files/xaringanExtra-progressBar-0.0.1/progress-bar.js"></script>
-    <script src="CausalPaths_files/clipboard-2.0.6/clipboard.min.js"></script>
-    <link href="CausalPaths_files/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.css" rel="stylesheet" />
-    <script src="CausalPaths_files/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.js"></script>
+    <script src="CausalPaths_files/header-attrs/header-attrs.js"></script>
+    <link href="CausalPaths_files/remark-css/default.css" rel="stylesheet" />
+    <script src="CausalPaths_files/xaringanExtra-progressBar/progress-bar.js"></script>
+    <script src="CausalPaths_files/clipboard/clipboard.min.js"></script>
+    <link href="CausalPaths_files/xaringanExtra-clipboard/xaringanExtra-clipboard.css" rel="stylesheet" />
+    <script src="CausalPaths_files/xaringanExtra-clipboard/xaringanExtra-clipboard.js"></script>
     <script>window.xaringanExtraClipboard(null, {"button":"<i class=\"fa fa-clipboard\"><\/i>","success":"<i class=\"fa fa-check\" style=\"color: #00ff00\"><\/i>","error":"<i class=\"fa fa-times-circle\" style=\"color: #F94144\"><\/i>"})</script>
-    <link href="CausalPaths_files/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
-    <link href="CausalPaths_files/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
-    <script src="CausalPaths_files/htmlwidgets-1.5.4/htmlwidgets.js"></script>
-    <script src="CausalPaths_files/viz-1.8.2/viz.js"></script>
-    <link href="CausalPaths_files/DiagrammeR-styles-0.2/styles.css" rel="stylesheet" />
-    <script src="CausalPaths_files/grViz-binding-1.0.10/grViz.js"></script>
-    <script src="CausalPaths_files/pymjs-1.3.2/pym.v1.min.js"></script>
+    <link href="CausalPaths_files/font-awesome/css/all.css" rel="stylesheet" />
+    <link href="CausalPaths_files/font-awesome/css/v4-shims.css" rel="stylesheet" />
+    <script src="CausalPaths_files/htmlwidgets/htmlwidgets.js"></script>
+    <script src="CausalPaths_files/viz/viz.js"></script>
+    <link href="CausalPaths_files/DiagrammeR-styles/styles.css" rel="stylesheet" />
+    <script src="CausalPaths_files/grViz-binding/grViz.js"></script>
+    <script src="CausalPaths_files/pymjs/pym.v1.min.js"></script>
     <script type="text/x-mathjax-config">
       MathJax.Hub.Config({
         TeX: { equationNumbers: { autoNumber: "AMS" } },
@@ -97,11 +97,11 @@ The path between two variables on a causal diagram is a description of the set o
 
 
 &lt;div class="figure"&gt;
-<div id="htmlwidget-4afba51880ffa2fa2f16" style="width:100%;height:400px;" class="grViz html-widget"></div>
+<div id="htmlwidget-205bbba28beaf80bd09e" style="width:100%;height:400px;" class="grViz html-widget"></div>
 <script>HTMLWidgets.pymChild = new pym.Child();HTMLWidgets.addPostRenderHandler(function(){
                                 setTimeout(function(){HTMLWidgets.pymChild.sendHeight();},100);
                             });</script>
-<script type="application/json" data-for="htmlwidget-4afba51880ffa2fa2f16">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n  bgcolor=transparent\n  imagescale=both\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"A\" [pos=\"0,0!\"]\n  \"B\" [pos=\"2,0!\"]\n  \"C\" [pos=\"4,0!\"]\n  \"D\" [pos=\"4,2!\"]\n  \"E\" [pos=\"2,2!\"]\n\n  \n  \"A\" -> \"B\"\n \"B\" ->  \"C\"\n  \"D\" -> \"E\"\n  \"D\" -> \"C\"\n  \"E\" -> \"A\"\n  \"E\" -> \"B\"\n\n  \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-205bbba28beaf80bd09e">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n  bgcolor=transparent\n  imagescale=both\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"A\" [pos=\"0,0!\"]\n  \"B\" [pos=\"2,0!\"]\n  \"C\" [pos=\"4,0!\"]\n  \"D\" [pos=\"4,2!\"]\n  \"E\" [pos=\"2,2!\"]\n\n  \n  \"A\" -> \"B\"\n \"B\" ->  \"C\"\n  \"D\" -> \"E\"\n  \"D\" -> \"C\"\n  \"E\" -> \"A\"\n  \"E\" -> \"B\"\n\n  \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 &lt;p class="caption"&gt;2: Causal paths&lt;/p&gt;
 &lt;/div&gt;
 ]
@@ -159,11 +159,11 @@ The path between two variables on a causal diagram is a description of the set o
 
 
 &lt;div class="figure"&gt;
-<div id="htmlwidget-de890d411d283d5657f9" style="width:100%;height:300px;" class="grViz html-widget"></div>
+<div id="htmlwidget-fff1b3c208025d7fa2a9" style="width:100%;height:300px;" class="grViz html-widget"></div>
 <script>HTMLWidgets.pymChild = new pym.Child();HTMLWidgets.addPostRenderHandler(function(){
                                 setTimeout(function(){HTMLWidgets.pymChild.sendHeight();},100);
                             });</script>
-<script type="application/json" data-for="htmlwidget-de890d411d283d5657f9">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n  bgcolor=transparent\n  imagescale=both\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"A\" [pos=\"1,1!\"]\n  \"B\" [pos=\"0,2!\"]\n  \"C\" [pos=\"2,2!\"]\n  \"Treatment\" [pos=\"0,0!\"]\n  \"Outcome\" [pos=\"2,0!\"]\n\n  \n  \"A\" -> \"Outcome\"\n   \"B\" ->  \"C\"\n  \"B\" -> \"A\"\n  \"B\" -> \"Treatment\"\n  \"Treatment\" -> \"A\"\n  \"Treatment\" -> \"Outcome\"\n\"C\" -> \"Outcome\"\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-fff1b3c208025d7fa2a9">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n  bgcolor=transparent\n  imagescale=both\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"A\" [pos=\"1,1!\"]\n  \"B\" [pos=\"0,2!\"]\n  \"C\" [pos=\"2,2!\"]\n  \"Treatment\" [pos=\"0,0!\"]\n  \"Outcome\" [pos=\"2,0!\"]\n\n  \n  \"A\" -> \"Outcome\"\n   \"B\" ->  \"C\"\n  \"B\" -> \"A\"\n  \"B\" -> \"Treatment\"\n  \"Treatment\" -> \"A\"\n  \"Treatment\" -> \"Outcome\"\n\"C\" -> \"Outcome\"\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 &lt;p class="caption"&gt;3: Causal paths&lt;/p&gt;
 &lt;/div&gt;
 
@@ -188,11 +188,11 @@ The path between two variables on a causal diagram is a description of the set o
 
 
 &lt;div class="figure"&gt;
-<div id="htmlwidget-03485bbd8a1040117fc6" style="width:100%;height:300px;" class="grViz html-widget"></div>
+<div id="htmlwidget-c39b950d1c854c55f975" style="width:100%;height:300px;" class="grViz html-widget"></div>
 <script>HTMLWidgets.pymChild = new pym.Child();HTMLWidgets.addPostRenderHandler(function(){
                                 setTimeout(function(){HTMLWidgets.pymChild.sendHeight();},100);
                             });</script>
-<script type="application/json" data-for="htmlwidget-03485bbd8a1040117fc6">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n  bgcolor=transparent\n  imagescale=both\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"Income\" [pos=\"0,3!\"]\n  \"Wine\" [pos=\"0,2!\"]\n  \"Drugs\" [pos=\"3,1!\"]\n  \"U 1\" [pos=\"3,4!\"]\n  \"Lifespan\" [pos=\"6,2!\"]\n  \"Health\" [pos=\"6,3!\"]\n\n  \n  \"Wine\" -> \"Lifespan\"\n   \"Wine\" ->  \"Drugs\"\n  \"Drugs\" -> \"Lifespan\"\n  \"Income\" -> \"Wine\"\n  \"Income\" -> \"Lifespan\"\n  \"U 1\" -> \"Health\"\n\"U 1\" -> \"Income\"\n\"Health\" -> \"Lifespan\"\n  \"Health\" -> \"Wine\"\n  \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-c39b950d1c854c55f975">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n  bgcolor=transparent\n  imagescale=both\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"Income\" [pos=\"0,3!\"]\n  \"Wine\" [pos=\"0,2!\"]\n  \"Drugs\" [pos=\"3,1!\"]\n  \"U 1\" [pos=\"3,4!\"]\n  \"Lifespan\" [pos=\"6,2!\"]\n  \"Health\" [pos=\"6,3!\"]\n\n  \n  \"Wine\" -> \"Lifespan\"\n   \"Wine\" ->  \"Drugs\"\n  \"Drugs\" -> \"Lifespan\"\n  \"Income\" -> \"Wine\"\n  \"Income\" -> \"Lifespan\"\n  \"U 1\" -> \"Health\"\n\"U 1\" -> \"Income\"\n\"Health\" -> \"Lifespan\"\n  \"Health\" -> \"Wine\"\n  \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 &lt;p class="caption"&gt;5: Causal paths&lt;/p&gt;
 &lt;/div&gt;
 
