@@ -414,7 +414,7 @@ ggdag::ggdag(dag_object, # the dag object we created
 ```
 
 ```{r, echo=F, cache=F, fig.cap=paste0(fig_counter(), ': A simple loop in a causal diagram')}
-m <- DiagrammeR::grViz("dot_files/loop_1.dot", height = 200, width = "100%")
+m <- DiagrammeR::grViz("dot_files/loop_1.dot", height = 300, width = "100%")
 widgetframe::frameableWidget(m)
 ```
 
@@ -441,7 +441,7 @@ ggdag::ggdag(dag_object, # the dag object we created
 ```
 
 ```{r, echo=F, cache=F, fig.cap=paste0(fig_counter(), ': Another representation of the loop')}
-m <- DiagrammeR::grViz("dot_files/loop_2.dot", height = 200, width = "100%")
+m <- DiagrammeR::grViz("dot_files/loop_2.dot", height = 300, width = "100%")
 widgetframe::frameableWidget(m)
 ```
 ]]]
