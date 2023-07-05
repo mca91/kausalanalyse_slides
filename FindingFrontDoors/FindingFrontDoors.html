@@ -11,8 +11,13 @@
     <link href="FindingFrontDoors_files/xaringanExtra-clipboard/xaringanExtra-clipboard.css" rel="stylesheet" />
     <script src="FindingFrontDoors_files/xaringanExtra-clipboard/xaringanExtra-clipboard.js"></script>
     <script>window.xaringanExtraClipboard(null, {"button":"<i class=\"fa fa-clipboard\"><\/i>","success":"<i class=\"fa fa-check\" style=\"color: #00ff00\"><\/i>","error":"<i class=\"fa fa-times-circle\" style=\"color: #F94144\"><\/i>"})</script>
-    <link href="FindingFrontDoors_files/font-awesome/css/all.min.css" rel="stylesheet" />
-    <link href="FindingFrontDoors_files/font-awesome/css/v4-shims.min.css" rel="stylesheet" />
+    <link href="FindingFrontDoors_files/font-awesome/css/all.css" rel="stylesheet" />
+    <link href="FindingFrontDoors_files/font-awesome/css/v4-shims.css" rel="stylesheet" />
+    <script src="FindingFrontDoors_files/htmlwidgets/htmlwidgets.js"></script>
+    <script src="FindingFrontDoors_files/viz/viz.js"></script>
+    <link href="FindingFrontDoors_files/DiagrammeR-styles/styles.css" rel="stylesheet" />
+    <script src="FindingFrontDoors_files/grViz-binding/grViz.js"></script>
+    <script src="FindingFrontDoors_files/pymjs/pym.v1.min.js"></script>
     <script type="text/x-mathjax-config">
       MathJax.Hub.Config({
         TeX: { equationNumbers: { autoNumber: "AMS" } },
@@ -150,10 +155,17 @@ In a **randomised controlled experiment**, the researcher assigns treatment (or 
 - Many variables influence people's decision to attend Charter school, e.g. background, personality, location, etc.
 
 
-&lt;div class="figure" style="text-align: center"&gt;
-&lt;img src="FindingFrontDoors_files/figure-html/unnamed-chunk-3-1.png" alt="1: Causal diagram of Influence of Charter School on Grades" width="45%" style="display:block; margin-right:auto; margin-left:auto;" /&gt;
-&lt;p class="caption"&gt;1: Causal diagram of Influence of Charter School on Grades&lt;/p&gt;
+
+
+&lt;div class="figure"&gt;
+<div id="htmlwidget-6e66f037b77f5beda0a7" style="width:100%;height:200px;" class="grViz html-widget"></div>
+<script>HTMLWidgets.pymChild = new pym.Child();HTMLWidgets.addPostRenderHandler(function(){
+                                setTimeout(function(){HTMLWidgets.pymChild.sendHeight();},100);
+                            });</script>
+<script type="application/json" data-for="htmlwidget-6e66f037b77f5beda0a7">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n  bgcolor=transparent\n  imagescale=both\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"Charter\" [pos=\"0,0!\"]\n  \"Student Achievement\" [pos=\"2,0!\"]\n  \"All Kind of stuff\" [pos=\"1,1!\"]\n  \n  \"Charter\" -> \"Student Achievement\"\n  \"All Kind of stuff\" -> \"Student Achievement\"\n  \"All Kind of stuff\" -> \"Charter\"\n\n  \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+&lt;p class="caption"&gt;2: Causal diagram of Influence of Charter School on Grades&lt;/p&gt;
 &lt;/div&gt;
+
 ]]
 
 ---
@@ -179,11 +191,16 @@ In a **randomised controlled experiment**, the researcher assigns treatment (or 
 
 ###Example: Charter school's influence on grades
 
-&lt;div class="figure" style="text-align: center"&gt;
-&lt;img src="FindingFrontDoors_files/figure-html/unnamed-chunk-4-1.png" alt="2: Causal diagram of influence of Charter schools on grades " width="65%" style="display:block; margin-right:auto; margin-left:auto;" /&gt;
-&lt;p class="caption"&gt;2: Causal diagram of influence of Charter schools on grades &lt;/p&gt;
-&lt;/div&gt;
 
+
+&lt;div class="figure"&gt;
+<div id="htmlwidget-2a69d5c7dd90e02db7c0" style="width:100%;height:250px;" class="grViz html-widget"></div>
+<script>HTMLWidgets.pymChild = new pym.Child();HTMLWidgets.addPostRenderHandler(function(){
+                                setTimeout(function(){HTMLWidgets.pymChild.sendHeight();},100);
+                            });</script>
+<script type="application/json" data-for="htmlwidget-2a69d5c7dd90e02db7c0">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n   bgcolor=transparent\n  imagescale=both\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"Lottery Win\" [pos=\"0,2!\"]\n  \"Charter\" [pos=\"0,0!\"]\n  \"Student Achievement\" [pos=\"4,0!\"]\n  \"All Kind of stuff\" [pos=\"2,2!\"]\n  \n  \"Charter\" -> \"Student Achievement\"\n  \"All Kind of stuff\" -> \"Student Achievement\"\n  \"All Kind of stuff\" -> \"Charter\"\n   \"Lottery Win\" -> \"Charter\"\n\n  \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+&lt;p class="caption"&gt;4: Causal diagram of influence of Charter schools on grades&lt;/p&gt;
+&lt;/div&gt;
 
 ]]
 
@@ -242,11 +259,16 @@ Anything which is random in the context of our DGP can be considered as a source
 
 The causal diagram for this looks almost exactly like a **randomised controlled trial.**
 &lt;br&gt;
-&lt;div class="figure" style="text-align: center"&gt;
-&lt;img src="FindingFrontDoors_files/figure-html/unnamed-chunk-5-1.png" alt="3: Causal Diagram for Exogenous Source of Variation" width="60%" style="display:block; margin-right:auto; margin-left:auto; margin-top:2%" /&gt;
-&lt;p class="caption"&gt;3: Causal Diagram for Exogenous Source of Variation&lt;/p&gt;
-&lt;/div&gt;
 
+
+&lt;div class="figure"&gt;
+<div id="htmlwidget-61953005aac8c5a7a100" style="width:100%;height:250px;" class="grViz html-widget"></div>
+<script>HTMLWidgets.pymChild = new pym.Child();HTMLWidgets.addPostRenderHandler(function(){
+                                setTimeout(function(){HTMLWidgets.pymChild.sendHeight();},100);
+                            });</script>
+<script type="application/json" data-for="htmlwidget-61953005aac8c5a7a100">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n  bgcolor=transparent\n  imagescale=both\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"Natural Randomness\" [pos=\"0,2!\"]\n  \"Treatment\" [pos=\"0,0!\"]\n  \"Outcome\" [pos=\"4,0!\"]\n  \"All Kind of stuff\" [pos=\"2,2!\"]\n  \n  \"Treatment\" -> \"Outcome\"\n  \"All Kind of stuff\" -> \"Outcome\"\n  \"All Kind of stuff\" -> \"Treatment\"\n   \"Natural Randomness\" -> \"Treatment\"\n\n  \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+&lt;p class="caption"&gt;6: Causal Diagram for Exogenous Source of Variation&lt;/p&gt;
+&lt;/div&gt;
 
 ---
 # Sources of exogenous variation
@@ -307,11 +329,17 @@ The causal diagram for this looks almost exactly like a **randomised controlled 
 .blockquote[
 ###Example: the effect of air pollution on number of people driving
 
-&lt;div class="figure" style="text-align: center"&gt;
-&lt;img src="FindingFrontDoors_files/figure-html/unnamed-chunk-6-1.png" alt="4: Causal Diagram of effect of Air Pollution on number of people driving" width="55%" style="display:block; margin-right:auto; margin-left:auto;" /&gt;
-&lt;p class="caption"&gt;4: Causal Diagram of effect of Air Pollution on number of people driving&lt;/p&gt;
-&lt;/div&gt;
 
+
+
+&lt;div class="figure"&gt;
+<div id="htmlwidget-e906306ad3e4b6c9cbed" style="width:100%;height:400px;" class="grViz html-widget"></div>
+<script>HTMLWidgets.pymChild = new pym.Child();HTMLWidgets.addPostRenderHandler(function(){
+                                setTimeout(function(){HTMLWidgets.pymChild.sendHeight();},100);
+                            });</script>
+<script type="application/json" data-for="htmlwidget-e906306ad3e4b6c9cbed">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n  bgcolor=transparent\n  imagescale=both\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"U 1\" [pos=\"0,4!\"]\n  \"Wind Direction\" [pos=\"0,2!\"]\n  \"Weather\" [pos=\"2,4!\"]\n  \"Pollution\" [pos=\"4,2!\",  fontcolor=\"red\"]\n  \"Economic activity\" [pos=\"6,0!\"]\n  \"Seasons\" [pos=\"6,4!\"]\n  \"Driving\" [pos=\"8,2!\",  fontcolor=\"red\"]\n  \n  \"Wind Direction\" -> \"Pollution\"\n  \"U 1\" -> \"Weather\"\n  \"U 1\" -> \"Wind Direction\"\n  \"Seasons\" -> \"Wind Direction\"\n  \"Seasons\" -> \"Pollution\"\n  \"Weather\" -> \"Pollution\"\n  \"Seasons\" -> \"Driving\"\n  \"Weather\" -> \"Driving\"\n\n  \"Pollution\" -> \"Driving\" [color = \"red\"]\n  \"Economic activity\" -> \"Driving\" \n  \"Economic activity\" -> \"Pollution\"\n\n  \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+&lt;p class="caption"&gt;8: Causal Diagram of effect of Air Pollution on number of people driving&lt;/p&gt;
+&lt;/div&gt;
 ]]
 
 ---
@@ -360,9 +388,15 @@ The causal diagram for this looks almost exactly like a **randomised controlled 
 .blockquote[
 ### Example: Front door method
 
-&lt;div class="figure" style="text-align: center"&gt;
-&lt;img src="FindingFrontDoors_files/figure-html/unnamed-chunk-7-1.png" alt="5: Causal Diagram when using the front door method" width="55%" style="display:block; margin-right:auto; margin-left:auto;" /&gt;
-&lt;p class="caption"&gt;5: Causal Diagram when using the front door method&lt;/p&gt;
+
+
+&lt;div class="figure"&gt;
+<div id="htmlwidget-5cbbaf785a4903169bad" style="width:100%;height:370px;" class="grViz html-widget"></div>
+<script>HTMLWidgets.pymChild = new pym.Child();HTMLWidgets.addPostRenderHandler(function(){
+                                setTimeout(function(){HTMLWidgets.pymChild.sendHeight();},100);
+                            });</script>
+<script type="application/json" data-for="htmlwidget-5cbbaf785a4903169bad">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n  bgcolor=transparent\n  imagescale=both\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"M\" [pos=\"2,2!\"]\n  \"Treatment\" [pos=\"0,2!\"]\n  \"W\" [pos=\"2,4!\"]\n  \"Outcome\" [pos=\"4,2!\"]\n\n  \n  \"W\" -> \"Treatment\"\n  \"Treatment\" -> \"M\"\n  \"M\" -> \"Outcome\"\n  \"W\" -> \"Outcome\"\n\n  \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+&lt;p class="caption"&gt;10: Causal Diagram when using the front door method&lt;/p&gt;
 &lt;/div&gt;
 
 ]]
@@ -416,9 +450,15 @@ We just need to combine those two effects to get our effect: Treatment → M →
 .blockquote[
 ### Example: Smoking causes cancer
 The causal diagram will look like:
-&lt;div class="figure" style="text-align: center"&gt;
-&lt;img src="FindingFrontDoors_files/figure-html/unnamed-chunk-8-1.png" alt="6: Causal Diagram for Smoking and Cancer" width="55%" style="display:block; margin-right:auto; margin-left:auto;" /&gt;
-&lt;p class="caption"&gt;6: Causal Diagram for Smoking and Cancer&lt;/p&gt;
+
+
+&lt;div class="figure"&gt;
+<div id="htmlwidget-6ea5a2968b9a24a7571d" style="width:100%;height:350px;" class="grViz html-widget"></div>
+<script>HTMLWidgets.pymChild = new pym.Child();HTMLWidgets.addPostRenderHandler(function(){
+                                setTimeout(function(){HTMLWidgets.pymChild.sendHeight();},100);
+                            });</script>
+<script type="application/json" data-for="htmlwidget-6ea5a2968b9a24a7571d">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n    bgcolor=transparent\n  imagescale=both\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"TarlnLungs\" [pos=\"2,2!\"]\n  \"Smoking\" [pos=\"0,2!\"]\n  \"Lots of things\" [pos=\"2,4!\"]\n  \"Cancer\" [pos=\"4,2!\"]\n\n  \n  \"Lots of things\" -> \"Smoking\"\n  \"Smoking\" -> \"TarlnLungs\"\n  \"TarlnLungs\" -> \"Cancer\"\n  \"Lots of things\" -> \"Cancer\"\n\n  \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+&lt;p class="caption"&gt;12: Causal Diagram for Smoking and Cancer&lt;/p&gt;
 &lt;/div&gt;
 
 ]]

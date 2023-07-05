@@ -156,7 +156,7 @@ In a **randomised controlled experiment**, the researcher assigns treatment (or 
 - Many variables influence people's decision to attend Charter school, e.g. background, personality, location, etc.
 
 
-```{r, echo=F, cache=F, out.extra = 'style="display:block; margin-right:auto; margin-left:auto;"', fig.height=3.5, out.width='45%', dpi=190, fig.cap=paste0(fig_counter(), ': Causal diagram of Influence of Charter School on Grades'), fig.align='center'}
+```{r, echo=F, cache=F, out.extra = 'style="display:block; margin-right:auto; margin-left:auto;"', fig.height=3.5, out.width='45%', dpi=190, fig.cap=paste0(fig_counter(), ': Causal diagram of Influence of Charter School on Grades'), fig.align='center',include=FALSE}
 coord_dag <- list(
   x = c(a = 1, b = 3, c = 2 ),
   y = c(a = 1, b = 1, c = 2 )
@@ -177,6 +177,12 @@ ggdag::ggdag(dag_object, # the dag object we created
              use_labels = "label") + # instead use the new names
   theme_void()
 ```
+
+```{r, echo=F, cache=F, fig.cap=paste0(fig_counter(), ': Causal diagram of Influence of Charter School on Grades')}
+m <- DiagrammeR::grViz("dot_files/Charter_Students.dot", height = 200, width = "100%")
+widgetframe::frameableWidget(m)
+```
+
 ]]
 
 ---
@@ -202,7 +208,7 @@ ggdag::ggdag(dag_object, # the dag object we created
 
 ###Example: Charter school's influence on grades
 
-```{r, echo=F, cache=F, out.extra = 'style="display:block; margin-right:auto; margin-left:auto;"', fig.height=4, out.width='65%', dpi=190, fig.cap=paste0(fig_counter(), ': Causal diagram of influence of Charter schools on grades '), fig.align='center'}
+```{r, echo=F, cache=F, out.extra = 'style="display:block; margin-right:auto; margin-left:auto;"', fig.height=4, out.width='65%', dpi=190, fig.cap=paste0(fig_counter(), ': Causal diagram of influence of Charter schools on grades '), fig.align='center',include=FALSE}
 coord_dag <- list(
   x = c(a = 1, b = 3, c = 2, d= 1 ),
   y = c(a = 1, b = 1, c = 2, d=2 )
@@ -226,6 +232,10 @@ ggdag::ggdag(dag_object, # the dag object we created
 
 ```
 
+```{r, echo=F, cache=F, fig.cap=paste0(fig_counter(), ': Causal diagram of influence of Charter schools on grades')}
+m <- DiagrammeR::grViz("dot_files/Charter_Students_pg9.dot", height = 250, width = "100%")
+widgetframe::frameableWidget(m)
+```
 
 ]]
 
@@ -284,7 +294,7 @@ Anything which is random in the context of our DGP can be considered as a source
 
 The causal diagram for this looks almost exactly like a **randomised controlled trial.**
 <br>
-```{r, echo=F, cache=F, out.extra = 'style="display:block; margin-right:auto; margin-left:auto; margin-top:2%"', fig.height=4, out.width='60%', dpi=190, fig.cap=paste0(fig_counter(), ': Causal Diagram for Exogenous Source of Variation'), fig.align='center'}
+```{r, echo=F, cache=F, out.extra = 'style="display:block; margin-right:auto; margin-left:auto; margin-top:2%"', fig.height=4, out.width='60%', dpi=190, fig.cap=paste0(fig_counter(), ': Causal Diagram for Exogenous Source of Variation'), fig.align='center',include=FALSE}
 coord_dag <- list(
   x = c(a = 1, b = 3, c = 2, d = 1 ),
   y = c(a = 1, b = 1, c = 2, d = 2 )
@@ -306,6 +316,10 @@ ggdag::ggdag(dag_object, # the dag object we created
    theme_void()
 ```
 
+```{r, echo=F, cache=F, fig.cap=paste0(fig_counter(), ': Causal Diagram for Exogenous Source of Variation')}
+m <- DiagrammeR::grViz("dot_files/Natural_Randomness.dot", height = 250, width = "100%")
+widgetframe::frameableWidget(m)
+```
 
 ---
 # Sources of exogenous variation
@@ -366,7 +380,7 @@ ggdag::ggdag(dag_object, # the dag object we created
 .blockquote[
 ###Example: the effect of air pollution on number of people driving
 
-```{r, echo=F, cache=F, out.extra = 'style="display:block; margin-right:auto; margin-left:auto;"', fig.height=5.5, out.width='55%', dpi=190, fig.cap=paste0(fig_counter(), ': Causal Diagram of effect of Air Pollution on number of people driving'), fig.align='center'}
+```{r, echo=F, cache=F, out.extra = 'style="display:block; margin-right:auto; margin-left:auto;"', fig.height=5.5, out.width='55%', dpi=190, fig.cap=paste0(fig_counter(), ': Causal Diagram of effect of Air Pollution on number of people driving'), fig.align='center',include=FALSE}
 coord_dag <- list(
   x = c(a = 1, b = 3, c = 5, d = 4 ,e=2 ,f=4 ,g=1 ),
   y = c(a = 2, b = 2, c = 2, d = 3,e=3 ,f=1 ,g=3 )
@@ -411,6 +425,11 @@ dag_object  %>%
   theme_dag()
 ```
 
+
+```{r, echo=F, cache=F, fig.cap=paste0(fig_counter(), ': Causal Diagram of effect of Air Pollution on number of people driving')}
+m <- DiagrammeR::grViz("dot_files/AirPollution_Driving.dot", height = 400, width = "100%")
+widgetframe::frameableWidget(m)
+```
 ]]
 
 ---
@@ -459,7 +478,7 @@ dag_object  %>%
 .blockquote[
 ### Example: Front door method
 
-```{r , echo=F, cache=F, out.extra = 'style="display:block; margin-right:auto; margin-left:auto;"', fig.height=4, out.width='55%', dpi=190, fig.cap=paste0(fig_counter(), ': Causal Diagram when using the front door method'), fig.align='center'}
+```{r , echo=F, cache=F, out.extra = 'style="display:block; margin-right:auto; margin-left:auto;"', fig.height=4, out.width='55%', dpi=190, fig.cap=paste0(fig_counter(), ': Causal Diagram when using the front door method'), fig.align='center',include=FALSE}
 coord_dag <- list(
   x = c(a = 1, b = 2, c = 3, d = 2  ),
   y = c(a = 1, b = 1, c = 1, d = 2 )
@@ -479,6 +498,11 @@ ggdag::ggdag(dag_object, # the dag object we created
              text = FALSE, # this means the original names won't be shown
              use_labels = "label") + # instead use the new names
    theme_void()
+```
+
+```{r, echo=F, cache=F, fig.cap=paste0(fig_counter(), ': Causal Diagram when using the front door method')}
+m <- DiagrammeR::grViz("dot_files/Treatment_Outcome.dot", height = 370, width = "100%")
+widgetframe::frameableWidget(m)
 ```
 
 ]]
@@ -532,7 +556,7 @@ We just need to combine those two effects to get our effect: Treatment → M →
 .blockquote[
 ### Example: Smoking causes cancer
 The causal diagram will look like:
-```{r , echo=F, cache=F, out.extra = 'style="display:block; margin-right:auto; margin-left:auto;"', fig.height=4, out.width='55%', dpi=190, fig.cap=paste0(fig_counter(), ': Causal Diagram for Smoking and Cancer'), fig.align='center'}
+```{r , echo=F, cache=F, out.extra = 'style="display:block; margin-right:auto; margin-left:auto;"', fig.height=4, out.width='55%', dpi=190, fig.cap=paste0(fig_counter(), ': Causal Diagram for Smoking and Cancer'), fig.align='center',include=FALSE}
 coord_dag <- list(
   x = c(a = 1, b = 2, c = 3, d = 2  ),
   y = c(a = 1, b = 1, c = 1, d = 2 )
@@ -552,6 +576,11 @@ ggdag::ggdag(dag_object, # the dag object we created
              text = FALSE, # this means the original names won't be shown
              use_labels = "label") + # instead use the new names
    theme_void()
+```
+
+```{r, echo=F, cache=F, fig.cap=paste0(fig_counter(), ': Causal Diagram for Smoking and Cancer')}
+m <- DiagrammeR::grViz("dot_files/Smoking_Cancer.dot", height = 350, width = "100%")
+widgetframe::frameableWidget(m)
 ```
 
 ]]

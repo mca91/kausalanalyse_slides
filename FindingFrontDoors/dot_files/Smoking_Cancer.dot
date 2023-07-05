@@ -1,0 +1,21 @@
+digraph "Causal Diagramm RDD" {
+  layout=neato
+  fontname="Helvetica,Arial,sans-serif"
+    bgcolor=transparent
+  imagescale=both
+  node [fontname="Helvetica,Arial,sans-serif"]
+  edge [fontname="Helvetica,Arial,sans-serif"]
+  node [shape=none];
+  "TarlnLungs" [pos="2,2!"]
+  "Smoking" [pos="0,2!"]
+  "Lots of things" [pos="2,4!"]
+  "Cancer" [pos="4,2!"]
+
+  
+  "Lots of things" -> "Smoking"
+  "Smoking" -> "TarlnLungs"
+  "TarlnLungs" -> "Cancer"
+  "Lots of things" -> "Cancer"
+
+  
+}

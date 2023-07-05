@@ -1,0 +1,18 @@
+digraph "Causal Diagramm RDD" {
+  layout=neato
+  fontname="Helvetica,Arial,sans-serif"
+  bgcolor=transparent
+  imagescale=both
+  node [fontname="Helvetica,Arial,sans-serif"]
+  edge [fontname="Helvetica,Arial,sans-serif"]
+  node [shape=none];
+  "Charter" [pos="0,0!"]
+  "Student Achievement" [pos="2,0!"]
+  "All Kind of stuff" [pos="1,1!"]
+  
+  "Charter" -> "Student Achievement"
+  "All Kind of stuff" -> "Student Achievement"
+  "All Kind of stuff" -> "Charter"
+
+  
+}
