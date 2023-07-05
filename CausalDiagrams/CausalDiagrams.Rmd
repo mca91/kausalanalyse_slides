@@ -361,7 +361,7 @@ Unmeasured Variables serve two purposes in causal diagrams:
 
 Ice-cream sales (X) are high when people wear shorts (Y). However, there is no causal relationship between ice-cream sales and people wearing sorts: weather (U) is latent variable causes them both.
 
-```{r, echo=F, cache=F, out.extra = 'style="color:black; display:block; margin-right:auto; margin-left:auto; margin-top:15px"', fig.height=4.5, out.width='52%', dpi=190, fig.cap=paste0(fig_counter(), ': Unobserved variable')}
+```{r, echo=F, cache=F, out.extra = 'style="color:black; display:block; margin-right:auto; margin-left:auto; margin-top:15px"', fig.height=4.5, out.width='52%', dpi=190, fig.cap=paste0(fig_counter(), ': Unobserved variable'), include = F}
 coord_dag <- list(
   x = c(X = 1, U = 3, Y = 5),
   y = c(X = 1, U = 2, Y = 1)
@@ -376,6 +376,11 @@ ggdag::ggdag(dag_object, # the dag object we created
              text = T, # this means the original names won't be shown
              use_labels = "label") + # instead use the new names
   theme_void()
+```
+
+```{r, echo=F, cache=F, fig.cap=paste0(fig_counter(), ': Unobserved variable')}
+m <- DiagrammeR::grViz("dot_files/IceCream_Shorts.dot", height = 200, width = "100%")
+widgetframe::frameableWidget(m)
 ```
 
 ]
@@ -434,7 +439,7 @@ It's a balancing act &mdash; omitting movies is okay, omitting the poverty rate 
 ---
 ## Causal diagrams &mdash; the real world: on an omission mission
 
-```{r, echo=F, cache=F, out.extra = 'style="color:black; display:block; margin-right:auto; margin-left:auto; margin-top:5%"', fig.width=10, fig.height=4, dpi=190, fig.cap=paste0(fig_counter(), ': Police presence and crime rate')}
+```{r, echo=F, cache=F, out.extra = 'style="color:black; display:block; margin-right:auto; margin-left:auto; margin-top:5%"', fig.width=10, fig.height=4, dpi=190, fig.cap=paste0(fig_counter(), ': Police presence and crime rate'),include=FALSE}
 coord_dag <- list(
   x = c(D = -1, E = 4, A = 4, B = 8, C = -1, F = 8),
   y = c(D = 1, E = 5, A = 3, B = 1, C = 5, F = 5)
@@ -475,6 +480,11 @@ dag_object <- ggdag::dagify(E ~ D,
     theme_dag()
 ```
 
+
+```{r, echo=F, cache=F, fig.cap=paste0(fig_counter(), ': Police presence and crime rate')}
+m <- DiagrammeR::grViz("dot_files/Police_Crime.dot", height = 240, width = "100%")
+widgetframe::frameableWidget(m)
+```
 ---
 ## Causal diagrams and research questions
 
@@ -516,7 +526,7 @@ Moderators are variables that do not necessarily cause another variable (althoug
 
 **Moderator effects are *not* shown in the causal diagram.**
 
-```{r, echo=F, cache=F, out.extra = 'style="color:black; display:block; margin-right:auto; margin-left:auto; margin-top:1%"', fig.height=5, out.width='55%', dpi=190, fig.cap=paste0(fig_counter(), ': Z moderates X')}
+```{r, echo=F, cache=F, out.extra = 'style="color:black; display:block; margin-right:auto; margin-left:auto; margin-top:1%"', fig.height=5, out.width='55%', dpi=190, fig.cap=paste0(fig_counter(), ': Z moderates X'),include=FALSE}
 coord_dag <- list(
   x = c(X = 1, Y = 3, Z = 5),
   y = c(X = 2, Y = 1, Z = 2)
@@ -528,6 +538,10 @@ ggdag::ggdag(dag_object, text = T ) +
   theme_void()
 ```
 
+```{r, echo=F, cache=F, fig.cap=paste0(fig_counter(), ': Z moderates X')}
+m <- DiagrammeR::grViz("dot_files/ZModeratesX.dot", height = 200, width = "100%")
+widgetframe::frameableWidget(m)
+```
 ---
 ## Causal diagrams: Moderators
 
