@@ -135,7 +135,7 @@ Fixed effects is a method of controlling for all variables, whether they are obs
 .blockquote[
 ### Example: Effect of a visit from the German chancellor on a country’s level of trade with Germany
 
-```{r, echo=F, cache=F, out.extra = 'style="display:block; margin-right:auto; margin-left:auto;"', fig.height=4, out.width='55%', dpi=290, fig.cap=paste0(fig_counter(), ': Causes of trade with Germany'), fig.align='center'}
+```{r, echo=F, cache=F, out.extra = 'style="display:block; margin-right:auto; margin-left:auto;"', fig.height=4, out.width='55%', dpi=290, fig.cap=paste0(fig_counter(), ': Causes of trade with Germany'), fig.align='center',include=FALSE}
 coord_dag <- list(
   x = c(a = 0, b = 2, c = 0, d = 2, e=1, f=1),
   y = c(a = 1, b = 1, c = 0, d = 0, e=1, f=1.5)
@@ -177,6 +177,14 @@ dag_object  %>%
   scale_color_manual(values = c("TRUE" = "red", "FALSE" = "black")) +
   theme_dag()
 ```
+
+
+```{r, echo=F, cache=F, fig.cap=paste0(fig_counter(), ': Causes of trade with Germany')}
+m <- DiagrammeR::grViz("dot_files/TradeWithGermany.dot", height = 300, width = "100%")
+widgetframe::frameableWidget(m)
+```
+
+
 ]]
 
 ---
@@ -202,7 +210,7 @@ dag_object  %>%
 
 The effect can be identified *without* controlling for each of the variables &mdash; controlling only for country would be enough.
 
-```{r, echo=F, cache=F, out.extra = 'style="display:block; margin-right:auto; margin-left:auto; margin-top:30px"', fig.height=3, out.width='55%', dpi=290, fig.cap=paste0(fig_counter(), ': Simplified causes of trade with Germany'), fig.align='center'}
+```{r, echo=F, cache=F, out.extra = 'style="display:block; margin-right:auto; margin-left:auto; margin-top:30px"', fig.height=3, out.width='55%', dpi=290, fig.cap=paste0(fig_counter(), ': Simplified causes of trade with Germany'), fig.align='center',include=FALSE}
 coord_dag <- list(
   x = c(a = 0, b = 2, c = 0, d = 2),
   y = c(a = 1, b = 1, c = 0, d = 0)
@@ -222,6 +230,11 @@ ggdag::ggdag(dag_object, # the dag object we created
              text = FALSE, # this means the original names won't be shown
              use_labels = "label") + # instead use the new names
   theme_void()
+```
+
+```{r, echo=F, cache=F, fig.cap=paste0(fig_counter(), ': Simplified causes of trade with Germany')}
+m <- DiagrammeR::grViz("dot_files/TradeWithGermany_pg6.dot", height = 300, width = "100%")
+widgetframe::frameableWidget(m)
 ```
 
 ]]
