@@ -95,7 +95,6 @@ library(modelsummary)
 
 **Time can be a back door**
 
-.vcenter[
 ```{r, echo=F, cache=F, out.extra = 'style="display:block; margin-right:auto; margin-left:auto;"', fig.height=4, out.width='65%', dpi=190, fig.cap=paste0(fig_counter(), ':  Basic time backdoor'), fig.align='center',include=FALSE}
 
 coord_dag <- list(
@@ -117,11 +116,12 @@ ggdag::ggdag(dag_object, # the dag object we created
 
 ```
 
+<br>
+
 ```{r, echo=F, cache=F, fig.cap=paste0(fig_counter(), ': Basic time backdoor')}
 m <- DiagrammeR::grViz("dot_files/Treatment_Outcome.dot", height = 300, width = "100%")
 widgetframe::frameableWidget(m)
 ```
-]
 
 ---
 # Across within variation
@@ -145,7 +145,6 @@ widgetframe::frameableWidget(m)
 # Across within variation
 <br>
 
-.vcenter[
 ```{r, echo=F, cache=F, out.extra = 'style="display:block; margin-right:auto; margin-left:auto;"', fig.height=4, out.width='65%', dpi=190, fig.cap=paste0(fig_counter(), ': Two back doors that can be closed by DiD'), fig.align='center',include=FALSE}
 
 coord_dag <- list(
@@ -169,11 +168,11 @@ ggdag::ggdag(dag_object, # the dag object we created
 
 ```
 
+<br>
 ```{r, echo=F, cache=F, fig.cap=paste0(fig_counter(), ':  Two back doors that can be closed by DiD')}
-m <- DiagrammeR::grViz("dot_files/Treatment_Outcome_pg4.dot", height = 400, width = "100%")
+m <- DiagrammeR::grViz("dot_files/Treatment_Outcome_pg4.dot", height = 300, width = "100%")
 widgetframe::frameableWidget(m)
 ```
-]
 
 ---
 # Across within variation

@@ -237,8 +237,6 @@ Distance matching is matching based on the notion that observations are similar 
 
 - The idea is to minimize the distance (in terms of of how far the covariates are from each other) **between the treatment observations and the control observations.**
 
-<br>
-
 ```{r, echo=F, cache=F, out.extra= 'style="display:block; margin-right:auto; margin-left:auto;"', fig.height=3, out.width='55%', dpi=190, fig.cap=paste0(fig_counter(), ': Causal Diagram'), fig.align='center',include=FALSE}
 coord_dag <- list(
   x = c(a = 2, b = 5, c = 8, d = 2,e=8 ),
@@ -264,7 +262,7 @@ ggdag::ggdag(dag_object, # the dag object we created
   theme_void()
 ```
 
-```{r, echo=F, cache=F, fig.cap=paste0(fig_counter(), ': Causal diagram')}
+```{r, echo=F, cache=F, fig.cap=paste0(fig_counter(), ': Causal diagram: distance matching based on A, B, and C')}
 m <- DiagrammeR::grViz("dot_files/CD_pg11.dot", height = 280, width = "100%")
 widgetframe::frameableWidget(m)
 ```

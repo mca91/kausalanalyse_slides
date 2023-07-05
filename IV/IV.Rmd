@@ -132,11 +132,12 @@ ggdag::ggdag(dag_object, # the dag object we created
   theme_void()
 ```
 
-
+<br>
 ```{r, echo=F, cache=F, fig.cap=paste0(fig_counter(), ':Causal Diagram')}
-m <- DiagrammeR::grViz("dot_files/Treatment_Outcome_pg3.dot", height = 300, width = "100%")
+m <- DiagrammeR::grViz("dot_files/Treatment_Outcome_pg3.dot", height = 250, width = "100%")
 widgetframe::frameableWidget(m)
 ```
+
 ---
 # Isolating variation
 <br>

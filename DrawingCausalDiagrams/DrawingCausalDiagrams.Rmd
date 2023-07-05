@@ -101,9 +101,9 @@ ggdag::ggdag(dag_object, # the dag object we created
   theme_void()
 
 ```
-
+<br>
 ```{r, echo=F, cache=F, fig.cap=paste0(fig_counter(), ': A simple causal diagram')}
-m <- DiagrammeR::grViz("dot_files/Simple_Causal_Diagram.dot", height = 140, width = "100%")
+m <- DiagrammeR::grViz("dot_files/Simple_Causal_Diagram.dot", height = 80, width = "100%")
 widgetframe::frameableWidget(m)
 ```
 

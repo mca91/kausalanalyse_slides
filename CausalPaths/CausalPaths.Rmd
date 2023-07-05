@@ -91,8 +91,6 @@ The path between two variables on a causal diagram is a description of the set o
 ---
 ## Causal paths
 
-.vcenter[
-
 ```{r , echo=F, cache=F, out.extra = 'style="display:block; margin-right:auto; margin-left:auto;"', fig.height=4, out.width='65%', dpi=190, fig.cap=paste0(fig_counter(), ': Causal paths'), fig.align='center', include=FALSE}
 coord_dag <- list(
   x = c(a = 1, b = 2, c = 3, d = 3,e=2 ),
@@ -115,13 +113,12 @@ ggdag::ggdag(dag_object, # the dag object we created
              use_labels = "label") + # instead use the new names
   theme_void()
 ```
-
-
+<br>
 ```{r, echo=F, cache=F, fig.cap=paste0(fig_counter(), ': Causal paths')}
-m <- DiagrammeR::grViz("dot_files/Causal_Paths.dot", height = 400, width = "100%")
+m <- DiagrammeR::grViz("dot_files/Causal_Paths.dot", height = 350, width = "100%")
 widgetframe::frameableWidget(m)
 ```
-]
+
 
 ---
 ## Causal paths

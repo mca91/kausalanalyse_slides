@@ -172,7 +172,6 @@ People close to the cutoff need to effectively be randomly assigned. We must rul
 <br>
 **When can we apply regression discontinuity?**
 
-.vcenter[
 ```{r, echo=F, cache=F, out.extra = 'style="display:block; margin-right:auto; margin-left:auto;"', fig.height=3, out.width='70%', dpi=190, fig.cap=paste0(fig_counter(), ': A causal diagram that regression discontinuity works for'), fig.align='center',include=FALSE}
 coord_dag <- list(
   x = c(a = 1, b = 3, c = 5, d = 1,e=3 ),
@@ -197,13 +196,12 @@ ggdag::ggdag(dag_object, # the dag object we created
   theme_void()
 ```
 
+<br>
 ```{r, echo=F, cache=F, fig.cap=paste0(fig_counter(), ': A causal diagram that regression discontinuity works for')}
-m <- DiagrammeR::grViz("dot_files/Treatment_Outcome_pg7.dot", height = 350, width = "100%")
+m <- DiagrammeR::grViz("dot_files/Treatment_Outcome_pg7.dot", height = 250, width = "100%")
 widgetframe::frameableWidget(m)
 ```
 
-
-]
 
 ---
 # Regression discontinuity
@@ -821,8 +819,7 @@ msummary(
 
 ---
 # Fuzzy regression discontinuity
-<br>
-.vcenter[
+
 ```{r, echo=F, cache=F, out.extra = 'style="display:block; margin-right:auto; margin-left:auto;"', fig.height=3.5, out.width='60%', dpi=190, fig.cap=paste0(fig_counter(), ': A causal diagram that fuzzy regression discontinuity works for'), fig.align='center',include=FALSE}
 coord_dag <- list(
   x = c(a = 1, b = 3, c = 5, d = 1,e=3 ),
@@ -849,13 +846,12 @@ ggdag::ggdag(dag_object, # the dag object we created
   theme_void()
 
 ```
-
+<br>
+<br>
 ```{r, echo=F, cache=F, fig.cap=paste0(fig_counter(), ': A causal diagram that fuzzy regression discontinuity works for')}
-m <- DiagrammeR::grViz("dot_files/Treatment_Outcome_pg33.dot", height = 350, width = "100%")
+m <- DiagrammeR::grViz("dot_files/Treatment_Outcome_pg33.dot", height = 300, width = "100%")
 widgetframe::frameableWidget(m)
 ```
-
-]
 
 ---
 # Fuzzy regression discontinuity

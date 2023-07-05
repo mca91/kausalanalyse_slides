@@ -377,12 +377,13 @@ ggdag::ggdag(dag_object, # the dag object we created
              use_labels = "label") + # instead use the new names
   theme_void()
 ```
-
+<br>
 ```{r, echo=F, cache=F, fig.cap=paste0(fig_counter(), ': Unobserved variable')}
-m <- DiagrammeR::grViz("dot_files/IceCream_Shorts.dot", height = 300, width = "100%")
+m <- DiagrammeR::grViz("dot_files/IceCream_Shorts.dot", height = 200, width = "100%")
 widgetframe::frameableWidget(m)
 ```
 
+<br>
 ]
 
 ---
@@ -480,11 +481,12 @@ dag_object <- ggdag::dagify(E ~ D,
     theme_dag()
 ```
 
-
+<br><br>
 ```{r, echo=F, cache=F, fig.cap=paste0(fig_counter(), ': Police presence and crime rate')}
 m <- DiagrammeR::grViz("dot_files/Police_Crime.dot", height = 350, width = "100%")
 widgetframe::frameableWidget(m)
 ```
+
 ---
 ## Causal diagrams and research questions
 
@@ -537,9 +539,9 @@ dag_object <- ggdag::dagify(Y ~ X,
 ggdag::ggdag(dag_object, text = T ) + 
   theme_void()
 ```
-
+<br>
 ```{r, echo=F, cache=F, fig.cap=paste0(fig_counter(), ': Z moderates X')}
-m <- DiagrammeR::grViz("dot_files/ZModeratesX.dot", height = 350, width = "100%")
+m <- DiagrammeR::grViz("dot_files/ZModeratesX.dot", height = 250, width = "100%")
 widgetframe::frameableWidget(m)
 ```
 ---
