@@ -44,7 +44,6 @@ digraph "Causal Diagramm RDD" {
   "age" -> "prefs"
   "age" -> "dropOut"
   "age" -> "SES"
-  "SES" -> "age"
   "SES" -> "prefs"
   "acedemics" -> "hours"
   "acedemics" -> "U 5"
