@@ -1,7 +1,7 @@
 ---
 title: "<a href='https://github.com/mca91/kausalanalyse_slides/raw/main/Identification/Identification.pdf'>Identification</a>"
 author: "Christoph Hanck"
-date: "Summer 2023"
+date: "Summer 2024"
 output:
   xaringan::moon_reader:
     css: ["default", "../assets/ude_fonts.css", "../assets/ude.css",  "../assets/custom.css"]
@@ -116,7 +116,7 @@ Assume that we have [income data](https://observablehq.com/embed/a2046a4b2b3d459
 ---
 # DGPs &mdash; an example
 
-```{r, cache=T, echo=F}
+```{r DGP, cache=T, echo=F}
 # DGP
 set.seed(987987)
 df <- tibble(College = runif(5000) < .3) %>%
@@ -133,7 +133,7 @@ df <- tibble(College = runif(5000) < .3) %>%
 
 What can we say about the effect of being brown-haired using *conditional distributions*?
 
-```{r, echo=F, cache=F, out.extra = 'style="color:black; display:block; margin-right:auto; margin-left:auto; margin-top:15px"', fig.height=5, out.width='45%', dpi=190, fig.cap=paste0(fig_counter(), ': log-income distributions')}
+```{r , echo=F, cache=F, out.extra = 'style="color:black; display:block; margin-right:auto; margin-left:auto; margin-top:15px"', fig.height=5, out.width='45%', dpi=190, fig.cap=paste0(fig_counter(), ': log-income distributions')}
 ggplot(df %>% filter(Hair == "Brown"), aes(x = logIncome, linetype = Hair)) +
   stat_density(geom = 'line', linewidth = 1) +
   stat_density(data = df %>% filter(Hair == "Other Color"), 
