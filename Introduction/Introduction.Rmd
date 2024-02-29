@@ -25,7 +25,7 @@ layout: true
 
 **Moodle**
 
-Slides, exercises and announcements will be provided in [this moodle course](https://moodle.uni-due.de/course/view.php?id=40266) (PW: theeffect) 
+Slides, exercises and announcements will be provided in [this moodle course](https://moodle.uni-due.de/course/view.php?id=44280) (PW: theeffect) 
 
 <p style="margin-bottom:40px"></p>
 
@@ -33,17 +33,17 @@ Slides, exercises and announcements will be provided in [this moodle course](htt
 
 <span>Christoph Hanck </span><span>(<a href = "mailto: christoph.hanck@vwl.uni-due.de">christoph.hanck@vwl.uni-due.de</a>)</span>
 
-Thursdays and Fridays from from 10:00 - 14:00 in room R12 R06 A48 (until May 19<sup>th</sup>)
+Thursdays and Fridays from from 10:00 - 14:00 in room R12 R06 A48 (until May XX<sup>th</sup>)
 
 <p style="margin-bottom:40px"></p>
 
 **Tutorials**
 
-Lennard Maßmann <span>(<a href = "mailto:lennard.massmann@uni-due.de">lennard.massmann@uni-due.de</a>)</span>, Martin Arnold </span><span>(<a href = "mailto: martin.arnold@vwl.uni-due.de">martin.arnold@vwl.uni-due.de</a>)</span>
+Jens Klenke <span>(<a href = "mailto: jens.klenke@vwl.uni-due.de">jens.klenke@vwl.uni-due.de</a>)</span>
 
-May 11<sup>th</sup>, 12<sup>th</sup>, and 19<sup>th</sup>, 14:00 - 18:00 in room R12 R06 A48
+April XX<sup>th</sup>, XX<sup>th</sup>, and XX<sup>th</sup>, 14:00 - 18:00 in room R12 R06 A48
 
-May 25<sup>th</sup>/26<sup>th</sup> and June 1<sup>st</sup>/2<sup>nd</sup>, 10:00 - 14:00 in room R12 R06 A48
+May XX<sup>th</sup>/XX<sup>th</sup> and June XX<sup>st</sup>/XX<sup>nd</sup>, 10:00 - 14:00 in room R12 R06 A48
 
 ---
 ## Datacamp
@@ -58,13 +58,11 @@ May 25<sup>th</sup>/26<sup>th</sup> and June 1<sup>st</sup>/2<sup>nd</sup>, 10:0
 
 - You are welcome to take other courses as well&mdash;you have access to the entire catalog for free!
 
-- Please register [in our group](https://www.datacamp.com/groups/shared_links/8991c6451fb16068f4a184e47577bf689af3173fedd94401f2df2da98e65846e) with your @stud.uni-due.de mail address.
-
-
+- Please register [in our group](https://www.datacamp.com/groups/shared_links/d3a35282c24ce3d7103cf4b0d9e9e97f1113f057e45bb0151f76002ea10f0057) with your **@stud.uni-due.de** mail address.
 
 ---
 background-size: 280px
-## Literature (click cover for free Gitbook version)
+## Literature 
 <p style="margin-bottom:20px;margin-top:25px">
 The slides closely follow the exposition in _The Effect_ by Nick Huntington-Klein.
 <br>
@@ -89,15 +87,10 @@ The slides closely follow the exposition in _The Effect_ by Nick Huntington-Klei
 ## Assessment
 </br>
 
-- Deviating from the info on the [faculty page](https://www.wiwi.uni-due.de/studium/studienorganisation/pruefungen/pruefungstermine/), examinations will be *oral*.
+- The examinations will be *oral*.
 
   You will present a (`R`-based) solution to a small case study assignment and answer further questions on topics covered in both lectures and tutorials in a subsequent discussion (40 minutes total).
 
-- Tentative examination dates are July 20<sup>th</sup> and September 21<sup>st</sup>. Please see the [faculty page](https://www.wiwi.uni-due.de/studium/studienorganisation/pruefungen/pruefungstermine/) for updates.
+- Tentative examination dates are July XX<sup>th</sup> and September XX<sup>st</sup>. Please see the [faculty page](https://www.wiwi.uni-due.de/studium/studienorganisation/pruefungen/pruefungstermine/) for updates.
 
-- Please note that you need to register for the exams during the regular registration period via HISinOne
-
-
-
-
-
+- Please note that you **need** to register for the exams during the regular registration period via HISinOne.
