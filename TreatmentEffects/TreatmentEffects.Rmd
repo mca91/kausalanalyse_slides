@@ -1,7 +1,7 @@
 ---
-title: "<a href='https://github.com/mca91/kausalanalyse_slides/raw/main/TreatmentEffects/TreatmentEffects.pdf'>Treatment effects</a>"
+title: "<a href='https://github.com/mca91/kausalanalyse_slides/raw/SoSe24/TreatmentEffects/TreatmentEffects.pdf'>Treatment effects</a>"
 author: "Christoph Hanck"
-date: "Summer 2023 "
+date: "Summer 2024 "
 output:
   xaringan::moon_reader:
     css: ["default", "../assets/ude_fonts.css", "../assets/ude.css",  "../assets/custom.css"]
@@ -113,7 +113,7 @@ Individuals are heterogeneous. If their characteristics impact the effect of tre
  
 <br>
 
-**How do deal with heterogeneous treatment effects?**
+**How to deal with heterogeneous treatment effects?**
 
 - We can try to **estimate the heterogeneous treatment effects** &mdash; often it difficult to do so we will instead focus on the other thing we can do with the concept of heterogeneous treatment effects like getting answer to the question that of what is being identified if effects are so heterogeneous.
 
@@ -133,7 +133,7 @@ The *mean* of the treatment effect distribution is called the average treatment 
 .blockquote[
 ### Example: Drug on cervical cancer
 
-Assume a drug against Cervical cancer will reduce Terry’s chances of cervical cancer by 2% and Angela’s by 1%. Andrew and Mark do not have cervices so it will reduce their chances by 0.
+Assume a drug against cervical cancer will reduce Terry’s chances of cervical cancer by 2% and Angela’s by 1%. Andrew and Mark do not have cervices so it will reduce their chances by 0.
 
 <br>
 
