@@ -5,7 +5,7 @@ library(tidyverse)
 # Chrome browser needs to be installed for this to work!
 
 # base directory
-base <- "~/git_projects/KA_slides"
+base <- here::here() # "~/git_projects/KA_slides"
 
 # screen for Rmds
 Rmd_files <- dir(recursive = T) %>% 
@@ -29,6 +29,9 @@ walk(
 
 renderthis::to_pdf("~/git_projects/KA_slides/Introduction/Introduction.Rmd")
 renderthis::to_html("~/git_projects/KA_slides/Introduction/Introduction.Rmd")
+
+renderthis::to_pdf("Identification/Identification.Rmd")
+renderthis::to_html("~/git_projects/KA_slides/Identification/Identification.Rmd")
 
 renderthis::to_pdf("~/git_projects/KA_slides/ResearchQuestions/ResearchQuestions.Rmd")
 renderthis::to_html("~/git_projects/KA_slides/ResearchQuestions/ResearchQuestions.Rmd")
