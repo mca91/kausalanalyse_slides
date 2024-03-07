@@ -119,6 +119,32 @@ Matching is usually applied to binary treated/untreated treatment variables, whe
 ---
 # Matching
 
+
+<div class="thecontainer">
+  <div id="observablehq-styles-315fd12c"></div>
+  <div id="observablehq-theplot-315fd12c"></div>
+  <div class="right-aligned">
+    <div id="observablehq-viewof-k-315fd12c"></div>
+    <div id="observablehq-viewof-caliper-315fd12c"></div>
+  </div>
+</div>
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@observablehq/inspector@5/dist/inspector.css">
+<script type="module">
+import {Runtime, Inspector} from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@5/dist/runtime.js";
+import define from "https://api.observablehq.com/d/62067a02a72c9f90.js?v=4";
+new Runtime().module(define, name => {
+  if (name === "theplot") return new Inspector(document.querySelector("#observablehq-theplot-315fd12c"));
+  if (name === "viewof k") return new Inspector(document.querySelector("#observablehq-viewof-k-315fd12c"));
+  if (name === "viewof caliper") return new Inspector(document.querySelector("#observablehq-viewof-caliper-315fd12c"));
+  if (name === "styles") return new Inspector(document.querySelector("#observablehq-styles-315fd12c"));
+});
+</script>
+
+---
+# Matching
+
 <iframe width="100%" height="677" frameborder="0"
   src="https://observablehq.com/embed/62067a02a72c9f90?cells=theplot%2Cviewof+k%2Cviewof+caliper%2Cstyles"></iframe>
 
