@@ -5,7 +5,7 @@ date: "Summer 2023 "
 output:
   xaringan::moon_reader:
     css: ["default", "../assets/ude_fonts.css", "../assets/ude.css",  "../assets/custom.css"]
-    self_contained: true # if true, fonts will be stored locally
+    self_contained: false # if true, fonts will be stored locally
     seal: true # show a title slide with YAML information
     includes:
       in_header: "../assets/mathjax-equation-numbers.html"
@@ -141,6 +141,12 @@ new Runtime().module(define, name => {
   if (name === "styles") return new Inspector(document.querySelector("#observablehq-styles-315fd12c"));
 });
 </script>
+
+---
+# Matching
+
+<iframe width="100%" height="677" frameborder="0"
+  src="https://observablehq.com/embed/62067a02a72c9f90?cells=theplot%2Cviewof+k%2Cviewof+caliper%2Cstyles"></iframe>
 
 ---
 # Matching
