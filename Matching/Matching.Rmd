@@ -151,12 +151,6 @@ new Runtime().module(define, name => {
 ---
 # Matching
 
-<iframe width="100%" height="677" frameborder="0"
-  src="https://observablehq.com/embed/62067a02a72c9f90?cells=theplot%2Cviewof+k%2Cviewof+caliper%2Cstyles"></iframe>
-
----
-# Matching
-
 .vcenter[
 .blockquote[
 
