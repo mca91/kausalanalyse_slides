@@ -286,7 +286,7 @@ widgetframe::frameableWidget(m)
           <li>the matched dataset (1-to-k matching of control to treatment units with replacement) and </li>
           <li>the (potential) matches of the currently selected observation</li>
         </ul>
-      <li>Click an observations to view its (potential) matches</li>
+      <li>Click an observation to view its (potential) matches</li>
       <li>Varying the slider inputs updates the selection</li>
   </ul>
   </div>
