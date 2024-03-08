@@ -116,30 +116,6 @@ Matching is the process of closing back doors between a treatment and an outcome
 Matching is usually applied to binary treated/untreated treatment variables, where the control group is very similar to the treatment group.
 ]]
 
----
-# Matching
-
-<div class="thecontainer">
-  <div id="observablehq-styles-315fd12c"></div>
-  <div id="observablehq-theplot-315fd12c"></div>
-  <div class="right-aligned">
-    <div id="observablehq-viewof-k-315fd12c"></div>
-    <div id="observablehq-viewof-caliper-315fd12c"></div>
-  </div>
-</div>
-
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@observablehq/inspector@5/dist/inspector.css">
-<script type="module">
-import {Runtime, Inspector} from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@5/dist/runtime.js";
-import define from "https://api.observablehq.com/d/62067a02a72c9f90.js?v=4";
-new Runtime().module(define, name => {
-  if (name === "theplot") return new Inspector(document.querySelector("#observablehq-theplot-315fd12c"));
-  if (name === "viewof k") return new Inspector(document.querySelector("#observablehq-viewof-k-315fd12c"));
-  if (name === "viewof caliper") return new Inspector(document.querySelector("#observablehq-viewof-caliper-315fd12c"));
-  if (name === "styles") return new Inspector(document.querySelector("#observablehq-styles-315fd12c"));
-});
-</script>
 
 ---
 # Matching
@@ -291,6 +267,34 @@ ggdag::ggdag(dag_object, # the dag object we created
 m <- DiagrammeR::grViz("dot_files/CD_pg11.dot", height = 280, width = "100%")
 widgetframe::frameableWidget(m)
 ```
+
+---
+# Distance matching
+#### 1-to-k Euclidian distance matching (with replacement)
+<div class="thecontainer">
+  <div id="observablehq-styles-4f5a50ba"></div>
+  <div id="observablehq-theplot-4f5a50ba"></div>
+  <div class="right-aligned">
+    <div id="observablehq-viewof-k-4f5a50ba"></div>
+    <div id="observablehq-viewof-caliper-4f5a50ba"></div>
+    <div id="observablehq-viewof-mtoggle-4f5a50ba"></div>
+  </div>
+</div>
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@observablehq/inspector@5/dist/inspector.css">
+<script type="module">
+import {Runtime, Inspector} from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@5/dist/runtime.js";
+import define from "https://api.observablehq.com/d/62067a02a72c9f90.js?v=4";
+new Runtime().module(define, name => {
+  if (name === "theplot") return new Inspector(document.querySelector("#observablehq-theplot-4f5a50ba"));
+  if (name === "viewof k") return new Inspector(document.querySelector("#observablehq-viewof-k-4f5a50ba"));
+  if (name === "viewof caliper") return new Inspector(document.querySelector("#observablehq-viewof-caliper-4f5a50ba"));
+  if (name === "viewof mtoggle") return new Inspector(document.querySelector("#observablehq-viewof-mtoggle-4f5a50ba"));
+  if (name === "styles") return new Inspector(document.querySelector("#observablehq-styles-4f5a50ba"));
+});
+</script>
+
 ---
 # Distance matching
 
