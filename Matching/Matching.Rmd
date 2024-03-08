@@ -275,9 +275,11 @@ widgetframe::frameableWidget(m)
   <div id="observablehq-styles-4f5a50ba"></div>
   <div id="observablehq-theplot-4f5a50ba"></div>
   <div class="right-aligned">
-    <div id="observablehq-viewof-k-4f5a50ba"></div>
-    <div id="observablehq-viewof-caliper-4f5a50ba"></div>
-    <div id="observablehq-viewof-mtoggle-4f5a50ba"></div>
+    <ul style="list-style-type:none;">
+      <li><div id="observablehq-viewof-caliper-4f5a50ba"></div></li>
+      <li><div id="observablehq-viewof-mtoggle-4f5a50ba"></div></li>
+      <li><div id="observablehq-viewof-k-4f5a50ba"></div></li>
+    </ul>
     <ul>
       <li>Use the checkbox to toggle between highlighting of the matched (1-to-k matching of control to treatment units with replacement) and (potential) matches of the currently selected observation. 
       <li>Click observations to view their (potential) matches.</li>
