@@ -1,7 +1,7 @@
 ---
-title: "<a href='https://github.com/mca91/kausalanalyse_slides/raw/main/FurtherTopics/FurtherTopics.pdf'>Further selected topics</a>"
+title: "<a href='https://github.com/mca91/kausalanalyse_slides/raw/SoSe24/FurtherTopics/FurtherTopics.pdf'>Further selected topics</a>"
 author: "Christoph Hanck"
-date: "Summer 2023 "
+date: "Summer 2024"
 output:
   xaringan::moon_reader:
     css: ["default", "../assets/ude_fonts.css", "../assets/ude.css", "../assets/custom.css"]

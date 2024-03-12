@@ -270,6 +270,48 @@ widgetframe::frameableWidget(m)
 ---
 # Distance matching
 
+#### 1-to-k Euclidian distance matching (with replacement)
+
+<div class="thecontainer">
+  <div id="observablehq-styles-4f5a50ba"></div>
+  <div id="observablehq-theplot-4f5a50ba"></div>
+  <div class="right-aligned">
+    <ul style="list-style-type:none;">
+      <li><div id="observablehq-viewof-mtoggle-4f5a50ba"></div></li>
+      <li><div id="observablehq-viewof-caliper-4f5a50ba"></div></li>
+      <li><div id="observablehq-viewof-k-4f5a50ba"></div></li>
+    </ul>
+    <ul>
+      <li>Use the checkbox to toggle between highlighting of</li>
+        <ul>
+          <li>the matched dataset (1-to-k matching of control to treatment units with replacement) and </li>
+          <li>the (potential) matches of the currently selected observation</li>
+        </ul>
+      <li>Click an observation to view its (potential) matches</li>
+      <li>Varying the slider inputs updates the selection</li>
+  </ul>
+  </div>
+</div>
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@observablehq/inspector@5/dist/inspector.css">
+<script type="module">
+import {Runtime, Inspector} from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@5/dist/runtime.js";
+import define from "https://api.observablehq.com/d/62067a02a72c9f90.js?v=4";
+new Runtime().module(define, name => {
+  if (name === "theplot") return new Inspector(document.querySelector("#observablehq-theplot-4f5a50ba"));
+  if (name === "viewof k") return new Inspector(document.querySelector("#observablehq-viewof-k-4f5a50ba"));
+  if (name === "viewof caliper") return new Inspector(document.querySelector("#observablehq-viewof-caliper-4f5a50ba"));
+  if (name === "viewof mtoggle") return new Inspector(document.querySelector("#observablehq-viewof-mtoggle-4f5a50ba"));
+  if (name === "styles") return new Inspector(document.querySelector("#observablehq-styles-4f5a50ba"));
+});
+</script>
+
+
+
+---
+# Distance matching
+
 .vcenter[
 .blockquote[
 ### Example: Defaulting on credit card debt

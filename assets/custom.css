@@ -19,6 +19,19 @@
   margin-left: 0.1em;
   float:left;
 }
+
+.thecontainer {
+  margin-top: 5%;
+  display: flex;
+  justify-content: space-between; /* This separates the first div and the grouping on the right */
+}
+
+.right-aligned {
+  font-size: 14px;
+  display: flex;
+  flex-direction: column; /* This stacks the two divs vertically */
+}
+
 /*
 .scaled {
   LINE-HEIGHT:20px;

@@ -1,7 +1,7 @@
 ---
-title: "<a href='https://github.com/mca91/kausalanalyse_slides/raw/main/Simulation/Simulation.pdf'>Simulation</a>"
+title: "<a href='https://github.com/mca91/kausalanalyse_slides/raw/SoSe24/Simulation/Simulation.pdf'>Simulation</a>"
 author: "Christoph Hanck"
-date: "Summer 2023"
+date: "Summer 2024"
 output:
   xaringan::moon_reader:
     css: ["default", "../assets/ude_fonts.css", "../assets/ude.css", "../assets/custom.css"]
@@ -90,7 +90,7 @@ library(stfit)
 <br>
 
 .blockquote[
-###Definition: Simulation
+### Definition: Simulation
 Simulation refers to the process of using a random process that that can be controlled (usually, a DGP) to produce data that can be evaluated with a given method. 
 ]
 
@@ -257,7 +257,7 @@ exclude: true
 
 .vcenter[
 .blockquote[
-###Definition: Statistical precision and statistical power
+### Definition: Statistical precision and statistical power
 
 - **Statistical precision** in power analysis is measured by a target level of statistical power (hence the name *power analysis*)
 
