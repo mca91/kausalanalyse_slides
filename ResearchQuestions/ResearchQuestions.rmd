@@ -19,7 +19,7 @@ output:
         scroll: false #disable slide transitions by scrolling
 ---
 layout: true
-<a style="position: absolute;top:5px;left:10px;color:#004c93;" target="Overview"  href="https://kaslides.netlify.app/">`r fontawesome::fa("home", height="15px")`</a>
+<a style="position: absolute;top:5px;left:10px;color:#004c93;" target="Overview"  href="https://kasa24.netlify.app/">`r fontawesome::fa("home", height="15px")`</a>
 
 ---
 exclude: true

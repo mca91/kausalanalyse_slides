@@ -51,7 +51,7 @@ class: center, middle, inverse, title-slide
 ---
 
 layout: true
-&lt;a style="position: absolute;top:5px;left:10px;color:#004c93;" target="Overview"  href="https://kaslides.netlify.app/"&gt;<svg aria-hidden="true" role="img" viewBox="0 0 576 512" style="height:15px;width:16.88px;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M575.8 255.5c0 18-15 32.1-32 32.1h-32l.7 160.2c0 2.7-.2 5.4-.5 8.1V472c0 22.1-17.9 40-40 40H456c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1H416 392c-22.1 0-40-17.9-40-40V448 384c0-17.7-14.3-32-32-32H256c-17.7 0-32 14.3-32 32v64 24c0 22.1-17.9 40-40 40H160 128.1c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2H104c-22.1 0-40-17.9-40-40V360c0-.9 0-1.9 .1-2.8V287.6H32c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z"/></svg>&lt;/a&gt;
+&lt;a style="position: absolute;top:5px;left:10px;color:#004c93;" target="Overview"  href="https://kasa24.netlify.app/"&gt;<svg aria-hidden="true" role="img" viewBox="0 0 576 512" style="height:15px;width:16.88px;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M575.8 255.5c0 18-15 32.1-32 32.1h-32l.7 160.2c0 2.7-.2 5.4-.5 8.1V472c0 22.1-17.9 40-40 40H456c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1H416 392c-22.1 0-40-17.9-40-40V448 384c0-17.7-14.3-32-32-32H256c-17.7 0-32 14.3-32 32v64 24c0 22.1-17.9 40-40 40H160 128.1c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2H104c-22.1 0-40-17.9-40-40V360c0-.9 0-1.9 .1-2.8V287.6H32c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z"/></svg>&lt;/a&gt;
 
 ---
 
@@ -113,7 +113,7 @@ Individuals are heterogeneous. If their characteristics impact the effect of tre
  
 &lt;br&gt;
 
-**How do deal with heterogeneous treatment effects?**
+**How to deal with heterogeneous treatment effects?**
 
 - We can try to **estimate the heterogeneous treatment effects** &amp;mdash; often it difficult to do so we will instead focus on the other thing we can do with the concept of heterogeneous treatment effects like getting answer to the question that of what is being identified if effects are so heterogeneous.
 
@@ -133,7 +133,7 @@ The *mean* of the treatment effect distribution is called the average treatment 
 .blockquote[
 ### Example: Drug on cervical cancer
 
-Assume a drug against Cervical cancer will reduce Terry’s chances of cervical cancer by 2% and Angela’s by 1%. Andrew and Mark do not have cervices so it will reduce their chances by 0.
+Assume a drug against cervical cancer will reduce Terry’s chances of cervical cancer by 2% and Angela’s by 1%. Andrew and Mark do not have cervices so it will reduce their chances by 0.
 
 &lt;br&gt;
 
@@ -411,11 +411,11 @@ The local average treatment effect (**LATE**) is a **weighted average treatment 
 
 
 &lt;div class="figure"&gt;
-<div id="htmlwidget-180459da57df6ff26190" style="width:100%;height:300px;" class="grViz html-widget"></div>
+<div id="htmlwidget-4138e24119ad125be72c" style="width:100%;height:300px;" class="grViz html-widget"></div>
 <script>HTMLWidgets.pymChild = new pym.Child();HTMLWidgets.addPostRenderHandler(function(){
                                 setTimeout(function(){HTMLWidgets.pymChild.sendHeight();},100);
                             });</script>
-<script type="application/json" data-for="htmlwidget-180459da57df6ff26190">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n  bgcolor=transparent\n  imagescale=both\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"Others Bad Driving\" [pos=\"0,4!\"]\n  \"Traffic School\" [pos=\"0,2!\"]\n  \"Your Bad Driving\" [pos=\"2,4!\"]\n  \"Your Furure Driving\" [pos=\"4,2!\"]\n\n  \n  \"Your Bad Driving\" -> \"Traffic School\"\n   \"Your Bad Driving\" ->  \"Your Furure Driving\"\n  \"Others Bad Driving\" -> \"Traffic School\"\n  \"Traffic School\" -> \"Your Furure Driving\"\n\n  \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-4138e24119ad125be72c">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n  bgcolor=transparent\n  imagescale=both\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"Others Bad Driving\" [pos=\"0,4!\"]\n  \"Traffic School\" [pos=\"0,2!\"]\n  \"Your Bad Driving\" [pos=\"2,4!\"]\n  \"Your Furure Driving\" [pos=\"4,2!\"]\n\n  \n  \"Your Bad Driving\" -> \"Traffic School\"\n   \"Your Bad Driving\" ->  \"Your Furure Driving\"\n  \"Others Bad Driving\" -> \"Traffic School\"\n  \"Traffic School\" -> \"Your Furure Driving\"\n\n  \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 &lt;p class="caption"&gt;2: Causal diagram of Effect of traffic school on future driving performance&lt;/p&gt;
 &lt;/div&gt;
 ]]
