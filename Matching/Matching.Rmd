@@ -547,6 +547,29 @@ The 2-nearest-neighbors match will include some observations in the control grou
 
 ]
 
+---
+# 4. How will the weights decay with distance?
+
+<div class="thecontainer">
+  <div id="observablehq-theplot-ba5c934a"></div>
+  <div class="right-aligned">
+    <ul style="list-style-type:none;">
+      <li><div id="observablehq-viewof-therkernel-ba5c934a"></div></li>
+    </ul>
+  </div>
+</div>
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@observablehq/inspector@5/dist/inspector.css">
+<script type="module">
+import {Runtime, Inspector} from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@5/dist/runtime.js";
+import define from "https://api.observablehq.com/d/7d15f70ba784b0bd.js?v=4";
+new Runtime().module(define, name => {
+  if (name === "theplot") return new Inspector(document.querySelector("#observablehq-theplot-ba5c934a"));
+  if (name === "viewof therkernel") return new Inspector(document.querySelector("#observablehq-viewof-therkernel-ba5c934a"));
+  return ["data"].includes(name);
+});
+</script>
 
 ---
 # 4. How will the weights decay with distance?
