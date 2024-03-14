@@ -271,6 +271,7 @@ widgetframe::frameableWidget(m)
 ---
 # Distance matching
 #### 1-to-k Euclidian distance matching (with replacement)
+
 <div class="thecontainer">
   <div id="observablehq-styles-4f5a50ba"></div>
   <div id="observablehq-theplot-4f5a50ba"></div>
