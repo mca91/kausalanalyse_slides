@@ -416,7 +416,7 @@ ggplot(sub, aes(x = BillApril, y = yjit, shape = LateApril)) +
         axis.title.x = element_text(size = 13),
         axis.title.y = element_blank(),
         axis.ticks.y = element_blank(),
-        legend.position = c(.7, .8),
+        legend.position.inside = c(.7, .8),
         legend.background = element_rect(color = 'black'))
 ```
 ]]
@@ -558,7 +558,6 @@ The 2-nearest-neighbors match will include some observations in the control grou
     </ul>
   </div>
 </div>
-
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@observablehq/inspector@5/dist/inspector.css">
 <script type="module">
@@ -744,6 +743,40 @@ The following steps guides to obtain Mahalonobis distance:
 <!-- - Each variables are divided by the whole covariance matrix from the squared values of the variables.  -->
 <!-- - If all the matching variables are unrelated to each other, this simplifies to just dividing each variable by its standard deviation. -->
 <!-- - But if they are related to each other, this removes the relationships between the matching variables, making them independent before matching. -->
+
+---
+# Multiple matching variables
+
+<div class="thecontainer">
+  <div id="observablehq-theplot-a5f86017"></div>
+  <div id="observablehq-styles-a5f86017"></div>
+  <div class="right-aligned">
+    <ul style="list-style-type:none;">
+      <li><div id="observablehq-viewof-ED-a5f86017"></div></li>
+      <li><div id="observablehq-viewof-caliper-a5f86017"></div></li>
+      <li><div id="observablehq-viewof-correlationFactor-a5f86017""></div></li>
+    </ul>
+    <ul>
+      <li>The dashed circle shows a perimeter of the specified <b>Euclidean distance</b> (ED) around the selected observation. These are potential ED matches for the selected observation.</li>
+      <li>Observations (of the other group) within the specified <b>Mahalanobis distance</b> (MHD) to the selected observation are highlighted with a cyan outline. These are potential MHD matches for the selected observation.</li>
+      <li> \(SD(V1) = SD(V2) = \sqrt{120}\approx 10.95\). So \(\text{MHD} = 1\) is equivalent to \(\text{ED} = 10.95\) for \(\text{Corr}(V1,V2)=0\) (why?).</li>
+      <li> Watch what happens when we introduce correlation!</li>
+    </ul>
+  </div>
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@observablehq/inspector@5/dist/inspector.css">
+<script type="module">
+import {Runtime, Inspector} from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@5/dist/runtime.js";
+import define from "https://api.observablehq.com/d/4da2bc277fec4645@873.js?v=4";
+new Runtime().module(define, name => {
+  if (name === "theplot") return new Inspector(document.querySelector("#observablehq-theplot-a5f86017"));
+  if (name === "viewof ED") return new Inspector(document.querySelector("#observablehq-viewof-ED-a5f86017"));
+  if (name === "viewof caliper") return new Inspector(document.querySelector("#observablehq-viewof-caliper-a5f86017"));
+  if (name === "viewof correlationFactor") return new Inspector(document.querySelector("#observablehq-viewof-correlationFactor-a5f86017"));
+  return ["covXY","covarianceMatrix","sigmasqrt","det","inverseMatrix","thepoints","MahalanobisDistance","middleBluePoint","xc","yc"].includes(name);
+});
+</script>
 
 ---
 # Multiple matching variables
