@@ -33,7 +33,7 @@ Slides, exercises and announcements will be provided in [this moodle course](htt
 
 <span>Christoph Hanck </span><span>(<a href = "mailto: christoph.hanck@vwl.uni-due.de">christoph.hanck@vwl.uni-due.de</a>)</span>
 
-Thursdays and Fridays from from 10:00 - 14:00 in room R12 R06 A48 (until May XX<sup>th</sup>)
+Thursdays and Fridays from from 10:00 - 14:00 in room R12 R06 A48
 
 <p style="margin-bottom:40px"></p>
 
@@ -41,9 +41,7 @@ Thursdays and Fridays from from 10:00 - 14:00 in room R12 R06 A48 (until May XX<
 
 Jens Klenke <span>(<a href = "mailto: jens.klenke@vwl.uni-due.de">jens.klenke@vwl.uni-due.de</a>)</span>
 
-April XX<sup>th</sup>, XX<sup>th</sup>, and XX<sup>th</sup>, 14:00 - 18:00 in room R12 R06 A48
-
-May XX<sup>th</sup>/XX<sup>th</sup> and June XX<sup>st</sup>/XX<sup>nd</sup>, 10:00 - 14:00 in room R12 R06 A48
+Fridays from from 14:00 - 18:00 in room R12 R06 A48
 
 ---
 ## Datacamp
@@ -91,6 +89,6 @@ The slides closely follow the exposition in _The Effect_ by Nick Huntington-Klei
 
   You will present a (`R`-based) solution to a small case study assignment and answer further questions on topics covered in both lectures and tutorials in a subsequent discussion (40 minutes total).
 
-- Tentative examination dates are July XX<sup>th</sup> and September XX<sup>st</sup>. Please see the [faculty page](https://www.wiwi.uni-due.de/studium/studienorganisation/pruefungen/pruefungstermine/) for updates.
+- Tentative examination dates are June 28<sup>th</sup> and July 19<sup>th</sup>. Please see the [faculty page](https://www.wiwi.uni-due.de/studium/studienorganisation/pruefungen/pruefungstermine/) for updates.
 
 - Please note that you **need** to register for the exams during the regular registration period via HISinOne.
