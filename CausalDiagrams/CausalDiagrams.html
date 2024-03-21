@@ -311,11 +311,11 @@ We have...
 
 
 &lt;div class="figure"&gt;
-<div id="htmlwidget-585c974b2ac8d1cc6932" style="width:100%;height:80px;" class="grViz html-widget "></div>
+<div id="htmlwidget-5c3f3e3c99334aa8fd1a" style="width:100%;height:80px;" class="grViz html-widget "></div>
 <script>HTMLWidgets.pymChild = new pym.Child();HTMLWidgets.addPostRenderHandler(function(){
                                 setTimeout(function(){HTMLWidgets.pymChild.sendHeight();},100);
                             });</script>
-<script type="application/json" data-for="htmlwidget-585c974b2ac8d1cc6932">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n  bgcolor=transparent\n  imagescale=both\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"Coin flip (X)\" [pos=\"0,1!\"]\n  \"Cake (Y)\" [pos=\"3,1!\"]\n  \"Coin flip (X)\" -> \"Cake (Y)\"\n  \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-5c3f3e3c99334aa8fd1a">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n  bgcolor=transparent\n  imagescale=both\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"Coin flip (X)\" [pos=\"0,1!\"]\n  \"Cake (Y)\" [pos=\"3,1!\"]\n  \"Coin flip (X)\" -> \"Cake (Y)\"\n  \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 &lt;p class="caption"&gt;2: A simple causal diagram&lt;/p&gt;
 &lt;/div&gt;
 
@@ -353,11 +353,11 @@ Ice-cream sales (X) are high when people wear shorts (Y). However, there is no c
 
 &lt;br&gt;
 &lt;div class="figure"&gt;
-<div id="htmlwidget-8b4c2d4cca7812889d53" style="width:100%;height:200px;" class="grViz html-widget "></div>
+<div id="htmlwidget-ce2e313980d19188c66b" style="width:100%;height:200px;" class="grViz html-widget "></div>
 <script>HTMLWidgets.pymChild = new pym.Child();HTMLWidgets.addPostRenderHandler(function(){
                                 setTimeout(function(){HTMLWidgets.pymChild.sendHeight();},100);
                             });</script>
-<script type="application/json" data-for="htmlwidget-8b4c2d4cca7812889d53">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n  bgcolor=transparent\n  imagescale=both\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"Weather (U)\" [pos=\"1,1!\"]\n  \"Shorts (X)\" [pos=\"0,0!\"]\n  \"Ice-Cream (Y)\" [pos=\"2,0!\"]\n  \"Weather (U)\" -> \"Shorts (X)\"\n  \"Weather (U)\" -> \"Ice-Cream (Y)\"\n  \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-ce2e313980d19188c66b">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n  bgcolor=transparent\n  imagescale=both\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"Weather (U)\" [pos=\"1,1!\"]\n  \"Shorts (X)\" [pos=\"0,0!\"]\n  \"Ice-Cream (Y)\" [pos=\"2,0!\"]\n  \"Weather (U)\" -> \"Shorts (X)\"\n  \"Weather (U)\" -> \"Ice-Cream (Y)\"\n  \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 &lt;p class="caption"&gt;4: Unobserved variable&lt;/p&gt;
 &lt;/div&gt;
 
@@ -406,11 +406,11 @@ It's a balancing act &amp;mdash; omitting movies is okay, omitting the poverty r
 
 &lt;br&gt;&lt;br&gt;
 &lt;div class="figure"&gt;
-<div id="htmlwidget-3d6b2195f41aa1b2ed4f" style="width:100%;height:350px;" class="grViz html-widget "></div>
+<div id="htmlwidget-7e47b306137b6c94983e" style="width:100%;height:350px;" class="grViz html-widget "></div>
 <script>HTMLWidgets.pymChild = new pym.Child();HTMLWidgets.addPostRenderHandler(function(){
                                 setTimeout(function(){HTMLWidgets.pymChild.sendHeight();},100);
                             });</script>
-<script type="application/json" data-for="htmlwidget-3d6b2195f41aa1b2ed4f">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n   bgcolor=transparent\n  imagescale=both\n  fontsize=25\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"Law and Order politics\" [pos=\"0,2!\",  fontcolor=\"red\"]\n  \"Sentencing Laws\" [pos=\"3,2!\"]\n  \"Expected Crime Payouts\" [pos=\"6,2!\", fontcolor=\"red\"]\n   \"Police per Capita\" [pos=\"3,1!\"]\n  \"Lagged crime\" [pos=\"0,0!\"]\n  \"Crime\" [pos=\"6,0!\"]\n  \"Law and Order politics\" -> \"Police per Capita\"\n  \"Lagged crime\" -> \"Sentencing Laws\"\n  \"Law and Order politics\" -> \"Sentencing Laws\"\n  \"Lagged crime\" -> \"Police per Capita\" \n  \"Lagged crime\" -> \"Crime\"\n  \"Sentencing Laws\" ->  \"Expected Crime Payouts\"\n  \"Crime\"  -> \"Expected Crime Payouts\"\n  \"Police per Capita\" -> \"Expected Crime Payouts\"\n  \"Police per Capita\" -> \"Crime\"\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-7e47b306137b6c94983e">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n   bgcolor=transparent\n  imagescale=both\n  fontsize=25\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"Law and Order politics\" [pos=\"0,2!\",  fontcolor=\"red\"]\n  \"Sentencing Laws\" [pos=\"3,2!\"]\n  \"Expected Crime Payouts\" [pos=\"6,2!\", fontcolor=\"red\"]\n   \"Police per Capita\" [pos=\"3,1!\"]\n  \"Lagged crime\" [pos=\"0,0!\"]\n  \"Crime\" [pos=\"6,0!\"]\n  \"Law and Order politics\" -> \"Police per Capita\"\n  \"Lagged crime\" -> \"Sentencing Laws\"\n  \"Law and Order politics\" -> \"Sentencing Laws\"\n  \"Lagged crime\" -> \"Police per Capita\" \n  \"Lagged crime\" -> \"Crime\"\n  \"Sentencing Laws\" ->  \"Expected Crime Payouts\"\n  \"Expected Crime Payouts\" -> \"Crime\"\n  \"Police per Capita\" -> \"Expected Crime Payouts\"\n  \"Police per Capita\" -> \"Crime\"\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 &lt;p class="caption"&gt;7: Police presence and crime rate&lt;/p&gt;
 &lt;/div&gt;
 
@@ -458,11 +458,11 @@ Moderators are variables that do not necessarily cause another variable (althoug
 
 &lt;br&gt;
 &lt;div class="figure"&gt;
-<div id="htmlwidget-37611eca982cf10ad345" style="width:100%;height:250px;" class="grViz html-widget "></div>
+<div id="htmlwidget-dc51dfaebefa094b6551" style="width:100%;height:250px;" class="grViz html-widget "></div>
 <script>HTMLWidgets.pymChild = new pym.Child();HTMLWidgets.addPostRenderHandler(function(){
                                 setTimeout(function(){HTMLWidgets.pymChild.sendHeight();},100);
                             });</script>
-<script type="application/json" data-for="htmlwidget-37611eca982cf10ad345">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n   bgcolor=transparent\n  imagescale=both\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"X\" [pos=\"0,1!\"]\n  \"Y\" [pos=\"1,0!\"]\n  \"Z\" [pos=\"2,1!\"]\n  \"X\" -> \"Y\"\n  \"Z\" -> \"Y\"\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-dc51dfaebefa094b6551">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n   bgcolor=transparent\n  imagescale=both\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"X\" [pos=\"0,1!\"]\n  \"Y\" [pos=\"1,0!\"]\n  \"Z\" [pos=\"2,1!\"]\n  \"X\" -> \"Y\"\n  \"Z\" -> \"Y\"\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 &lt;p class="caption"&gt;9: Z moderates X&lt;/p&gt;
 &lt;/div&gt;
 ---

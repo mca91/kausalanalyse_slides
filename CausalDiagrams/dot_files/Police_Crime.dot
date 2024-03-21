@@ -19,7 +19,7 @@ digraph "Causal Diagramm RDD" {
   "Lagged crime" -> "Police per Capita" 
   "Lagged crime" -> "Crime"
   "Sentencing Laws" ->  "Expected Crime Payouts"
-  "Crime"  -> "Expected Crime Payouts"
+  "Expected Crime Payouts" -> "Crime"
   "Police per Capita" -> "Expected Crime Payouts"
   "Police per Capita" -> "Crime"
 }
