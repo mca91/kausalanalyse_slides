@@ -886,7 +886,7 @@ Boosted regression is an iterative method that starts with a binary regression m
   
 
 ---
-# Assumptions for matching
+## Assumptions for matching
 &lt;br&gt;
 **1. Conditional Independence**
 - The conditional independence assumption says that the set of matching variables that are chosen is enough to close all back doors.
@@ -897,7 +897,7 @@ Boosted regression is an iterative method that starts with a binary regression m
 - In the context of propensity scores, there must be substantial **overlap in the distribution of the propensity scores**.
 
 ---
-# Assumptions for matching
+## Assumptions for matching
 &lt;/br&gt;
 
 **Two approaches to check for common support**
@@ -909,7 +909,7 @@ Boosted regression is an iterative method that starts with a binary regression m
 2. Another way to check for common support when matches are being selected is simply to see success rate at finding matches. If 1% of the treated observations fail to find an acceptable match, that is considered good. If 90% of the treated observations fail to find an acceptable match, then there is lack of common support.
 
 ---
-#Assumptions for matching
+## Assumptions for matching
 
 .vcenter[
 .blockquote[
@@ -926,7 +926,7 @@ Boosted regression is an iterative method that starts with a binary regression m
 ]]
 
 ---
-# Assumptions for matching
+## Assumptions for matching
 
 .vcenter[
 .blockquote[
@@ -938,7 +938,7 @@ Boosted regression is an iterative method that starts with a binary regression m
 
 
 ---
-#Assumptions for matching
+## Assumptions for matching
 &lt;br&gt;
 **Dealing with support**
 &lt;br&gt;&lt;br&gt;
@@ -951,7 +951,7 @@ Boosted regression is an iterative method that starts with a binary regression m
 
 - Still, if a lot of such fixes are needed, this entails losing a lot of data and/or not being able to close back doors.
 ---
-# Assumptions for matching
+## Assumptions for matching
 &lt;br&gt;
 ** Balance**
 &lt;br&gt;&lt;br&gt;
@@ -964,7 +964,7 @@ Boosted regression is an iterative method that starts with a binary regression m
 
 
 ---
-# Assumptions for matching
+## Assumptions for matching
 &lt;br&gt;
 **Balance table**
 &lt;br&gt;&lt;br&gt;
@@ -977,7 +977,7 @@ A common way of checking for balance is a *balance table*.
 
 
 ---
-# Assumptions for matching
+## Assumptions for matching
 &lt;br&gt;
 **Balance table**
 &lt;br&gt;&lt;br&gt;
@@ -988,7 +988,7 @@ A common way of checking for balance is a *balance table*.
 
 
 ---
-# Assumptions for matching
+## Assumptions for matching
 &lt;br&gt;
 **Balance table: estimating mean differences**
 &lt;br&gt;&lt;br&gt;
@@ -1003,7 +1003,7 @@ A common way of checking for balance is a *balance table*.
 
 
 ---
-# Estimation with matched data
+## Estimation with matched data
 &lt;br&gt;
 **Bootstrap standard errors**
 &lt;br&gt;
@@ -1019,7 +1019,7 @@ Bootstrap standard errors can be applied to matching estimates.
 
 
 ---
-# Combining matching and regression
+## Combining matching and regression
 &lt;/br&gt;
 **Regression adjustment**
 
@@ -1033,7 +1033,7 @@ Propensity scores (or the inverse probability weight based on the propensity sco
 
 
 ---
-# Combining matching and regression
+## Combining matching and regression
 .vcenter[
 .blockquote[
 ###Definition: Doubly robust estimation
@@ -1044,7 +1044,7 @@ Double-robustness is a property that some estimators have rather than *being* a 
 ]]
 
 ---
-# Combining matching and regression
+## Combining matching and regression
 &lt;/br&gt;
 **Doubly robust estimation**
 
@@ -1059,7 +1059,7 @@ Double-robustness is a property that some estimators have rather than *being* a 
 3. Using only treated observations, estimate the regression model, using the matching variables as predictors (and perhaps some other predictors too, depending on the purpose), and inverse probability weights
 
 ---
-# Combining matching and regression
+## Combining matching and regression
 &lt;/br&gt;
 **Doubly robust estimation**
 
@@ -1074,7 +1074,7 @@ Double-robustness is a property that some estimators have rather than *being* a 
 &lt;/ol&gt;
 
 ---
-# Matching and treatment effects
+## Matching and treatment effects
 &lt;/br&gt;
 **Key facts**
 
@@ -1090,7 +1090,7 @@ We can obtain the average treatment effect (ATE), the average treatment effect o
 
 
 ---
-# Matching and treatment effects
+## Matching and treatment effects
 
 .vcenter[
 .blockquote[
@@ -1103,7 +1103,7 @@ We can obtain the average treatment effect (ATE), the average treatment effect o
 ]]
 
 ---
-# Matching and treatment effects
+## Matching and treatment effects
 
 .vcenter[
 .blockquote[
@@ -1115,7 +1115,7 @@ We can obtain the average treatment effect (ATE), the average treatment effect o
 ]]
 
 ---
-# Matching and treatment effects
+## Matching and treatment effects
 
 .vcenter[
 .blockquote[
@@ -1129,7 +1129,7 @@ We can obtain the average treatment effect (ATE), the average treatment effect o
 ]]
 
 ---
-# Matching and treatment effects
+## Matching and treatment effects
 &lt;/br&gt;
 **Inverse probability weighting**
 

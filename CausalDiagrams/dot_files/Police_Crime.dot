@@ -15,7 +15,7 @@ digraph "Causal Diagramm RDD" {
   "Crime" [pos="6,0!"]
   "Law and Order politics" -> "Police per Capita"
   "Lagged crime" -> "Sentencing Laws"
-  "Sentencing Laws" -> "Law and Order politics"
+  "Law and Order politics" -> "Sentencing Laws"
   "Lagged crime" -> "Police per Capita" 
   "Lagged crime" -> "Crime"
   "Sentencing Laws" ->  "Expected Crime Payouts"
