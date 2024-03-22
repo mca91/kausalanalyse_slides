@@ -13,7 +13,7 @@
     <script>window.xaringanExtraClipboard(null, {"button":"<i class=\"fa fa-clipboard\"><\/i>","success":"<i class=\"fa fa-check\" style=\"color: #00ff00\"><\/i>","error":"<i class=\"fa fa-times-circle\" style=\"color: #F94144\"><\/i>"})</script>
     <link href="CausalDiagrams_files/font-awesome-6.4.2/css/all.min.css" rel="stylesheet" />
     <link href="CausalDiagrams_files/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet" />
-    <script src="CausalDiagrams_files/htmlwidgets-1.6.2/htmlwidgets.js"></script>
+    <script src="CausalDiagrams_files/htmlwidgets-1.6.4/htmlwidgets.js"></script>
     <script src="CausalDiagrams_files/viz-1.8.2/viz.js"></script>
     <link href="CausalDiagrams_files/DiagrammeR-styles-0.2/styles.css" rel="stylesheet" />
     <script src="CausalDiagrams_files/grViz-binding-1.0.11/grViz.js"></script>
@@ -117,7 +117,7 @@ We say that `\(X\)` causes `\(Y\)` when we interfere and change the value of `\(
 ### Examples: a few causal relationships
 
 Obvious ones:
- - A light switch being set to on causes the light to be on
+ - A light switch being set to on causing the light to be on
  - Setting off fireworks raises the noise level
 
 Less obvious ones:
@@ -311,11 +311,11 @@ We have...
 
 
 &lt;div class="figure"&gt;
-<div id="htmlwidget-5c3f3e3c99334aa8fd1a" style="width:100%;height:80px;" class="grViz html-widget "></div>
+<div id="htmlwidget-f5b7be2698731d43f5c3" style="width:100%;height:80px;" class="grViz html-widget"></div>
 <script>HTMLWidgets.pymChild = new pym.Child();HTMLWidgets.addPostRenderHandler(function(){
                                 setTimeout(function(){HTMLWidgets.pymChild.sendHeight();},100);
                             });</script>
-<script type="application/json" data-for="htmlwidget-5c3f3e3c99334aa8fd1a">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n  bgcolor=transparent\n  imagescale=both\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"Coin flip (X)\" [pos=\"0,1!\"]\n  \"Cake (Y)\" [pos=\"3,1!\"]\n  \"Coin flip (X)\" -> \"Cake (Y)\"\n  \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-f5b7be2698731d43f5c3">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n  bgcolor=transparent\n  imagescale=both\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"Coin flip (X)\" [pos=\"0,1!\"]\n  \"Cake (Y)\" [pos=\"3,1!\"]\n  \"Coin flip (X)\" -> \"Cake (Y)\"\n  \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 &lt;p class="caption"&gt;2: A simple causal diagram&lt;/p&gt;
 &lt;/div&gt;
 
@@ -353,11 +353,11 @@ Ice-cream sales (X) are high when people wear shorts (Y). However, there is no c
 
 &lt;br&gt;
 &lt;div class="figure"&gt;
-<div id="htmlwidget-ce2e313980d19188c66b" style="width:100%;height:200px;" class="grViz html-widget "></div>
+<div id="htmlwidget-f973adb1da57a7e564a5" style="width:100%;height:200px;" class="grViz html-widget"></div>
 <script>HTMLWidgets.pymChild = new pym.Child();HTMLWidgets.addPostRenderHandler(function(){
                                 setTimeout(function(){HTMLWidgets.pymChild.sendHeight();},100);
                             });</script>
-<script type="application/json" data-for="htmlwidget-ce2e313980d19188c66b">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n  bgcolor=transparent\n  imagescale=both\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"Weather (U)\" [pos=\"1,1!\"]\n  \"Shorts (X)\" [pos=\"0,0!\"]\n  \"Ice-Cream (Y)\" [pos=\"2,0!\"]\n  \"Weather (U)\" -> \"Shorts (X)\"\n  \"Weather (U)\" -> \"Ice-Cream (Y)\"\n  \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-f973adb1da57a7e564a5">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n  bgcolor=transparent\n  imagescale=both\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"Weather (U)\" [pos=\"1,1!\"]\n  \"Shorts (X)\" [pos=\"0,0!\"]\n  \"Ice-Cream (Y)\" [pos=\"2,0!\"]\n  \"Weather (U)\" -> \"Shorts (X)\"\n  \"Weather (U)\" -> \"Ice-Cream (Y)\"\n  \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 &lt;p class="caption"&gt;4: Unobserved variable&lt;/p&gt;
 &lt;/div&gt;
 
@@ -406,11 +406,11 @@ It's a balancing act &amp;mdash; omitting movies is okay, omitting the poverty r
 
 &lt;br&gt;&lt;br&gt;
 &lt;div class="figure"&gt;
-<div id="htmlwidget-7e47b306137b6c94983e" style="width:100%;height:350px;" class="grViz html-widget "></div>
+<div id="htmlwidget-cd3202e07d039322ef8c" style="width:100%;height:350px;" class="grViz html-widget"></div>
 <script>HTMLWidgets.pymChild = new pym.Child();HTMLWidgets.addPostRenderHandler(function(){
                                 setTimeout(function(){HTMLWidgets.pymChild.sendHeight();},100);
                             });</script>
-<script type="application/json" data-for="htmlwidget-7e47b306137b6c94983e">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n   bgcolor=transparent\n  imagescale=both\n  fontsize=25\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"Law and Order politics\" [pos=\"0,2!\",  fontcolor=\"red\"]\n  \"Sentencing Laws\" [pos=\"3,2!\"]\n  \"Expected Crime Payouts\" [pos=\"6,2!\", fontcolor=\"red\"]\n   \"Police per Capita\" [pos=\"3,1!\"]\n  \"Lagged crime\" [pos=\"0,0!\"]\n  \"Crime\" [pos=\"6,0!\"]\n  \"Law and Order politics\" -> \"Police per Capita\"\n  \"Lagged crime\" -> \"Sentencing Laws\"\n  \"Law and Order politics\" -> \"Sentencing Laws\"\n  \"Lagged crime\" -> \"Police per Capita\" \n  \"Lagged crime\" -> \"Crime\"\n  \"Sentencing Laws\" ->  \"Expected Crime Payouts\"\n  \"Expected Crime Payouts\" -> \"Crime\"\n  \"Police per Capita\" -> \"Expected Crime Payouts\"\n  \"Police per Capita\" -> \"Crime\"\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-cd3202e07d039322ef8c">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n   bgcolor=transparent\n  imagescale=both\n  fontsize=25\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"Law and Order politics\" [pos=\"0,2!\",  fontcolor=\"red\"]\n  \"Sentencing Laws\" [pos=\"3,2!\"]\n  \"Expected Crime Payouts\" [pos=\"6,2!\", fontcolor=\"red\"]\n   \"Police per Capita\" [pos=\"3,1!\"]\n  \"Lagged crime\" [pos=\"0,0!\"]\n  \"Crime\" [pos=\"6,0!\"]\n  \"Law and Order politics\" -> \"Police per Capita\"\n  \"Lagged crime\" -> \"Sentencing Laws\"\n  \"Law and Order politics\" -> \"Sentencing Laws\"\n  \"Lagged crime\" -> \"Police per Capita\" \n  \"Lagged crime\" -> \"Crime\"\n  \"Sentencing Laws\" ->  \"Expected Crime Payouts\"\n  \"Expected Crime Payouts\" -> \"Crime\"\n  \"Police per Capita\" -> \"Expected Crime Payouts\"\n  \"Police per Capita\" -> \"Crime\"\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 &lt;p class="caption"&gt;7: Police presence and crime rate&lt;/p&gt;
 &lt;/div&gt;
 
@@ -458,11 +458,11 @@ Moderators are variables that do not necessarily cause another variable (althoug
 
 &lt;br&gt;
 &lt;div class="figure"&gt;
-<div id="htmlwidget-dc51dfaebefa094b6551" style="width:100%;height:250px;" class="grViz html-widget "></div>
+<div id="htmlwidget-1ab9b4e33a4f2f414793" style="width:100%;height:250px;" class="grViz html-widget"></div>
 <script>HTMLWidgets.pymChild = new pym.Child();HTMLWidgets.addPostRenderHandler(function(){
                                 setTimeout(function(){HTMLWidgets.pymChild.sendHeight();},100);
                             });</script>
-<script type="application/json" data-for="htmlwidget-dc51dfaebefa094b6551">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n   bgcolor=transparent\n  imagescale=both\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"X\" [pos=\"0,1!\"]\n  \"Y\" [pos=\"1,0!\"]\n  \"Z\" [pos=\"2,1!\"]\n  \"X\" -> \"Y\"\n  \"Z\" -> \"Y\"\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-1ab9b4e33a4f2f414793">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n   bgcolor=transparent\n  imagescale=both\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"X\" [pos=\"0,1!\"]\n  \"Y\" [pos=\"1,0!\"]\n  \"Z\" [pos=\"2,1!\"]\n  \"X\" -> \"Y\"\n  \"Z\" -> \"Y\"\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 &lt;p class="caption"&gt;9: Z moderates X&lt;/p&gt;
 &lt;/div&gt;
 ---

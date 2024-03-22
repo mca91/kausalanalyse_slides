@@ -191,7 +191,7 @@ Potential causes for people to take online classes (*classes*):
 
 Think about which variables cause which others.
 
-- *prefs* $\to$ *classes*, *race* $\to$ *DropOut*, *gender* $\to$ *DropOut*, *gender* $\to$ *DropOut*, *WebAccess* $\to$ *classes*, and so on.
+- *prefs* $\to$ *classes*, *race* $\to$ *DropOut*, *gender* $\to$ *DropOut*, *WebAccess* $\to$ *classes*, and so on.
 
 - If variables are related to each other without there necessarily being a clear causal arrow in either direction, we add on common (unobserved) causes we just call U1, U2, etc.
 

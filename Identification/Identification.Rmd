@@ -101,7 +101,7 @@ We have a two-part concept of DGPs&mdash;the characteristics we do know about (b
 
 ### Example: A DGP for Income
 
-Assume that we have [income data](https://observablehq.com/embed/a2046a4b2b3d459e?cells=viewof+radios_hc%2Cviewof+radios_degree%2Cplot) that has been generated from the following laws, but we have no idea what the laws are.
+*Assume* that we have [income data](https://observablehq.com/embed/a2046a4b2b3d459e?cells=viewof+radios_hc%2Cviewof+radios_degree%2Cplot) that has been generated from the following laws, but we have no idea what the laws are.
 
 - Income is log-normally distributed 
 - Being brown-haired gives you a 10% income boost
@@ -362,7 +362,7 @@ It’s probably a little bit of all of them: Variables move around for all sorts
 
 #### **Example: Avocado sales**
 
-- Assume that at the beginning of each month, avocado suppliers make a plan for what avocado prices will be each week in that month, and never change their plans until the next month.
+- *Assume* that at the beginning of each month, avocado suppliers make a plan for what avocado prices will be each week in that month, and never change their plans until the next month.
 
 - If that’s true, then the “suppliers set prices” and “suppliers set quantities” explanations only matter between months. The variation in price and quantity from week to week in the same month will isolate variation in people buying avocados and get rid of variation from people selling avocados. 
 
@@ -561,7 +561,7 @@ Smoking is likely related to alcohol consumption and high mortality and thus may
 # Study: Alcohol and mortality
 </br>
 
-**Would non-drinkers would have very low mortality rates?**
+**Clearly non-drinkers would have very low mortality rates!?**
 
 </br>
 

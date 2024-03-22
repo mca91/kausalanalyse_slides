@@ -118,7 +118,7 @@ We say that $X$ causes $Y$ when we interfere and change the value of $X$ without
 ### Examples: a few causal relationships
 
 Obvious ones:
- - A light switch being set to on causes the light to be on
+ - A light switch being set to on causing the light to be on
  - Setting off fireworks raises the noise level
 
 Less obvious ones:
