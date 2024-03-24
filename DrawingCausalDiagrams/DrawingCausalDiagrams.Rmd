@@ -295,7 +295,7 @@ widgetframe::frameableWidget(m)
 
 Simplification of the causal diagram:
 
-- *gender* and *race* have the exact same set of arrows coming in and going out. So we can combine those in to one, which we can call d*emographics*.
+- *gender* and *race* have the exact same set of arrows coming in and going out. So we can combine those in to one, which we can call *demographics*.
 - Instead of having *gender*, *race*, *SES*, and *age* affect *prefs* and then have *prefs* affect *classes*, we can just have those variables affect *classes* directly as mediators
 - We omit *webAccess* using the same logic
 
@@ -383,8 +383,7 @@ widgetframe::frameableWidget(m)
 - A cycle depicts that a variable causes itself&mdash;we cannot isolate the cause from effect.
 - In the true DGP there cannot be any cycles either.
 - Whenever we have a cycle in our diagram, we can get out of it by adding a **time dimension**.
-
-    If we just focus on the part of the variable driven by randomness, the effect cannot loop back on itself! 
+- Alternatively, if we just focus on the part of the variable driven by randomness, the effect cannot loop back on itself! 
  
 ---
 ## Drawing causal diagrams 

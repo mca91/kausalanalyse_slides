@@ -155,7 +155,7 @@ widgetframe::frameableWidget(m)
 2. Then, follow one of the arrows coming in or out of that variable
 3. Repeat step 2 until you either... 
   
-    come to a variable that has been already visited (_a loop that is not a path_)
+    come to a variable that has been already visited (_a loop_  &mdash; _that is not a path_)
     
     or find the outcome variable, _which is a path_ &mdash; _write it down!_
     
@@ -381,7 +381,7 @@ A path is *closed* by default when there is a collider.
 
 - We have defined paths to be *open* as long as every variable along the path is allowed to vary. Removing the variation from a variable on the path (controlling/adjusting for it) *closes* the path.
 - If we are looking for alternate explanations of why treatment and outcome might be related, the collider shuts down that alternate explanation.
- - If the path were *Treatment* ← *C* → *Outcome* without a collider, then one reason why *Teatment* and *Outcome* vary together is because *C* causes them both. But with a collider, *Treatment* ←  *A* → *B* ←   *C*  → Outcome ,  *C* can affect *Outcome*, and *C* can affect *B*, but because *B* doesn’t affect *Treatment*, *C* can no longer induce a relationship between *Treatment* and *Outcome*. *B* saved us.
+ - If the path were *Treatment* ← *C* → *Outcome* without a collider, then one reason why *Treatment* and *Outcome* vary together is because *C* causes them both. But with a collider, *Treatment* ←  *A* → *B* ←   *C*  → Outcome ,  *C* can affect *Outcome*, and *C* can affect *B*, but because *B* doesn’t affect *Treatment*, *C* can no longer induce a relationship between *Treatment* and *Outcome*. *B* saved us.
 - Once we control for the collider, the two variables pointing to the collider become related: the alternate explanation returns.
 
 ---
@@ -406,8 +406,8 @@ A path is *closed* by default when there is a collider.
 
 Look for paths between any two variables to determine whether we have the right diagram in the first place:
 
-1. Pick two variables on our diagram other than Treatment and Outcome. Let us call them *A* and *B* . 
-2. List all of the paths between *A* and *B* . Then, we do what we need to do to ensure they are all closed.
+1. Pick two variables on our diagram other than Treatment and Outcome. Let us call them *A* and *B*. 
+2. List all of the paths between *A* and *B*. Then, we do what we need to do to ensure they are all closed.
 3. If *A* and *B* are still related to each other, that means there must be some other path we did not account for.
    
    Our diagram is *deficient*, and perhaps in an important way.
@@ -459,7 +459,7 @@ Drugs → Lifespan ← Health ← U1 → Income
 
 - Our diagram makes the unrealistic claim that *Income* and *Drugs* only relate to each other through *Wine*. 
   
-  We can if *Income* and *Drugs* are related after controlling for *Wine* using our data. If they are, our model is incomplete.
+  We can test if *Income* and *Drugs* are related after controlling for *Wine* using our data. If they are, our model is incomplete.
   
   This is an example of a **placebo test**.
 

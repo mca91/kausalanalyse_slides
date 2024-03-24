@@ -110,7 +110,7 @@ We can estimate individual arrows on the front door paths even if the overall ef
 ### Example: Wealth on Lifespan
 - You want to estimate the effect of Wealth on Lifespan
 - There are many back doors where we do not have data, for example "business skill"
-- However, since people buying the lottery got their wealth from many sources like inheritance, working, etc., these sources are not related to _whether you win the lottery_ 
+- However, people buying the lottery got their wealth from many sources like inheritance, working, etc., these sources are not related to _whether you win the lottery_ 
 - So we may not consider these as backdoors on variation 
 ]
 
@@ -264,7 +264,7 @@ The data from the experiment can be analysed in two ways:
 .blockquote[
 ### Definition: Natural experiment
 
-Natural experiments are a real-world setting in which randomisation of treatment and control conditions has been already done by nature or by other factors that are outside our control
+Natural experiments are a real-world setting in which randomisation of treatment and control conditions has already been done by nature or by other factors that are outside our control
 
 Natural experiments work because they fix some of the variation in treatment to *have no back doors*.
 
@@ -357,7 +357,7 @@ widgetframe::frameableWidget(m)
 
 - Problem: there's also obvious reverse causality issues as well as back doors (factories running, etc.)
 
-- They find an **exogenous source of pollution variation in the direction of the wind** - In Beijing, a west-blowing wind blows pollution into the city.
+- They find an **exogenous source of pollution variation in the direction of the wind** - in Beijing, a west-blowing wind blows pollution into the city.
 
 ]]
 
@@ -457,7 +457,7 @@ widgetframe::frameableWidget(m)
 - The choice of states to accept Medicaid was not random, but rather **politicised**.
 - Medication expansion may **not be a source of exogenous variation**.
 - Medicaid expansion, and thus **expanded access to insurance**, should change lots of things about health care besides hospital compensation that might also be related to patient experience. 
-- We have to assume that the e**xpansion only affected hospital compensation** in order to consider **variation in compensation driven by the Medicaid expansion as being exogenous**.
+- We have to assume that the **expansion only affected hospital compensation** in order to consider **variation in compensation driven by the Medicaid expansion as being exogenous**.
 - We need to be very careful in thinking what assumptions we have to make about the data generating process, and whether those assumptions are true.
 ]]
 
