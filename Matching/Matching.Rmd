@@ -114,7 +114,7 @@ library(stfit)
 Matching is the process of closing back doors between a treatment and an outcome by constructing comparison groups that are similar according to a set of matching variables.
 
 
-Matching is usually applied to binary treated/untreated treatment variables, where the control group is very similar to the treatment group.
+Matching is usually applied to binary treated/untreated treatment variables, where the control group is chosen such that it is very similar to the treatment group.
 ]]
 
 ---
@@ -198,7 +198,7 @@ Matching is usually applied to binary treated/untreated treatment variables, whe
 
 - There is a back door through $Gender$.
 
-- The weights may be constructed as: Give a weights of 1 to *everyone* who is treated, $80/500 = 0.16$ to all untreated men, and $20/500 = 0.04$ to all untreated women
+- The weights may be constructed as: Give a weight of 1 to *everyone* who is treated, $80/500 = 0.16$ to all untreated men, and $20/500 = 0.04$ to all untreated women
 
 - The treated group will still be 80% men and the untreated group becomes $$\frac{(0.16\cdot500)+(0.04\cdot0)}{(0.16\cdot500)+(0.04\cdot500)} = 80\% \quad\Rightarrow\quad \text{backdoor closed!}$$
 
@@ -270,7 +270,7 @@ widgetframe::frameableWidget(m)
 ---
 # Distance matching
 
-#### 1-to-k Euclidian distance matching (with replacement)
+#### 1-to-k Euclidean distance matching (with replacement)
 
 <div class="thecontainer">
   <div id="observablehq-styles-4f5a50ba"></div>
@@ -524,9 +524,9 @@ The 2-nearest-neighbors match will include some observations in the control grou
 
 </br>
 
- - For matching without replacement, the control can only be a match for one of them, and the other treated observation needs to find someone different
- 
- - For matching with replacement, the same control can be used multiple times, giving it a weight equal to the number of times it has matched
+- For matching without replacement, the control can only be a match for one of them, and the other treated observation needs to find someone different.
+
+- For matching with replacement, the same control can be used multiple times, giving it a weight equal to the number of times it has matched.
 
 - The choice between matching with replacement and without replacement hence also depends on bias variance tradeoff.
 
@@ -539,7 +539,7 @@ The 2-nearest-neighbors match will include some observations in the control grou
 
 .blockquote[
 ###Definition: Kernel functions and kernel-based matching
-- Kernel functions are functions that given a difference, returns a weight. The highest value is at 0 (no difference), and then the valued uniform weights declines as the value move away from 0 in either direction
+- Kernel functions are functions that given a difference, return a weight. The highest value is at 0 (no difference), and then the valued uniform weights declines as the value move away from 0 in either direction
 
 - Kernel-based matching estimators use a kernel function to produce weights.
 
@@ -592,9 +592,9 @@ ggplot(data.frame(x = (-150:150)/100), aes(x = x)) +
 .blockquote[
 ### Example: Defaulting on credit card debt
 Two differences are calculated:
- - The difference between the $Bill April$ matching variable in rows 10,305 and 27,281 was $|91630-91609|=21$ .
- - The difference between row 10,305 and row 27,719 was $|91630-91596|=34$ .
- - These differences are standardized (why?) to $\frac{21}{59.994}=0.35$ and $\frac{34}{59.994}=0.56$ . 
+ - The difference between the $Bill April$ matching variable in rows 10,305 and 27,281 was $|91630-91609|=21$.
+ - The difference between row 10,305 and row 27,719 was $|91630-91596|=34$.
+ - These differences are standardized (why?) to $\frac{21}{59.994}=0.35$ and $\frac{34}{59.994}=0.56$, where $59.994$ is the standard deviation of $Bill April$. 
 ]]
 
 ---
@@ -630,7 +630,7 @@ The treatment effect ist $0-0.561=-0.561$
 
 - The ones with **small propensities are least likely to have gotten treated who got treated anyway.**
 
-- Similarly, the control group observations with the biggest weights are the ones most like the treated group, i.e, who were most likely to have gotten treated but did not for some reason.
+- Similarly, the control group observations with the biggest weights are the ones most like the treated group, i.e., who were most likely to have gotten treated but did not for some reason.
 
 ---
 # 4. How will the weights decay with distance?
@@ -1066,7 +1066,7 @@ A common way of checking for balance is a *balance table*.
 ---
 ## Assumptions for matching
 <br>
-**Balance table: estimating mean differences**
+**Estimating mean differences**
 <br><br>
 
 - Usually to estimate the effect of treatment, the weighted means of the outcome for the treated and control groups are often compared

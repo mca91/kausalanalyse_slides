@@ -115,7 +115,13 @@ Individuals are heterogeneous. If their characteristics impact the effect of tre
 
 **How to deal with heterogeneous treatment effects?**
 
+- We can try to **estimate the heterogeneous treatment effects** &mdash; often, it is difficult &mdash; so we will instead focus on other things we can do with the concept of heterogeneous treatment effects, like answering the question of what is being identified if the effects are so heterogeneous.
+
+<!--
+old version:
+
 - We can try to **estimate the heterogeneous treatment effects** &mdash; often it difficult to do so we will instead focus on the other thing we can do with the concept of heterogeneous treatment effects like getting answer to the question that of what is being identified if effects are so heterogeneous.
+-->
 
 ---
 # Average treatment effect
