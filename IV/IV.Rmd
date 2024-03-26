@@ -111,7 +111,7 @@ For instrumental variables to work, two assumptions must be satisfied:
 **A typical setting with randomization**
 <br>
 
-```{r, echo=F, cache=F, out.extra = 'style="display:block; margin-right:auto; margin-left:auto; margin-top:50px;"', fig.height=3, out.width='65%', dpi=190, fig.cap=paste0(fig_counter(), ': Causal Diagram'), fig.align='center',include=FALSE}
+```{r, echo=F, cache=F, out.extra = 'style="display:block; margin-right:auto; margin-left:auto; margin-top:50px;"', fig.height=3, out.width='65%', dpi=190, fig.cap=paste0(': Causal Diagram'), fig.align='center',include=FALSE}
 coord_dag <- list(
   x = c(a = 1, b = 3, c = 5, d = 7 ),
   y = c(a = 2, b = 1, c = 2, d = 1)
@@ -133,7 +133,7 @@ ggdag::ggdag(dag_object, # the dag object we created
 ```
 
 <br>
-```{r, echo=F, cache=F, fig.cap=paste0(fig_counter(), ':Causal Diagram')}
+```{r, echo=F, cache=F, fig.cap=paste0(fig_counter(), ': Causal Diagram')}
 m <- DiagrammeR::grViz("dot_files/Treatment_Outcome_pg3.dot", height = 250, width = "100%")
 widgetframe::frameableWidget(m)
 ```
@@ -528,7 +528,7 @@ Instrumental Variable can be estimated using Two-stage least squares (2SLS). The
 **Advantages and disadvantages of 2SLS**
 
 - Easy to estimate and flexible: Adding more instruments to the first stage is a no-brainer (adding more treatment variables is less easy)
-- Bad small-sample performance. For real data, the relationship between $Z$ and the 'cleansed' part of $Y$ is going to be somewhat nonzero, just by random chance 
+- Bad small-sample performance. For real data, the relationship between $Z$ and the 'non-$X$' part of $Y$ is going to be somewhat nonzero, just by random chance 
 - 2SLS also does not perform particularly well when the errors are heteroskedastic
 
 ---

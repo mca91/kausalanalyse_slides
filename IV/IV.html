@@ -108,12 +108,12 @@ For instrumental variables to work, two assumptions must be satisfied:
 
 &lt;br&gt;
 &lt;div class="figure"&gt;
-<div id="htmlwidget-b38bde93be90afd07e80" style="width:100%;height:250px;" class="grViz html-widget"></div>
+<div id="htmlwidget-b3c521bae0c3a7beb195" style="width:100%;height:250px;" class="grViz html-widget"></div>
 <script>HTMLWidgets.pymChild = new pym.Child();HTMLWidgets.addPostRenderHandler(function(){
                                 setTimeout(function(){HTMLWidgets.pymChild.sendHeight();},100);
                             });</script>
-<script type="application/json" data-for="htmlwidget-b38bde93be90afd07e80">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n  bgcolor=transparent\n  imagescale=both\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"Randomization\" [pos=\"0,1!\"]\n  \"Treatment\" [pos=\"1,0!\"]\n  \"Annoyance\" [pos=\"2,1!\"]\n   \"Outcome\" [pos=\"3,0!\"]\n\n  \n  \"Randomization\" -> \"Treatment\"\n   \"Annoyance\" ->  \"Outcome\"\n   \"Treatment\" -> \"Outcome\"\n   \"Annoyance\" -> \"Treatment\"\n\n  \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
-&lt;p class="caption"&gt;2:Causal Diagram&lt;/p&gt;
+<script type="application/json" data-for="htmlwidget-b3c521bae0c3a7beb195">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n  bgcolor=transparent\n  imagescale=both\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"Randomization\" [pos=\"0,1!\"]\n  \"Treatment\" [pos=\"1,0!\"]\n  \"Annoyance\" [pos=\"2,1!\"]\n   \"Outcome\" [pos=\"3,0!\"]\n\n  \n  \"Randomization\" -> \"Treatment\"\n   \"Annoyance\" ->  \"Outcome\"\n   \"Treatment\" -> \"Outcome\"\n   \"Annoyance\" -> \"Treatment\"\n\n  \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+&lt;p class="caption"&gt;1: Causal Diagram&lt;/p&gt;
 &lt;/div&gt;
 
 ---
@@ -180,12 +180,12 @@ Any paths between the instrument `\(Z\)` and the outcome `\(Y\)` must either pas
 
 
 &lt;div class="figure"&gt;
-<div id="htmlwidget-1017e75b5f65c283da22" style="width:100%;height:400px;" class="grViz html-widget"></div>
+<div id="htmlwidget-831a1116247a7c214143" style="width:100%;height:400px;" class="grViz html-widget"></div>
 <script>HTMLWidgets.pymChild = new pym.Child();HTMLWidgets.addPostRenderHandler(function(){
                                 setTimeout(function(){HTMLWidgets.pymChild.sendHeight();},100);
                             });</script>
-<script type="application/json" data-for="htmlwidget-1017e75b5f65c283da22">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n  bgcolor=transparent\n  imagescale=both\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"A\" [pos=\"2,0!\"]\n  \"B\" [pos=\"2,2!\"]\n  \"C\" [pos=\"0,2!\"]\n  \"D\" [pos=\"4,2!\"]\n  \"X\" [pos=\"2,1!\",  fontcolor=\"red\"]\n  \"Y\" [pos=\"4,1!\",  fontcolor=\"red\"]\n  \"Z\" [pos=\"0,1!\",  fontcolor=\"lightblue\"]\n\n  \n  \"A\" -> \"Y\"\n   \"B\" ->  \"Z\"\n   \"B\" -> \"Y\"\n   \"C\" -> \"Z\"\n   \"C\" ->  \"X\"\n   \"D\" -> \"X\"\n   \"D\" -> \"Y\"\n   \"X\" ->  \"Y\"[color=\"red\"]\n   \"Z\" -> \"X\" [color=\"lightblue\"]\n   \"Z\" -> \"A\"\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
-&lt;p class="caption"&gt;4: A causal diagram amenable to IV estimation&lt;/p&gt;
+<script type="application/json" data-for="htmlwidget-831a1116247a7c214143">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n  bgcolor=transparent\n  imagescale=both\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"A\" [pos=\"2,0!\"]\n  \"B\" [pos=\"2,2!\"]\n  \"C\" [pos=\"0,2!\"]\n  \"D\" [pos=\"4,2!\"]\n  \"X\" [pos=\"2,1!\",  fontcolor=\"red\"]\n  \"Y\" [pos=\"4,1!\",  fontcolor=\"red\"]\n  \"Z\" [pos=\"0,1!\",  fontcolor=\"lightblue\"]\n\n  \n  \"A\" -> \"Y\"\n   \"B\" ->  \"Z\"\n   \"B\" -> \"Y\"\n   \"C\" -> \"Z\"\n   \"C\" ->  \"X\"\n   \"D\" -> \"X\"\n   \"D\" -> \"Y\"\n   \"X\" ->  \"Y\"[color=\"red\"]\n   \"Z\" -> \"X\" [color=\"lightblue\"]\n   \"Z\" -> \"A\"\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+&lt;p class="caption"&gt;3: A causal diagram amenable to IV estimation&lt;/p&gt;
 &lt;/div&gt;
 ---
 #Assumptions for IV
@@ -311,7 +311,7 @@ Instrumental Variable can be estimated using Two-stage least squares (2SLS). The
 **Advantages and disadvantages of 2SLS**
 
 - Easy to estimate and flexible: Adding more instruments to the first stage is a no-brainer (adding more treatment variables is less easy)
-- Bad small-sample performance. For real data, the relationship between `\(Z\)` and the 'cleansed' part of `\(Y\)` is going to be somewhat nonzero, just by random chance 
+- Bad small-sample performance. For real data, the relationship between `\(Z\)` and the 'non-$X$' part of `\(Y\)` is going to be somewhat nonzero, just by random chance 
 - 2SLS also does not perform particularly well when the errors are heteroskedastic
 
 ---
