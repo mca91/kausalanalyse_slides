@@ -121,12 +121,12 @@ Event studies are designed to work in cases where the relevant causal diagram lo
 
 
 &lt;div class="figure"&gt;
-<div id="htmlwidget-9f1865ab65ff2021f1ff" style="width:100%;height:300px;" class="grViz html-widget"></div>
+<div id="htmlwidget-8bd8f5ea994e6191812e" style="width:100%;height:300px;" class="grViz html-widget "></div>
 <script>HTMLWidgets.pymChild = new pym.Child();HTMLWidgets.addPostRenderHandler(function(){
                                 setTimeout(function(){HTMLWidgets.pymChild.sendHeight();},100);
                             });</script>
-<script type="application/json" data-for="htmlwidget-9f1865ab65ff2021f1ff">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n  bgcolor=transparent\n  imagescale=both\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"Time\" [pos=\"2,2!\"]\n  \"AfterEvent\" [pos=\"0,0!\"]\n  \"Treatment\" [pos=\"2,0!\"]\n  \"Outcome\" [pos=\"4,0!\"]\n\n  \n  \"Time\" -> \"AfterEvent\"\n   \"Time\" ->  \"Outcome\"\n  \"AfterEvent\" -> \"Treatment\"\n   \"Treatment\" -> \"Outcome\"\n  \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
-&lt;p class="caption"&gt;2: Causal diagram that event studies work for&lt;/p&gt;
+<script type="application/json" data-for="htmlwidget-8bd8f5ea994e6191812e">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n  bgcolor=transparent\n  imagescale=both\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"Time\" [pos=\"2,2!\"]\n  \"AfterEvent\" [pos=\"0,0!\"]\n  \"Treatment\" [pos=\"2,0!\"]\n  \"Outcome\" [pos=\"4,0!\"]\n\n  \n  \"Time\" -> \"AfterEvent\"\n   \"Time\" ->  \"Outcome\"\n  \"AfterEvent\" -> \"Treatment\"\n   \"Treatment\" -> \"Outcome\"\n  \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+&lt;p class="caption"&gt;1: Causal diagram that event studies work for&lt;/p&gt;
 &lt;/div&gt;
 ---
 # Event studies
@@ -161,11 +161,15 @@ $$Treatment \leftarrow AfterEvent \leftarrow Time \rightarrow Outcome $$
 
 - The whole design of an event study is based around the idea that something changes over time &amp;mdash; the event occurs, the treatment goes into effect. 
 
+- The before-event and after-event states are compared to get the effect of the treatment. 
+
+- *Treatment needs to be the only thing that is changing*. 
+
+- If the outcome would have changed for some reason which cannot be accounted for, the event study will go poorly.
+
+&lt;!--
 - Then before-event and to after-event is compared and get the effect of treatment. 
-
-- *Treatment needs to be the only thing that is changing* 
-
-- If the outcome would have changed for some reason which cannot be accounted for, the event study will go poorly
+--&gt;
 
 ---
 # Prediction and deviation
@@ -193,8 +197,8 @@ We need to *predict the counterfactual* :
 
 
 &lt;div class="figure" style="text-align: center"&gt;
-&lt;img src="EventStudies_files/figure-html/unnamed-chunk-5-1.png" alt="3: Two examples of graphs representing event studies" width="85%" style="display:block; margin-right:auto; margin-left:auto;" /&gt;
-&lt;p class="caption"&gt;3: Two examples of graphs representing event studies&lt;/p&gt;
+&lt;img src="EventStudies_files/figure-html/unnamed-chunk-5-1.png" alt="2: Two examples of graphs representing event studies" width="85%" style="display:block; margin-right:auto; margin-left:auto;" /&gt;
+&lt;p class="caption"&gt;2: Two examples of graphs representing event studies&lt;/p&gt;
 &lt;/div&gt;
 ]]
 
@@ -205,7 +209,7 @@ We need to *predict the counterfactual* :
 .blockquote[
 ###Example: Extent of the deviation is the effect of treatment.
 - To get the event study estimate, just compare the black line of real data to the gray line of predicted counterfactual data after the event goes into place. 
-- It looks like the treatment had an immediate positive effect on the outcome, with the black line far above the gray right after the treatment, but then that effect fades out over time and the lines come back together.
+- In the first figure, it looks like the treatment had an immediate positive effect on the outcome, with the black line far above the gray right after the treatment, but then that effect fades out over time and the lines come back together.
 - The same idea applies to the second figure as well.
 ]]
 
@@ -389,8 +393,8 @@ Their regression model is:
 ### Example: Effect of ambulance quality control policy on heart attack care
 
 &lt;div class="figure" style="text-align: center"&gt;
-&lt;img src="EventStudies_files/figure-html/unnamed-chunk-6-1.png" alt="4: Effect of an Ambulance Quality Control Cooperative Policy on Heart Attack Care in Taljaard et al. (2014)" width="65%" style="display:block; margin-right:auto; margin-left:auto;" /&gt;
-&lt;p class="caption"&gt;4: Effect of an Ambulance Quality Control Cooperative Policy on Heart Attack Care in Taljaard et al. (2014)&lt;/p&gt;
+&lt;img src="EventStudies_files/figure-html/unnamed-chunk-6-1.png" alt="3: Effect of an Ambulance Quality Control Cooperative Policy on Heart Attack Care in Taljaard et al. (2014)" width="65%" style="display:block; margin-right:auto; margin-left:auto;" /&gt;
+&lt;p class="caption"&gt;3: Effect of an Ambulance Quality Control Cooperative Policy on Heart Attack Care in Taljaard et al. (2014)&lt;/p&gt;
 &lt;/div&gt;
 ]]
 
@@ -558,8 +562,8 @@ An ARMA(2,1) model includes two autoregressive terms and one moving-average term
 # <svg aria-hidden="true" role="img" viewBox="0 0 576 512" style="height:45px;width:50.62px;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M384 64c0-17.7 14.3-32 32-32H544c17.7 0 32 14.3 32 32s-14.3 32-32 32H448v96c0 17.7-14.3 32-32 32H320v96c0 17.7-14.3 32-32 32H192v96c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32h96V320c0-17.7 14.3-32 32-32h96V192c0-17.7 14.3-32 32-32h96V64z"/></svg> Forecasting properly with time series methods
 &lt;/br&gt;
 &lt;div class="figure" style="text-align: center"&gt;
-&lt;img src="EventStudies_files/figure-html/unnamed-chunk-7-1.png" alt="5: Different time series processes" width="70%" style="display:block; margin-right:auto; margin-left:auto;" /&gt;
-&lt;p class="caption"&gt;5: Different time series processes&lt;/p&gt;
+&lt;img src="EventStudies_files/figure-html/unnamed-chunk-7-1.png" alt="4: Different time series processes" width="70%" style="display:block; margin-right:auto; margin-left:auto;" /&gt;
+&lt;p class="caption"&gt;4: Different time series processes&lt;/p&gt;
 &lt;/div&gt;
 
 

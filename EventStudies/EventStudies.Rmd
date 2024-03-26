@@ -120,7 +120,7 @@ The event study is probably the oldest and simplest causal inference research de
 
 Event studies are designed to work in cases where the relevant causal diagram looks like the following:
 
-```{r , echo=F, cache=F, out.extra = 'style="display:block; margin-right:auto; margin-left:auto;"', fig.height=3.5, out.width='65%', dpi=190, fig.cap=paste0(fig_counter(), ': Causal diagram that event studies work for'), fig.align='center',include=FALSE}
+```{r , echo=F, cache=F, out.extra = 'style="display:block; margin-right:auto; margin-left:auto;"', fig.height=3.5, out.width='65%', dpi=190, fig.cap=paste0(': Causal diagram that event studies work for'), fig.align='center',include=FALSE}
 coord_dag <- list(
   x = c(a = 1, b = 0, c = 1, d = 2),
   y = c(a = 1, b = 0, c = 0, d = 0)
@@ -177,11 +177,15 @@ $$Treatment \leftarrow AfterEvent \leftarrow Time \rightarrow Outcome $$
 
 - The whole design of an event study is based around the idea that something changes over time &mdash; the event occurs, the treatment goes into effect. 
 
+- The before-event and after-event states are compared to get the effect of the treatment. 
+
+- *Treatment needs to be the only thing that is changing*. 
+
+- If the outcome would have changed for some reason which cannot be accounted for, the event study will go poorly.
+
+<!--
 - Then before-event and to after-event is compared and get the effect of treatment. 
-
-- *Treatment needs to be the only thing that is changing* 
-
-- If the outcome would have changed for some reason which cannot be accounted for, the event study will go poorly
+-->
 
 ---
 # Prediction and deviation
@@ -274,7 +278,7 @@ plot_grid(p1,p2)
 .blockquote[
 ###Example: Extent of the deviation is the effect of treatment.
 - To get the event study estimate, just compare the black line of real data to the gray line of predicted counterfactual data after the event goes into place. 
-- It looks like the treatment had an immediate positive effect on the outcome, with the black line far above the gray right after the treatment, but then that effect fades out over time and the lines come back together.
+- In the first figure, it looks like the treatment had an immediate positive effect on the outcome, with the black line far above the gray right after the treatment, but then that effect fades out over time and the lines come back together.
 - The same idea applies to the second figure as well.
 ]]
 

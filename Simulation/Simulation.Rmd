@@ -180,7 +180,7 @@ Simulation is a great tool for three main things:
 
 - Allowing a wider caliper brings in more, but worse matches, increasing bias but also making the sampling distribution narrower.
 
-- It might be easier if the amount of bias reduction is not very high, but the precision savings are huge. To know such a thing, **horse race simulation is useful.**
+- It might be easier if the bias reduction is not very high, but the precision savings are huge. **Horse race simulation** is useful for this.
 
 <!--
 - It might be easier if the amount of bias reduction is not very high, but the precision savings are huge. To know such a thing, **horse race simulation is useful.**

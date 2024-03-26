@@ -415,9 +415,8 @@ ggplot(sub, aes(x = BillApril, y = yjit, shape = LateApril)) +
   theme(text         = element_text(size = 13),
         axis.title.x = element_text(size = 13),
         axis.title.y = element_blank(),
-        axis.ticks.y = element_blank(),
-        legend.position.inside = c(.7, .8),
-        legend.background = element_rect(color = 'black'))
+        axis.ticks.y = element_blank()# ,legend.position.inside = c(.7, .8),legend.background = element_rect(color = 'black')
+        )
 ```
 ]]
 

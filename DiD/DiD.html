@@ -94,11 +94,11 @@ layout: true
 &lt;br&gt;
 
 &lt;div class="figure"&gt;
-<div id="htmlwidget-1e4751b6eb109ffdfff6" style="width:100%;height:300px;" class="grViz html-widget"></div>
+<div id="htmlwidget-9692d4ae2f5e1548166a" style="width:100%;height:300px;" class="grViz html-widget "></div>
 <script>HTMLWidgets.pymChild = new pym.Child();HTMLWidgets.addPostRenderHandler(function(){
                                 setTimeout(function(){HTMLWidgets.pymChild.sendHeight();},100);
                             });</script>
-<script type="application/json" data-for="htmlwidget-1e4751b6eb109ffdfff6">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n  bgcolor=transparent\n  imagescale=both\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"Time\" [pos=\"2,2!\"]\n  \"Treatment\" [pos=\"0,0!\"]\n  \"Outcome\" [pos=\"4,0!\"]\n\n  \n  \"Time\" -> \"Treatment\"\n   \"Time\" ->  \"Outcome\"\n   \"Treatment\" -> \"Outcome\"\n  \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-9692d4ae2f5e1548166a">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n  bgcolor=transparent\n  imagescale=both\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"Time\" [pos=\"2,2!\"]\n  \"Treatment\" [pos=\"0,0!\"]\n  \"Outcome\" [pos=\"4,0!\"]\n\n  \n  \"Time\" -> \"Treatment\"\n   \"Time\" ->  \"Outcome\"\n   \"Treatment\" -> \"Outcome\"\n  \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 &lt;p class="caption"&gt;2: Basic time backdoor&lt;/p&gt;
 &lt;/div&gt;
 
@@ -128,11 +128,11 @@ layout: true
 
 &lt;br&gt;
 &lt;div class="figure"&gt;
-<div id="htmlwidget-1a4d453c5a6d318947e7" style="width:100%;height:300px;" class="grViz html-widget"></div>
+<div id="htmlwidget-966e01a28a08ca3cadf1" style="width:100%;height:300px;" class="grViz html-widget "></div>
 <script>HTMLWidgets.pymChild = new pym.Child();HTMLWidgets.addPostRenderHandler(function(){
                                 setTimeout(function(){HTMLWidgets.pymChild.sendHeight();},100);
                             });</script>
-<script type="application/json" data-for="htmlwidget-1a4d453c5a6d318947e7">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n  bgcolor=transparent\n  imagescale=both\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"Time\" [pos=\"2,2!\"]\n  \"Treatment\" [pos=\"0,1!\"]\n  \"Outcome\" [pos=\"4,1!\"]\n   \"Group\" [pos=\"2,0!\"]\n\n  \n  \"Time\" -> \"Treatment\"\n   \"Time\" ->  \"Outcome\"\n   \"Treatment\" -> \"Outcome\"\n   \"Group\" -> \"Treatment\"\n   \"Group\" ->  \"Outcome\"\n  \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-966e01a28a08ca3cadf1">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n  bgcolor=transparent\n  imagescale=both\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"Time\" [pos=\"2,2!\"]\n  \"Treatment\" [pos=\"0,1!\"]\n  \"Outcome\" [pos=\"4,1!\"]\n   \"Group\" [pos=\"2,0!\"]\n\n  \n  \"Time\" -> \"Treatment\"\n   \"Time\" ->  \"Outcome\"\n   \"Treatment\" -> \"Outcome\"\n   \"Group\" -> \"Treatment\"\n   \"Group\" ->  \"Outcome\"\n  \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 &lt;p class="caption"&gt;4:  Two back doors that can be closed by DiD&lt;/p&gt;
 &lt;/div&gt;
 
@@ -230,9 +230,6 @@ This yields a treatment effect of `\((85-130)-(147-135) \approx -57.\)`
 - In July 2011, California switched from an opt-in to an active choice rule (a treatment!)
 ]]
 
-.footnote[[2] Kessler, Judd B., and Alvin E. Roth. 2014. *Don’t Take ’No’ for an Answer: An Experiment with Actual Organ Donor Registrations*. National Bureau of Economic Research.]
-
-
 ---
 # Mechanics of DiD
 
@@ -245,7 +242,7 @@ This yields a treatment effect of `\((85-130)-(147-135) \approx -57.\)`
 - Specifically, they compared the states on the basis of how their organ donation rates changed from before July 2011 to after (a difference in differences).
 ]]
 
-
+.footnote[[2] Kessler, Judd B., and Alvin E. Roth. 2014. *Don’t Take ’No’ for an Answer: An Experiment with Actual Organ Donor Registrations*. National Bureau of Economic Research.]
 ---
 # Mechanics of DiD
 
@@ -544,8 +541,8 @@ From a statistical perspective, tossing a bunch of valid DiD designs together ma
   1. Using models for dynamic treatment effects that are modified to fix the staggered rollout problem (cf. Sun and Abraham 2020.fn[3])
   2. The method described in Callaway and Sant’Anna (2020).fn[4]
 
-.footnote[[3] Sun, Liyang, and Sarah Abraham. 2020. *Estimating Dynamic Treatment Effects in Event Studies with Heterogeneous Treatment Effects*. Journal of Econometrics.&lt;br&gt; [4] Callaway, Brantly, and Pedro HC Sant’Anna. 2020. *Difference-in-Differences with Multiple Time Periods*. Journal of Econometrics.]
-&lt;br&gt;
+.footnote[[3] Sun, Liyang, and Sarah Abraham. 2020. *Estimating Dynamic Treatment Effects in Event Studies with Heterogeneous Treatment Effects*. Journal of Econometrics.&lt;br&gt; [4] Callaway, Brantly, and Pedro HC Sant’Anna. 2020. *Difference-in-Differences with Multiple Time Periods*. Journal of Econometrics.&lt;br&gt;]
+
 
 ---
 # <svg aria-hidden="true" role="img" viewBox="0 0 576 512" style="height:45px;width:50.62px;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M384 64c0-17.7 14.3-32 32-32H544c17.7 0 32 14.3 32 32s-14.3 32-32 32H448v96c0 17.7-14.3 32-32 32H320v96c0 17.7-14.3 32-32 32H192v96c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32h96V320c0-17.7 14.3-32 32-32h96V192c0-17.7 14.3-32 32-32h96V64z"/></svg> Doing multiple treatment periods right
@@ -559,7 +556,7 @@ Dynamic treatment effect models modified for staggered rollout can help in the c
 
 - They allow to check model violations by prior trends checks
 
-- They give insight in how the effect evolves (evolving treatment effects are one of the problems with two-way fixed effect!) 
+- They give insight in how the effect evolves (evolving treatment effects are one of the problems with two-way fixed effects!) 
 
   &amp;rarr; Opportunity to separate things out and fix them.
 

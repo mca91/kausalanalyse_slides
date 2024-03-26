@@ -268,9 +268,6 @@ This yields a treatment effect of $(85-130)-(147-135) \approx -57.$
 - In July 2011, California switched from an opt-in to an active choice rule (a treatment!)
 ]]
 
-.footnote[[2] Kessler, Judd B., and Alvin E. Roth. 2014. *Don’t Take ’No’ for an Answer: An Experiment with Actual Organ Donor Registrations*. National Bureau of Economic Research.]
-
-
 ---
 # Mechanics of DiD
 
@@ -283,7 +280,7 @@ This yields a treatment effect of $(85-130)-(147-135) \approx -57.$
 - Specifically, they compared the states on the basis of how their organ donation rates changed from before July 2011 to after (a difference in differences).
 ]]
 
-
+.footnote[[2] Kessler, Judd B., and Alvin E. Roth. 2014. *Don’t Take ’No’ for an Answer: An Experiment with Actual Organ Donor Registrations*. National Bureau of Economic Research.]
 ---
 # Mechanics of DiD
 
@@ -760,8 +757,8 @@ From a statistical perspective, tossing a bunch of valid DiD designs together ma
   1. Using models for dynamic treatment effects that are modified to fix the staggered rollout problem (cf. Sun and Abraham 2020.fn[3])
   2. The method described in Callaway and Sant’Anna (2020).fn[4]
 
-.footnote[[3] Sun, Liyang, and Sarah Abraham. 2020. *Estimating Dynamic Treatment Effects in Event Studies with Heterogeneous Treatment Effects*. Journal of Econometrics.<br> [4] Callaway, Brantly, and Pedro HC Sant’Anna. 2020. *Difference-in-Differences with Multiple Time Periods*. Journal of Econometrics.]
-<br>
+.footnote[[3] Sun, Liyang, and Sarah Abraham. 2020. *Estimating Dynamic Treatment Effects in Event Studies with Heterogeneous Treatment Effects*. Journal of Econometrics.<br> [4] Callaway, Brantly, and Pedro HC Sant’Anna. 2020. *Difference-in-Differences with Multiple Time Periods*. Journal of Econometrics.<br>]
+
 
 ---
 # `r stairs` Doing multiple treatment periods right
@@ -775,7 +772,7 @@ Dynamic treatment effect models modified for staggered rollout can help in the c
 
 - They allow to check model violations by prior trends checks
 
-- They give insight in how the effect evolves (evolving treatment effects are one of the problems with two-way fixed effect!) 
+- They give insight in how the effect evolves (evolving treatment effects are one of the problems with two-way fixed effects!) 
 
   &rarr; Opportunity to separate things out and fix them.
 
