@@ -310,7 +310,7 @@ widgetframe::frameableWidget(m)
 
 .vcenter[
 .blockquote[
-### Definition: Open vs. clodsed paths
+### Definition: Open vs. closed paths
  A path is *open* if all of the variables along that paths are allowed to vary. A path is *closed* if at least one of the variables along that path has no variation.
 ]]
  

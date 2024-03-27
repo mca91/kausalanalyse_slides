@@ -341,7 +341,7 @@ widgetframe::frameableWidget(m)
 - The arrow just tells us that one variable causes another. It does not say anything about whether that causal effect is positive or negative.
 - Other events that might effect the outcomes are ignored.
 - Outcomes of outcomes are not taken into consideration.
-- All (non-trivial) variables relevant to the DGP should be included, even if we cannot measure or see them.
+- All (non-trivial) variables relevant to the DGP need to be included, even if we cannot measure or see them.
 
 ---
 ## Causal diagrams
