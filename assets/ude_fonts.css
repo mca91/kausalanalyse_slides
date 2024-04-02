@@ -1,19 +1,12 @@
-/* mostly as per defaults 
-https://github.com/yihui/xaringan/blob/master/inst/rmarkdown/templates/xaringan/resources/default-fonts.css
-but the major change is bringing Roboto front and centre
-*/
-@import url('https://fonts.googleapis.com/css?family=Roboto:400,700');
-@import url(https://fonts.googleapis.com/css?family=Roboto+Condensed);
-/* 
-I'm in two minds as to whether to default to Roberto Mono or stick with 
-Source Code Pro (internet says Source Code Pro is better)
-https://www.slant.co/versus/224/287/~source-code-pro_vs_roboto-mono
-@import url(https://fonts.googleapis.com/css?family=Roboto+Mono);
-*/ 
+
+/*@import url('https://fonts.googleapis.com/css?family=Roboto:400,700');
+@import url(https://fonts.googleapis.com/css?family=Roboto+Condensed);*/
+
+@import url(https://fonts.googleapis.com/css2?family=Roboto+Serif:ital,opsz,wght@0,8..144,100..900;1,8..144,100..900&display=swap);
 @import url(https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700);
 
 body { 
-  font-family: 'Roboto', Arial, sans-serif;
+  font-family: 'Roboto', serif;
 }
 h1, h2, h3, h4 {
   font-family: 'Roboto Condensed';

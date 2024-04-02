@@ -296,7 +296,6 @@ plot_grid(p1,p2,p3,p4, nrow = 2)
 ```
 
 
-
 ---
 # Regression discontinuity
 <br>
@@ -493,7 +492,8 @@ A a simple linear approach to (sharp) regression discontinuity is $$Y = \beta_0 
 - Control variables are not required because the design itself should close any back doors. 
  
 - Controls may be necessary for FRDDs, where there are determinants of treatment other than the cutoff: there may then be back doors to be worried about. 
- 
+
+
 ---
 # Regression discontinuity with OLS
 
@@ -578,6 +578,31 @@ ggplot(tib, aes(x = X, y = Y, group = X > .5)) +
 ```
 
 ---
+## Regression discontinuity with OLS
+#### Linear shape not flexible enough
+
+<div class="thecontainer">
+ <div id="observablehq-svg-b56d5ea5"></div>
+  <div class="right-aligned">
+    <ul style="list-style-type:none;">
+      <li><div id="observablehq-viewof-bw_daten_LLRU-b56d5ea5"></div></li>
+      <li><div id="observablehq-styles-b56d5ea5"></div></li>
+    </ul>
+</div>
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@observablehq/inspector@5/dist/inspector.css">
+<script type="module">
+import {Runtime, Inspector} from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@5/dist/runtime.js";
+import define from "https://api.observablehq.com/d/74f688f1119258d6@79.js?v=4";
+new Runtime().module(define, name => {
+  if (name === "svg") return new Inspector(document.querySelector("#observablehq-svg-b56d5ea5"));
+  if (name === "viewof bw_daten_LLRU") return new Inspector(document.querySelector("#observablehq-viewof-bw_daten_LLRU-b56d5ea5"));
+  if (name === "styles") return new Inspector(document.querySelector("#observablehq-styles-b56d5ea5"));
+});
+</script>
+
+---
 # Regression discontinuity with OLS
 
 ```{r, echo=F, cache=F, out.extra = 'style="display:block; margin-right:auto; margin-left:auto; margin-top:40px;"', fig.height=5.25, fig.width=10, out.width='80%', dpi=190, fig.cap=paste0(fig_counter(), ': Regression Discontinuity with Different Polynomials'), fig.align='center'}
@@ -653,6 +678,7 @@ A local regression estimates the relationship between some predictor $X$ and som
 Local regression is how most researchers choose to implement their regression discontinuity design, at least if they have a *large sample*.
 ]]
 
+
 ---
 # Discontinuity designs and local regression
 <br>
@@ -701,6 +727,33 @@ ggplot(tib, aes(x = x, y = y)) + geom_path() +
 - LOESS estimates a linear (*local linear regression*) or second-order polynomial regression (*local polynomial regression* or *local quadratic regression*) at each point
 
 - Depending on the curviness, linear or second-order polynomial functions might not be enough to capture the relationship
+
+
+---
+## Discontinuity designs and local regression
+#### Local linear Regression with tricube kernel
+
+
+<div class="thecontainer">
+ <div id="observablehq-svg-15c7fb61"></div>
+ <div id="observablehq-styles-15c7fb61"></div>
+  <div class="right-aligned">
+    <ul style="list-style-type:none;">
+      <li><div id="observablehq-viewof-bandwidth-15c7fb61"></div></li>
+    </ul>
+  </div>
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@observablehq/inspector@5/dist/inspector.css">
+<script type="module">
+import {Runtime, Inspector} from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@5/dist/runtime.js";
+import define from "https://api.observablehq.com/d/701ab8e4d42fd456.js?v=4";
+new Runtime().module(define, name => {
+  if (name === "svg") return new Inspector(document.querySelector("#observablehq-svg-15c7fb61"));
+  if (name === "viewof bandwidth") return new Inspector(document.querySelector("#observablehq-viewof-bandwidth-15c7fb61"));
+  if (name === "styles") return new Inspector(document.querySelector("#observablehq-styles-15c7fb61"));
+});
+</script>
 
 ---
 # Discontinuity designs and local regression
