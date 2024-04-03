@@ -362,7 +362,7 @@ Bootstrapping comes with its own set of assumptions to provide good estimates of
 
 ---
 ## The bootstrap
-### Bootstrap estimator for $\mu$ and its $95\%$ CI
+#### Bootstrap estimator for $\mu$ and its $95\%$ CI
 
 <div class="thecontainer">
   <div id="observablehq-svg-62d24833f3dbd27a"></div>
@@ -378,7 +378,7 @@ Bootstrapping comes with its own set of assumptions to provide good estimates of
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@observablehq/inspector@5/dist/inspector.css">
 <script type="module">
 import {Runtime, Inspector} from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@5/dist/runtime.js";
-import define from "https://api.observablehq.com/d/62d24833f3dbd27a@715.js?v=4&api_key=dd29b4a697db5b95dad5c44ce5cd753353a43499";
+import define from "https://api.observablehq.com/d/62d24833f3dbd27a@720.js?v=4&api_key=dd29b4a697db5b95dad5c44ce5cd753353a43499";
 new Runtime().module(define, name => {
   if (name === "svg") return new Inspector(document.querySelector("#observablehq-svg-62d24833f3dbd27a"));
   if (name === "viewof B") return new Inspector(document.querySelector("#observablehq-viewof-B-62d24833f3dbd27a"));
