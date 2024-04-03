@@ -683,7 +683,7 @@ The following steps guides to obtain Mahalonobis distance:
     &lt;ul&gt;
       &lt;li&gt;The dashed circle shows a perimeter of the specified &lt;b&gt;Euclidean distance&lt;/b&gt; (ED) around the selected observation. These are potential ED matches for the selected observation.&lt;/li&gt;
       &lt;li&gt;Observations (of the other group) within the specified &lt;b&gt;Mahalanobis distance&lt;/b&gt; (MHD) to the selected observation are highlighted with a cyan outline. These are potential MHD matches for the selected observation.&lt;/li&gt;
-      &lt;li&gt; \(SD(V1) = SD(V2) = \sqrt{120}\approx 10.95\). So \(\text{MHD} = 1\) is equivalent to \(\text{ED} = 10.95\) for \(\text{Corr}(V1,V2)=0\) (why?).&lt;/li&gt;
+      &lt;li&gt; \(\text{SD}(V1) = \text{SD}(V2) = \sqrt{120}\approx 10.95\). So \(\text{MHD} = 1\) is equivalent to \(\text{ED} = 10.95\) for \(\text{Corr}(V1,V2)=0\) (why?).&lt;/li&gt;
       &lt;li&gt; Watch what happens when we introduce correlation!&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/div&gt;
@@ -692,7 +692,7 @@ The following steps guides to obtain Mahalonobis distance:
 &lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@observablehq/inspector@5/dist/inspector.css"&gt;
 &lt;script type="module"&gt;
 import {Runtime, Inspector} from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@5/dist/runtime.js";
-import define from "https://api.observablehq.com/d/4da2bc277fec4645@873.js?v=4";
+import define from "https://api.observablehq.com/d/4da2bc277fec4645@876.js?v=4";
 new Runtime().module(define, name =&gt; {
   if (name === "theplot") return new Inspector(document.querySelector("#observablehq-theplot-a5f86017"));
   if (name === "viewof ED") return new Inspector(document.querySelector("#observablehq-viewof-ED-a5f86017"));
