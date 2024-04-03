@@ -143,7 +143,7 @@ ggplot(df %>% filter(Hair == "Brown"), aes(x = logIncome, linetype = Hair)) +
   theme(text         = element_text(size = 16),
         axis.title.x = element_text(size = 16),
         axis.title.y = element_text(size = 16),
-        legend.position = c(.05, .8),
+        legend.position.inside = c(-.1005, .1),
         legend.background = element_rect()) 
 ```
 
