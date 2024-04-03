@@ -94,11 +94,11 @@ layout: true
 &lt;br&gt;
 
 &lt;div class="figure"&gt;
-<div id="htmlwidget-9692d4ae2f5e1548166a" style="width:100%;height:300px;" class="grViz html-widget "></div>
+<div id="htmlwidget-d8e7a8d22585b526571a" style="width:100%;height:300px;" class="grViz html-widget"></div>
 <script>HTMLWidgets.pymChild = new pym.Child();HTMLWidgets.addPostRenderHandler(function(){
                                 setTimeout(function(){HTMLWidgets.pymChild.sendHeight();},100);
                             });</script>
-<script type="application/json" data-for="htmlwidget-9692d4ae2f5e1548166a">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n  bgcolor=transparent\n  imagescale=both\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"Time\" [pos=\"2,2!\"]\n  \"Treatment\" [pos=\"0,0!\"]\n  \"Outcome\" [pos=\"4,0!\"]\n\n  \n  \"Time\" -> \"Treatment\"\n   \"Time\" ->  \"Outcome\"\n   \"Treatment\" -> \"Outcome\"\n  \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-d8e7a8d22585b526571a">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n  bgcolor=transparent\n  imagescale=both\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"Time\" [pos=\"2,2!\"]\n  \"Treatment\" [pos=\"0,0!\"]\n  \"Outcome\" [pos=\"4,0!\"]\n\n  \n  \"Time\" -> \"Treatment\"\n   \"Time\" ->  \"Outcome\"\n   \"Treatment\" -> \"Outcome\"\n  \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 &lt;p class="caption"&gt;2: Basic time backdoor&lt;/p&gt;
 &lt;/div&gt;
 
@@ -128,11 +128,11 @@ layout: true
 
 &lt;br&gt;
 &lt;div class="figure"&gt;
-<div id="htmlwidget-966e01a28a08ca3cadf1" style="width:100%;height:300px;" class="grViz html-widget "></div>
+<div id="htmlwidget-7caee4d9984794cd24c5" style="width:100%;height:300px;" class="grViz html-widget"></div>
 <script>HTMLWidgets.pymChild = new pym.Child();HTMLWidgets.addPostRenderHandler(function(){
                                 setTimeout(function(){HTMLWidgets.pymChild.sendHeight();},100);
                             });</script>
-<script type="application/json" data-for="htmlwidget-966e01a28a08ca3cadf1">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n  bgcolor=transparent\n  imagescale=both\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"Time\" [pos=\"2,2!\"]\n  \"Treatment\" [pos=\"0,1!\"]\n  \"Outcome\" [pos=\"4,1!\"]\n   \"Group\" [pos=\"2,0!\"]\n\n  \n  \"Time\" -> \"Treatment\"\n   \"Time\" ->  \"Outcome\"\n   \"Treatment\" -> \"Outcome\"\n   \"Group\" -> \"Treatment\"\n   \"Group\" ->  \"Outcome\"\n  \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-7caee4d9984794cd24c5">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n  bgcolor=transparent\n  imagescale=both\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"Time\" [pos=\"2,2!\"]\n  \"Treatment\" [pos=\"0,1!\"]\n  \"Outcome\" [pos=\"4,1!\"]\n   \"Group\" [pos=\"2,0!\"]\n\n  \n  \"Time\" -> \"Treatment\"\n   \"Time\" ->  \"Outcome\"\n   \"Treatment\" -> \"Outcome\"\n   \"Group\" -> \"Treatment\"\n   \"Group\" ->  \"Outcome\"\n  \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 &lt;p class="caption"&gt;4:  Two back doors that can be closed by DiD&lt;/p&gt;
 &lt;/div&gt;
 

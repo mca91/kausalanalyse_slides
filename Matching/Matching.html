@@ -221,7 +221,7 @@ Distance matching is matching based on the notion that observations are similar 
 
 
 &lt;div class="figure"&gt;
-<div id="htmlwidget-f93c4948b9c6578b7035" style="width:100%;height:280px;" class="grViz html-widget "></div>
+<div id="htmlwidget-f93c4948b9c6578b7035" style="width:100%;height:280px;" class="grViz html-widget"></div>
 <script>HTMLWidgets.pymChild = new pym.Child();HTMLWidgets.addPostRenderHandler(function(){
                                 setTimeout(function(){HTMLWidgets.pymChild.sendHeight();},100);
                             });</script>
@@ -294,7 +294,7 @@ new Runtime().module(define, name =&gt; {
 
 - Untreated matching observations with Bill April values close to NT$91,630 should be looked for.
 
-- A good choice of a single matching control observation for row number 10,305, would be row 27,281, which was not late in April (and so was untreated), and has a April bill of NT$ 91,609, (distance `\(|91639-91609|=21\)` )
+- A good choice of a single matching control observation for row number 10,305, would be row 27,281, which was not late in April (and so was untreated), and has a April bill of NT$ 91,609, (distance `\(|91630-91609|=21\)`)
 
 - This is the closest in the data to NT$ 91,630 among the untreated observations.
  
@@ -326,7 +326,7 @@ Propensity score matching is a criterion based on the notion that *observations 
 
 
 &lt;div class="figure"&gt;
-<div id="htmlwidget-979b3a07f2221a4586ec" style="width:100%;height:250px;" class="grViz html-widget "></div>
+<div id="htmlwidget-979b3a07f2221a4586ec" style="width:100%;height:250px;" class="grViz html-widget"></div>
 <script>HTMLWidgets.pymChild = new pym.Child();HTMLWidgets.addPostRenderHandler(function(){
                                 setTimeout(function(){HTMLWidgets.pymChild.sendHeight();},100);
                             });</script>
@@ -710,8 +710,8 @@ new Runtime().module(define, name =&gt; {
 .blockquote[
 ###Example: Defaulting on credit card debt&amp;mdash;ctd.
 - The example is extended to matching in two variables: `\(Bill April\)` and `\(Age\)`.
--  Comparing  treated observation 10,305 and untreated observation 27,281, the distance between them in their `\(Bill April\)` is 21
-- The difference in ages is `\(|23-37| = 14\)`
+-  Comparing  treated observation 10,305 and untreated observation 27,281, the distance between them in their `\(Bill April\)` is 21.
+- The difference in ages is `\(|23-37| = 14\)`.
 - Ignoring the relationship between the matching variables, the standard deviation of `\(Bill April\)` is NT$ 59,554.
 ]
 

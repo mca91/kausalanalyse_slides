@@ -141,9 +141,9 @@ ggplot(df %>% filter(Hair == "Brown"), aes(x = logIncome, linetype = Hair)) +
   labs(x = "Log Income", y = "Density") + 
   theme_cowplot() +
   theme(text         = element_text(size = 16),
+        legend.position.inside = c(2, .1),
         axis.title.x = element_text(size = 16),
         axis.title.y = element_text(size = 16),
-        legend.position.inside = c(-.1005, .1),
         legend.background = element_rect()) 
 ```
 

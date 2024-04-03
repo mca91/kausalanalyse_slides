@@ -1,6 +1,11 @@
 if (!require("pacman")) install.packages("pacman")
 pacman::p_load(dplyr,
                ggplot2,
+               ggpubr,
+               gghighlight,
+               ggdag,
+               huxtable, 
+               rdrobust,
                RefManageR,
                here,
                purrr,
@@ -18,7 +23,17 @@ pacman::p_load(dplyr,
                leaflet,
                plotly,
                emoji,
-               fixest
+               fixest,
+               causaldata,
+               stfit,
+               cowplot,
+               extrafont,
+               vtable, 
+               purrr, 
+               broom,
+               Synth,
+               haven, 
+               SortedEffects
                )
 
 # install packages from Github (no CRAN version at the moment)
