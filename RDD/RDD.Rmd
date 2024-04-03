@@ -594,7 +594,7 @@ ggplot(tib, aes(x = X, y = Y, group = X > .5)) +
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@observablehq/inspector@5/dist/inspector.css">
 <script type="module">
 import {Runtime, Inspector} from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@5/dist/runtime.js";
-import define from "https://api.observablehq.com/d/74f688f1119258d6@79.js?v=4";
+import define from "https://api.observablehq.com/d/74f688f1119258d6@84.js?v=4";
 new Runtime().module(define, name => {
   if (name === "svg") return new Inspector(document.querySelector("#observablehq-svg-b56d5ea5"));
   if (name === "viewof bw_daten_LLRU") return new Inspector(document.querySelector("#observablehq-viewof-bw_daten_LLRU-b56d5ea5"));
