@@ -79,39 +79,6 @@ htmltools::tagList(
 )
 ```
 
-# Empirical research
-.vcenter[
-
-- **Empirical research** is any research that uses structured observations from the real world to attempt to answer questions. 
-
-- **Quantitative empirical** research is just empirical research that uses quantitative measurements (numbers, usually). More data sets, fewer interviews.
-
-- One problem with quantitative empirical research is that the numbers that are observed often don’t tell exactly what we want to know.
-
-- It turns out that, by doing right kind of research, we can get the *right kind of numbers*. By carefully designing the right kind of analysis, we can get the answer to our research question from the numbers.
-]
-
----
-exclude: true
-# Why research needs a design
-
-.vcenter[
-
-- A lack of solid research design can be seen in the results, as well.
-
-- Different studies seem to give different answers to research questions because they are not actually answering that question in the first place.
-
-- For example:
-
- - Scientists may claim $2+2$ only has one answer
- - If you’re actually calculating something entirely different from $2+2$,  you might come back with an answer of $6$, or $1$, or $-52$
- - Then you wake up to a news headline reading that scientists have determined that $2+2=-52$
-
-- There may not be a straightforward answer to our research question, but we must continue to try!
-]
-
----
-
 # What is a research question anyway?
 
 .vcenter[
