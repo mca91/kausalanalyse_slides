@@ -89,11 +89,11 @@ Hence, drawing our own causal diagram will come down to putting our idea of what
 
 &lt;br&gt;
 &lt;div class="figure"&gt;
-<div id="htmlwidget-719d32518723ce0d378f" style="width:100%;height:80px;" class="grViz html-widget"></div>
+<div id="htmlwidget-a457f00c923197189c85" style="width:100%;height:80px;" class="grViz html-widget"></div>
 <script>HTMLWidgets.pymChild = new pym.Child();HTMLWidgets.addPostRenderHandler(function(){
                                 setTimeout(function(){HTMLWidgets.pymChild.sendHeight();},100);
                             });</script>
-<script type="application/json" data-for="htmlwidget-719d32518723ce0d378f">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"Coin flip (X)\" [pos=\"0,0!\"]\n  \"Cake (Y)\" [pos=\"2,0!\"]\n \n  \"Coin flip (X)\" -> \"Cake (Y)\"\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-a457f00c923197189c85">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"Coin flip (X)\" [pos=\"0,0!\"]\n  \"Cake (Y)\" [pos=\"2,0!\"]\n \n  \"Coin flip (X)\" -> \"Cake (Y)\"\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 &lt;p class="caption"&gt;1: A simple causal diagram&lt;/p&gt;
 &lt;/div&gt;
 
@@ -194,11 +194,11 @@ Think about which variables cause which others.
 
 
 &lt;div class="figure"&gt;
-<div id="htmlwidget-769af726e77c9e203750" style="width:100%;height:450px;" class="grViz html-widget"></div>
+<div id="htmlwidget-45b9ffa405b5cf595404" style="width:100%;height:450px;" class="grViz html-widget"></div>
 <script>HTMLWidgets.pymChild = new pym.Child();HTMLWidgets.addPostRenderHandler(function(){
                                 setTimeout(function(){HTMLWidgets.pymChild.sendHeight();},100);
                             });</script>
-<script type="application/json" data-for="htmlwidget-769af726e77c9e203750">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n  bgcolor=transparent\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"U 3\" [pos=\"12,8!\"]\n  \"U 4\" [pos=\"4,9!\"]\n  \"U 2\" [pos=\"4,8!\"]\n  \"gender\" [pos=\"4,10.5!\"]\n  \"hours\" [pos=\"4,12!\"]\n  \"U 1\" [pos=\"12,7!\"]\n  \"race\" [pos=\"8,7!\"]\n  \"prefs\" [pos=\"8,11!\"]\n  \"time\" [pos=\"8,12!\"]\n  \"age\" [pos=\"13,11!\"]\n  \"SES\" [pos=\"13,9!\"]\n  \"acedemics\" [pos=\"16,7!\"]\n  \"U 5\" [pos=\"16,8!\"]\n  \"dropOut\" [pos=\"15,10.5!\",  fontcolor=\"red\"]\n  \"classes\" [pos=\"14,12!\",  fontcolor=\"red\"]\n  \"location\" [pos=\"16,9!\"]\n  \"webAccess\" [pos=\"16,12!\"]\n \n  \"U 3\" -> \"gender\"\n  \"U 3\" -> \"acedemics\"\n  \"U 4\" -> \"gender\"\n  \"U 4\" -> \"SES\"\n  \"U 2\" -> \"race\"\n  \"U 2\" -> \"SES\"\n  \"gender\" -> \"time\"\n  \"gender\" -> \"prefs\"\n  \"gender\" -> \"SES\"\n  \"hours\" -> \"time\"\n  \"U 1\" -> \"race\"\n  \"U 1\" -> \"acedemics\"\n  \"race\" -> \"prefs\"\n  \"race\" -> \"hours\"\n  \"prefs\" -> \"time\"\n  \"prefs\" -> \"classes\"\n  \"time\" -> \"classes\"\n  \"age\" -> \"time\"\n  \"age\" -> \"hours\"\n  \"age\" -> \"prefs\"\n  \"age\" -> \"dropOut\"\n  \"age\" -> \"SES\"\n  \"SES\" -> \"prefs\"\n  \"acedemics\" -> \"hours\"\n  \"acedemics\" -> \"U 5\"\n  \"U 5\" -> \"dropOut\"\n  \"U 5\" -> \"SES\"\n  \"U 5\" -> \"location\"\n  \"location\" -> \"webAccess\"\n  \"webAccess\" -> \"classes\"\n  \"gender\" -> \"dropOut\"\n  \"classes\" -> \"dropOut\" [color=\"red\"]\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-45b9ffa405b5cf595404">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n  bgcolor=transparent\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"U 3\" [pos=\"12,8!\"]\n  \"U 4\" [pos=\"4,9!\"]\n  \"U 2\" [pos=\"4,8!\"]\n  \"gender\" [pos=\"4,10.5!\"]\n  \"hours\" [pos=\"4,12!\"]\n  \"U 1\" [pos=\"12,7!\"]\n  \"race\" [pos=\"8,7!\"]\n  \"prefs\" [pos=\"8,11!\"]\n  \"time\" [pos=\"8,12!\"]\n  \"age\" [pos=\"13,11!\"]\n  \"SES\" [pos=\"13,9!\"]\n  \"acedemics\" [pos=\"16,7!\"]\n  \"U 5\" [pos=\"16,8!\"]\n  \"dropOut\" [pos=\"15,10.5!\",  fontcolor=\"red\"]\n  \"classes\" [pos=\"14,12!\",  fontcolor=\"red\"]\n  \"location\" [pos=\"16,9!\"]\n  \"webAccess\" [pos=\"16,12!\"]\n \n  \"U 3\" -> \"gender\"\n  \"U 3\" -> \"acedemics\"\n  \"U 4\" -> \"gender\"\n  \"U 4\" -> \"SES\"\n  \"U 2\" -> \"race\"\n  \"U 2\" -> \"SES\"\n  \"gender\" -> \"time\"\n  \"gender\" -> \"prefs\"\n  \"gender\" -> \"SES\"\n  \"hours\" -> \"time\"\n  \"U 1\" -> \"race\"\n  \"U 1\" -> \"acedemics\"\n  \"race\" -> \"prefs\"\n  \"race\" -> \"hours\"\n  \"prefs\" -> \"time\"\n  \"prefs\" -> \"classes\"\n  \"time\" -> \"classes\"\n  \"age\" -> \"time\"\n  \"age\" -> \"hours\"\n  \"age\" -> \"prefs\"\n  \"age\" -> \"dropOut\"\n  \"age\" -> \"SES\"\n  \"SES\" -> \"prefs\"\n  \"acedemics\" -> \"hours\"\n  \"acedemics\" -> \"U 5\"\n  \"U 5\" -> \"dropOut\"\n  \"U 5\" -> \"SES\"\n  \"U 5\" -> \"location\"\n  \"location\" -> \"webAccess\"\n  \"webAccess\" -> \"classes\"\n  \"gender\" -> \"dropOut\"\n  \"classes\" -> \"dropOut\" [color=\"red\"]\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 &lt;p class="caption"&gt;2: Online classes&lt;/p&gt;
 &lt;/div&gt;
 
@@ -231,11 +231,11 @@ After simplification, the causal diagram looks like:
 
 
 &lt;div class="figure"&gt;
-<div id="htmlwidget-ef2ba1f5c8159dc3049b" style="width:100%;height:400px;" class="grViz html-widget"></div>
+<div id="htmlwidget-1949d6c843c5fa5baaf7" style="width:100%;height:400px;" class="grViz html-widget"></div>
 <script>HTMLWidgets.pymChild = new pym.Child();HTMLWidgets.addPostRenderHandler(function(){
                                 setTimeout(function(){HTMLWidgets.pymChild.sendHeight();},100);
                             });</script>
-<script type="application/json" data-for="htmlwidget-ef2ba1f5c8159dc3049b">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n   bgcolor=transparent\n  imagescale=both\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"U 3\" [pos=\"1,4!\"]\n  \"U 4\" [pos=\"1,0!\"]\n  \"hours\" [pos=\"5,5!\"]\n  \"age\" [pos=\"8,5!\"]\n  \"SES\" [pos=\"3,0!\"]\n  \"acedemics\" [pos=\"1,5!\"]\n  \"U 5\" [pos=\"5,0!\"]\n  \"dropOut\" [pos=\"10,3!\",  fontcolor=\"red\"]\n  \"classes\" [pos=\"8,2!\",  fontcolor=\"red\"]\n  \"demographics\" [pos=\"1,2!\"]\n   \"location\" [pos=\"7,0!\"]\n \n  \"U 4\" -> \"SES\"\n  \"U 4\" -> \"demographics\"\n  \"demographics\" -> \"hours\"\n  \"demographics\" -> \"dropOut\"\n  \"demographics\" -> \"classes\"\n  \"demographics\" -> \"U 5\"\n  \"U 3\" -> \"demographics\"\n  \"U 3\" -> \"acedemics\"\n  \"acedemics\" -> \"hours\"\n  \"acedemics\" -> \"dropOut\"\n  \"SES\" -> \"classes\"\n  \"U 5\" -> \"SES\"\n  \"U 5\" -> \"location\"\n  \"location\" -> \"classes\"\n  \"hours\" -> \"classes\"\n  \"classes\" -> \"dropOut\" [color=\"red\"]\n  \"age\" -> \"hours\"\n  \"age\" -> \"dropOut\"\n  \"age\" -> \"classes\"\n  \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-1949d6c843c5fa5baaf7">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n   bgcolor=transparent\n  imagescale=both\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"U 3\" [pos=\"1,4!\"]\n  \"U 4\" [pos=\"1,0!\"]\n  \"hours\" [pos=\"5,5!\"]\n  \"age\" [pos=\"8,5!\"]\n  \"SES\" [pos=\"3,0!\"]\n  \"acedemics\" [pos=\"1,5!\"]\n  \"U 5\" [pos=\"5,0!\"]\n  \"dropOut\" [pos=\"10,3!\",  fontcolor=\"red\"]\n  \"classes\" [pos=\"8,2!\",  fontcolor=\"red\"]\n  \"demographics\" [pos=\"1,2!\"]\n   \"location\" [pos=\"7,0!\"]\n \n  \"U 4\" -> \"SES\"\n  \"U 4\" -> \"demographics\"\n  \"demographics\" -> \"hours\"\n  \"demographics\" -> \"dropOut\"\n  \"demographics\" -> \"classes\"\n  \"demographics\" -> \"U 5\"\n  \"U 3\" -> \"demographics\"\n  \"U 3\" -> \"acedemics\"\n  \"acedemics\" -> \"hours\"\n  \"acedemics\" -> \"dropOut\"\n  \"SES\" -> \"classes\"\n  \"U 5\" -> \"SES\"\n  \"U 5\" -> \"location\"\n  \"location\" -> \"classes\"\n  \"hours\" -> \"classes\"\n  \"classes\" -> \"dropOut\" [color=\"red\"]\n  \"age\" -> \"hours\"\n  \"age\" -> \"dropOut\"\n  \"age\" -> \"classes\"\n  \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 &lt;p class="caption"&gt;3: Simplified causal diagram for online classes&lt;/p&gt;
 &lt;/div&gt;
 
@@ -267,12 +267,12 @@ After simplification, the causal diagram looks like:
 
 
 &lt;div class="figure"&gt;
-<div id="htmlwidget-0aa540b83b2e47714a74" style="width:100%;height:300px;" class="grViz html-widget"></div>
+<div id="htmlwidget-f2a7e43b7867dda7a76f" style="width:100%;height:300px;" class="grViz html-widget"></div>
 <script>HTMLWidgets.pymChild = new pym.Child();HTMLWidgets.addPostRenderHandler(function(){
                                 setTimeout(function(){HTMLWidgets.pymChild.sendHeight();},100);
                             });</script>
-<script type="application/json" data-for="htmlwidget-0aa540b83b2e47714a74">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n  bgcolor=transparent\n  imagescale=both\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"I Punch you\" [pos=\"0,0!\"]\n  \"You Punch me\" [pos=\"2,2!\"]\n  \n  \"I Punch you\" -> \"You Punch me\"\n  \"You Punch me\" -> \"I Punch you\"\n\n  \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
-&lt;p class="caption"&gt;5: A simple loop in a causal diagram&lt;/p&gt;
+<script type="application/json" data-for="htmlwidget-f2a7e43b7867dda7a76f">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n  bgcolor=transparent\n  imagescale=both\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"I Punch you\" [pos=\"0,0!\"]\n  \"You Punch me\" [pos=\"2,2!\"]\n  \n  \"I Punch you\" -> \"You Punch me\"\n  \"You Punch me\" -> \"I Punch you\"\n\n  \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+&lt;p class="caption"&gt;4: A simple loop in a causal diagram&lt;/p&gt;
 &lt;/div&gt;
 
  ]
@@ -282,12 +282,12 @@ After simplification, the causal diagram looks like:
 
 
 &lt;div class="figure"&gt;
-<div id="htmlwidget-3161bfb41b7eee9584fe" style="width:100%;height:300px;" class="grViz html-widget"></div>
+<div id="htmlwidget-64e5989049c63c61444a" style="width:100%;height:300px;" class="grViz html-widget"></div>
 <script>HTMLWidgets.pymChild = new pym.Child();HTMLWidgets.addPostRenderHandler(function(){
                                 setTimeout(function(){HTMLWidgets.pymChild.sendHeight();},100);
                             });</script>
-<script type="application/json" data-for="htmlwidget-3161bfb41b7eee9584fe">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n  bgcolor=transparent\n  imagescale=both\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"I Punch you (t)\" [pos=\"0,0!\"]\n  \"You Punch me (t)\" [pos=\"0,2!\"]\n  \"I Punch you (t+1)\" [pos=\"2,0!\"]\n  \"You Punch me (t+1)\" [pos=\"2,2!\"]\n  \n  \"I Punch you (t)\" -> \"You Punch me (t+1)\"\n  \"You Punch me (t)\" -> \"I Punch you (t+1)\"\n\n  \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
-&lt;p class="caption"&gt;7: Another representation of the loop&lt;/p&gt;
+<script type="application/json" data-for="htmlwidget-64e5989049c63c61444a">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n  bgcolor=transparent\n  imagescale=both\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"I Punch you (t)\" [pos=\"0,0!\"]\n  \"You Punch me (t)\" [pos=\"0,2!\"]\n  \"I Punch you (t+1)\" [pos=\"2,0!\"]\n  \"You Punch me (t+1)\" [pos=\"2,2!\"]\n  \n  \"I Punch you (t)\" -> \"You Punch me (t+1)\"\n  \"You Punch me (t)\" -> \"I Punch you (t+1)\"\n\n  \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+&lt;p class="caption"&gt;5: Another representation of the loop&lt;/p&gt;
 &lt;/div&gt;
 ]]]
 

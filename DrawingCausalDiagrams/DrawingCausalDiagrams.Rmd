@@ -396,7 +396,7 @@ widgetframe::frameableWidget(m)
 
 .pull-left[
 
-```{r, echo=F, cache=F, fig.height=4, out.width='100%', dpi=190, fig.cap=paste0(fig_counter(), ': A simple loop in a causal diagram'),include=FALSE}
+```{r, echo=F, cache=F, fig.height=4, out.width='100%', dpi=190, fig.cap=paste0(': A simple loop in a causal diagram'),include=FALSE}
 coord_dag <- list(
   x = c(a = 1, b = 3),
   y = c(a = 1, b = 2)
@@ -422,7 +422,7 @@ widgetframe::frameableWidget(m)
 
 .pull-right[
 
-```{r, echo=F, cache=F, fig.height=4, out.width='100%', dpi=190, fig.cap=paste0(fig_counter(), ': Another representation of the loop'),include=FALSE}
+```{r, echo=F, cache=F, fig.height=4, out.width='100%', dpi=190, fig.cap=paste0(': Another representation of the loop'),include=FALSE}
 coord_dag <- list(
   x = c(a = 4, b = 1, c = 4, d = 1),
   y = c(a = 3, b = 1, c = 1, d = 3)
