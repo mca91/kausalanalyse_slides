@@ -401,7 +401,7 @@ The local average treatment effect (**LATE**) is a **weighted average treatment 
 .blockquote[
 ### Why ATE is better than other treatment effects
 
-- The treatment effect we get is almost entirely determined by the source of treatment variation we use. 
+- The treatment effect we get is often entirely determined by the source of treatment variation we use. 
 
 - Usually, we want the average treatment effect&mdash;the effect we would see *on average* if we took a single individual and applied the treatment to them.
 ]]
@@ -414,7 +414,7 @@ The local average treatment effect (**LATE**) is a **weighted average treatment 
 .blockquote[
 ### Example: Effect of traffic school on future driving performance
 
-```{r, echo=F, cache=F, out.extra = 'style="display:block; margin-right:auto; margin-left:auto;"', fig.height=3.5, out.width='70%', dpi=190, fig.cap=paste0(fig_counter(), ': Causal diagram of Effect of traffic school on future driving performance '), fig.align='center',include=FALSE}
+```{r, echo=F, cache=F, out.extra = 'style="display:block; margin-right:auto; margin-left:auto;"', fig.height=3.5, out.width='70%', dpi=190, fig.cap=paste0(': Causal diagram of Effect of traffic school on future driving performance '), fig.align='center',include=FALSE}
 coord_dag <- list(
   x = c(a = 1, b = 3, c = 2, d= 1 ),
   y = c(a = 1, b = 1, c = 2, d=2 )

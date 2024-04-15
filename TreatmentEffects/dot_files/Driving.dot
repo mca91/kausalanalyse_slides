@@ -9,13 +9,13 @@ digraph "Causal Diagramm RDD" {
   "Others Bad Driving" [pos="0,4!"]
   "Traffic School" [pos="0,2!"]
   "Your Bad Driving" [pos="2,4!"]
-  "Your Furure Driving" [pos="4,2!"]
+  "Your Future Driving" [pos="4,2!"]
 
   
   "Your Bad Driving" -> "Traffic School"
-   "Your Bad Driving" ->  "Your Furure Driving"
+   "Your Bad Driving" ->  "Your Future Driving"
   "Others Bad Driving" -> "Traffic School"
-  "Traffic School" -> "Your Furure Driving"
+  "Traffic School" -> "Your Future Driving"
 
   
 }

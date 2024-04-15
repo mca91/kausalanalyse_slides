@@ -401,7 +401,7 @@ The local average treatment effect (**LATE**) is a **weighted average treatment 
 .blockquote[
 ### Why ATE is better than other treatment effects
 
-- The treatment effect we get is almost entirely determined by the source of treatment variation we use. 
+- The treatment effect we get is often entirely determined by the source of treatment variation we use. 
 
 - Usually, we want the average treatment effect&amp;mdash;the effect we would see *on average* if we took a single individual and applied the treatment to them.
 ]]
@@ -417,12 +417,12 @@ The local average treatment effect (**LATE**) is a **weighted average treatment 
 
 
 &lt;div class="figure"&gt;
-<div id="htmlwidget-d41a35a8b3eb80f85519" style="width:100%;height:300px;" class="grViz html-widget"></div>
+<div id="htmlwidget-45f24671b6e4c4e1e713" style="width:100%;height:300px;" class="grViz html-widget"></div>
 <script>HTMLWidgets.pymChild = new pym.Child();HTMLWidgets.addPostRenderHandler(function(){
                                 setTimeout(function(){HTMLWidgets.pymChild.sendHeight();},100);
                             });</script>
-<script type="application/json" data-for="htmlwidget-d41a35a8b3eb80f85519">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n  bgcolor=transparent\n  imagescale=both\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"Others Bad Driving\" [pos=\"0,4!\"]\n  \"Traffic School\" [pos=\"0,2!\"]\n  \"Your Bad Driving\" [pos=\"2,4!\"]\n  \"Your Furure Driving\" [pos=\"4,2!\"]\n\n  \n  \"Your Bad Driving\" -> \"Traffic School\"\n   \"Your Bad Driving\" ->  \"Your Furure Driving\"\n  \"Others Bad Driving\" -> \"Traffic School\"\n  \"Traffic School\" -> \"Your Furure Driving\"\n\n  \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
-&lt;p class="caption"&gt;2: Causal diagram of Effect of traffic school on future driving performance&lt;/p&gt;
+<script type="application/json" data-for="htmlwidget-45f24671b6e4c4e1e713">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n  bgcolor=transparent\n  imagescale=both\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"Others Bad Driving\" [pos=\"0,4!\"]\n  \"Traffic School\" [pos=\"0,2!\"]\n  \"Your Bad Driving\" [pos=\"2,4!\"]\n  \"Your Future Driving\" [pos=\"4,2!\"]\n\n  \n  \"Your Bad Driving\" -> \"Traffic School\"\n   \"Your Bad Driving\" ->  \"Your Future Driving\"\n  \"Others Bad Driving\" -> \"Traffic School\"\n  \"Traffic School\" -> \"Your Future Driving\"\n\n  \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+&lt;p class="caption"&gt;1: Causal diagram of Effect of traffic school on future driving performance&lt;/p&gt;
 &lt;/div&gt;
 ]]
 

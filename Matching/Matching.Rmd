@@ -430,6 +430,7 @@ ggplot(sub, aes(x = BillApril, y = yjit, shape = LateApril)) +
 - A [logit regression](https://www.econometrics-with-r.org/11.2-palr.html) of treatment on _Bill April_ (thousands of NT$) yields an intercept of .091 and a coefficient on _Bill April_ of .0003.
 - If a match for the treated person in row 10,305 with a of NT$91,630 is searched for, then first, the probability of treatment for that person is predicted. 
 - Plugging in 91.630 for _Bill April_ in thousands yields a predicted probability of treatment of .116.
+- Lastly, we look for a match in the control group with a similar predicted probability. Once again we find a great match in row 27,281 with a predicted probability of .116.
 ]]
 
 

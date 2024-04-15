@@ -415,6 +415,7 @@ Look for paths between any two variables to determine whether we have the right 
 ---
 ## Using paths to test a causal diagram
 
+.font90[
 .vcenter[
 .blockquote[
 ### Example: Wine-drinking and lifespan revisited
@@ -440,8 +441,10 @@ Drugs → Lifespan ← Wine ← Health ←  U1 → Income
 Drugs → Lifespan ← Health → Wine ← Income
 
 Drugs → Lifespan ← Health ← U1 → Income
-]]
 
+Wine → Drugs → Income
+]]
+]
 ---
 ## Using paths to test a causal diagram
 

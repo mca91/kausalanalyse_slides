@@ -111,7 +111,7 @@ We can estimate individual arrows on the front door paths even if the overall ef
 - You want to estimate the effect of Wealth on Lifespan
 - There are many back doors where we do not have data, for example "business skill"
 - However, people buying the lottery got their wealth from many sources like inheritance, working, etc., these sources are not related to _whether you win the lottery_ 
-- So we may not consider these as backdoors on variation 
+- So we need not consider these as backdoors on variation 
 ]
 
 ---
@@ -122,6 +122,7 @@ We can estimate individual arrows on the front door paths even if the overall ef
 - The key idea here is that we can partition the *variation in treatment*:
   
   We can select a particular sample or use certain statistical adjustment to throw out the part that is driven by back doors.
+
 - The cleanest application of this approach is the **randomised controlled experiment.** 
 
 ---
