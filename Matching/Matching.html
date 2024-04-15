@@ -359,8 +359,6 @@ Propensity score matching is a criterion based on the notion that *observations 
 - Lastly, we look for a match in the control group with a similar predicted probability. Once again we find a great match in row 27,281 with a predicted probability of .116.
 ]]
 
-
-
 ---
 # 2. Matching or constructing a weighted sample?
 &lt;/br&gt;
@@ -465,13 +463,17 @@ The 2-nearest-neighbors match will include some observations in the control grou
 
 .blockquote[
 ###Definition: Kernel functions and kernel-based matching
-- Kernel functions are functions that given a difference, return a weight. The highest value is at 0 (no difference), and then the valued uniform weights declines as the value move away from 0 in either direction
+- Kernel functions are functions that, given a difference, return a weight. The highest weight is at a value of 0 (no difference) and the weights decline as the absolute difference becomes greater
 
 - Kernel-based matching estimators use a kernel function to produce weights.
 
 - The weights given by the kernel are used to calculate the weighted means.
 
 ]
+
+&lt;!--
+- Kernel functions are functions that given a difference, return a weight. The highest value is at 0 (no difference), and then the valued uniform weights declines as the value move away from 0 in either direction
+--&gt;
 
 ---
 # 4. How will the weights decay with distance?
