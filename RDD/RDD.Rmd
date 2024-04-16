@@ -731,6 +731,39 @@ ggplot(tib, aes(x = x, y = y)) + geom_path() +
 
 ---
 ## Discontinuity designs and local regression
+#### Nonparametric Regression
+
+<div class="thecontainer">
+  <div id="observablehq-theplot-78019354"></div>
+  <div class="right-aligned">
+    <ul style="list-style-type:none;">
+      <li> <div id="observablehq-viewof-estimatorLabels-78019354"></div></li>
+      <li> <div id="observablehq-viewof-thekernel-78019354"></div></li>
+      <li> <div id="observablehq-viewof-bw_type-78019354"></div></li>
+      <li> <div id="observablehq-viewof-bandwidth-78019354"></div></li>
+      <li> <div id="observablehq-viewof-thevalue-78019354"></div></li>
+    </ul>
+  </div>
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@observablehq/inspector@5/dist/inspector.css">
+<script type="module">
+import {Runtime, Inspector} from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@5/dist/runtime.js";
+import define from "https://api.observablehq.com/d/6ad2c88d5f52fa8d@1361.js?v=4";
+new Runtime().module(define, name => {
+  if (name === "viewof estimatorLabels") return new Inspector(document.querySelector("#observablehq-viewof-estimatorLabels-78019354"));
+  if (name === "viewof thekernel") return new Inspector(document.querySelector("#observablehq-viewof-thekernel-78019354"));
+  if (name === "viewof bw_type") return new Inspector(document.querySelector("#observablehq-viewof-bw_type-78019354"));
+  if (name === "viewof bandwidth") return new Inspector(document.querySelector("#observablehq-viewof-bandwidth-78019354"));
+  if (name === "viewof thevalue") return new Inspector(document.querySelector("#observablehq-viewof-thevalue-78019354"));
+  if (name === "theplot") return new Inspector(document.querySelector("#observablehq-theplot-78019354"));
+  return ["estimator","mloess"].includes(name);
+});
+</script>
+
+
+---
+## Discontinuity designs and local regression
 #### Local linear Regression with tricube kernel
 
 
