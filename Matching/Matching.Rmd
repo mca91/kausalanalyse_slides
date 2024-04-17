@@ -344,7 +344,7 @@ new Runtime().module(define, name => {
 ---
 ## Matching example with `R`
 
-#### Matching with the `Matching::Match()` function
+#### Matching with the `Match()` function
 
 .font90[
 ```{r, echo = TRUE, eval=-1}
