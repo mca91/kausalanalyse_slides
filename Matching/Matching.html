@@ -300,7 +300,86 @@ new Runtime().module(define, name =&gt; {
  
 ]]
 
+---
+## Matching example with `R`
 
+#### Matching with the `Matching::Match()` function
+
+.font90[
+
+```r
+## library(Matching) # Package for matching
+br &lt;- causaldata::black_politicians
+
+Y &lt;- br %&gt;% pull(responded) # Outcome
+D &lt;- br %&gt;% pull(leg_black) # Treatment
+X &lt;- br %&gt;% dplyr::select(blackpercent) %&gt;% as.matrix() # Matching Varibale
+
+
+M &lt;- Match(Y, D, X, Weight = 2, # Weight = 2, denotes Mahalanobis distance 
+           caliper = 1, distance.tolerance = 1e-20)
+summary(M)
+```
+
+```
+## 
+## Estimate...  0.072314 
+## AI SE......  0.068486 
+## T-stat.....  1.0559 
+## p.val......  0.29102 
+## 
+## Original number of observations..............  5593 
+## Original number of treated obs...............  364 
+## Matched number of observations...............  363 
+## Matched number of observations  (unweighted).  399 
+## 
+## Caliper (SDs)........................................   1 
+## Number of obs dropped by 'exact' or 'caliper'  1
+```
+]
+
+---
+## Matching example with `R` &amp;mdash; ctd.
+
+#### Constructing matching ourself
+
+.font90[
+
+```r
+X.s &lt;- X/sd(X)        # standardize
+X.s.T &lt;- X.s[D==1]    # matching variable observations for treated observations
+X.s.C &lt;- X.s[D==0]    # matching variable observations for control observations
+Y.Control &lt;- Y[D==0]  # outcome variable observations for control observations
+
+dist &lt;- matrix(NA, nrow=length(X.s.T), ncol=length(X.s.C)) 
+Ybar.C &lt;- minimalDistance &lt;- rep(NA, length(X.s.T))
+
+for (i in 1:length(X.s.T)){
+  # for each matching variable's treated observation, get distances to all control obs.
+  dist[i,] &lt;- abs(X.s.T[i] - X.s.C) 
+  # find the smallest distance
+  minimalDistance[i] &lt;- min(dist[i,])
+  if (minimalDistance[i] &lt; 1){ # only match if inside caliper
+    # match all that share closest distance (ties)
+    matches.i &lt;- which(dist[i,]==minimalDistance[i]) 
+    # i.e., if there are several matches, each only gets proportional weight
+    Ybar.C[i] &lt;- mean(Y.Control[matches.i])          
+  }
+}
+
+Y.T &lt;- Y[D==1] # outcome variable observations for treated observations
+Y.T &lt;- Y.T[(minimalDistance &lt; 1)] # treated observations that have a match
+Ybar.T &lt;- mean(Y.T) # their mean
+
+# mean outcome for the (weighted) matched control observations
+Ybar.MatchedControlsLoop &lt;- mean(Ybar.C, na.rm = T) 
+Ybar.T - Ybar.MatchedControlsLoop
+```
+
+```
+## [1] 0.07231405
+```
+]
 
 ---
 # Matching criteria
@@ -341,7 +420,7 @@ Propensity score matching is a criterion based on the notion that *observations 
 .blockquote[
 ### Example: Defaulting on credit card debt
 &lt;div class="figure" style="text-align: left"&gt;
-&lt;img src="Matching_files/figure-html/unnamed-chunk-6-1.png" alt="5: UCI Credit Card data" width="70%" style="display:block; margin-right:auto; margin-left:auto;" /&gt;
+&lt;img src="Matching_files/figure-html/unnamed-chunk-8-1.png" alt="5: UCI Credit Card data" width="70%" style="display:block; margin-right:auto; margin-left:auto;" /&gt;
 &lt;p class="caption"&gt;5: UCI Credit Card data&lt;/p&gt;
 &lt;/div&gt;
 ]]
@@ -507,7 +586,7 @@ A frequently used kernel `\(K(x)\)` is the *Epanechnikov* kernel: `\(K(x) = \fra
 &lt;br&gt;
 
 &lt;div class="figure" style="text-align: center"&gt;
-&lt;img src="Matching_files/figure-html/unnamed-chunk-7-1.png" alt="6: Epanechnikov kernel" width="65%" style="display:block; margin-right:auto; margin-left:auto;" /&gt;
+&lt;img src="Matching_files/figure-html/unnamed-chunk-9-1.png" alt="6: Epanechnikov kernel" width="65%" style="display:block; margin-right:auto; margin-left:auto;" /&gt;
 &lt;p class="caption"&gt;6: Epanechnikov kernel&lt;/p&gt;
 &lt;/div&gt;
 
@@ -1147,109 +1226,6 @@ We can obtain the average treatment effect (ATE), the average treatment effect o
 
   `\(\Rightarrow\)` We obtain the ATE.
 - Other schemes can give other effects.  
-
----
-## Appendix: matching example with `R`
-
-### Matching in `R ` with the`Matching::Match()` function
-
-.font90[
-
-```r
-## library(Matching) # Package for matching
-br &lt;- causaldata::black_politicians
-
-Y &lt;- br %&gt;% pull(responded) # Outcome
-D &lt;- br %&gt;% pull(leg_black) # Treatment
-X &lt;- br %&gt;% dplyr::select(blackpercent) %&gt;% as.matrix() # Matching Varibale
-
-
-M &lt;- Match(Y, D, X, Weight = 2, # Weight = 2, denotes Mahalanobis distance 
-           caliper = 1, distance.tolerance = 1e-20)
-summary(M)
-```
-
-```
-## 
-## Estimate...  0.072314 
-## AI SE......  0.068486 
-## T-stat.....  1.0559 
-## p.val......  0.29102 
-## 
-## Original number of observations..............  5593 
-## Original number of treated obs...............  364 
-## Matched number of observations...............  363 
-## Matched number of observations  (unweighted).  399 
-## 
-## Caliper (SDs)........................................   1 
-## Number of obs dropped by 'exact' or 'caliper'  1
-```
-]
-
----
-## Appendix: matching example with `R` &amp;mdash; ctd.
-
-### Constructing matching ourself
-
-
-```r
-X.s &lt;- X/sd(X)      # standardize
-X.s.T &lt;- X.s[D==1]  # matching variable observations for treated observations
-X.s.C &lt;- X.s[D==0]  # matching variable observations for control observations
-Y.Control &lt;- Y[D==0] # outcome variable observations for control observations
-
-dist &lt;- matrix(NA, nrow=length(X.s.T), ncol=length(X.s.C)) 
-Ybar.C &lt;- minimalDistance &lt;- rep(NA, length(X.s.T))
-
-for (i in 1:length(X.s.T)){
-  # for each matching variable's treated observation, get distances to all control obs.
-  dist[i,] &lt;- abs(X.s.T[i] - X.s.C) 
-  # find the smallest distance
-  minimalDistance[i] &lt;- min(dist[i,])
-  if (minimalDistance[i] &lt; 1){ # only match if inside caliper
-    # match all that share closest distance (ties)
-    matches.i &lt;- which(dist[i,]==minimalDistance[i]) 
-    # i.e., if there are several matches, each only gets proportional weight
-    Ybar.C[i] &lt;- mean(Y.Control[matches.i])          
-  }
-}
-```
-
----
-## Appendix: matching example with `R` &amp;mdash; ctd.
-
-### Constructing matching ourself
-
-```r
-# drop treated observations outside of caliper 1
-Y.T &lt;- Y[D==1] # outcome variable observations for treated observations
-length(Y.T) # Original number of treated obs
-```
-
-```
-## [1] 364
-```
-
-```r
-Y.T &lt;- Y.T[(minimalDistance &lt; 1)] # treated observations that have a match
-length(Y.T) # Matched number of observations
-```
-
-```
-## [1] 363
-```
-
-```r
-Ybar.T &lt;- mean(Y.T) # their mean
-
-# mean outcome for the (weighted) matched control observations
-Ybar.MatchedControlsLoop &lt;- mean(Ybar.C, na.rm = T) 
-Ybar.T - Ybar.MatchedControlsLoop
-```
-
-```
-## [1] 0.07231405
-```
 
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
