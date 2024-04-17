@@ -341,7 +341,7 @@ summary(M)
 ---
 ## Matching example with `R` &amp;mdash; ctd.
 
-#### Constructing matching ourself
+#### Constructing matching ourselves
 
 .font90[
 
@@ -355,15 +355,13 @@ dist &lt;- matrix(NA, nrow=length(X.s.T), ncol=length(X.s.C))
 Ybar.C &lt;- minimalDistance &lt;- rep(NA, length(X.s.T))
 
 for (i in 1:length(X.s.T)){
-  # for each matching variable's treated observation, get distances to all control obs.
+   # for each matching variable's treated observation, get distances to all control obs.
   dist[i,] &lt;- abs(X.s.T[i] - X.s.C) 
-  # find the smallest distance
-  minimalDistance[i] &lt;- min(dist[i,])
+  minimalDistance[i] &lt;- min(dist[i,]) # find the smallest distance
   if (minimalDistance[i] &lt; 1){ # only match if inside caliper
-    # match all that share closest distance (ties)
-    matches.i &lt;- which(dist[i,]==minimalDistance[i]) 
+    matches.i &lt;- which(dist[i,]==minimalDistance[i]) # match all that share closest distance (ties)
     # i.e., if there are several matches, each only gets proportional weight
-    Ybar.C[i] &lt;- mean(Y.Control[matches.i])          
+    Ybar.C[i] &lt;- mean(Y.Control[matches.i]) 
   }
 }
 
