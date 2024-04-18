@@ -675,7 +675,7 @@ The treatment effect ist `\(0-0.561=-0.561\)`
 
 - Some matching approaches end up using calipers/bandwidths naturally:
 
-    Any kernel-based matching approach will place a weight of 0 on any match that is far away that the kernel function that is chosen sets it to 0.
+    Typical kernel-based matching approach will place a weight of 0 on any match that is far away that the kernel function that is chosen sets it to 0.
 
     (For the Epanechnikov kernel that is a distance of 1 or greater)
 
@@ -1040,7 +1040,7 @@ Boosted regression is an iterative method that starts with a binary regression m
 
 - In theory, the selected weights should lead to treated and control groups with the exact same values of the backdoor variables
 
-- Worse matching of values leads to **bad balances** which in tern leads to **bias!**
+- Worse matching of values leads to **bad balances** which in turn leads to **bias!**
 
 
 ---
