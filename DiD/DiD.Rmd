@@ -646,7 +646,7 @@ The simplest form uses the regression model $$Y =\alpha_g+\beta_1Time+\beta_2Tim
   Time in the last period before treatment is $t=0$, the first period with treatment implemented is $t=1$ the second-to-last period before treatment is $t=-1$ and so on.
 
 - Estimate
-$$Y = \alpha_g + \alpha_t + \beta_{-T_1}\text{Treated}+\beta_{(-T_1-1)} \text{Treated} + \dots + \beta_{-1}\text{Treated} + \beta_1\text{Treated} + \dots + \beta_{T_2} \text{Treated} + \epsilon,$$
+$$Y = \alpha_g + \alpha_t + \beta_{-T_1}\text{Treated}+\beta_{-(T_1-1)} \text{Treated} + \dots + \beta_{-1}\text{Treated} + \beta_1\text{Treated} + \dots + \beta_{T_2} \text{Treated} + \epsilon,$$
  
   where the $\text{Treated}$ regressors are interactions of $\text{Treatment}$ given and each of the time periods (for $T_1$ periods before the treatment period and $T_2$ periods afterwards).
 
@@ -658,7 +658,7 @@ $$Y = \alpha_g + \alpha_t + \beta_{-T_1}\text{Treated}+\beta_{(-T_1-1)} \text{Tr
 
 **Advantages**
 
-- The before-treatment coefficients $\beta_{T_1},\beta_{-(T_1-1)},...,\beta_{-1}$ should be (close to) zero
+- The before-treatment coefficients $\beta_{-T_1},\beta_{-(T_1-1)},...,\beta_{-1}$ should be (close to) zero
 
 - The after-treatment coefficients  $\beta_1,...,\beta_{T_2}$ show the DiD estimated effect in the relevant period: 
 
