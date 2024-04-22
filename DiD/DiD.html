@@ -94,11 +94,11 @@ layout: true
 &lt;br&gt;
 
 &lt;div class="figure"&gt;
-<div id="htmlwidget-d8e7a8d22585b526571a" style="width:100%;height:300px;" class="grViz html-widget"></div>
+<div id="htmlwidget-40a151651ae7d700a4cd" style="width:100%;height:300px;" class="grViz html-widget"></div>
 <script>HTMLWidgets.pymChild = new pym.Child();HTMLWidgets.addPostRenderHandler(function(){
                                 setTimeout(function(){HTMLWidgets.pymChild.sendHeight();},100);
                             });</script>
-<script type="application/json" data-for="htmlwidget-d8e7a8d22585b526571a">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n  bgcolor=transparent\n  imagescale=both\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"Time\" [pos=\"2,2!\"]\n  \"Treatment\" [pos=\"0,0!\"]\n  \"Outcome\" [pos=\"4,0!\"]\n\n  \n  \"Time\" -> \"Treatment\"\n   \"Time\" ->  \"Outcome\"\n   \"Treatment\" -> \"Outcome\"\n  \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-40a151651ae7d700a4cd">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n  bgcolor=transparent\n  imagescale=both\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"Time\" [pos=\"2,2!\"]\n  \"Treatment\" [pos=\"0,0!\"]\n  \"Outcome\" [pos=\"4,0!\"]\n\n  \n  \"Time\" -> \"Treatment\"\n   \"Time\" ->  \"Outcome\"\n   \"Treatment\" -> \"Outcome\"\n  \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 &lt;p class="caption"&gt;2: Basic time backdoor&lt;/p&gt;
 &lt;/div&gt;
 
@@ -128,11 +128,11 @@ layout: true
 
 &lt;br&gt;
 &lt;div class="figure"&gt;
-<div id="htmlwidget-7caee4d9984794cd24c5" style="width:100%;height:300px;" class="grViz html-widget"></div>
+<div id="htmlwidget-32f95cb55a2b2f3c01ba" style="width:100%;height:300px;" class="grViz html-widget"></div>
 <script>HTMLWidgets.pymChild = new pym.Child();HTMLWidgets.addPostRenderHandler(function(){
                                 setTimeout(function(){HTMLWidgets.pymChild.sendHeight();},100);
                             });</script>
-<script type="application/json" data-for="htmlwidget-7caee4d9984794cd24c5">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n  bgcolor=transparent\n  imagescale=both\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"Time\" [pos=\"2,2!\"]\n  \"Treatment\" [pos=\"0,1!\"]\n  \"Outcome\" [pos=\"4,1!\"]\n   \"Group\" [pos=\"2,0!\"]\n\n  \n  \"Time\" -> \"Treatment\"\n   \"Time\" ->  \"Outcome\"\n   \"Treatment\" -> \"Outcome\"\n   \"Group\" -> \"Treatment\"\n   \"Group\" ->  \"Outcome\"\n  \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-32f95cb55a2b2f3c01ba">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n  bgcolor=transparent\n  imagescale=both\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"Time\" [pos=\"2,2!\"]\n  \"Treatment\" [pos=\"0,1!\"]\n  \"Outcome\" [pos=\"4,1!\"]\n   \"Group\" [pos=\"2,0!\"]\n\n  \n  \"Time\" -> \"Treatment\"\n   \"Time\" ->  \"Outcome\"\n   \"Treatment\" -> \"Outcome\"\n   \"Group\" -> \"Treatment\"\n   \"Group\" ->  \"Outcome\"\n  \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 &lt;p class="caption"&gt;4:  Two back doors that can be closed by DiD&lt;/p&gt;
 &lt;/div&gt;
 
@@ -441,7 +441,7 @@ The simplest form uses the regression model `$$Y =\alpha_g+\beta_1Time+\beta_2Ti
   Time in the last period before treatment is `\(t=0\)`, the first period with treatment implemented is `\(t=1\)` the second-to-last period before treatment is `\(t=-1\)` and so on.
 
 - Estimate
-`$$Y_k = \alpha_g + \alpha_t + \beta_{-T_1}\text{Treated}+\beta_{-(T_1-1)} \text{Treated} + \dots + \beta_{-1}\text{Treated} + \beta_1\text{Treated} + \dots + \beta_{T_2} \text{Treated} + \epsilon,$$`
+`$$Y = \alpha_g + \alpha_t + \beta_{-T_1}\text{Treated}+\beta_{(-T_1-1)} \text{Treated} + \dots + \beta_{-1}\text{Treated} + \beta_1\text{Treated} + \dots + \beta_{T_2} \text{Treated} + \epsilon,$$`
  
   where the `\(\text{Treated}\)` regressors are interactions of `\(\text{Treatment}\)` given and each of the time periods (for `\(T_1\)` periods before the treatment period and `\(T_2\)` periods afterwards).
 
@@ -490,15 +490,6 @@ The simplest form uses the regression model `$$Y =\alpha_g+\beta_1Time+\beta_2Ti
 &lt;p class="caption"&gt;8: Dynamic effect of active-choice phrasing on organ donation rates&lt;/p&gt;
 &lt;/div&gt;
 ]
-
----
-# Rollout designs and multiple treatment periods
-
-.vcenter[
-.blockquote[
-### Definition: Rollout design
- A rollout design is when the groups get treated at different times.
-]]
 
 ---
 # Rollout designs and multiple treatment periods

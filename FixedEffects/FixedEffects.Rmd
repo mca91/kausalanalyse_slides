@@ -718,9 +718,9 @@ There are two common approaches to use a fixed effects design when there is  a n
 
 - This seems natural &mdash; in any fixed effects setting, the data is **hierarchical:**
   
-  At the very least we have multiple observations over time within individuals. E.g., if the model is
+  at the very least we have multiple observations over time within individuals. E.g., if the model is
 $$Y_{it}=\beta_i+\beta_1X_{it}+\epsilon_{it}$$
-  It can be said that $\beta_1$ has its own model equation,
+  it can be said that $\beta_1$ has its own model equation,
 $$\beta_i=\beta_0+\gamma_1Z_i+\mu_i$$
 where $Z_i$ is a set of individual-level variables that determine the individual effect and $\mu_i$ is an error.
 
