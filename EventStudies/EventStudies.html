@@ -121,11 +121,11 @@ Event studies are designed to work in cases where the relevant causal diagram lo
 
 
 &lt;div class="figure"&gt;
-<div id="htmlwidget-033442e9220218f6d00a" style="width:100%;height:300px;" class="grViz html-widget"></div>
+<div id="htmlwidget-35b1b99f7f44a9e15dae" style="width:100%;height:300px;" class="grViz html-widget "></div>
 <script>HTMLWidgets.pymChild = new pym.Child();HTMLWidgets.addPostRenderHandler(function(){
                                 setTimeout(function(){HTMLWidgets.pymChild.sendHeight();},100);
                             });</script>
-<script type="application/json" data-for="htmlwidget-033442e9220218f6d00a">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n  bgcolor=transparent\n  imagescale=both\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"Time\" [pos=\"2,2!\"]\n  \"AfterEvent\" [pos=\"0,0!\"]\n  \"Treatment\" [pos=\"2,0!\"]\n  \"Outcome\" [pos=\"4,0!\"]\n\n  \n  \"Time\" -> \"AfterEvent\"\n   \"Time\" ->  \"Outcome\"\n  \"AfterEvent\" -> \"Treatment\"\n   \"Treatment\" -> \"Outcome\"\n  \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-35b1b99f7f44a9e15dae">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n  bgcolor=transparent\n  imagescale=both\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"Time\" [pos=\"2,2!\"]\n  \"AfterEvent\" [pos=\"0,0!\"]\n  \"Treatment\" [pos=\"2,0!\"]\n  \"Outcome\" [pos=\"4,0!\"]\n\n  \n  \"Time\" -> \"AfterEvent\"\n   \"Time\" ->  \"Outcome\"\n  \"AfterEvent\" -> \"Treatment\"\n   \"Treatment\" -> \"Outcome\"\n  \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 &lt;p class="caption"&gt;1: Causal diagram that event studies work for&lt;/p&gt;
 &lt;/div&gt;
 ---
@@ -560,11 +560,36 @@ An ARMA(2,1) model includes two autoregressive terms and one moving-average term
 
 ---
 # <svg aria-hidden="true" role="img" viewBox="0 0 576 512" style="height:45px;width:50.62px;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M384 64c0-17.7 14.3-32 32-32H544c17.7 0 32 14.3 32 32s-14.3 32-32 32H448v96c0 17.7-14.3 32-32 32H320v96c0 17.7-14.3 32-32 32H192v96c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32h96V320c0-17.7 14.3-32 32-32h96V192c0-17.7 14.3-32 32-32h96V64z"/></svg> Forecasting properly with time series methods
-&lt;/br&gt;
-&lt;div class="figure" style="text-align: center"&gt;
-&lt;img src="EventStudies_files/figure-html/unnamed-chunk-7-1.png" alt="4: Different time series processes" width="70%" style="display:block; margin-right:auto; margin-left:auto;" /&gt;
-&lt;p class="caption"&gt;4: Different time series processes&lt;/p&gt;
+
+&lt;div class="thecontainer"&gt;
+  &lt;div id="observablehq-theplot-f58190fb"&gt;&lt;/div&gt;
+  &lt;div class="right-aligned"&gt;
+    &lt;ul style="list-style-type:none;"&gt;
+      &lt;li&gt;&lt;div id="observablehq-viewof-phi-f58190fb"&gt;&lt;/div&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;div id="observablehq-viewof-theta-f58190fb"&gt;&lt;/div&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;div id="observablehq-viewof-start-f58190fb"&gt;&lt;/div&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;div id="observablehq-viewof-sigma-f58190fb"&gt;&lt;/div&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;div id="observablehq-viewof-n-f58190fb"&gt;&lt;/div&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;div id="observablehq-viewof-mu-f58190fb"&gt;&lt;/div&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/div&gt;
 &lt;/div&gt;
+
+&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@observablehq/inspector@5/dist/inspector.css"&gt;
+&lt;script type="module"&gt;
+import {Runtime, Inspector} from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@5/dist/runtime.js";
+import define from "https://api.observablehq.com/d/9bdf2b5b3279afc0@207.js?v=4";
+new Runtime().module(define, name =&gt; {
+  if (name === "viewof phi") return new Inspector(document.querySelector("#observablehq-viewof-phi-f58190fb"));
+  if (name === "viewof theta") return new Inspector(document.querySelector("#observablehq-viewof-theta-f58190fb"));
+  if (name === "viewof start") return new Inspector(document.querySelector("#observablehq-viewof-start-f58190fb"));
+  if (name === "viewof sigma") return new Inspector(document.querySelector("#observablehq-viewof-sigma-f58190fb"));
+  if (name === "viewof n") return new Inspector(document.querySelector("#observablehq-viewof-n-f58190fb"));
+  if (name === "viewof mu") return new Inspector(document.querySelector("#observablehq-viewof-mu-f58190fb"));
+  if (name === "theplot") return new Inspector(document.querySelector("#observablehq-theplot-f58190fb"));
+  return ["ymean","arma11","combinedData","newYDomain","errors"].includes(name);
+});
+&lt;/script&gt;
 
 
 ---

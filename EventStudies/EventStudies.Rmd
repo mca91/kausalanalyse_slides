@@ -758,33 +758,36 @@ An ARMA(2,1) model includes two autoregressive terms and one moving-average term
 
 ---
 # `r stairs` Forecasting properly with time series methods
-</br>
-```{r , echo=F, cache=F, out.extra = 'style="display:block; margin-right:auto; margin-left:auto;"', fig.height=4.25, out.width='70%', dpi=190, fig.cap=paste0(fig_counter(), ': Different time series processes'), fig.align='center'}
-set.seed(10)
-suppressWarnings({
-d <- data.frame(t = 1:100, Y = rnorm(100)) %>%
-  mutate(Y_AR  = Y,
-         Y_MA = Y,
-         Y_ARMA = Y)
-for (i in 2:100) {
-  d[i, 'Y_AR'] <- d[i,'Y_AR'] + .8*d[i-1,'Y_AR']
-  d[i, 'Y_MA'] <- d[i, 'Y_MA'] + .9*d[i-1, 'Y']
-  d[i, 'Y_ARMA'] <- d[i, 'Y_ARMA']+ .8*d[i-1,'Y_ARMA'] + .9*d[i-1, 'Y']
-}
 
-names <- c('(a) Totally Random', '(b) MA(1) Process', '(c) AR(1) Process', '(d) ARMA(1,1) Process')
-vars <- c('Y','Y_MA','Y_AR','Y_ARMA')
-p <- list()
-for (i in 1:4) {
-  p[[i]] <- ggplot(d, aes_string(x = 't', y = vars[i])) + 
-    geom_line() + 
-    labs(x = 'Time', y = 'Value', title= names[i]) + 
-    theme_pubr() + 
-    theme(text= element_text( size = 13))
-}
-plot_grid(p[[1]],p[[2]],p[[3]],p[[4]], ncol = 2)
-})
-```
+<div class="thecontainer">
+  <div id="observablehq-theplot-f58190fb"></div>
+  <div class="right-aligned">
+    <ul style="list-style-type:none;">
+      <li><div id="observablehq-viewof-phi-f58190fb"></div></li>
+      <li><div id="observablehq-viewof-theta-f58190fb"></div></li>
+      <li><div id="observablehq-viewof-start-f58190fb"></div></li>
+      <li><div id="observablehq-viewof-sigma-f58190fb"></div></li>
+      <li><div id="observablehq-viewof-n-f58190fb"></div></li>
+      <li><div id="observablehq-viewof-mu-f58190fb"></div></li>
+    </ul>
+  </div>
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@observablehq/inspector@5/dist/inspector.css">
+<script type="module">
+import {Runtime, Inspector} from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@5/dist/runtime.js";
+import define from "https://api.observablehq.com/d/9bdf2b5b3279afc0@207.js?v=4";
+new Runtime().module(define, name => {
+  if (name === "viewof phi") return new Inspector(document.querySelector("#observablehq-viewof-phi-f58190fb"));
+  if (name === "viewof theta") return new Inspector(document.querySelector("#observablehq-viewof-theta-f58190fb"));
+  if (name === "viewof start") return new Inspector(document.querySelector("#observablehq-viewof-start-f58190fb"));
+  if (name === "viewof sigma") return new Inspector(document.querySelector("#observablehq-viewof-sigma-f58190fb"));
+  if (name === "viewof n") return new Inspector(document.querySelector("#observablehq-viewof-n-f58190fb"));
+  if (name === "viewof mu") return new Inspector(document.querySelector("#observablehq-viewof-mu-f58190fb"));
+  if (name === "theplot") return new Inspector(document.querySelector("#observablehq-theplot-f58190fb"));
+  return ["ymean","arma11","combinedData","newYDomain","errors"].includes(name);
+});
+</script>
 
 
 ---
