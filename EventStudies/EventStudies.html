@@ -121,11 +121,11 @@ Event studies are designed to work in cases where the relevant causal diagram lo
 
 
 &lt;div class="figure"&gt;
-<div id="htmlwidget-35b1b99f7f44a9e15dae" style="width:100%;height:300px;" class="grViz html-widget "></div>
+<div id="htmlwidget-7fc7967f3243c252477f" style="width:100%;height:300px;" class="grViz html-widget "></div>
 <script>HTMLWidgets.pymChild = new pym.Child();HTMLWidgets.addPostRenderHandler(function(){
                                 setTimeout(function(){HTMLWidgets.pymChild.sendHeight();},100);
                             });</script>
-<script type="application/json" data-for="htmlwidget-35b1b99f7f44a9e15dae">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n  bgcolor=transparent\n  imagescale=both\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"Time\" [pos=\"2,2!\"]\n  \"AfterEvent\" [pos=\"0,0!\"]\n  \"Treatment\" [pos=\"2,0!\"]\n  \"Outcome\" [pos=\"4,0!\"]\n\n  \n  \"Time\" -> \"AfterEvent\"\n   \"Time\" ->  \"Outcome\"\n  \"AfterEvent\" -> \"Treatment\"\n   \"Treatment\" -> \"Outcome\"\n  \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-7fc7967f3243c252477f">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n  bgcolor=transparent\n  imagescale=both\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"Time\" [pos=\"2,2!\"]\n  \"AfterEvent\" [pos=\"0,0!\"]\n  \"Treatment\" [pos=\"2,0!\"]\n  \"Outcome\" [pos=\"4,0!\"]\n\n  \n  \"Time\" -> \"AfterEvent\"\n   \"Time\" ->  \"Outcome\"\n  \"AfterEvent\" -> \"Treatment\"\n   \"Treatment\" -> \"Outcome\"\n  \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 &lt;p class="caption"&gt;1: Causal diagram that event studies work for&lt;/p&gt;
 &lt;/div&gt;
 ---
@@ -578,7 +578,7 @@ An ARMA(2,1) model includes two autoregressive terms and one moving-average term
 &lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@observablehq/inspector@5/dist/inspector.css"&gt;
 &lt;script type="module"&gt;
 import {Runtime, Inspector} from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@5/dist/runtime.js";
-import define from "https://api.observablehq.com/d/9bdf2b5b3279afc0@207.js?v=4";
+import define from "https://api.observablehq.com/d/9bdf2b5b3279afc0@235.js?v=4";
 new Runtime().module(define, name =&gt; {
   if (name === "viewof phi") return new Inspector(document.querySelector("#observablehq-viewof-phi-f58190fb"));
   if (name === "viewof theta") return new Inspector(document.querySelector("#observablehq-viewof-theta-f58190fb"));

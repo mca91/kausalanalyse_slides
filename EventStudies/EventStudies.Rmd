@@ -776,7 +776,7 @@ An ARMA(2,1) model includes two autoregressive terms and one moving-average term
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@observablehq/inspector@5/dist/inspector.css">
 <script type="module">
 import {Runtime, Inspector} from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@5/dist/runtime.js";
-import define from "https://api.observablehq.com/d/9bdf2b5b3279afc0@207.js?v=4";
+import define from "https://api.observablehq.com/d/9bdf2b5b3279afc0@235.js?v=4";
 new Runtime().module(define, name => {
   if (name === "viewof phi") return new Inspector(document.querySelector("#observablehq-viewof-phi-f58190fb"));
   if (name === "viewof theta") return new Inspector(document.querySelector("#observablehq-viewof-theta-f58190fb"));
