@@ -579,7 +579,7 @@ ggplot(tib, aes(x = X, y = Y, group = X > .5)) +
 
 ---
 ## Regression discontinuity with OLS
-#### Linear shape not flexible enough
+#### Linear shape may not be flexible enough
 
 <div class="thecontainer">
  <div id="observablehq-svg-b56d5ea5"></div>
