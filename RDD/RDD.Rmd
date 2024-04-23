@@ -963,7 +963,7 @@ widgetframe::frameableWidget(m)
 <br>
 IV divides the effect of the instrument on the outcome by the effect of the instrument on the endogenous/treatment variable.
 
-&rarr; The effect of being *above* the cutoff on the outcome is scaled but divided to account for the fact that being above the cutoff only leads to a partial increase in treatment rates.
+&rarr; The effect of being *above* the cutoff on the outcome is scaled to account for the fact that being above the cutoff only leads to a partial increase in treatment rates.
 
 ---
 # Fuzzy regression discontinuity
@@ -1158,7 +1158,7 @@ For this we inspect the distribution of the running variable around the cutoff:
 
 - If the running variable was randomly assigned without regard for the cutoff we expect its distribution to be smooth 
 
-- A distribution that seems to have a dip just to one side of the cutoff, with those observations sitting just on the other side, this may indicate manipulation
+- A distribution that seems to have a dip just to one side of the cutoff, with those observations sitting just on the other side, may indicate manipulation
 
 ---
 # The density discontinuity test
