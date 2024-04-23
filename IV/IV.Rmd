@@ -528,7 +528,7 @@ Instrumental Variable can be estimated using Two-stage least squares (2SLS). The
 **Advantages and disadvantages of 2SLS**
 
 - Easy to estimate and flexible: Adding more instruments to the first stage is a no-brainer (adding more treatment variables is less easy)
-- Bad small-sample performance. For real data, the relationship between $Z$ and the 'non-$X$' part of $Y$ is going to be somewhat nonzero, just by random chance 
+- Bad small-sample performance. For real data, the relationship between $Z$ and the $\text{'non-}X \text{'}$ part of $Y$ is going to be somewhat nonzero, just by random chance 
 - 2SLS also does not perform particularly well when the errors are heteroskedastic
 
 ---
