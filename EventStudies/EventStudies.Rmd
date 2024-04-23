@@ -750,15 +750,6 @@ $\epsilon_t$ and $\epsilon_{t-1}$ are error terms at times $t$ and $t-1$. Since 
 ---
 # `r stairs` Forecasting properly with time series methods
 
-.vcenter[
-.blockquote[
-### Example: ARMA(2,1) model
-An ARMA(2,1) model includes two autoregressive terms and one moving-average term. The the current value of the time series depends on the previous two values, and the transitory effect in one previous period, $$Y_t = \beta_0+\beta_1Y_{t-1}+\beta_2Y_{t-2}+(\epsilon_t + \theta \epsilon_{t-1}).$$
-]]
-
----
-# `r stairs` Forecasting properly with time series methods
-
 <div class="thecontainer">
   <div id="observablehq-theplot-f58190fb"></div>
   <div class="right-aligned">
@@ -789,6 +780,14 @@ new Runtime().module(define, name => {
 });
 </script>
 
+---
+# `r stairs` Forecasting properly with time series methods
+
+.vcenter[
+.blockquote[
+### Example: ARMA(2,1) model
+An ARMA(2,1) model includes two autoregressive terms and one moving-average term. The the current value of the time series depends on the previous two values, and the transitory effect in one previous period, $$Y_t = \beta_0+\beta_1Y_{t-1}+\beta_2Y_{t-2}+(\epsilon_t + \theta \epsilon_{t-1}).$$
+]]
 
 ---
 # `r stairs` The joint-test problem

@@ -121,11 +121,11 @@ Event studies are designed to work in cases where the relevant causal diagram lo
 
 
 &lt;div class="figure"&gt;
-<div id="htmlwidget-17582b51ebbdda42c318" style="width:100%;height:300px;" class="grViz html-widget "></div>
+<div id="htmlwidget-0dfcfb5112c05fd5cc71" style="width:100%;height:300px;" class="grViz html-widget "></div>
 <script>HTMLWidgets.pymChild = new pym.Child();HTMLWidgets.addPostRenderHandler(function(){
                                 setTimeout(function(){HTMLWidgets.pymChild.sendHeight();},100);
                             });</script>
-<script type="application/json" data-for="htmlwidget-17582b51ebbdda42c318">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n  bgcolor=transparent\n  imagescale=both\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"Time\" [pos=\"2,2!\"]\n  \"AfterEvent\" [pos=\"0,0!\"]\n  \"Treatment\" [pos=\"2,0!\"]\n  \"Outcome\" [pos=\"4,0!\"]\n\n  \n  \"Time\" -> \"AfterEvent\"\n   \"Time\" ->  \"Outcome\"\n  \"AfterEvent\" -> \"Treatment\"\n   \"Treatment\" -> \"Outcome\"\n  \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-0dfcfb5112c05fd5cc71">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n  bgcolor=transparent\n  imagescale=both\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"Time\" [pos=\"2,2!\"]\n  \"AfterEvent\" [pos=\"0,0!\"]\n  \"Treatment\" [pos=\"2,0!\"]\n  \"Outcome\" [pos=\"4,0!\"]\n\n  \n  \"Time\" -> \"AfterEvent\"\n   \"Time\" ->  \"Outcome\"\n  \"AfterEvent\" -> \"Treatment\"\n   \"Treatment\" -> \"Outcome\"\n  \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 &lt;p class="caption"&gt;1: Causal diagram that event studies work for&lt;/p&gt;
 &lt;/div&gt;
 ---
@@ -552,15 +552,6 @@ The ARMA model consists of an autoregressive (AR) and a moving-average (MA) comp
 ---
 # <svg aria-hidden="true" role="img" viewBox="0 0 576 512" style="height:45px;width:50.62px;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M384 64c0-17.7 14.3-32 32-32H544c17.7 0 32 14.3 32 32s-14.3 32-32 32H448v96c0 17.7-14.3 32-32 32H320v96c0 17.7-14.3 32-32 32H192v96c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32h96V320c0-17.7 14.3-32 32-32h96V192c0-17.7 14.3-32 32-32h96V64z"/></svg> Forecasting properly with time series methods
 
-.vcenter[
-.blockquote[
-### Example: ARMA(2,1) model
-An ARMA(2,1) model includes two autoregressive terms and one moving-average term. The the current value of the time series depends on the previous two values, and the transitory effect in one previous period, `$$Y_t = \beta_0+\beta_1Y_{t-1}+\beta_2Y_{t-2}+(\epsilon_t + \theta \epsilon_{t-1}).$$`
-]]
-
----
-# <svg aria-hidden="true" role="img" viewBox="0 0 576 512" style="height:45px;width:50.62px;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M384 64c0-17.7 14.3-32 32-32H544c17.7 0 32 14.3 32 32s-14.3 32-32 32H448v96c0 17.7-14.3 32-32 32H320v96c0 17.7-14.3 32-32 32H192v96c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32h96V320c0-17.7 14.3-32 32-32h96V192c0-17.7 14.3-32 32-32h96V64z"/></svg> Forecasting properly with time series methods
-
 &lt;div class="thecontainer"&gt;
   &lt;div id="observablehq-theplot-f58190fb"&gt;&lt;/div&gt;
   &lt;div class="right-aligned"&gt;
@@ -591,6 +582,14 @@ new Runtime().module(define, name =&gt; {
 });
 &lt;/script&gt;
 
+---
+# <svg aria-hidden="true" role="img" viewBox="0 0 576 512" style="height:45px;width:50.62px;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M384 64c0-17.7 14.3-32 32-32H544c17.7 0 32 14.3 32 32s-14.3 32-32 32H448v96c0 17.7-14.3 32-32 32H320v96c0 17.7-14.3 32-32 32H192v96c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32h96V320c0-17.7 14.3-32 32-32h96V192c0-17.7 14.3-32 32-32h96V64z"/></svg> Forecasting properly with time series methods
+
+.vcenter[
+.blockquote[
+### Example: ARMA(2,1) model
+An ARMA(2,1) model includes two autoregressive terms and one moving-average term. The the current value of the time series depends on the previous two values, and the transitory effect in one previous period, `$$Y_t = \beta_0+\beta_1Y_{t-1}+\beta_2Y_{t-2}+(\epsilon_t + \theta \epsilon_{t-1}).$$`
+]]
 
 ---
 # <svg aria-hidden="true" role="img" viewBox="0 0 576 512" style="height:45px;width:50.62px;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M384 64c0-17.7 14.3-32 32-32H544c17.7 0 32 14.3 32 32s-14.3 32-32 32H448v96c0 17.7-14.3 32-32 32H320v96c0 17.7-14.3 32-32 32H192v96c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32h96V320c0-17.7 14.3-32 32-32h96V192c0-17.7 14.3-32 32-32h96V64z"/></svg> The joint-test problem
