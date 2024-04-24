@@ -539,13 +539,13 @@ Instrumental Variable can be estimated using Two-stage least squares (2SLS). The
 Using assumptions and theory, construct statistical moments (means, variances, covariances, etc.) that should have certain values. Use sample versions of these moments to estimate the quantity of interest
 
 .blockquote.font90[
-### Example: The sample mean is a GMM estimator of the expected value 
+### Example: GMM estimator for the upper bound of a uniform RV
 
 - The GMM estimator, demands that the difference between the estimator $\mu$ and the population expected value $E(Y)$ should be zero 
 
   &rarr; $\mu - E(Y) = 0$ is a moment condition for the estimation.
   
-- E. g., suppose we have  $Y_i \sim [0, a]$ and $E(Y) = \frac{a + b}{2} = \frac{a}{2}$
+- E. g., suppose we have  $Y_i \sim U[0, a]$ and $E(Y) = \frac{a + b}{2} = \frac{a}{2}$
 - Plugging in the (G)MM sample estimator $\mu$ for $E(Y)$ results in $\displaystyle \mu = \frac{1}{N} \sum_{i = 1}^{N} Y_i = \dfrac{a}{2}$
 - Rearranging yields $\displaystyle a = 2 \cdot \mu = 2 \cdot \left( \frac{1}{N} \sum_{i = 1}^{N} Y_i \right)$
 ]
