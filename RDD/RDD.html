@@ -165,11 +165,11 @@ People close to the cutoff need to effectively be randomly assigned. We must rul
 
 &lt;br&gt;
 &lt;div class="figure"&gt;
-<div id="htmlwidget-be8eef3972113b7c6acc" style="width:100%;height:250px;" class="grViz html-widget"></div>
+<div id="htmlwidget-0fe01f754be72081a6c3" style="width:100%;height:250px;" class="grViz html-widget "></div>
 <script>HTMLWidgets.pymChild = new pym.Child();HTMLWidgets.addPostRenderHandler(function(){
                                 setTimeout(function(){HTMLWidgets.pymChild.sendHeight();},100);
                             });</script>
-<script type="application/json" data-for="htmlwidget-be8eef3972113b7c6acc">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n  bgcolor=transparent\n  imagescale=both\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"Running Variable\" [pos=\"0,2!\"]\n  \"Above Cutoff\" [pos=\"0,0!\"]\n  \"Treatment\" [pos=\"2,0!\"]\n  \"Z\" [pos=\"2,2!\"]\n  \"Outcome\" [pos=\"4,0!\"]\n\n  \n  \"Above Cutoff\" -> \"Treatment\"\n   \"Running Variable\" ->  \"Above Cutoff\"\n   \"Running Variable\" -> \"Outcome\"\n   \"Treatment\" -> \"Outcome\"\n   \"Z\" ->  \"Running Variable\"\n   \"Z\" -> \"Outcome\"\n \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-0fe01f754be72081a6c3">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n  bgcolor=transparent\n  imagescale=both\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"Running Variable\" [pos=\"0,2!\"]\n  \"Above Cutoff\" [pos=\"0,0!\"]\n  \"Treatment\" [pos=\"2,0!\"]\n  \"Z\" [pos=\"2,2!\"]\n  \"Outcome\" [pos=\"4,0!\"]\n\n  \n  \"Above Cutoff\" -> \"Treatment\"\n   \"Running Variable\" ->  \"Above Cutoff\"\n   \"Running Variable\" -> \"Outcome\"\n   \"Treatment\" -> \"Outcome\"\n   \"Z\" ->  \"Running Variable\"\n   \"Z\" -> \"Outcome\"\n \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 &lt;p class="caption"&gt;2: A causal diagram that regression discontinuity works for&lt;/p&gt;
 &lt;/div&gt;
 
@@ -379,26 +379,36 @@ E.g., second order polynomials could be used.
 
 ---
 ## Regression discontinuity with OLS
-#### Linear shape may not be flexible enough
+#### A linear shape may not be flexible enough
 
 &lt;div class="thecontainer"&gt;
- &lt;div id="observablehq-svg-b56d5ea5"&gt;&lt;/div&gt;
+  &lt;div id="observablehq-svg-ec9bc373"&gt;&lt;/div&gt;
+  &lt;div id="observablehq-styles-ec9bc373"&gt;&lt;/div&gt;
   &lt;div class="right-aligned"&gt;
     &lt;ul style="list-style-type:none;"&gt;
-      &lt;li&gt;&lt;div id="observablehq-viewof-bw_daten_LLRU-b56d5ea5"&gt;&lt;/div&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;div id="observablehq-styles-b56d5ea5"&gt;&lt;/div&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;div id="observablehq-viewof-showTruth-3d220834"&gt;&lt;/div&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;div id="observablehq-viewof-est-ec9bc373"&gt;&lt;/div&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;div id="observablehq-viewof-lowerPoly-ec9bc373"&gt;&lt;/div&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;div id="observablehq-viewof-upperPoly-ec9bc373"&gt;&lt;/div&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;div id="observablehq-viewof-bw_left-ec9bc373"&gt;&lt;/div&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;div id="observablehq-viewof-bw_right-ec9bc373"&gt;&lt;/div&gt;&lt;/li&gt;
     &lt;/ul&gt;
+  &lt;/div&gt;
 &lt;/div&gt;
-
 
 &lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@observablehq/inspector@5/dist/inspector.css"&gt;
 &lt;script type="module"&gt;
 import {Runtime, Inspector} from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@5/dist/runtime.js";
-import define from "https://api.observablehq.com/d/74f688f1119258d6@84.js?v=4";
+import define from "https://api.observablehq.com/d/74f688f1119258d6@224.js?v=4";
 new Runtime().module(define, name =&gt; {
-  if (name === "svg") return new Inspector(document.querySelector("#observablehq-svg-b56d5ea5"));
-  if (name === "viewof bw_daten_LLRU") return new Inspector(document.querySelector("#observablehq-viewof-bw_daten_LLRU-b56d5ea5"));
-  if (name === "styles") return new Inspector(document.querySelector("#observablehq-styles-b56d5ea5"));
+  if (name === "svg") return new Inspector(document.querySelector("#observablehq-svg-ec9bc373"));
+  if (name === "viewof est") return new Inspector(document.querySelector("#observablehq-viewof-est-ec9bc373"));
+  if (name === "viewof showTruth") return new Inspector(document.querySelector("#observablehq-viewof-showTruth-3d220834"));
+  if (name === "viewof lowerPoly") return new Inspector(document.querySelector("#observablehq-viewof-lowerPoly-ec9bc373"));
+  if (name === "viewof upperPoly") return new Inspector(document.querySelector("#observablehq-viewof-upperPoly-ec9bc373"));
+  if (name === "viewof bw_left") return new Inspector(document.querySelector("#observablehq-viewof-bw_left-ec9bc373"));
+  if (name === "viewof bw_right") return new Inspector(document.querySelector("#observablehq-viewof-bw_right-ec9bc373"));
+  if (name === "styles") return new Inspector(document.querySelector("#observablehq-styles-ec9bc373"));
 });
 &lt;/script&gt;
 
@@ -626,11 +636,11 @@ new Runtime().module(define, name =&gt; {
 &lt;br&gt;
 &lt;br&gt;
 &lt;div class="figure"&gt;
-<div id="htmlwidget-dab37835eaf802357568" style="width:100%;height:300px;" class="grViz html-widget"></div>
+<div id="htmlwidget-d76088b2f18b115f4247" style="width:100%;height:300px;" class="grViz html-widget "></div>
 <script>HTMLWidgets.pymChild = new pym.Child();HTMLWidgets.addPostRenderHandler(function(){
                                 setTimeout(function(){HTMLWidgets.pymChild.sendHeight();},100);
                             });</script>
-<script type="application/json" data-for="htmlwidget-dab37835eaf802357568">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n  bgcolor=transparent\n  imagescale=both\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"Running Variable\" [pos=\"0,2!\"]\n  \"Above Cutoff\" [pos=\"0,0!\"]\n  \"Treatment\" [pos=\"2,0!\"]\n  \"Z\" [pos=\"2,2!\"]\n  \"Outcome\" [pos=\"4,0!\"]\n\n  \n  \"Above Cutoff\" -> \"Treatment\"\n   \"Running Variable\" ->  \"Above Cutoff\"\n   \"Running Variable\" -> \"Outcome\"\n   \"Z\" -> \"Treatment\"\n   \"Treatment\" -> \"Outcome\"\n   \"Z\" ->  \"Running Variable\"\n   \"Z\" -> \"Outcome\"\n \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-d76088b2f18b115f4247">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n  bgcolor=transparent\n  imagescale=both\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"Running Variable\" [pos=\"0,2!\"]\n  \"Above Cutoff\" [pos=\"0,0!\"]\n  \"Treatment\" [pos=\"2,0!\"]\n  \"Z\" [pos=\"2,2!\"]\n  \"Outcome\" [pos=\"4,0!\"]\n\n  \n  \"Above Cutoff\" -> \"Treatment\"\n   \"Running Variable\" ->  \"Above Cutoff\"\n   \"Running Variable\" -> \"Outcome\"\n   \"Z\" -> \"Treatment\"\n   \"Treatment\" -> \"Outcome\"\n   \"Z\" ->  \"Running Variable\"\n   \"Z\" -> \"Outcome\"\n \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 &lt;p class="caption"&gt;11: A causal diagram that fuzzy regression discontinuity works for&lt;/p&gt;
 &lt;/div&gt;
 
@@ -658,7 +668,7 @@ new Runtime().module(define, name =&gt; {
 &lt;br&gt;
 IV divides the effect of the instrument on the outcome by the effect of the instrument on the endogenous/treatment variable.
 
-&amp;rarr; The effect of being *above* the cutoff on the outcome is scaled to account for the fact that being above the cutoff only leads to a partial increase in treatment rates.
+&amp;rarr; The effect of being *above* the cutoff on the outcome is scaled but divided to account for the fact that being above the cutoff only leads to a partial increase in treatment rates.
 
 ---
 # Fuzzy regression discontinuity
@@ -795,7 +805,7 @@ For this we inspect the distribution of the running variable around the cutoff:
 
 - If the running variable was randomly assigned without regard for the cutoff we expect its distribution to be smooth 
 
-- A distribution that seems to have a dip just to one side of the cutoff, with those observations sitting just on the other side, may indicate manipulation
+- A distribution that seems to have a dip just to one side of the cutoff, with those observations sitting just on the other side, this may indicate manipulation
 
 ---
 # The density discontinuity test
