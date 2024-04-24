@@ -545,9 +545,9 @@ Using assumptions and theory, construct statistical moments (means, variances, c
 
   &rarr; $\mu - E(Y) = 0$ is a moment condition for the estimation.
   
-- E. g., suppose we have  $Y_i \sim [0, a]$ and $E(Y) = \dfrac{a + b}{2} = \dfrac{a}{2}$
-- Plugging in the (G)MM sample estimator $\mu$ for $E(Y)$ results in $\displaystyle \mu = \dfrac{1}{N} \sum_{i = 1}^{N} Y_i = \dfrac{a}{2}$
-- Rearranging yields $a = 2 \cdot \mu = 2 \cdot \left( \dfrac{1}{N} \sum_{i = 1}^{N} Y_i \right)$
+- E. g., suppose we have  $Y_i \sim [0, a]$ and $E(Y) = \frac{a + b}{2} = \frac{a}{2}$
+- Plugging in the (G)MM sample estimator $\mu$ for $E(Y)$ results in $\displaystyle \mu = \frac{1}{N} \sum_{i = 1}^{N} Y_i = \dfrac{a}{2}$
+- Rearranging yields $\displaystyle a = 2 \cdot \mu = 2 \cdot \left( \frac{1}{N} \sum_{i = 1}^{N} Y_i \right)$
 ]
 
 ---
