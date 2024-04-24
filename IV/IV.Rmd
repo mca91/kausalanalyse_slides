@@ -538,21 +538,16 @@ Instrumental Variable can be estimated using Two-stage least squares (2SLS). The
 
 Using assumptions and theory, construct statistical moments (means, variances, covariances, etc.) that should have certain values. Use sample versions of these moments to estimate the quantity of interest
 
-.blockquote[
-### Example: The sample mean is a GMM estimator of the expected value $\mu = E(Y)$
+.blockquote.font90[
+### Example: The sample mean is a GMM estimator of the expected value 
 
-- The GMM estimator, demands that the difference between the estimator of $\mu$ and the population expected value $E(Y)$ should be zero 
+- The GMM estimator, demands that the difference between the estimator $\mu$ and the population expected value $E(Y)$ should be zero 
 
   &rarr; $\mu - E(Y) = 0$ is a moment condition for the estimation.
   
-- E. g., suppose we have  $Y_i \sim [0, a]$
-- Also $E(Y) = \dfrac{a + b}{2} = \dfrac{a}{2}$
-- Plugging in the (G)MM sample estimator $\bar(y)$ for $E(Y)$ results in $\bar(y)= \dfrac{1}{N} \sum_{i = 1}^{N} Y_i = \dfrac{a}{2}$
-- Rearranging yields $a = 2 \cdot \bar(y)$
-
-- Replace $E(Y)$ with its sample value $\frac{1}{N}\sum Y$ and solve the equation to get $\widehat{\mu} = \frac{1}{N}\sum Y$
-
-- GMM will pick the $\mu$ that makes the moment condition true, on average.
+- E. g., suppose we have  $Y_i \sim [0, a]$ and $E(Y) = \dfrac{a + b}{2} = \dfrac{a}{2}$
+- Plugging in the (G)MM sample estimator $\mu$ for $E(Y)$ results in $\mu = \dfrac{1}{N} \sum_{i = 1}^{N} Y_i = \dfrac{a}{2}$
+- Rearranging yields $a = 2 \cdot \mu = 2 \cdot \left( \dfrac{1}{N} \sum_{i = 1}^{N} Y_i \right)$
 ]
 
 ---
