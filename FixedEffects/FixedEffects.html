@@ -129,11 +129,11 @@ Fixed effects is a method of controlling for all variables, whether they are obs
 
 
 &lt;div class="figure"&gt;
-<div id="htmlwidget-45629c38b6cde398a7a6" style="width:100%;height:300px;" class="grViz html-widget"></div>
+<div id="htmlwidget-d8ec0c1cbcaaa2bf8c1f" style="width:100%;height:300px;" class="grViz html-widget "></div>
 <script>HTMLWidgets.pymChild = new pym.Child();HTMLWidgets.addPostRenderHandler(function(){
                                 setTimeout(function(){HTMLWidgets.pymChild.sendHeight();},100);
                             });</script>
-<script type="application/json" data-for="htmlwidget-45629c38b6cde398a7a6">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n   bgcolor=transparent\n  imagescale=both\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"ChancellorVisit\" [pos=\"0,0!\",  fontcolor=\"red\"]\n  \"CurrentPolitics\" [pos=\"0,1!\"]\n  \"CultureOfPopulation\" [pos=\"2,2!\"]\n  \"Geography\" [pos=\"2,1!\"]\n  \"TradeWithGermany\" [pos=\"4,0!\",  fontcolor=\"red\"]\n  \"HistoryWithGermany\" [pos=\"4,1!\"]\n\n  \n  \"ChancellorVisit\" -> \"TradeWithGermany\" [color = \"red\"]\n   \"CurrentPolitics\" ->  \"ChancellorVisit\"\n  \"CurrentPolitics\" -> \"TradeWithGermany\"\n  \"HistoryWithGermany\" -> \"ChancellorVisit\"\n  \"HistoryWithGermany\" -> \"TradeWithGermany\"\n  \"Geography\" -> \"ChancellorVisit\"\n   \"Geography\"  -> \"TradeWithGermany\"\n   \"CultureOfPopulation\" -> \"ChancellorVisit\"\n   \"CultureOfPopulation\"  -> \"TradeWithGermany\"\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-d8ec0c1cbcaaa2bf8c1f">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n   bgcolor=transparent\n  imagescale=both\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"ChancellorVisit\" [pos=\"0,0!\",  fontcolor=\"red\"]\n  \"CurrentPolitics\" [pos=\"0,1!\"]\n  \"CultureOfPopulation\" [pos=\"2,2!\"]\n  \"Geography\" [pos=\"2,1!\"]\n  \"TradeWithGermany\" [pos=\"4,0!\",  fontcolor=\"red\"]\n  \"HistoryWithGermany\" [pos=\"4,1!\"]\n\n  \n  \"ChancellorVisit\" -> \"TradeWithGermany\" [color = \"red\"]\n   \"CurrentPolitics\" ->  \"ChancellorVisit\"\n  \"CurrentPolitics\" -> \"TradeWithGermany\"\n  \"HistoryWithGermany\" -> \"ChancellorVisit\"\n  \"HistoryWithGermany\" -> \"TradeWithGermany\"\n  \"Geography\" -> \"ChancellorVisit\"\n   \"Geography\"  -> \"TradeWithGermany\"\n   \"CultureOfPopulation\" -> \"ChancellorVisit\"\n   \"CultureOfPopulation\"  -> \"TradeWithGermany\"\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 &lt;p class="caption"&gt;2: Causes of trade with Germany&lt;/p&gt;
 &lt;/div&gt;
 
@@ -166,11 +166,11 @@ The effect can be identified *without* controlling for each of the variables &am
 
 
 &lt;div class="figure"&gt;
-<div id="htmlwidget-2290fc1dcf512701b609" style="width:100%;height:300px;" class="grViz html-widget"></div>
+<div id="htmlwidget-dadd4a96e15b2c6c1ef7" style="width:100%;height:300px;" class="grViz html-widget "></div>
 <script>HTMLWidgets.pymChild = new pym.Child();HTMLWidgets.addPostRenderHandler(function(){
                                 setTimeout(function(){HTMLWidgets.pymChild.sendHeight();},100);
                             });</script>
-<script type="application/json" data-for="htmlwidget-2290fc1dcf512701b609">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n  bgcolor=transparent\n  imagescale=both\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"ChancellorVisit\" [pos=\"0,0!\"]\n  \"CurrentPolitics\" [pos=\"0,2!\"]\n  \"TradeWithGermany\" [pos=\"4,0!\"]\n  \"Country\" [pos=\"4,2!\"]\n\n  \n  \"ChancellorVisit\" -> \"TradeWithGermany\"\n   \"CurrentPolitics\" ->  \"ChancellorVisit\"\n  \"CurrentPolitics\" -> \"TradeWithGermany\"\n   \"Country\" -> \"ChancellorVisit\"\n   \"Country\"  -> \"TradeWithGermany\"\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-dadd4a96e15b2c6c1ef7">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n  bgcolor=transparent\n  imagescale=both\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"ChancellorVisit\" [pos=\"0,0!\"]\n  \"CurrentPolitics\" [pos=\"0,2!\"]\n  \"TradeWithGermany\" [pos=\"4,0!\"]\n  \"Country\" [pos=\"4,2!\"]\n\n  \n  \"ChancellorVisit\" -> \"TradeWithGermany\"\n   \"CurrentPolitics\" ->  \"ChancellorVisit\"\n  \"CurrentPolitics\" -> \"TradeWithGermany\"\n   \"Country\" -> \"ChancellorVisit\"\n   \"Country\"  -> \"TradeWithGermany\"\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 &lt;p class="caption"&gt;4: Simplified causes of trade with Germany&lt;/p&gt;
 &lt;/div&gt;
 
@@ -479,6 +479,38 @@ variables*, including our treatment variable
 - For this reason, fixed effects is almost always preferred to random effects
 
 - The **Durbin-Wu-Hausman test** is useful in this context.
+
+---
+# Fixed effects vs. random effects
+#### A comparison of panel estimators
+
+&lt;div class="thecontainer"&gt;
+  &lt;div id="observablehq-theplot-feda76a0"&gt;&lt;/div&gt;
+  &lt;div class="right-aligned"&gt;
+    &lt;ul style="list-style-type:none;"&gt;
+      &lt;li&gt;&lt;div id="observablehq-viewof-showgroups-feda76a0"&gt;&lt;/div&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;div id="observablehq-viewof-showdgp-feda76a0"&gt;&lt;/div&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;div id="observablehq-viewof-regtype-feda76a0"&gt;&lt;/div&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="observablehq-viewof-showgroups-feda76a0"&gt;&lt;/div&gt;
+&lt;div id="observablehq-viewof-showdgp-feda76a0"&gt;&lt;/div&gt;
+&lt;div id="observablehq-viewof-regtype-feda76a0"&gt;&lt;/div&gt;
+
+
+&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@observablehq/inspector@5/dist/inspector.css"&gt;
+&lt;script type="module"&gt;
+import {Runtime, Inspector} from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@5/dist/runtime.js";
+import define from "https://api.observablehq.com/@mca91/panelcomp@252.js?v=4";
+new Runtime().module(define, name =&gt; {
+  if (name === "viewof showgroups") return new Inspector(document.querySelector("#observablehq-viewof-showgroups-feda76a0"));
+  if (name === "viewof showdgp") return new Inspector(document.querySelector("#observablehq-viewof-showdgp-feda76a0"));
+  if (name === "viewof regtype") return new Inspector(document.querySelector("#observablehq-viewof-regtype-feda76a0"));
+  if (name === "theplot") return new Inspector(document.querySelector("#observablehq-theplot-feda76a0"));
+});
+&lt;/script&gt;
 
 ---
 # Fixed effects vs. random effects
