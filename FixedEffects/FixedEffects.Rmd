@@ -605,6 +605,38 @@ variables*, including our treatment variable
 
 ---
 # Fixed effects vs. random effects
+#### A comparison of panel estimators
+
+<div class="thecontainer">
+  <div id="observablehq-theplot-feda76a0"></div>
+  <div class="right-aligned">
+    <ul style="list-style-type:none;">
+      <li><div id="observablehq-viewof-showgroups-feda76a0"></div></li>
+      <li><div id="observablehq-viewof-showdgp-feda76a0"></div></li>
+      <li><div id="observablehq-viewof-regtype-feda76a0"></div></li>
+    </ul>
+  </div>
+</div>
+
+<div id="observablehq-viewof-showgroups-feda76a0"></div>
+<div id="observablehq-viewof-showdgp-feda76a0"></div>
+<div id="observablehq-viewof-regtype-feda76a0"></div>
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@observablehq/inspector@5/dist/inspector.css">
+<script type="module">
+import {Runtime, Inspector} from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@5/dist/runtime.js";
+import define from "https://api.observablehq.com/@mca91/panelcomp@252.js?v=4";
+new Runtime().module(define, name => {
+  if (name === "viewof showgroups") return new Inspector(document.querySelector("#observablehq-viewof-showgroups-feda76a0"));
+  if (name === "viewof showdgp") return new Inspector(document.querySelector("#observablehq-viewof-showdgp-feda76a0"));
+  if (name === "viewof regtype") return new Inspector(document.querySelector("#observablehq-viewof-regtype-feda76a0"));
+  if (name === "theplot") return new Inspector(document.querySelector("#observablehq-theplot-feda76a0"));
+});
+</script>
+
+---
+# Fixed effects vs. random effects
 
 <br><br>
 
