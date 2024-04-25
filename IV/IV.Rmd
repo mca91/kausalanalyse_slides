@@ -542,8 +542,8 @@ Using assumptions and theory, construct statistical moments (means, variances, c
 ### Example: GMM estimator for the upper bound of a uniform RV
 
 - (G)MM expresses population moments (e.g., the expected value) as functions of the parameter(s). Those expressions are then set equal to the sample moments and solved for the parameters.
-- E.g., suppose we have  $Y_i \sim U[0, a]$ such that $E(Y) = \frac{a + b}{2} = \frac{a}{2}$
-- Plugging in the sample average yield $\mu$ for $E(Y)$ results in $\displaystyle \mu = \frac{1}{N} \sum_{i = 1}^{N} Y_i = \dfrac{\hat{a}}{2}$
+- E.g., suppose we have  $Y_i \sim U[0, a]$ such that $E(Y) = \frac{a}{2}$
+- Plugging in the sample average for $E(Y)$ results in $\displaystyle \frac{1}{N} \sum_{i = 1}^{N} Y_i = \dfrac{\hat{a}}{2}$
 - Rearranging yields $\displaystyle \hat{a} = 2 \cdot \left( \frac{1}{N} \sum_{i = 1}^{N} Y_i \right)$
 ]
 
