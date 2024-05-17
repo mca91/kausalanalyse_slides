@@ -165,11 +165,11 @@ People close to the cutoff need to effectively be randomly assigned. We must rul
 
 &lt;br&gt;
 &lt;div class="figure"&gt;
-<div id="htmlwidget-0fe01f754be72081a6c3" style="width:100%;height:250px;" class="grViz html-widget "></div>
+<div id="htmlwidget-9e778f43e4a59d29f950" style="width:100%;height:250px;" class="grViz html-widget"></div>
 <script>HTMLWidgets.pymChild = new pym.Child();HTMLWidgets.addPostRenderHandler(function(){
                                 setTimeout(function(){HTMLWidgets.pymChild.sendHeight();},100);
                             });</script>
-<script type="application/json" data-for="htmlwidget-0fe01f754be72081a6c3">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n  bgcolor=transparent\n  imagescale=both\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"Running Variable\" [pos=\"0,2!\"]\n  \"Above Cutoff\" [pos=\"0,0!\"]\n  \"Treatment\" [pos=\"2,0!\"]\n  \"Z\" [pos=\"2,2!\"]\n  \"Outcome\" [pos=\"4,0!\"]\n\n  \n  \"Above Cutoff\" -> \"Treatment\"\n   \"Running Variable\" ->  \"Above Cutoff\"\n   \"Running Variable\" -> \"Outcome\"\n   \"Treatment\" -> \"Outcome\"\n   \"Z\" ->  \"Running Variable\"\n   \"Z\" -> \"Outcome\"\n \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-9e778f43e4a59d29f950">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n  bgcolor=transparent\n  imagescale=both\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"Running Variable\" [pos=\"0,2!\"]\n  \"Above Cutoff\" [pos=\"0,0!\"]\n  \"Treatment\" [pos=\"2,0!\"]\n  \"Z\" [pos=\"2,2!\"]\n  \"Outcome\" [pos=\"4,0!\"]\n\n  \n  \"Above Cutoff\" -> \"Treatment\"\n   \"Running Variable\" ->  \"Above Cutoff\"\n   \"Running Variable\" -> \"Outcome\"\n   \"Treatment\" -> \"Outcome\"\n   \"Z\" ->  \"Running Variable\"\n   \"Z\" -> \"Outcome\"\n \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 &lt;p class="caption"&gt;2: A causal diagram that regression discontinuity works for&lt;/p&gt;
 &lt;/div&gt;
 
@@ -636,12 +636,12 @@ new Runtime().module(define, name =&gt; {
 &lt;br&gt;
 &lt;br&gt;
 &lt;div class="figure"&gt;
-<div id="htmlwidget-d76088b2f18b115f4247" style="width:100%;height:300px;" class="grViz html-widget "></div>
+<div id="htmlwidget-0c75d90cfe4973bb2cb3" style="width:100%;height:300px;" class="grViz html-widget"></div>
 <script>HTMLWidgets.pymChild = new pym.Child();HTMLWidgets.addPostRenderHandler(function(){
                                 setTimeout(function(){HTMLWidgets.pymChild.sendHeight();},100);
                             });</script>
-<script type="application/json" data-for="htmlwidget-d76088b2f18b115f4247">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n  bgcolor=transparent\n  imagescale=both\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"Running Variable\" [pos=\"0,2!\"]\n  \"Above Cutoff\" [pos=\"0,0!\"]\n  \"Treatment\" [pos=\"2,0!\"]\n  \"Z\" [pos=\"2,2!\"]\n  \"Outcome\" [pos=\"4,0!\"]\n\n  \n  \"Above Cutoff\" -> \"Treatment\"\n   \"Running Variable\" ->  \"Above Cutoff\"\n   \"Running Variable\" -> \"Outcome\"\n   \"Z\" -> \"Treatment\"\n   \"Treatment\" -> \"Outcome\"\n   \"Z\" ->  \"Running Variable\"\n   \"Z\" -> \"Outcome\"\n \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
-&lt;p class="caption"&gt;11: A causal diagram that fuzzy regression discontinuity works for&lt;/p&gt;
+<script type="application/json" data-for="htmlwidget-0c75d90cfe4973bb2cb3">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n  bgcolor=transparent\n  imagescale=both\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"Running Variable\" [pos=\"0,2!\"]\n  \"Above Cutoff\" [pos=\"0,0!\"]\n  \"Treatment\" [pos=\"2,0!\"]\n  \"Z\" [pos=\"2,2!\"]\n  \"Outcome\" [pos=\"4,0!\"]\n\n  \n  \"Above Cutoff\" -> \"Treatment\"\n   \"Running Variable\" ->  \"Above Cutoff\"\n   \"Running Variable\" -> \"Outcome\"\n   \"Running Variable\" -> \"Treatment\"\n   \"Z\" -> \"Treatment\"\n   \"Treatment\" -> \"Outcome\"\n   \"Z\" ->  \"Running Variable\"\n   \"Z\" -> \"Outcome\"\n \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+&lt;p class="caption"&gt;10: A causal diagram that fuzzy regression discontinuity works for&lt;/p&gt;
 &lt;/div&gt;
 
 ---
@@ -716,8 +716,8 @@ IV divides the effect of the instrument on the outcome by the effect of the inst
 .blockquote[
 ### Example: Effect of mortgage subsidies on home ownership (Fetter 2013)
 &lt;div class="figure" style="text-align: center"&gt;
-&lt;img src="RDD_files/figure-html/unnamed-chunk-15-1.png" alt="12: Eligibility for mortgage subsidies for being a Korean war veteran and home ownership from Fetter (2013)" width="70%" style="display:block; margin-right:auto; margin-left:auto;" /&gt;
-&lt;p class="caption"&gt;12: Eligibility for mortgage subsidies for being a Korean war veteran and home ownership from Fetter (2013)&lt;/p&gt;
+&lt;img src="RDD_files/figure-html/unnamed-chunk-15-1.png" alt="11: Eligibility for mortgage subsidies for being a Korean war veteran and home ownership from Fetter (2013)" width="70%" style="display:block; margin-right:auto; margin-left:auto;" /&gt;
+&lt;p class="caption"&gt;11: Eligibility for mortgage subsidies for being a Korean war veteran and home ownership from Fetter (2013)&lt;/p&gt;
 &lt;/div&gt;
 ]]
 
@@ -772,8 +772,8 @@ Keep in mind that, since we can run placebo tests on a long list of potential pl
 ### Example: Manacorda et al. (2011)
 
 &lt;div class="figure" style="text-align: center"&gt;
-&lt;img src="RDD_files/figure-html/unnamed-chunk-16-1.png" alt="13: Performing regression discontinuity with controls as outcomes for a placebo test" width="70%" style="display:block; margin-right:auto; margin-left:auto;" /&gt;
-&lt;p class="caption"&gt;13: Performing regression discontinuity with controls as outcomes for a placebo test&lt;/p&gt;
+&lt;img src="RDD_files/figure-html/unnamed-chunk-16-1.png" alt="12: Performing regression discontinuity with controls as outcomes for a placebo test" width="70%" style="display:block; margin-right:auto; margin-left:auto;" /&gt;
+&lt;p class="caption"&gt;12: Performing regression discontinuity with controls as outcomes for a placebo test&lt;/p&gt;
 &lt;/div&gt;
 
 ]]
@@ -828,8 +828,8 @@ For this we inspect the distribution of the running variable around the cutoff:
 .blockquote[
 ### Example: Manacorda et al. (2011)
 &lt;div class="figure" style="text-align: center"&gt;
-&lt;img src="RDD_files/figure-html/unnamed-chunk-17-1.png" alt="14: Distribution of the binned running variable" width="75%" style="display:block; margin-right:auto; margin-left:auto;margin-top:40px;" /&gt;
-&lt;p class="caption"&gt;14: Distribution of the binned running variable&lt;/p&gt;
+&lt;img src="RDD_files/figure-html/unnamed-chunk-17-1.png" alt="13: Distribution of the binned running variable" width="75%" style="display:block; margin-right:auto; margin-left:auto;margin-top:40px;" /&gt;
+&lt;p class="caption"&gt;13: Distribution of the binned running variable&lt;/p&gt;
 &lt;/div&gt;
 ]
 
@@ -842,8 +842,8 @@ For this we inspect the distribution of the running variable around the cutoff:
 - The treatment administered at the cutoff does not make the outcome itself change/jump&amp;mdash;it changes the *strength* of the relationship between outcome and the running variable 
 
 &lt;div class="figure" style="text-align: center"&gt;
-&lt;img src="RDD_files/figure-html/unnamed-chunk-18-1.png" alt="15: Regression kink on simulated data" width="55%" style="display:block; margin-right:auto; margin-left:auto;" /&gt;
-&lt;p class="caption"&gt;15: Regression kink on simulated data&lt;/p&gt;
+&lt;img src="RDD_files/figure-html/unnamed-chunk-18-1.png" alt="14: Regression kink on simulated data" width="55%" style="display:block; margin-right:auto; margin-left:auto;" /&gt;
+&lt;p class="caption"&gt;14: Regression kink on simulated data&lt;/p&gt;
 &lt;/div&gt;
 
 ---
@@ -889,8 +889,8 @@ For this we inspect the distribution of the running variable around the cutoff:
 .blockquote[
 ### Example: Treatment-has-a-kink
 &lt;div class="figure" style="text-align: center"&gt;
-&lt;img src="RDD_files/figure-html/unnamed-chunk-19-1.png" alt="16: Paid family leave benefits and pre-leave Earnings" width="60%" style="display:block; margin-right:auto; margin-left:auto;" /&gt;
-&lt;p class="caption"&gt;16: Paid family leave benefits and pre-leave Earnings&lt;/p&gt;
+&lt;img src="RDD_files/figure-html/unnamed-chunk-19-1.png" alt="15: Paid family leave benefits and pre-leave Earnings" width="60%" style="display:block; margin-right:auto; margin-left:auto;" /&gt;
+&lt;p class="caption"&gt;15: Paid family leave benefits and pre-leave Earnings&lt;/p&gt;
 &lt;/div&gt;
 &lt;br&gt;
 ]]
@@ -919,8 +919,8 @@ For this we inspect the distribution of the running variable around the cutoff:
 ### Example: Treatment-has-a-kink regression kink design
 
 &lt;div class="figure" style="text-align: center"&gt;
-&lt;img src="RDD_files/figure-html/unnamed-chunk-20-1.png" alt="17: Log leave duration or proportion claiming leave again and pre-leave earnings" width="90%" style="display:block; margin-right:auto; margin-left:auto;margin-top:40px;" /&gt;
-&lt;p class="caption"&gt;17: Log leave duration or proportion claiming leave again and pre-leave earnings&lt;/p&gt;
+&lt;img src="RDD_files/figure-html/unnamed-chunk-20-1.png" alt="16: Log leave duration or proportion claiming leave again and pre-leave earnings" width="90%" style="display:block; margin-right:auto; margin-left:auto;margin-top:40px;" /&gt;
+&lt;p class="caption"&gt;16: Log leave duration or proportion claiming leave again and pre-leave earnings&lt;/p&gt;
 &lt;/div&gt;
 &lt;br&gt;
 ]

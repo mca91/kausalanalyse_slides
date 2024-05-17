@@ -916,7 +916,7 @@ msummary(
 ---
 # Fuzzy regression discontinuity
 
-```{r, echo=F, cache=F, out.extra = 'style="display:block; margin-right:auto; margin-left:auto;"', fig.height=3.5, out.width='60%', dpi=190, fig.cap=paste0(fig_counter(), ': A causal diagram that fuzzy regression discontinuity works for'), fig.align='center',include=FALSE}
+```{r, echo=F, cache=F, out.extra = 'style="display:block; margin-right:auto; margin-left:auto;"', fig.height=3.5, out.width='60%', dpi=190, fig.cap=paste0(': A causal diagram that fuzzy regression discontinuity works for'), fig.align='center',include=FALSE}
 coord_dag <- list(
   x = c(a = 1, b = 3, c = 5, d = 1,e=3 ),
   y = c(a = 1, b = 1, c = 1, d = 2,e=2 )

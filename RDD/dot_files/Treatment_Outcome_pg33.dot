@@ -16,6 +16,7 @@ digraph "Causal Diagramm RDD" {
   "Above Cutoff" -> "Treatment"
    "Running Variable" ->  "Above Cutoff"
    "Running Variable" -> "Outcome"
+   "Running Variable" -> "Treatment"
    "Z" -> "Treatment"
    "Treatment" -> "Outcome"
    "Z" ->  "Running Variable"
