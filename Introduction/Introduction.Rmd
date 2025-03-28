@@ -87,7 +87,8 @@ The slides closely follow the exposition in _The Effect_ by Nick Huntington-Klei
 
 - The examinations will be *oral*.
 
-  You will present a (`R`-based) solution to a small case study assignment and answer further questions on topics covered in both lectures and tutorials in a subsequent discussion (40 minutes total).
+  You will answer questions on topics covered in both lectures and tutorials in a discussion (40 minutes total). 
+  <!-- present a (`R`-based) solution to a small case study assignment and  -->
 
 - Tentative examination dates are June 28<sup>th</sup> and July 19<sup>th</sup>. Please see the [faculty page](https://www.wiwi.uni-due.de/studium/studienorganisation/pruefungen/pruefungstermine/) for updates.
 
