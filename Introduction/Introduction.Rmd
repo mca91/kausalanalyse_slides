@@ -25,7 +25,7 @@ layout: true
 
 **Moodle**
 
-Slides, exercises and announcements will be provided in [this moodle course](https://moodle.uni-due.de/course/view.php?id=44280) (PW: theeffect) 
+Slides, exercises and announcements will be provided in [this moodle course](https://moodle.uni-due.de/course/view.php?id=44280) (PW: TheEffect25) 
 
 <p style="margin-bottom:40px"></p>
 
