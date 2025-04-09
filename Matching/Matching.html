@@ -45,7 +45,7 @@ class: center, middle, inverse, title-slide
 ### Christoph Hanck
 ]
 .date[
-### Summer 2024
+### Summer 2025
 ]
 
 ---
@@ -307,7 +307,7 @@ new Runtime().module(define, name =&gt; {
 
 .font90[
 
-```r
+``` r
 ## library(Matching) # Package for matching
 br &lt;- causaldata::black_politicians
 
@@ -345,7 +345,7 @@ summary(M)
 
 .font90[
 
-```r
+``` r
 X.s &lt;- X/sd(X)        # standardize
 X.s.T &lt;- X.s[D==1]    # matching variable observations for treated observations
 X.s.C &lt;- X.s[D==0]    # matching variable observations for control observations
@@ -1230,13 +1230,13 @@ We can obtain the average treatment effect (ATE), the average treatment effect o
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script src="../assets/remark-zoom.js"></script>
 <script>var slideshow = remark.create({
-"highlightStyle": "github",
-"highlightLines": true,
-"countIncrementalSlides": false,
-"ratio": "16:9",
-"navigation": {
-"scroll": false
-}
+  "highlightStyle": "github",
+  "highlightLines": true,
+  "countIncrementalSlides": false,
+  "ratio": "16:9",
+  "navigation": {
+    "scroll": false
+  }
 });
 if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   window.dispatchEvent(new Event('resize'));

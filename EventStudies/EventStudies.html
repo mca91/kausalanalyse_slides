@@ -45,7 +45,7 @@ class: center, middle, inverse, title-slide
 ### Christoph Hanck
 ]
 .date[
-### Summer 2024
+### Summer 2025
 ]
 
 ---
@@ -121,11 +121,11 @@ Event studies are designed to work in cases where the relevant causal diagram lo
 
 
 &lt;div class="figure"&gt;
-<div id="htmlwidget-0dfcfb5112c05fd5cc71" style="width:100%;height:300px;" class="grViz html-widget "></div>
+<div id="htmlwidget-64043ac70d76b5c5c648" style="width:100%;height:300px;" class="grViz html-widget"></div>
 <script>HTMLWidgets.pymChild = new pym.Child();HTMLWidgets.addPostRenderHandler(function(){
                                 setTimeout(function(){HTMLWidgets.pymChild.sendHeight();},100);
                             });</script>
-<script type="application/json" data-for="htmlwidget-0dfcfb5112c05fd5cc71">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n  bgcolor=transparent\n  imagescale=both\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"Time\" [pos=\"2,2!\"]\n  \"AfterEvent\" [pos=\"0,0!\"]\n  \"Treatment\" [pos=\"2,0!\"]\n  \"Outcome\" [pos=\"4,0!\"]\n\n  \n  \"Time\" -> \"AfterEvent\"\n   \"Time\" ->  \"Outcome\"\n  \"AfterEvent\" -> \"Treatment\"\n   \"Treatment\" -> \"Outcome\"\n  \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-64043ac70d76b5c5c648">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n  bgcolor=transparent\n  imagescale=both\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"Time\" [pos=\"2,2!\"]\n  \"AfterEvent\" [pos=\"0,0!\"]\n  \"Treatment\" [pos=\"2,0!\"]\n  \"Outcome\" [pos=\"4,0!\"]\n\n  \n  \"Time\" -> \"AfterEvent\"\n   \"Time\" ->  \"Outcome\"\n  \"AfterEvent\" -> \"Treatment\"\n   \"Treatment\" -> \"Outcome\"\n  \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 &lt;p class="caption"&gt;1: Causal diagram that event studies work for&lt;/p&gt;
 &lt;/div&gt;
 ---
@@ -645,13 +645,13 @@ The application of placebo testing in event studies has been around a long time.
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script src="../assets/remark-zoom.js"></script>
 <script>var slideshow = remark.create({
-"highlightStyle": "github",
-"highlightLines": true,
-"countIncrementalSlides": false,
-"ratio": "16:9",
-"navigation": {
-"scroll": false
-}
+  "highlightStyle": "github",
+  "highlightLines": true,
+  "countIncrementalSlides": false,
+  "ratio": "16:9",
+  "navigation": {
+    "scroll": false
+  }
 });
 if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   window.dispatchEvent(new Event('resize'));
