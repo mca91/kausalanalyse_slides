@@ -4,15 +4,15 @@
     <title>Causal Diagrams</title>
     <meta charset="utf-8" />
     <meta name="author" content="Christoph Hanck" />
-    <script src="CausalDiagrams_files/header-attrs-2.26/header-attrs.js"></script>
+    <script src="CausalDiagrams_files/header-attrs-2.29/header-attrs.js"></script>
     <link href="CausalDiagrams_files/remark-css-0.0.1/default.css" rel="stylesheet" />
     <script src="CausalDiagrams_files/xaringanExtra-progressBar-0.0.1/progress-bar.js"></script>
     <script src="CausalDiagrams_files/clipboard-2.0.6/clipboard.min.js"></script>
     <link href="CausalDiagrams_files/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.css" rel="stylesheet" />
     <script src="CausalDiagrams_files/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.js"></script>
     <script>window.xaringanExtraClipboard(null, {"button":"<i class=\"fa fa-clipboard\"><\/i>","success":"<i class=\"fa fa-check\" style=\"color: #00ff00\"><\/i>","error":"<i class=\"fa fa-times-circle\" style=\"color: #F94144\"><\/i>"})</script>
-    <link href="CausalDiagrams_files/font-awesome-6.4.2/css/all.min.css" rel="stylesheet" />
-    <link href="CausalDiagrams_files/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet" />
+    <link href="CausalDiagrams_files/font-awesome-6.5.2/css/all.min.css" rel="stylesheet" />
+    <link href="CausalDiagrams_files/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet" />
     <script src="CausalDiagrams_files/htmlwidgets-1.6.4/htmlwidgets.js"></script>
     <script src="CausalDiagrams_files/viz-1.8.2/viz.js"></script>
     <link href="CausalDiagrams_files/DiagrammeR-styles-0.2/styles.css" rel="stylesheet" />
@@ -45,7 +45,7 @@ class: center, middle, inverse, title-slide
 ### Christoph Hanck
 ]
 .date[
-### Summer 2024
+### Summer 2025
 ]
 
 ---
@@ -311,11 +311,11 @@ We have...
 
 
 &lt;div class="figure"&gt;
-<div id="htmlwidget-8688a1da48cf91791eb4" style="width:100%;height:80px;" class="grViz html-widget"></div>
+<div id="htmlwidget-019484d4c5be8b02b09e" style="width:100%;height:80px;" class="grViz html-widget"></div>
 <script>HTMLWidgets.pymChild = new pym.Child();HTMLWidgets.addPostRenderHandler(function(){
                                 setTimeout(function(){HTMLWidgets.pymChild.sendHeight();},100);
                             });</script>
-<script type="application/json" data-for="htmlwidget-8688a1da48cf91791eb4">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n  bgcolor=transparent\n  imagescale=both\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"Coin flip (X)\" [pos=\"0,1!\"]\n  \"Cake (Y)\" [pos=\"3,1!\"]\n  \"Coin flip (X)\" -> \"Cake (Y)\"\n  \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-019484d4c5be8b02b09e">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n  bgcolor=transparent\n  imagescale=both\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"Coin flip (X)\" [pos=\"0,1!\"]\n  \"Cake (Y)\" [pos=\"3,1!\"]\n  \"Coin flip (X)\" -> \"Cake (Y)\"\n  \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 &lt;p class="caption"&gt;2: A simple causal diagram&lt;/p&gt;
 &lt;/div&gt;
 
@@ -353,11 +353,11 @@ Ice-cream sales (X) are high when people wear shorts (Y). However, there is no c
 
 &lt;br&gt;
 &lt;div class="figure"&gt;
-<div id="htmlwidget-742bb726f1119cd06ee9" style="width:100%;height:200px;" class="grViz html-widget"></div>
+<div id="htmlwidget-a8384f13d9b42e94813b" style="width:100%;height:200px;" class="grViz html-widget"></div>
 <script>HTMLWidgets.pymChild = new pym.Child();HTMLWidgets.addPostRenderHandler(function(){
                                 setTimeout(function(){HTMLWidgets.pymChild.sendHeight();},100);
                             });</script>
-<script type="application/json" data-for="htmlwidget-742bb726f1119cd06ee9">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n  bgcolor=transparent\n  imagescale=both\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"Weather (U)\" [pos=\"1,1!\"]\n  \"Shorts (X)\" [pos=\"0,0!\"]\n  \"Ice-Cream (Y)\" [pos=\"2,0!\"]\n  \"Weather (U)\" -> \"Shorts (X)\"\n  \"Weather (U)\" -> \"Ice-Cream (Y)\"\n  \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-a8384f13d9b42e94813b">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n  bgcolor=transparent\n  imagescale=both\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"Weather (U)\" [pos=\"1,1!\"]\n  \"Shorts (X)\" [pos=\"0,0!\"]\n  \"Ice-Cream (Y)\" [pos=\"2,0!\"]\n  \"Weather (U)\" -> \"Shorts (X)\"\n  \"Weather (U)\" -> \"Ice-Cream (Y)\"\n  \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 &lt;p class="caption"&gt;4: Unobserved variable&lt;/p&gt;
 &lt;/div&gt;
 
@@ -406,11 +406,11 @@ It's a balancing act &amp;mdash; omitting movies is okay, omitting the poverty r
 
 &lt;br&gt;&lt;br&gt;
 &lt;div class="figure"&gt;
-<div id="htmlwidget-7c2f5ef93174e8649f14" style="width:100%;height:350px;" class="grViz html-widget"></div>
+<div id="htmlwidget-c515e540a44ae896b8bc" style="width:100%;height:350px;" class="grViz html-widget"></div>
 <script>HTMLWidgets.pymChild = new pym.Child();HTMLWidgets.addPostRenderHandler(function(){
                                 setTimeout(function(){HTMLWidgets.pymChild.sendHeight();},100);
                             });</script>
-<script type="application/json" data-for="htmlwidget-7c2f5ef93174e8649f14">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n   bgcolor=transparent\n  imagescale=both\n  fontsize=25\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"Law and Order politics\" [pos=\"0,2!\",  fontcolor=\"red\"]\n  \"Sentencing Laws\" [pos=\"3,2!\"]\n  \"Expected Crime Payouts\" [pos=\"6,2!\", fontcolor=\"red\"]\n   \"Police per Capita\" [pos=\"3,1!\"]\n  \"Lagged crime\" [pos=\"0,0!\"]\n  \"Crime\" [pos=\"6,0!\"]\n  \"Law and Order politics\" -> \"Police per Capita\"\n  \"Lagged crime\" -> \"Sentencing Laws\"\n  \"Law and Order politics\" -> \"Sentencing Laws\"\n  \"Lagged crime\" -> \"Police per Capita\" \n  \"Lagged crime\" -> \"Crime\"\n  \"Sentencing Laws\" ->  \"Expected Crime Payouts\"\n  \"Expected Crime Payouts\" -> \"Crime\"\n  \"Police per Capita\" -> \"Expected Crime Payouts\"\n  \"Police per Capita\" -> \"Crime\"\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-c515e540a44ae896b8bc">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n   bgcolor=transparent\n  imagescale=both\n  fontsize=25\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"Law and Order politics\" [pos=\"0,2!\",  fontcolor=\"red\"]\n  \"Sentencing Laws\" [pos=\"3,2!\"]\n  \"Expected Crime Payouts\" [pos=\"6,2!\", fontcolor=\"red\"]\n   \"Police per Capita\" [pos=\"3,1!\"]\n  \"Lagged crime\" [pos=\"0,0!\"]\n  \"Crime\" [pos=\"6,0!\"]\n  \"Law and Order politics\" -> \"Police per Capita\"\n  \"Lagged crime\" -> \"Sentencing Laws\"\n  \"Law and Order politics\" -> \"Sentencing Laws\"\n  \"Lagged crime\" -> \"Police per Capita\" \n  \"Lagged crime\" -> \"Crime\"\n  \"Sentencing Laws\" ->  \"Expected Crime Payouts\"\n  \"Expected Crime Payouts\" -> \"Crime\"\n  \"Police per Capita\" -> \"Expected Crime Payouts\"\n  \"Police per Capita\" -> \"Crime\"\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 &lt;p class="caption"&gt;7: Police presence and crime rate&lt;/p&gt;
 &lt;/div&gt;
 
@@ -458,11 +458,11 @@ Moderators are variables that do not necessarily cause another variable (althoug
 
 &lt;br&gt;
 &lt;div class="figure"&gt;
-<div id="htmlwidget-5e8bad5355557ff7ca99" style="width:100%;height:250px;" class="grViz html-widget"></div>
+<div id="htmlwidget-e52f7ede76ce09e9e5e1" style="width:100%;height:250px;" class="grViz html-widget"></div>
 <script>HTMLWidgets.pymChild = new pym.Child();HTMLWidgets.addPostRenderHandler(function(){
                                 setTimeout(function(){HTMLWidgets.pymChild.sendHeight();},100);
                             });</script>
-<script type="application/json" data-for="htmlwidget-5e8bad5355557ff7ca99">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n   bgcolor=transparent\n  imagescale=both\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"X\" [pos=\"0,1!\"]\n  \"Y\" [pos=\"1,0!\"]\n  \"Z\" [pos=\"2,1!\"]\n  \"X\" -> \"Y\"\n  \"Z\" -> \"Y\"\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-e52f7ede76ce09e9e5e1">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n   bgcolor=transparent\n  imagescale=both\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"X\" [pos=\"0,1!\"]\n  \"Y\" [pos=\"1,0!\"]\n  \"Z\" [pos=\"2,1!\"]\n  \"X\" -> \"Y\"\n  \"Z\" -> \"Y\"\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 &lt;p class="caption"&gt;9: Z moderates X&lt;/p&gt;
 &lt;/div&gt;
 ---
@@ -478,13 +478,13 @@ Consider the effect of a fertility drug (X) on the chances of getting pregnant (
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script src="../assets/remark-zoom.js"></script>
 <script>var slideshow = remark.create({
-"highlightStyle": "github",
-"highlightLines": true,
-"countIncrementalSlides": false,
-"ratio": "16:9",
-"navigation": {
-"scroll": false
-}
+  "highlightStyle": "github",
+  "highlightLines": true,
+  "countIncrementalSlides": false,
+  "ratio": "16:9",
+  "navigation": {
+    "scroll": false
+  }
 });
 if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   window.dispatchEvent(new Event('resize'));
