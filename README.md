@@ -2,7 +2,7 @@
 
 - Create new link on netlify to host slides
 - In every folder/slide chapter, make changes in .rmd 
-  - change href in title of to new netlify link
+  - change href in title to new netlify link
   - change year in date
 - In Introduction/Introduction.rmd 
   - change moodle link
