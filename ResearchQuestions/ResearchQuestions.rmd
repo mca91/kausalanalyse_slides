@@ -119,7 +119,7 @@ knitr::include_graphics("researchquestion.png")
 ---
 # Why not simply look for patterns in the data?
 
-</br>
+<br>
 
 - We are living in an information economy, surrounding us by an increasing amount of readily available data
 
@@ -136,7 +136,7 @@ Data mining is the systematic application of computer-aided methods to discover 
 
 ---
 # Data mining
-</br>
+<br>
 
 ... is a useful toolkit if we care more about the *what* rather than the *why* : 
 

@@ -7,7 +7,7 @@ output:
     css: ["default", "../assets/ude_fonts.css", "../assets/ude.css",  "../assets/custom.css"]
     self_contained: false # if true, fonts will be stored locally
     seal: true # show a title slide with YAML information
-    includes:
+    includes: 
       in_header: "../assets/mathjax-equation-numbers.html"
     nature:
       beforeInit: ["../assets/remark-zoom.js"]
