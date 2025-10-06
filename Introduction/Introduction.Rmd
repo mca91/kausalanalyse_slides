@@ -1,6 +1,6 @@
 ---
 title: "Introduction"
-author: "Christoph Hanck"
+author: "Daniel Kühnle"
 date: '`r Sys.Date()`'
 output:
   xaringan::moon_reader:
@@ -31,7 +31,7 @@ Slides, exercises and announcements will be provided in [this moodle course](htt
 
 **Lecture**
 
-<span>Christoph Hanck </span><span>(<a href = "mailto: christoph.hanck@vwl.uni-due.de">christoph.hanck@vwl.uni-due.de</a>)</span>
+<span>Daniel Kühnle </span><span>(<a href = "mailto: daniel.kuehnle@uni-due.de">daniel.kuehnle@uni-due.de</a>)</span>
 
 Thursdays and Fridays from from 10:00 - 14:00 in room R12 R06 A48
 
@@ -39,7 +39,7 @@ Thursdays and Fridays from from 10:00 - 14:00 in room R12 R06 A48
 
 **Tutorials**
 
-Lennard Maßmann <span>(<a href = "mailto: lennard.massmann@uni-due.de">lennard.massmann@uni-due.de</a>)</span>
+Daniel Kühnle <span>(<a href = "mailto: daniel.kuehnle@uni-due.de">daniel.kuehnle@uni-due.de</a>)</span>
 
 Fridays from from 14:00 - 18:00 in room R12 R06 A48
 
