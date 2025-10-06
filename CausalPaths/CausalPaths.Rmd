@@ -1,5 +1,5 @@
 ---
-title: "<a href='https://github.com/mca91/kausalanalyse_slides/raw/SoSe24/CausalPaths/CausalPaths.pdf'>Causal Paths</a>"
+title: "<a href='https://github.com/mca91/kausalanalyse_slides/raw/WiSe25/CausalPaths/CausalPaths.pdf'>Causal Paths</a>"
 author: "Christoph Hanck"
 date: "Summer 2025"
 output:
