@@ -1,6 +1,6 @@
 ---
 title: "Overview"
-author: "Christoph Hanck"
+author: "Daniel Kühnle"
 date: '`r Sys.Date()`'
 output:
   xaringan::moon_reader:
