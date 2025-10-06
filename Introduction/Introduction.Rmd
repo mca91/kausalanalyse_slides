@@ -29,20 +29,15 @@ Slides, exercises and announcements will be provided in [this moodle course](htt
 
 <p style="margin-bottom:40px"></p>
 
-**Lecture**
+**Lecture & Tutorial**
 
 <span>Daniel Kühnle </span><span>(<a href = "mailto: daniel.kuehnle@uni-due.de">daniel.kuehnle@uni-due.de</a>)</span>
 
-Thursdays and Fridays from from 10:00 - 14:00 in room R12 R06 A48
+Lectures: Thursdays from from 14:15 - 15:45 in room WST-C.02.11	
+
+Tutorials: Thursdays from from 16:00 - 17:30 in room  WST-B.10.02		 
 
 <p style="margin-bottom:40px"></p>
-
-**Tutorials**
-
-Daniel Kühnle <span>(<a href = "mailto: daniel.kuehnle@uni-due.de">daniel.kuehnle@uni-due.de</a>)</span>
-
-Fridays from from 14:00 - 18:00 in room R12 R06 A48
-
 
 ---
 background-size: 280px
@@ -76,6 +71,6 @@ The slides closely follow the exposition in _The Effect_ by Nick Huntington-Klei
   You will answer questions on topics covered in both lectures and tutorials in a discussion (40 minutes total). 
   <!-- present a (`R`-based) solution to a small case study assignment and  -->
 
-- Tentative examination dates are June 28<sup>th</sup> and July 19<sup>th</sup>. Please see the [faculty page](https://www.wiwi.uni-due.de/studium/studienorganisation/pruefungen/pruefungstermine/) for updates.
+- Tentative examination dates are January 29<sup>th</sup> and February 6<sup>th</sup>. Please see the [faculty page](https://www.wiwi.uni-due.de/studium/studienorganisation/pruefungen/pruefungstermine/) for updates.
 
 - Please note that you **need** to register for the exams during the regular registration period via HISinOne.

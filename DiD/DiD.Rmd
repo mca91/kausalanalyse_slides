@@ -1,7 +1,7 @@
 ---
-title: "<a href='https://github.com/mca91/kausalanalyse_slides/raw/SoSe24/DiD/DiD.pdf'>Difference-in-differences</a>"
-author: "Christoph Hanck"
-date: "Summer 2025"
+title: "<a href='https://github.com/mca91/kausalanalyse_slides/raw/WiSe25/DiD/DiD.pdf'>Difference-in-differences</a>"
+author: "Daniel Kühnle"
+date: "Winter 2025/26"
 output:
   xaringan::moon_reader:
     css: ["default", "../assets/ude_fonts.css", "../assets/ude.css", "../assets/custom.css"]
@@ -19,7 +19,7 @@ output:
         scroll: false #disable slide transitions by scrolling
 ---
 layout: true
-<a style="position: absolute;top:5px;left:10px;color:#004c93;" target="Overview"  href="https://kasa25.netlify.app/">`r fontawesome::fa("home", height="15px")`</a>
+<a style="position: absolute;top:5px;left:10px;color:#004c93;" target="Overview"  href="https://kasawise25.netlify.app/">`r fontawesome::fa("home", height="15px")`</a>
 
 ---
 
