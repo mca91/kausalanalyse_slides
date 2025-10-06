@@ -17,7 +17,7 @@ output:
       ratio: "16:9"
 ---
 layout: true
-<a style="position: absolute;top:5px;left:10px;color:#004c93;" target="Overview"  href="https://kasa25.netlify.app/">`r fontawesome::fa("home", height="15px")`</a>
+<a style="position: absolute;top:5px;left:10px;color:#004c93;" target="Overview"  href="https://kasawise25.netlify.app/">`r fontawesome::fa("home", height="15px")`</a>
 
 ---
 ## Preliminaries
@@ -25,7 +25,7 @@ layout: true
 
 **Moodle**
 
-Slides, exercises and announcements will be provided in [this moodle course](https://moodle.uni-due.de/course/view.php?id=44280) (PW: TheEffect25) 
+Slides, exercises and announcements will be provided in [this moodle course](https://lehre.moodle.uni-due.de/course/view.php?id=2636) (PW: TheEffect25) 
 
 <p style="margin-bottom:40px"></p>
 
