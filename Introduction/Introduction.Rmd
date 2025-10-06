@@ -3,7 +3,7 @@ title: "Introduction"
 author: "Daniel Kühnle"
 date: '`r Sys.Date()`'
 output:
-  xaringan::moon_reader:
+  xaringan::moon_reader: 
     seal: false
     includes:
       in_header: "../assets/meta.html"

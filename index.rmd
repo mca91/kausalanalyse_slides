@@ -18,7 +18,7 @@ output:
 ---
 
 class: title-slide title-index 
-.font80[
+.font80[ 
 # Causal Analysis
 ### (Kausalanalyse)
 
@@ -43,7 +43,7 @@ class: title-slide title-index
 
 **Econometric Toolbox**
 
-<ol start=8>
+<ol start=8> 
 <li><a href='Matching/Matching.html'>Matching</a></li>
 <li><a href='Simulation/Simulation.html'>Simulation</a></li>
 <li><a href='FixedEffects/FixedEffects.html'>Fixed Effects</a></li>
