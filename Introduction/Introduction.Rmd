@@ -45,7 +45,7 @@ background-size: 280px
 <p style="margin-bottom:20px;margin-top:25px">
 The slides closely follow the exposition in _The Effect_ by Nick Huntington-Klein.
 <br>
-
+ 
 .pull-left[
 <a href="https://theeffectbook.net">
 <img src="https://m.media-amazon.com/images/I/714TBPGbi7L.jpg"
