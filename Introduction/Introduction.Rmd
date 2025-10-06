@@ -43,20 +43,6 @@ Daniel Kühnle <span>(<a href = "mailto: daniel.kuehnle@uni-due.de">daniel.kuehn
 
 Fridays from from 14:00 - 18:00 in room R12 R06 A48
 
----
-## Datacamp
-</br>
-
-
-- We are pleased to offer you the opportunity to improve your skills in statistical programming during this semester on [Datacamp](http://datacamp.com)!
-
-- This offer is *optional*. 
-
-    During the semester we will recommend courses that we feel are beneficial for revisiting and/or expanding on the `R` related material. 
-
-- You are welcome to take other courses as well&mdash;you have access to the entire catalog for free!
-
-- Please register [in our group](https://www.datacamp.com/groups/shared_links/d3a35282c24ce3d7103cf4b0d9e9e97f1113f057e45bb0151f76002ea10f0057) with your **@stud.uni-due.de** mail address.
 
 ---
 background-size: 280px
