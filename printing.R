@@ -1,7 +1,7 @@
 
 library(tidyverse)
 
-# install.packages("renderthis")
+# install.packages("renderthis") -> "renderthis" is no longer on CRAN
 # Chrome browser needs to be installed for this to work!
 
 # base directory
