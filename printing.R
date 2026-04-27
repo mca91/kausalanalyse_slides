@@ -1,18 +1,19 @@
 
 library(tidyverse)
 
-# install.packages("renderthis") -> "renderthis" is no longer on CRAN
+# install.packages("renderthis") -> "renderthis" is no longer on CRAN!!!
 # Chrome browser needs to be installed for this to work!
 
 # base directory
-base <- here::here() # "~/git_projects/KA_slides"
+base <- here::here() 
 
 # screen for Rmds
 Rmd_files <- dir(recursive = T) %>% 
   str_subset(pattern = ".*(\\.Rmd|rmd)") %>%
   str_subset(pattern = "^(?!index).*$")
 
-file_nms <- Rmd_files %>% str_remove(pattern = "\\.rmd|.Rmd$")
+file_nms <- Rmd_files %>%
+  str_remove(pattern = "\\.rmd|.Rmd$")
 
 # generate HTML and PDF files (for all chapters; takes a moment)
 walk(
@@ -22,13 +23,16 @@ walk(
 
 walk(
   .x = paste0(base, "/", Rmd_files),
-  .f = ~ renderthis::to_pdf(.)
+  .f = ~ renderthis::to_pdf(.) # I (Timo P.) get the following error when executing the code: Failed to open http://127.0.0.1:6982/assets/ude_fonts.css (HTTP status code: 404)
 )
 
 # for the individual chapters
 
-renderthis::to_pdf("~/git_projects/KA_slides/Introduction/Introduction.Rmd")
+renderthis::to_pdf("Introduction/Introduction.Rmd")
 renderthis::to_html("~/git_projects/KA_slides/Introduction/Introduction.Rmd")
+
+renderthis::to_pdf("CausalDiagrams/CausalDiagrams.Rmd")
+
 
 renderthis::to_pdf("Identification/Identification.Rmd")
 renderthis::to_html("~/git_projects/KA_slides/Identification/Identification.Rmd")

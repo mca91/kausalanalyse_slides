@@ -4,20 +4,20 @@
     <title>Causal Diagrams</title>
     <meta charset="utf-8" />
     <meta name="author" content="Christoph Hanck" />
-    <script src="CausalDiagrams_files/header-attrs-2.29/header-attrs.js"></script>
-    <link href="CausalDiagrams_files/remark-css-0.0.1/default.css" rel="stylesheet" />
-    <script src="CausalDiagrams_files/xaringanExtra-progressBar-0.0.1/progress-bar.js"></script>
-    <script src="CausalDiagrams_files/clipboard-2.0.6/clipboard.min.js"></script>
-    <link href="CausalDiagrams_files/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.css" rel="stylesheet" />
-    <script src="CausalDiagrams_files/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.js"></script>
+    <script src="CausalDiagrams_files/header-attrs/header-attrs.js"></script>
+    <link href="CausalDiagrams_files/remark-css/default.css" rel="stylesheet" />
+    <script src="CausalDiagrams_files/xaringanExtra-progressBar/progress-bar.js"></script>
+    <script src="CausalDiagrams_files/clipboard/clipboard.min.js"></script>
+    <link href="CausalDiagrams_files/xaringanExtra-clipboard/xaringanExtra-clipboard.css" rel="stylesheet" />
+    <script src="CausalDiagrams_files/xaringanExtra-clipboard/xaringanExtra-clipboard.js"></script>
     <script>window.xaringanExtraClipboard(null, {"button":"<i class=\"fa fa-clipboard\"><\/i>","success":"<i class=\"fa fa-check\" style=\"color: #00ff00\"><\/i>","error":"<i class=\"fa fa-times-circle\" style=\"color: #F94144\"><\/i>"})</script>
-    <link href="CausalDiagrams_files/font-awesome-6.5.2/css/all.min.css" rel="stylesheet" />
-    <link href="CausalDiagrams_files/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet" />
-    <script src="CausalDiagrams_files/htmlwidgets-1.6.4/htmlwidgets.js"></script>
-    <script src="CausalDiagrams_files/viz-1.8.2/viz.js"></script>
-    <link href="CausalDiagrams_files/DiagrammeR-styles-0.2/styles.css" rel="stylesheet" />
-    <script src="CausalDiagrams_files/grViz-binding-1.0.11/grViz.js"></script>
-    <script src="CausalDiagrams_files/pymjs-1.3.2/pym.v1.min.js"></script>
+    <link href="CausalDiagrams_files/font-awesome/css/all.min.css" rel="stylesheet" />
+    <link href="CausalDiagrams_files/font-awesome/css/v4-shims.min.css" rel="stylesheet" />
+    <script src="CausalDiagrams_files/htmlwidgets/htmlwidgets.js"></script>
+    <script src="CausalDiagrams_files/viz/viz.js"></script>
+    <link href="CausalDiagrams_files/DiagrammeR-styles/styles.css" rel="stylesheet" />
+    <script src="CausalDiagrams_files/grViz-binding/grViz.js"></script>
+    <script src="CausalDiagrams_files/pymjs/pym.v1.min.js"></script>
     <script type="text/x-mathjax-config">
       MathJax.Hub.Config({
         TeX: { equationNumbers: { autoNumber: "AMS" } },
@@ -39,7 +39,7 @@
 class: center, middle, inverse, title-slide
 
 .title[
-# <a href='https://github.com/mca91/kausalanalyse_slides/raw/SoSe24/CausalDiagrams/CausalDiagrams.pdf'>Causal Diagrams</a>
+# <a href='https://github.com/mca91/kausalanalyse_slides/raw/SoSe26/CausalDiagrams/CausalDiagrams.pdf'>Causal Diagrams</a>
 ]
 .author[
 ### Christoph Hanck
@@ -51,7 +51,7 @@ class: center, middle, inverse, title-slide
 ---
 
 layout: true
-&lt;a style="position: absolute;top:5px;left:10px;color:#004c93;" target="Overview"  href="https://kasa26.netlify.app/"&gt;<svg aria-hidden="true" role="img" viewBox="0 0 576 512" style="height:15px;width:16.88px;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M575.8 255.5c0 18-15 32.1-32 32.1h-32l.7 160.2c0 2.7-.2 5.4-.5 8.1V472c0 22.1-17.9 40-40 40H456c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1H416 392c-22.1 0-40-17.9-40-40V448 384c0-17.7-14.3-32-32-32H256c-17.7 0-32 14.3-32 32v64 24c0 22.1-17.9 40-40 40H160 128.1c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2H104c-22.1 0-40-17.9-40-40V360c0-.9 0-1.9 .1-2.8V287.6H32c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z"/></svg>&lt;/a&gt;
+&lt;a style="position: absolute;top:5px;left:10px;color:#004c93;" target="Overview"  href="https://kasa26s.netlify.app/"&gt;<svg aria-hidden="true" role="img" viewBox="0 0 576 512" style="height:15px;width:16.88px;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M575.8 255.5c0 18-15 32.1-32 32.1h-32l.7 160.2c0 2.7-.2 5.4-.5 8.1V472c0 22.1-17.9 40-40 40H456c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1H416 392c-22.1 0-40-17.9-40-40V448 384c0-17.7-14.3-32-32-32H256c-17.7 0-32 14.3-32 32v64 24c0 22.1-17.9 40-40 40H160 128.1c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2H104c-22.1 0-40-17.9-40-40V360c0-.9 0-1.9 .1-2.8V287.6H32c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z"/></svg>&lt;/a&gt;
 
 ---
 
@@ -311,11 +311,11 @@ We have...
 
 
 &lt;div class="figure"&gt;
-<div id="htmlwidget-cd96884d0f44b1711cb6" style="width:100%;height:80px;" class="grViz html-widget"></div>
+<div id="htmlwidget-aaf5c88c31b673b9dcf5" style="width:100%;height:80px;" class="grViz html-widget"></div>
 <script>HTMLWidgets.pymChild = new pym.Child();HTMLWidgets.addPostRenderHandler(function(){
                                 setTimeout(function(){HTMLWidgets.pymChild.sendHeight();},100);
                             });</script>
-<script type="application/json" data-for="htmlwidget-cd96884d0f44b1711cb6">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n  bgcolor=transparent\n  imagescale=both\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"Coin flip (X)\" [pos=\"0,1!\"]\n  \"Cake (Y)\" [pos=\"3,1!\"]\n  \"Coin flip (X)\" -> \"Cake (Y)\"\n  \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-aaf5c88c31b673b9dcf5">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n  bgcolor=transparent\n  imagescale=both\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"Coin flip (X)\" [pos=\"0,1!\"]\n  \"Cake (Y)\" [pos=\"3,1!\"]\n  \"Coin flip (X)\" -> \"Cake (Y)\"\n  \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 &lt;p class="caption"&gt;2: A simple causal diagram&lt;/p&gt;
 &lt;/div&gt;
 
@@ -353,11 +353,11 @@ Ice-cream sales (X) are high when people wear shorts (Y). However, there is no c
 
 &lt;br&gt;
 &lt;div class="figure"&gt;
-<div id="htmlwidget-8fd99776a592c669a20d" style="width:100%;height:200px;" class="grViz html-widget"></div>
+<div id="htmlwidget-648c4d0e2318a2d091c3" style="width:100%;height:200px;" class="grViz html-widget"></div>
 <script>HTMLWidgets.pymChild = new pym.Child();HTMLWidgets.addPostRenderHandler(function(){
                                 setTimeout(function(){HTMLWidgets.pymChild.sendHeight();},100);
                             });</script>
-<script type="application/json" data-for="htmlwidget-8fd99776a592c669a20d">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n  bgcolor=transparent\n  imagescale=both\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"Weather (U)\" [pos=\"1,1!\"]\n  \"Shorts (X)\" [pos=\"0,0!\"]\n  \"Ice-Cream (Y)\" [pos=\"2,0!\"]\n  \"Weather (U)\" -> \"Shorts (X)\"\n  \"Weather (U)\" -> \"Ice-Cream (Y)\"\n  \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-648c4d0e2318a2d091c3">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n  bgcolor=transparent\n  imagescale=both\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"Weather (U)\" [pos=\"1,1!\"]\n  \"Shorts (X)\" [pos=\"0,0!\"]\n  \"Ice-Cream (Y)\" [pos=\"2,0!\"]\n  \"Weather (U)\" -> \"Shorts (X)\"\n  \"Weather (U)\" -> \"Ice-Cream (Y)\"\n  \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 &lt;p class="caption"&gt;4: Unobserved variable&lt;/p&gt;
 &lt;/div&gt;
 
@@ -406,11 +406,11 @@ It's a balancing act &amp;mdash; omitting movies is okay, omitting the poverty r
 
 &lt;br&gt;&lt;br&gt;
 &lt;div class="figure"&gt;
-<div id="htmlwidget-3ba83273347db1473a08" style="width:100%;height:350px;" class="grViz html-widget"></div>
+<div id="htmlwidget-c04941ebdd2341e76614" style="width:100%;height:350px;" class="grViz html-widget"></div>
 <script>HTMLWidgets.pymChild = new pym.Child();HTMLWidgets.addPostRenderHandler(function(){
                                 setTimeout(function(){HTMLWidgets.pymChild.sendHeight();},100);
                             });</script>
-<script type="application/json" data-for="htmlwidget-3ba83273347db1473a08">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n   bgcolor=transparent\n  imagescale=both\n  fontsize=25\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"Law and Order politics\" [pos=\"0,2!\",  fontcolor=\"red\"]\n  \"Sentencing Laws\" [pos=\"3,2!\"]\n  \"Expected Crime Payouts\" [pos=\"6,2!\", fontcolor=\"red\"]\n   \"Police per Capita\" [pos=\"3,1!\"]\n  \"Lagged crime\" [pos=\"0,0!\"]\n  \"Crime\" [pos=\"6,0!\"]\n  \"Law and Order politics\" -> \"Police per Capita\"\n  \"Lagged crime\" -> \"Sentencing Laws\"\n  \"Law and Order politics\" -> \"Sentencing Laws\"\n  \"Lagged crime\" -> \"Police per Capita\" \n  \"Lagged crime\" -> \"Crime\"\n  \"Sentencing Laws\" ->  \"Expected Crime Payouts\"\n  \"Expected Crime Payouts\" -> \"Crime\"\n  \"Police per Capita\" -> \"Expected Crime Payouts\"\n  \"Police per Capita\" -> \"Crime\"\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-c04941ebdd2341e76614">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n   bgcolor=transparent\n  imagescale=both\n  fontsize=25\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"Law and Order politics\" [pos=\"0,2!\",  fontcolor=\"red\"]\n  \"Sentencing Laws\" [pos=\"3,2!\"]\n  \"Expected Crime Payouts\" [pos=\"6,2!\", fontcolor=\"red\"]\n   \"Police per Capita\" [pos=\"3,1!\"]\n  \"Lagged crime\" [pos=\"0,0!\"]\n  \"Crime\" [pos=\"6,0!\"]\n  \"Law and Order politics\" -> \"Police per Capita\"\n  \"Lagged crime\" -> \"Sentencing Laws\"\n  \"Law and Order politics\" -> \"Sentencing Laws\"\n  \"Lagged crime\" -> \"Police per Capita\" \n  \"Lagged crime\" -> \"Crime\"\n  \"Sentencing Laws\" ->  \"Expected Crime Payouts\"\n  \"Expected Crime Payouts\" -> \"Crime\"\n  \"Police per Capita\" -> \"Expected Crime Payouts\"\n  \"Police per Capita\" -> \"Crime\"\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 &lt;p class="caption"&gt;7: Police presence and crime rate&lt;/p&gt;
 &lt;/div&gt;
 
@@ -458,11 +458,11 @@ Moderators are variables that do not necessarily cause another variable (althoug
 
 &lt;br&gt;
 &lt;div class="figure"&gt;
-<div id="htmlwidget-45e5b35024270bae2605" style="width:100%;height:250px;" class="grViz html-widget"></div>
+<div id="htmlwidget-6b79c96c6fec1eb54741" style="width:100%;height:250px;" class="grViz html-widget"></div>
 <script>HTMLWidgets.pymChild = new pym.Child();HTMLWidgets.addPostRenderHandler(function(){
                                 setTimeout(function(){HTMLWidgets.pymChild.sendHeight();},100);
                             });</script>
-<script type="application/json" data-for="htmlwidget-45e5b35024270bae2605">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n   bgcolor=transparent\n  imagescale=both\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"X\" [pos=\"0,1!\"]\n  \"Y\" [pos=\"1,0!\"]\n  \"Z\" [pos=\"2,1!\"]\n  \"X\" -> \"Y\"\n  \"Z\" -> \"Y\"\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-6b79c96c6fec1eb54741">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n   bgcolor=transparent\n  imagescale=both\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"X\" [pos=\"0,1!\"]\n  \"Y\" [pos=\"1,0!\"]\n  \"Z\" [pos=\"2,1!\"]\n  \"X\" -> \"Y\"\n  \"Z\" -> \"Y\"\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 &lt;p class="caption"&gt;9: Z moderates X&lt;/p&gt;
 &lt;/div&gt;
 ---
