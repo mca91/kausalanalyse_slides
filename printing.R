@@ -33,6 +33,7 @@ renderthis::to_html("~/git_projects/KA_slides/Introduction/Introduction.Rmd")
 
 renderthis::to_pdf("CausalDiagrams/CausalDiagrams.Rmd")
 
+renderthis::to_pdf("DrawingCausalDiagrams/DrawingCausalDiagrams.Rmd")
 
 renderthis::to_pdf("Identification/Identification.Rmd")
 renderthis::to_html("~/git_projects/KA_slides/Identification/Identification.Rmd")
