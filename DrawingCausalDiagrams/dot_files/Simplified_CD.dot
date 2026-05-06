@@ -23,7 +23,6 @@ digraph "Causal Diagramm RDD" {
   "demographics" -> "hours"
   "demographics" -> "dropOut"
   "demographics" -> "classes"
-  "demographics" -> "U 5"
   "U 3" -> "demographics"
   "U 3" -> "acedemics"
   "acedemics" -> "hours"

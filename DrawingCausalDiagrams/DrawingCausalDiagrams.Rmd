@@ -311,12 +311,11 @@ After simplification, the causal diagram looks like:
 
 ```{r, echo=F, cache=F, out.extra = 'style="color:black; display:block; margin-right:auto; margin-left:auto; margin-top:15px"', fig.width=12, fig.height=4.5, dpi=190, fig.cap=paste0(': Simplified causal diagram for online classes'),include=FALSE}
 coord_dag <- list(
-  x = c(a = 1, b = 1, c = 1, d = 1, e = 3, f = 5,g=7 ,h=7 ,i=9 ,j=7 ,k=5  ),
-  y = c(a = 1, b = 2, c = 3, d = 4, e = 1, f = 1,g=1 ,h=2 ,i=3 ,j=4 ,k=4 )
+  x = c(a = 1, b = 1, c = 1, d = 1, e = 3, f = 5, g = 7 , h = 7 , i = 9 , j = 7 , k = 5  ),
+  y = c(a = 1, b = 2, c = 3, d = 4, e = 1, f = 1, g = 1 , h = 2 , i = 3 , j = 4 , k = 4 )
 )
 dag_object <- ggdag::dagify(b ~ a,
                             e ~ a,
-                            f ~ b,
                             k ~ b,
                             i ~ b,
                             h ~ b,

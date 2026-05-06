@@ -38,34 +38,34 @@ renderthis::to_pdf("DrawingCausalDiagrams/DrawingCausalDiagrams.Rmd")
 renderthis::to_pdf("Identification/Identification.Rmd")
 renderthis::to_html("~/git_projects/KA_slides/Identification/Identification.Rmd")
 
-renderthis::to_pdf("~/git_projects/KA_slides/ResearchQuestions/ResearchQuestions.Rmd")
+renderthis::to_pdf("ResearchQuestions/ResearchQuestions.Rmd")
 renderthis::to_html("~/git_projects/KA_slides/ResearchQuestions/ResearchQuestions.Rmd")
 
-renderthis::to_pdf("~/git_projects/KA_slides/TreatmentEffects/TreatmentEffects.Rmd")
+renderthis::to_pdf("TreatmentEffects/TreatmentEffects.Rmd")
 renderthis::to_html("~/git_projects/KA_slides/TreatmentEffects/TreatmentEffects.Rmd")
 
-renderthis::to_pdf("~/git_projects/KA_slides/Matching/Matching.Rmd")
+renderthis::to_pdf("Matching/Matching.Rmd")
 renderthis::to_html("~/git_projects/KA_slides/Matching/Matching.Rmd")
 
 
-renderthis::to_pdf("~/git_projects/KA_slides/Simulation/Simulation.Rmd")
+renderthis::to_pdf("Simulation/Simulation.Rmd")
 renderthis::to_html("~/git_projects/KA_slides/Simulation/Simulation.Rmd")
 
-renderthis::to_pdf("~/git_projects/KA_slides/EventStudies/EventStudies.Rmd")
+renderthis::to_pdf("EventStudies/EventStudies.Rmd")
 renderthis::to_html("~/git_projects/KA_slides/EventStudies/EventStudies.Rmd")
 
-renderthis::to_pdf("~/git_projects/KA_slides/FixedEffects/FixedEffects.Rmd")
+renderthis::to_pdf("FixedEffects/FixedEffects.Rmd")
 renderthis::to_html("~/git_projects/KA_slides/FixedEffects/FixedEffects.Rmd")
 
-renderthis::to_pdf("~/git_projects/KA_slides/DiD/DiD.Rmd")
+renderthis::to_pdf("DiD/DiD.Rmd")
 renderthis::to_html("~/git_projects/KA_slides/DiD/DiD.Rmd")
 
-renderthis::to_pdf("~/git_projects/KA_slides/IV/IV.Rmd")
+renderthis::to_pdf("IV/IV.Rmd")
 renderthis::to_html("~/git_projects/KA_slides/IV/IV.Rmd")
 
-renderthis::to_pdf("~/git_projects/KA_slides/RDD/RDD.Rmd")
+renderthis::to_pdf("RDD/RDD.Rmd")
 renderthis::to_html("~/git_projects/KA_slides/RDD/RDD.Rmd")
 
-renderthis::to_pdf("~/git_projects/KA_slides/FurtherTopics/FurtherTopics.Rmd")
+renderthis::to_pdf("FurtherTopics/FurtherTopics.Rmd")
 renderthis::to_html("~/git_projects/KA_slides/FurtherTopics/FurtherTopics.Rmd")
 

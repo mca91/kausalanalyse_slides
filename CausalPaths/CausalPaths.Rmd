@@ -420,7 +420,7 @@ Look for paths between any two variables to determine whether we have the right 
 .blockquote[
 ### Example: Wine-drinking and lifespan revisited
 
-Consider *Income* and *Drugs*. We list all paths between *Wine* and *Income*
+Consider *Income* and *Drugs*. We list all paths between *Drugs* and *Income*
 
 Drugs ← Wine ← Income
 
@@ -442,7 +442,6 @@ Drugs → Lifespan ← Health → Wine ← Income
 
 Drugs → Lifespan ← Health ← U1 → Income
 
-Wine → Drugs → Income
 ]]
 ]
 ---
@@ -484,7 +483,7 @@ Tests like these, where we expect that a relationship should be zero because our
 
 **What if we *fail* a placebo test?**
 
-- Failing a placebo test proves that the model is incorrect and incomplete.
+- Failing a placebo test indicates that the model is incorrect and incomplete.
 
 - If we find a small nonzero relationship that, according to the diagram, should not be there, that might be a minor case for concern. 
 
