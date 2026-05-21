@@ -664,14 +664,14 @@ Two differences are calculated:
 .blockquote[
 ### Example: Defaulting on credit card debt&mdash;ctd.
 The Epanechnikov kernel gives weights for the standardized differences:
-- $\frac{3}{4}(1-0.35^2)=0.658$
-- $\frac{3}{4}(1-0.56^2)=0.515$
+- $\frac{3}{4}(1-0.00035^2)=0.9999999$
+- $\frac{3}{4}(1-0.00056^2)=0.9999997$
 
 If the other controls are very close to each other, then the treated mean outcome $Late Sept$ value of $0$ (false) for row 10,305  is compared against the values of 0 for row 27,281 and 1 for 27,719, which are then averaged together with the above weights:
 
-$$\frac{0.658\cdot0+0.515\cdot1}{0.658+0.515}=0.561$$ 
+$$\frac{0.9999999\cdot0+0.9999997\cdot1}{0.9999999+0.9999997}=0.4999999$$ 
 
-The treatment effect ist $0-0.561=-0.561$ 
+The treatment effect ist $0-0.4999999=-0.4999999$ 
 ]
 
 
