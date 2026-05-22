@@ -197,10 +197,10 @@ To get an average effect for a certain group we literally pick the corresponding
 
 Name   |   Treated     |  Outcome 
 :------|:-------------:|:----------:
-Alfred |  Treated      |    2     
-Alfred |  Untreated    |    1    
-Diego  |  Treated      |    4     
-Diego  |  Untreated    |    2
+Alfreds |  Treated      |    2     
+Alfreds |  Untreated    |    1    
+Diegos  |  Treated      |    4     
+Diegos  |  Untreated    |    2
 
 <br>
 
