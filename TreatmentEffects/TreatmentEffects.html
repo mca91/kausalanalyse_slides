@@ -225,7 +225,7 @@ Diegos  |  Untreated    |    2
 - Another common way in which the average effect is taken among just one group is based on **who gets treated**.
 &lt;br&gt;
 
-- We might end up with the **average treatment on the treated (ATT)** or **the average treatment on the untreated (ATUT)**, which averages the treatment effects among those who actually got treated (or not).
+- We might end up with the **average treatment effect on the treated (ATT)** or **the average treatment effect on the untreated (ATUT)**, which averages the treatment effects among those who actually got treated (or not).
 
 - The distinction between ATT and ATUT (and to know which one we end up with) is an important one in nearly all social science contexts.
 
@@ -399,11 +399,12 @@ The local average treatment effect (**LATE**) is a **weighted average treatment 
 
 .vcenter[
 .blockquote[
-### Why ATE is better than other treatment effects
-
-- The treatment effect we get is often entirely determined by the source of treatment variation we use. 
+### ATE and source of treatment variation
 
 - Usually, we want the average treatment effect&amp;mdash;the effect we would see *on average* if we took a single individual and applied the treatment to them.
+
+- However, the treatment effect we get is often entirely determined by the source of treatment variation we use. 
+
 ]]
 
 ---
@@ -417,11 +418,11 @@ The local average treatment effect (**LATE**) is a **weighted average treatment 
 
 
 &lt;div class="figure"&gt;
-<div id="htmlwidget-99104842ae4e643762d9" style="width:100%;height:300px;" class="grViz html-widget"></div>
+<div id="htmlwidget-a8fbcaa2b566325ae942" style="width:100%;height:300px;" class="grViz html-widget"></div>
 <script>HTMLWidgets.pymChild = new pym.Child();HTMLWidgets.addPostRenderHandler(function(){
                                 setTimeout(function(){HTMLWidgets.pymChild.sendHeight();},100);
                             });</script>
-<script type="application/json" data-for="htmlwidget-99104842ae4e643762d9">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n  bgcolor=transparent\n  imagescale=both\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"Others Bad Driving\" [pos=\"0,4!\"]\n  \"Traffic School\" [pos=\"0,2!\"]\n  \"Your Bad Driving\" [pos=\"2,4!\"]\n  \"Your Future Driving\" [pos=\"4,2!\"]\n\n  \n  \"Your Bad Driving\" -> \"Traffic School\"\n   \"Your Bad Driving\" ->  \"Your Future Driving\"\n  \"Others Bad Driving\" -> \"Traffic School\"\n  \"Traffic School\" -> \"Your Future Driving\"\n\n  \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-a8fbcaa2b566325ae942">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n  bgcolor=transparent\n  imagescale=both\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"Others Bad Driving\" [pos=\"0,4!\"]\n  \"Traffic School\" [pos=\"0,2!\"]\n  \"Your Bad Driving\" [pos=\"2,4!\"]\n  \"Your Future Driving\" [pos=\"4,2!\"]\n\n  \n  \"Your Bad Driving\" -> \"Traffic School\"\n   \"Your Bad Driving\" ->  \"Your Future Driving\"\n  \"Others Bad Driving\" -> \"Traffic School\"\n  \"Traffic School\" -> \"Your Future Driving\"\n\n  \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 &lt;p class="caption"&gt;1: Causal diagram of Effect of traffic school on future driving performance&lt;/p&gt;
 &lt;/div&gt;
 ]]

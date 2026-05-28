@@ -225,7 +225,7 @@ Diegos  |  Untreated    |    2
 - Another common way in which the average effect is taken among just one group is based on **who gets treated**.
 <br>
 
-- We might end up with the **average treatment on the treated (ATT)** or **the average treatment on the untreated (ATUT)**, which averages the treatment effects among those who actually got treated (or not).
+- We might end up with the **average treatment effect on the treated (ATT)** or **the average treatment effect on the untreated (ATUT)**, which averages the treatment effects among those who actually got treated (or not).
 
 - The distinction between ATT and ATUT (and to know which one we end up with) is an important one in nearly all social science contexts.
 
@@ -399,11 +399,12 @@ The local average treatment effect (**LATE**) is a **weighted average treatment 
 
 .vcenter[
 .blockquote[
-### Why ATE is better than other treatment effects
-
-- The treatment effect we get is often entirely determined by the source of treatment variation we use. 
+### ATE and source of treatment variation
 
 - Usually, we want the average treatment effect&mdash;the effect we would see *on average* if we took a single individual and applied the treatment to them.
+
+- However, the treatment effect we get is often entirely determined by the source of treatment variation we use. 
+
 ]]
 
 ---

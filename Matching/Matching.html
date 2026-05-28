@@ -121,7 +121,7 @@ Matching is usually applied to binary treated/untreated treatment variables, whe
 
 - For the matching approach, a **control group** is constructed such that it has 80% male and 20% female, to compare to the already 80-20 treated group. 
 
-- Now, the gender difference between the treated and untreated groups gets eleminated. 
+- Now, the gender difference between the treated and untreated groups gets eliminated. 
 
 - This closes the back door.
 ]]
@@ -608,12 +608,12 @@ Two differences are calculated:
 .blockquote[
 ### Example: Defaulting on credit card debt&amp;mdash;ctd.
 The Epanechnikov kernel gives weights for the standardized differences:
-- `\(\frac{3}{4}(1-0.00035^2)=0.9999999\)`
-- `\(\frac{3}{4}(1-0.00056^2)=0.9999997\)`
+- `\(\frac{3}{4}(1-0.00035^2)=0.7499999\)`
+- `\(\frac{3}{4}(1-0.00056^2)=0.7499998\)`
 
 If the other controls are very close to each other, then the treated mean outcome `\(Late Sept\)` value of `\(0\)` (false) for row 10,305  is compared against the values of 0 for row 27,281 and 1 for 27,719, which are then averaged together with the above weights:
 
-`$$\frac{0.9999999\cdot0+0.9999997\cdot1}{0.9999999+0.9999997}=0.4999999$$` 
+`$$\frac{0.7499999 \cdot 0 + 7499998 \cdot 1}{0.7499999 + 0.7499998}=0.4999999$$` 
 
 The treatment effect ist `\(0-0.4999999=-0.4999999\)` 
 ]
@@ -646,7 +646,7 @@ The treatment effect ist `\(0-0.4999999=-0.4999999\)`
 - The treated observation in row 10,305 had a .116 probability of treatment, as did the control observation in 27,281. 
 - Row 27,719, which has a propensity of .116 can be added as well.
 - Row 10,305 is actually treated, so that observation is given a weight of 1 divided by the probability of treatment, or `\(\frac{1}{0.116}=8.621\)`
-- The control rows will both get weights of 1 divided by the probability of non-treatment, or `\(\frac{1}{1-0.116}=1.131\)` .
+- The control rows will both get weights of 1 divided by the probability of non-treatment, or `\(\frac{1}{1-0.116}=1.131\)`.
 - From here, weighted means on both the treated and control sides can be obtained.
 ]
 
@@ -681,7 +681,7 @@ The treatment effect ist `\(0-0.4999999=-0.4999999\)`
 
 - The wider the bandwidth, the more potential matches are obtained.
 
-- However a wider bandwidth allows for more bad matches, which makes the match quality worse: the idea that the back doors are getting closedy less plausible!
+- However a wider bandwidth allows for more bad matches, which makes the match quality worse: the idea that the back doors are getting closed gets less plausible!
 
 ---
 # 5. What is the worst acceptable match?
@@ -722,7 +722,7 @@ The choice is often between fewer, but better, matches that produce estimates wi
  
 - **Expectation:** Black legislators respond more often to out-of-district emails from black people. 
 
-- Matching is where we compare the in/out-of-district gap between Black and non-Black legislators. Those groups tend to be elected in very different kinds of places. Back doors abound. Matching can be used to make for a better comparison group.
+- Matching comes in when we compare the in/out-of-district gap between Black and non-Black legislators. Those groups tend to be elected in very different kinds of places. Back doors abound. Matching can be used to make for a better comparison group.
 ]]
 
 
@@ -733,11 +733,9 @@ The choice is often between fewer, but better, matches that produce estimates wi
 
 &lt;/br&gt;
 
-The following steps guides to obtain Mahalonobis distance:
-
 - In order to ensure that no variable ends up being weighted more heavily just because it’s on a bigger scale, we take `\(S\)` (which is the covariance matrix for all matching variables) and  then divide the values of all matching variables by it. `\(S\)` provides standardization and takes covariation into account.  
 
-- Compute the distance: for a given treated observation A and a given control observation B, the Mahalanobis distance `\(d\)` is the sum of the squares of all the differences between A and B. Mahalanobis distance between two vectors `\(x_1\)` and `\(x_2\)` is `$$\\d(x_1,x_2)= \sqrt[]{(x_1-x_2)'S^{-1}(x_1-x_2)}.$$`
+- Compute the distance: for a given treated observation A and a given control observation B, the Mahalanobis distance `\(d\)` is the sum of the squares of all the differences between A and B. Mahalanobis distance between two vectors `\(x_1\)` and `\(x_2\)` belonging to observations A and B is `$$\\d(x_1,x_2)= \sqrt[]{(x_1-x_2)'S^{-1}(x_1-x_2)}.$$`
 
 &lt;!-- --- --&gt;
 &lt;!-- # Multiple Matching Variables --&gt;
@@ -1012,7 +1010,7 @@ Boosted regression is an iterative method that starts with a binary regression m
 .blockquote[
 ### Example: The effect of early-release programs on recidivism&amp;mdash;ctd.
 - When looking for matches for the treated observations, we end up trying to find ex-prisoners who got a score of 8-10 but did *not* get early release.
-- Problem: the score (1 to 10), translates too directly to early release: everyone with an 8-10 gets early release, and everyone with a 1-7 does not. 
+- Problem: the score (1 to 10) translates too directly to early release: everyone with an 8-10 gets early release, and everyone with a 1-7 does not. 
 - The analysis **lacks common support**: there simply are *no comparable control observations*!
 ]]
 
@@ -1025,7 +1023,7 @@ Boosted regression is an iterative method that starts with a binary regression m
 
 - One way in dealing with support is to avoid trying to match where there is no support. 
 
-- Another way of dealing is treating the treated and control groups separately and looking  for the range of values in the density of the propensity which are zero (or close to zero, below some cutoff value). Then, dropping all observations in the other group that have propensity scores in the range that does not exist in the group.
+- Another way of dealing is treating the treated and control groups separately and looking  for the range of values of the propensity where the density is zero (or close to zero, below some cutoff value). Then, dropping all observations in the other group that have propensity scores in the range that does not exist in the group.
 
 - A common approach is to trim outliers&amp;mdash;any observation with a propensity score in the top or bottom X% gets trimmed. 
 
