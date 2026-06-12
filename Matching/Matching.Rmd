@@ -791,7 +791,7 @@ The choice is often between fewer, but better, matches that produce estimates wi
 
 - In order to ensure that no variable ends up being weighted more heavily just because it’s on a bigger scale, we take $S$ (which is the covariance matrix for all matching variables) and  then divide the values of all matching variables by it. $S$ provides standardization and takes covariation into account.  
 
-- Compute the distance: for a given treated observation A and a given control observation B, the Mahalanobis distance $d$ is the sum of the squares of all the differences between A and B. Mahalanobis distance between two vectors $x_1$ and $x_2$ belonging to observations A and B is $$\\d(x_1,x_2)= \sqrt[]{(x_1-x_2)'S^{-1}(x_1-x_2)}.$$
+- Compute the distance: for a given treated observation A and a given control observation B, the Mahalanobis distance $d$ between two vectors $x_1$ and $x_2$ belonging to observations A and B is $$\\d(x_1,x_2)= \sqrt[]{(x_1-x_2)'S^{-1}(x_1-x_2)}.$$
 
 <!-- --- -->
 <!-- # Multiple Matching Variables -->
@@ -967,7 +967,7 @@ $$\frac{Treated Matches}{ControlMatches} \cdot \frac{TotalControl Matches}{Total
 .vcenter[
 .blockquote[
 ### Key Concept: Entropy balancing 
-Entropy balancing enforces restrictions in terms of moment conditions (means, variances, and so on) on the distance between treatment and control for matching variables: conditions demand no differences between treatment and control observation for these variables.
+Entropy balancing enforces restrictions in terms of moment conditions (means, variances, and so on) on the distance between treatment and control for matching variables:
 
 - Entropy balancing find sets of weights that satisfy those restrictions.
 
@@ -1077,9 +1077,7 @@ Boosted regression is an iterative method that starts with a binary regression m
 **Dealing with support**
 <br><br>
 
-- One way in dealing with support is to avoid trying to match where there is no support. 
-
-- Another way of dealing is treating the treated and control groups separately and looking  for the range of values of the propensity where the density is zero (or close to zero, below some cutoff value). Then, dropping all observations in the other group that have propensity scores in the range that does not exist in the group.
+- Treat the treated and control groups separately and look for the range of values of the propensity score where its density is zero (or close to zero, below some cutoff value). Then, drop all observations in the other group that have propensity scores in the range where the propensity score is too small in the current group.
 
 - A common approach is to trim outliers&mdash;any observation with a propensity score in the top or bottom X% gets trimmed. 
 
@@ -1204,7 +1202,7 @@ Double-robustness is a property that some estimators have rather than *being* a 
 <li> Repeat step (3) but using only untreated observations</li>
 <li> Use the models from steps (3) and (4) to produce “treated” and “untreated” predicted observations for the whole sample</li>
 <li> Compare the “treated” means to the “untreated” means to get the estimate of the causal effect</li>
-<li> To get standard errors, use bootstrap standard errors, or the heteroskedasticity-robust errors</li>
+<li> To get standard errors, use bootstrap standard errors, or suitable heteroskedasticity-robust errors</li>
 </ol>
 
 ---

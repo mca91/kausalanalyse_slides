@@ -420,7 +420,7 @@ ggplot(tb, aes(x = IntensityOfReminders,
 .blockquote[
 ### Example: Effects of healthy-eating reminders on actual healthy eating&mdash;ctd.
 
-With the different individuals moved on top of each other, a more clear picture emerges, with a positive relationship between the intensity of reminders and the scores. 
+With the different individuals moved on top of each other, a clearer picture emerges, with a positive relationship between the intensity of reminders and the scores. 
 ```{r, echo=F, cache=F, out.extra = 'style="display:block; margin-right:auto; margin-left:auto;"', fig.height=4, out.width='60%', dpi=290, fig.cap=paste0(fig_counter(), ': Healthy eating reminders and healthy eating for four individuals with individual means'), fig.align='center'}
 
 
@@ -722,7 +722,7 @@ Recall that adding a set of binary control variables is a method to get rid of b
 **Why might this be a problem?**
 
 <br>
-- The other methods for getting rid of between variation is subtracting out the within-group means. 
+- The other method for getting rid of between variation is subtracting out the within-group means. 
  - This no longer works because the outcome variable is not a continuous variable any more
  - The mean is no longer a good representation of _what needed to be subtracted out to get rid of the between variation._
 
