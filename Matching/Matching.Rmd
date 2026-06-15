@@ -1218,7 +1218,7 @@ We can obtain the average treatment effect (ATE), the average treatment effect o
 
 - For ATUT: instead of matching *control observations to treated observations*, match *treated observations to control observations*
 
-- The ATE can then be obtained as the average treatment affect for treated and untreated $$\text{ATE} = (p \times \text{ATT} ) + (1-p) \times \text{ATUT},$$ where $p$ is the proportion of treated individuals.
+- The ATE can then be obtained as the average treatment affect for treated and untreated $$\text{ATE} = (a \times \text{ATT} ) + (1-a) \times \text{ATUT},$$ where $a$ is the proportion of treated individuals.
 
 
 ---

@@ -129,11 +129,11 @@ Fixed effects is a method of controlling for all variables, whether they are obs
 
 
 &lt;div class="figure"&gt;
-<div id="htmlwidget-051e3116812e36e33537" style="width:100%;height:300px;" class="grViz html-widget"></div>
+<div id="htmlwidget-33538d5606e6df8cc579" style="width:100%;height:300px;" class="grViz html-widget"></div>
 <script>HTMLWidgets.pymChild = new pym.Child();HTMLWidgets.addPostRenderHandler(function(){
                                 setTimeout(function(){HTMLWidgets.pymChild.sendHeight();},100);
                             });</script>
-<script type="application/json" data-for="htmlwidget-051e3116812e36e33537">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n   bgcolor=transparent\n  imagescale=both\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"ChancellorVisit\" [pos=\"0,0!\",  fontcolor=\"red\"]\n  \"CurrentPolitics\" [pos=\"0,1!\"]\n  \"CultureOfPopulation\" [pos=\"2,2!\"]\n  \"Geography\" [pos=\"2,1!\"]\n  \"TradeWithGermany\" [pos=\"4,0!\",  fontcolor=\"red\"]\n  \"HistoryWithGermany\" [pos=\"4,1!\"]\n\n  \n  \"ChancellorVisit\" -> \"TradeWithGermany\" [color = \"red\"]\n   \"CurrentPolitics\" ->  \"ChancellorVisit\"\n  \"CurrentPolitics\" -> \"TradeWithGermany\"\n  \"HistoryWithGermany\" -> \"ChancellorVisit\"\n  \"HistoryWithGermany\" -> \"TradeWithGermany\"\n  \"Geography\" -> \"ChancellorVisit\"\n   \"Geography\"  -> \"TradeWithGermany\"\n   \"CultureOfPopulation\" -> \"ChancellorVisit\"\n   \"CultureOfPopulation\"  -> \"TradeWithGermany\"\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-33538d5606e6df8cc579">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n   bgcolor=transparent\n  imagescale=both\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"ChancellorVisit\" [pos=\"0,0!\",  fontcolor=\"red\"]\n  \"CurrentPolitics\" [pos=\"0,1!\"]\n  \"CultureOfPopulation\" [pos=\"2,2!\"]\n  \"Geography\" [pos=\"2,1!\"]\n  \"TradeWithGermany\" [pos=\"4,0!\",  fontcolor=\"red\"]\n  \"HistoryWithGermany\" [pos=\"4,1!\"]\n\n  \n  \"ChancellorVisit\" -> \"TradeWithGermany\" [color = \"red\"]\n   \"CurrentPolitics\" ->  \"ChancellorVisit\"\n  \"CurrentPolitics\" -> \"TradeWithGermany\"\n  \"HistoryWithGermany\" -> \"ChancellorVisit\"\n  \"HistoryWithGermany\" -> \"TradeWithGermany\"\n  \"Geography\" -> \"ChancellorVisit\"\n   \"Geography\"  -> \"TradeWithGermany\"\n   \"CultureOfPopulation\" -> \"ChancellorVisit\"\n   \"CultureOfPopulation\"  -> \"TradeWithGermany\"\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 &lt;p class="caption"&gt;2: Causes of trade with Germany&lt;/p&gt;
 &lt;/div&gt;
 
@@ -166,11 +166,11 @@ The effect can be identified *without* controlling for each of the variables &am
 
 
 &lt;div class="figure"&gt;
-<div id="htmlwidget-5128b0133b84a00ebc6e" style="width:100%;height:300px;" class="grViz html-widget"></div>
+<div id="htmlwidget-8a979c87bbcc6acaaf55" style="width:100%;height:300px;" class="grViz html-widget"></div>
 <script>HTMLWidgets.pymChild = new pym.Child();HTMLWidgets.addPostRenderHandler(function(){
                                 setTimeout(function(){HTMLWidgets.pymChild.sendHeight();},100);
                             });</script>
-<script type="application/json" data-for="htmlwidget-5128b0133b84a00ebc6e">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n  bgcolor=transparent\n  imagescale=both\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"ChancellorVisit\" [pos=\"0,0!\"]\n  \"CurrentPolitics\" [pos=\"0,2!\"]\n  \"TradeWithGermany\" [pos=\"4,0!\"]\n  \"Country\" [pos=\"4,2!\"]\n\n  \n  \"ChancellorVisit\" -> \"TradeWithGermany\"\n   \"CurrentPolitics\" ->  \"ChancellorVisit\"\n  \"CurrentPolitics\" -> \"TradeWithGermany\"\n   \"Country\" -> \"ChancellorVisit\"\n   \"Country\"  -> \"TradeWithGermany\"\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-8a979c87bbcc6acaaf55">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n  bgcolor=transparent\n  imagescale=both\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"ChancellorVisit\" [pos=\"0,0!\"]\n  \"CurrentPolitics\" [pos=\"0,2!\"]\n  \"TradeWithGermany\" [pos=\"4,0!\"]\n  \"Country\" [pos=\"4,2!\"]\n\n  \n  \"ChancellorVisit\" -> \"TradeWithGermany\"\n   \"CurrentPolitics\" ->  \"ChancellorVisit\"\n  \"CurrentPolitics\" -> \"TradeWithGermany\"\n   \"Country\" -> \"ChancellorVisit\"\n   \"Country\"  -> \"TradeWithGermany\"\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 &lt;p class="caption"&gt;4: Simplified causes of trade with Germany&lt;/p&gt;
 &lt;/div&gt;
 
@@ -313,7 +313,7 @@ Compute the mean number of reminders and mean healthy eating scores for each ind
 .blockquote[
 ### Example: Effects of healthy-eating reminders on actual healthy eating&amp;mdash;ctd.
 
-With the different individuals moved on top of each other, a more clear picture emerges, with a positive relationship between the intensity of reminders and the scores. 
+With the different individuals moved on top of each other, a clearer picture emerges, with a positive relationship between the intensity of reminders and the scores. 
 &lt;div class="figure" style="text-align: center"&gt;
 &lt;img src="FixedEffects_files/figure-html/unnamed-chunk-8-1.png" alt="7: Healthy eating reminders and healthy eating for four individuals with individual means" width="60%" style="display:block; margin-right:auto; margin-left:auto;" /&gt;
 &lt;p class="caption"&gt;7: Healthy eating reminders and healthy eating for four individuals with individual means&lt;/p&gt;
@@ -599,7 +599,7 @@ Recall that adding a set of binary control variables is a method to get rid of b
 **Why might this be a problem?**
 
 &lt;br&gt;
-- The other methods for getting rid of between variation is subtracting out the within-group means. 
+- The other method for getting rid of between variation is subtracting out the within-group means. 
  - This no longer works because the outcome variable is not a continuous variable any more
  - The mean is no longer a good representation of _what needed to be subtracted out to get rid of the between variation._
 

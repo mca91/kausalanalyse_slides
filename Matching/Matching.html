@@ -735,7 +735,7 @@ The choice is often between fewer, but better, matches that produce estimates wi
 
 - In order to ensure that no variable ends up being weighted more heavily just because it’s on a bigger scale, we take `\(S\)` (which is the covariance matrix for all matching variables) and  then divide the values of all matching variables by it. `\(S\)` provides standardization and takes covariation into account.  
 
-- Compute the distance: for a given treated observation A and a given control observation B, the Mahalanobis distance `\(d\)` is the sum of the squares of all the differences between A and B. Mahalanobis distance between two vectors `\(x_1\)` and `\(x_2\)` belonging to observations A and B is `$$\\d(x_1,x_2)= \sqrt[]{(x_1-x_2)'S^{-1}(x_1-x_2)}.$$`
+- Compute the distance: for a given treated observation A and a given control observation B, the Mahalanobis distance `\(d\)` between two vectors `\(x_1\)` and `\(x_2\)` belonging to observations A and B is `$$\\d(x_1,x_2)= \sqrt[]{(x_1-x_2)'S^{-1}(x_1-x_2)}.$$`
 
 &lt;!-- --- --&gt;
 &lt;!-- # Multiple Matching Variables --&gt;
@@ -911,7 +911,7 @@ In coarsened exact matching we only match if observations exactly matches for ea
 .vcenter[
 .blockquote[
 ### Key Concept: Entropy balancing 
-Entropy balancing enforces restrictions in terms of moment conditions (means, variances, and so on) on the distance between treatment and control for matching variables: conditions demand no differences between treatment and control observation for these variables.
+Entropy balancing enforces restrictions in terms of moment conditions (means, variances, and so on) on the distance between treatment and control for matching variables:
 
 - Entropy balancing find sets of weights that satisfy those restrictions.
 
@@ -1021,9 +1021,7 @@ Boosted regression is an iterative method that starts with a binary regression m
 **Dealing with support**
 &lt;br&gt;&lt;br&gt;
 
-- One way in dealing with support is to avoid trying to match where there is no support. 
-
-- Another way of dealing is treating the treated and control groups separately and looking  for the range of values of the propensity where the density is zero (or close to zero, below some cutoff value). Then, dropping all observations in the other group that have propensity scores in the range that does not exist in the group.
+- Treat the treated and control groups separately and look for the range of values of the propensity score where its density is zero (or close to zero, below some cutoff value). Then, drop all observations in the other group that have propensity scores in the range where the propensity score is too small in the current group.
 
 - A common approach is to trim outliers&amp;mdash;any observation with a propensity score in the top or bottom X% gets trimmed. 
 
@@ -1148,7 +1146,7 @@ Double-robustness is a property that some estimators have rather than *being* a 
 &lt;li&gt; Repeat step (3) but using only untreated observations&lt;/li&gt;
 &lt;li&gt; Use the models from steps (3) and (4) to produce “treated” and “untreated” predicted observations for the whole sample&lt;/li&gt;
 &lt;li&gt; Compare the “treated” means to the “untreated” means to get the estimate of the causal effect&lt;/li&gt;
-&lt;li&gt; To get standard errors, use bootstrap standard errors, or the heteroskedasticity-robust errors&lt;/li&gt;
+&lt;li&gt; To get standard errors, use bootstrap standard errors, or suitable heteroskedasticity-robust errors&lt;/li&gt;
 &lt;/ol&gt;
 
 ---
@@ -1164,7 +1162,7 @@ We can obtain the average treatment effect (ATE), the average treatment effect o
 
 - For ATUT: instead of matching *control observations to treated observations*, match *treated observations to control observations*
 
-- The ATE can then be obtained as the average treatment affect for treated and untreated `$$\text{ATE} = (p \times \text{ATT} ) + (1-p) \times \text{ATUT},$$` where `\(p\)` is the proportion of treated individuals.
+- The ATE can then be obtained as the average treatment affect for treated and untreated `$$\text{ATE} = (a \times \text{ATT} ) + (1-a) \times \text{ATUT},$$` where `\(a\)` is the proportion of treated individuals.
 
 
 ---
