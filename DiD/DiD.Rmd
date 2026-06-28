@@ -648,9 +648,8 @@ The simplest form uses the regression model $$Y =\alpha_g+\beta_1Time+\beta_2Tim
 - Estimate
 $$Y = \alpha_g + \alpha_t + \beta_{-T_1}\text{Treated}+\beta_{-(T_1-1)} \text{Treated} + \dots + \beta_{-1}\text{Treated} + \beta_1\text{Treated} + \dots + \beta_{T_2} \text{Treated} + \epsilon,$$
  
-  where the $\text{Treated}$ regressors are interactions of $\text{Treatment}$ given and each of the time periods (for $T_1$ periods before the treatment period and $T_2$ periods afterwards).
+where the $\text{Treated}$ regressors are interactions between being in a treated group and every time-period fixed effect (for $T_1$ periods before the treatment period and $T_2$ periods afterwards).
 
- 
 
 ---
 # Long-term effects

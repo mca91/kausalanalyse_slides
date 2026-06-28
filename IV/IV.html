@@ -108,11 +108,11 @@ For instrumental variables to work, two assumptions must be satisfied:
 
 &lt;br&gt;
 &lt;div class="figure"&gt;
-<div id="htmlwidget-06a2511ab3644d31eaa5" style="width:100%;height:250px;" class="grViz html-widget"></div>
+<div id="htmlwidget-b05e4c566759d0aab4de" style="width:100%;height:250px;" class="grViz html-widget"></div>
 <script>HTMLWidgets.pymChild = new pym.Child();HTMLWidgets.addPostRenderHandler(function(){
                                 setTimeout(function(){HTMLWidgets.pymChild.sendHeight();},100);
                             });</script>
-<script type="application/json" data-for="htmlwidget-06a2511ab3644d31eaa5">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n  bgcolor=transparent\n  imagescale=both\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"Randomization\" [pos=\"0,1!\"]\n  \"Treatment\" [pos=\"1,0!\"]\n  \"Annoyance\" [pos=\"2,1!\"]\n   \"Outcome\" [pos=\"3,0!\"]\n\n  \n  \"Randomization\" -> \"Treatment\"\n   \"Annoyance\" ->  \"Outcome\"\n   \"Treatment\" -> \"Outcome\"\n   \"Annoyance\" -> \"Treatment\"\n\n  \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-b05e4c566759d0aab4de">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n  bgcolor=transparent\n  imagescale=both\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"Randomization\" [pos=\"0,1!\"]\n  \"Treatment\" [pos=\"1,0!\"]\n  \"Annoyance\" [pos=\"2,1!\"]\n   \"Outcome\" [pos=\"3,0!\"]\n\n  \n  \"Randomization\" -> \"Treatment\"\n   \"Annoyance\" ->  \"Outcome\"\n   \"Treatment\" -> \"Outcome\"\n   \"Annoyance\" -> \"Treatment\"\n\n  \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 &lt;p class="caption"&gt;1: Causal Diagram&lt;/p&gt;
 &lt;/div&gt;
 
@@ -180,11 +180,11 @@ Any paths between the instrument `\(Z\)` and the outcome `\(Y\)` must either pas
 
 
 &lt;div class="figure"&gt;
-<div id="htmlwidget-3418c3f11e1ced4f9a21" style="width:100%;height:400px;" class="grViz html-widget"></div>
+<div id="htmlwidget-7e8c2b2ecf4e403f716b" style="width:100%;height:400px;" class="grViz html-widget"></div>
 <script>HTMLWidgets.pymChild = new pym.Child();HTMLWidgets.addPostRenderHandler(function(){
                                 setTimeout(function(){HTMLWidgets.pymChild.sendHeight();},100);
                             });</script>
-<script type="application/json" data-for="htmlwidget-3418c3f11e1ced4f9a21">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n  bgcolor=transparent\n  imagescale=both\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"A\" [pos=\"2,0!\"]\n  \"B\" [pos=\"2,2!\"]\n  \"C\" [pos=\"0,2!\"]\n  \"D\" [pos=\"4,2!\"]\n  \"X\" [pos=\"2,1!\",  fontcolor=\"red\"]\n  \"Y\" [pos=\"4,1!\",  fontcolor=\"red\"]\n  \"Z\" [pos=\"0,1!\",  fontcolor=\"lightblue\"]\n\n  \n  \"A\" -> \"Y\"\n   \"B\" ->  \"Z\"\n   \"B\" -> \"Y\"\n   \"C\" -> \"Z\"\n   \"C\" ->  \"X\"\n   \"D\" -> \"X\"\n   \"D\" -> \"Y\"\n   \"X\" ->  \"Y\"[color=\"red\"]\n   \"Z\" -> \"X\" [color=\"lightblue\"]\n   \"Z\" -> \"A\"\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-7e8c2b2ecf4e403f716b">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n  bgcolor=transparent\n  imagescale=both\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"A\" [pos=\"2,0!\"]\n  \"B\" [pos=\"2,2!\"]\n  \"C\" [pos=\"0,2!\"]\n  \"D\" [pos=\"4,2!\"]\n  \"X\" [pos=\"2,1!\",  fontcolor=\"red\"]\n  \"Y\" [pos=\"4,1!\",  fontcolor=\"red\"]\n  \"Z\" [pos=\"0,1!\",  fontcolor=\"lightblue\"]\n\n  \n  \"A\" -> \"Y\"\n   \"B\" ->  \"Z\"\n   \"B\" -> \"Y\"\n   \"C\" -> \"Z\"\n   \"C\" ->  \"X\"\n   \"D\" -> \"X\"\n   \"D\" -> \"Y\"\n   \"X\" ->  \"Y\"[color=\"red\"]\n   \"Z\" -> \"X\" [color=\"lightblue\"]\n   \"Z\" -> \"A\"\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 &lt;p class="caption"&gt;3: A causal diagram amenable to IV estimation&lt;/p&gt;
 &lt;/div&gt;
 ---
@@ -344,7 +344,7 @@ Using assumptions and theory, construct statistical moments (means, variances, c
 - GMM will have less sampling variation (and thus smaller standard errors) under heteroskedasticity than 2SLS, even if heteroskedasticity-robust standard errors are used
 
 ---
-# IV estimation and treatment effects
+# IV estimation and treatment effects: LATE
 &lt;br&gt;
 For a standard estimator like 2SLS or GMM with one treatment/endogneous variable and *one* instrument, the weights are what the individual effect of the instrument would be in the first stage.
 &lt;br&gt;
@@ -372,7 +372,7 @@ A recent set of TV ads encourages people to exercise more. Exposure to the adver
 
 - Jakeila responds the strongest to the ads, so the `\(-2\)` effect of exercise that she gets will be more heavily weighted. Specifically, it gets the `\(.5\)` weight she has on the effect of ads. Similarly, Kyle gets a weight of .25.
 
-- Li, on the other hand, does not respond to the ads at all &amp;mdash; they make no difference to him. So it turns out he makes no difference to the 2SLS estimate. He gets a weight of `\(0\)`.
+- Li, on the other hand, does not respond to the ads at all &amp;mdash. So it turns out he makes no difference to the 2SLS estimate. He gets a weight of `\(0\)`.
 ]]
 
 
@@ -396,7 +396,7 @@ $$\frac{0.5\times (-2)+0.25\times (-8)+0\times (-10)}{(0.5+0.25+0)} =\frac{-1 + 
 
 **Some more terminology**
 
-- Different IVs tend to produce different weighted average treatment effects
+- Hence, different IVs will tend to produce different results
 
 - LATE is estimated in most cases, although the specifics on *which* LATE change from estimator to estimator
 
@@ -590,7 +590,7 @@ Also recall LATE effects.
 **Binary treatments**
 &lt;br&gt;
 
-There is a handy and easy-to-implement method for incorporating a binary treatment variables into 2SLS popularized by Wooldridge (2010)
+There is a handy and easy-to-implement method for incorporating a binary treatment variable into 2SLS popularized by Wooldridge (2010)
 
 &lt;br&gt;
 

@@ -94,11 +94,11 @@ layout: true
 &lt;br&gt;
 
 &lt;div class="figure"&gt;
-<div id="htmlwidget-59ef15f056ab20bcaa50" style="width:100%;height:300px;" class="grViz html-widget"></div>
+<div id="htmlwidget-5158b112413b44b2235c" style="width:100%;height:300px;" class="grViz html-widget"></div>
 <script>HTMLWidgets.pymChild = new pym.Child();HTMLWidgets.addPostRenderHandler(function(){
                                 setTimeout(function(){HTMLWidgets.pymChild.sendHeight();},100);
                             });</script>
-<script type="application/json" data-for="htmlwidget-59ef15f056ab20bcaa50">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n  bgcolor=transparent\n  imagescale=both\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"Time\" [pos=\"2,2!\"]\n  \"Treatment\" [pos=\"0,0!\"]\n  \"Outcome\" [pos=\"4,0!\"]\n\n  \n  \"Time\" -> \"Treatment\"\n   \"Time\" ->  \"Outcome\"\n   \"Treatment\" -> \"Outcome\"\n  \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-5158b112413b44b2235c">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n  bgcolor=transparent\n  imagescale=both\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"Time\" [pos=\"2,2!\"]\n  \"Treatment\" [pos=\"0,0!\"]\n  \"Outcome\" [pos=\"4,0!\"]\n\n  \n  \"Time\" -> \"Treatment\"\n   \"Time\" ->  \"Outcome\"\n   \"Treatment\" -> \"Outcome\"\n  \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 &lt;p class="caption"&gt;2: Basic time backdoor&lt;/p&gt;
 &lt;/div&gt;
 
@@ -128,11 +128,11 @@ layout: true
 
 &lt;br&gt;
 &lt;div class="figure"&gt;
-<div id="htmlwidget-a77a3600b5516b426084" style="width:100%;height:300px;" class="grViz html-widget"></div>
+<div id="htmlwidget-38fb1c0f9b2e94ac0a14" style="width:100%;height:300px;" class="grViz html-widget"></div>
 <script>HTMLWidgets.pymChild = new pym.Child();HTMLWidgets.addPostRenderHandler(function(){
                                 setTimeout(function(){HTMLWidgets.pymChild.sendHeight();},100);
                             });</script>
-<script type="application/json" data-for="htmlwidget-a77a3600b5516b426084">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n  bgcolor=transparent\n  imagescale=both\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"Time\" [pos=\"2,2!\"]\n  \"Treatment\" [pos=\"0,1!\"]\n  \"Outcome\" [pos=\"4,1!\"]\n   \"Group\" [pos=\"2,0!\"]\n\n  \n  \"Time\" -> \"Treatment\"\n   \"Time\" ->  \"Outcome\"\n   \"Treatment\" -> \"Outcome\"\n   \"Group\" -> \"Treatment\"\n   \"Group\" ->  \"Outcome\"\n  \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-38fb1c0f9b2e94ac0a14">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n  bgcolor=transparent\n  imagescale=both\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"Time\" [pos=\"2,2!\"]\n  \"Treatment\" [pos=\"0,1!\"]\n  \"Outcome\" [pos=\"4,1!\"]\n   \"Group\" [pos=\"2,0!\"]\n\n  \n  \"Time\" -> \"Treatment\"\n   \"Time\" ->  \"Outcome\"\n   \"Treatment\" -> \"Outcome\"\n   \"Group\" -> \"Treatment\"\n   \"Group\" ->  \"Outcome\"\n  \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 &lt;p class="caption"&gt;4:  Two back doors that can be closed by DiD&lt;/p&gt;
 &lt;/div&gt;
 
@@ -443,9 +443,8 @@ The simplest form uses the regression model `$$Y =\alpha_g+\beta_1Time+\beta_2Ti
 - Estimate
 `$$Y = \alpha_g + \alpha_t + \beta_{-T_1}\text{Treated}+\beta_{-(T_1-1)} \text{Treated} + \dots + \beta_{-1}\text{Treated} + \beta_1\text{Treated} + \dots + \beta_{T_2} \text{Treated} + \epsilon,$$`
  
-  where the `\(\text{Treated}\)` regressors are interactions of `\(\text{Treatment}\)` given and each of the time periods (for `\(T_1\)` periods before the treatment period and `\(T_2\)` periods afterwards).
+where the `\(\text{Treated}\)` regressors are interactions between being in a treated group and every time-period fixed effect (for `\(T_1\)` periods before the treatment period and `\(T_2\)` periods afterwards).
 
- 
 
 ---
 # Long-term effects

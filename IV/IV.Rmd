@@ -561,7 +561,7 @@ Using assumptions and theory, construct statistical moments (means, variances, c
 - GMM will have less sampling variation (and thus smaller standard errors) under heteroskedasticity than 2SLS, even if heteroskedasticity-robust standard errors are used
 
 ---
-# IV estimation and treatment effects
+# IV estimation and treatment effects: LATE
 <br>
 For a standard estimator like 2SLS or GMM with one treatment/endogneous variable and *one* instrument, the weights are what the individual effect of the instrument would be in the first stage.
 <br>
@@ -589,7 +589,7 @@ A recent set of TV ads encourages people to exercise more. Exposure to the adver
 
 - Jakeila responds the strongest to the ads, so the $-2$ effect of exercise that she gets will be more heavily weighted. Specifically, it gets the $.5$ weight she has on the effect of ads. Similarly, Kyle gets a weight of .25.
 
-- Li, on the other hand, does not respond to the ads at all &mdash; they make no difference to him. So it turns out he makes no difference to the 2SLS estimate. He gets a weight of $0$.
+- Li, on the other hand, does not respond to the ads at all &mdash. So it turns out he makes no difference to the 2SLS estimate. He gets a weight of $0$.
 ]]
 
 
@@ -613,7 +613,7 @@ $$\frac{(-2)+(-8)+(-10)}{3} = -6.67$$
 
 **Some more terminology**
 
-- Different IVs tend to produce different weighted average treatment effects
+- Hence, different IVs will tend to produce different results
 
 - LATE is estimated in most cases, although the specifics on *which* LATE change from estimator to estimator
 
@@ -807,7 +807,7 @@ Also recall LATE effects.
 **Binary treatments**
 <br>
 
-There is a handy and easy-to-implement method for incorporating a binary treatment variables into 2SLS popularized by Wooldridge (2010)
+There is a handy and easy-to-implement method for incorporating a binary treatment variable into 2SLS popularized by Wooldridge (2010)
 
 <br>
 

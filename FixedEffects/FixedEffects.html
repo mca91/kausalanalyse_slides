@@ -129,11 +129,11 @@ Fixed effects is a method of controlling for all variables, whether they are obs
 
 
 &lt;div class="figure"&gt;
-<div id="htmlwidget-33538d5606e6df8cc579" style="width:100%;height:300px;" class="grViz html-widget"></div>
+<div id="htmlwidget-60de5712215f5b5c47aa" style="width:100%;height:300px;" class="grViz html-widget"></div>
 <script>HTMLWidgets.pymChild = new pym.Child();HTMLWidgets.addPostRenderHandler(function(){
                                 setTimeout(function(){HTMLWidgets.pymChild.sendHeight();},100);
                             });</script>
-<script type="application/json" data-for="htmlwidget-33538d5606e6df8cc579">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n   bgcolor=transparent\n  imagescale=both\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"ChancellorVisit\" [pos=\"0,0!\",  fontcolor=\"red\"]\n  \"CurrentPolitics\" [pos=\"0,1!\"]\n  \"CultureOfPopulation\" [pos=\"2,2!\"]\n  \"Geography\" [pos=\"2,1!\"]\n  \"TradeWithGermany\" [pos=\"4,0!\",  fontcolor=\"red\"]\n  \"HistoryWithGermany\" [pos=\"4,1!\"]\n\n  \n  \"ChancellorVisit\" -> \"TradeWithGermany\" [color = \"red\"]\n   \"CurrentPolitics\" ->  \"ChancellorVisit\"\n  \"CurrentPolitics\" -> \"TradeWithGermany\"\n  \"HistoryWithGermany\" -> \"ChancellorVisit\"\n  \"HistoryWithGermany\" -> \"TradeWithGermany\"\n  \"Geography\" -> \"ChancellorVisit\"\n   \"Geography\"  -> \"TradeWithGermany\"\n   \"CultureOfPopulation\" -> \"ChancellorVisit\"\n   \"CultureOfPopulation\"  -> \"TradeWithGermany\"\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-60de5712215f5b5c47aa">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n   bgcolor=transparent\n  imagescale=both\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"ChancellorVisit\" [pos=\"0,0!\",  fontcolor=\"red\"]\n  \"CurrentPolitics\" [pos=\"0,1!\"]\n  \"CultureOfPopulation\" [pos=\"2,2!\"]\n  \"Geography\" [pos=\"2,1!\"]\n  \"TradeWithGermany\" [pos=\"4,0!\",  fontcolor=\"red\"]\n  \"HistoryWithGermany\" [pos=\"4,1!\"]\n\n  \n  \"ChancellorVisit\" -> \"TradeWithGermany\" [color = \"red\"]\n   \"CurrentPolitics\" ->  \"ChancellorVisit\"\n  \"CurrentPolitics\" -> \"TradeWithGermany\"\n  \"HistoryWithGermany\" -> \"ChancellorVisit\"\n  \"HistoryWithGermany\" -> \"TradeWithGermany\"\n  \"Geography\" -> \"ChancellorVisit\"\n   \"Geography\"  -> \"TradeWithGermany\"\n   \"CultureOfPopulation\" -> \"ChancellorVisit\"\n   \"CultureOfPopulation\"  -> \"TradeWithGermany\"\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 &lt;p class="caption"&gt;2: Causes of trade with Germany&lt;/p&gt;
 &lt;/div&gt;
 
@@ -166,11 +166,11 @@ The effect can be identified *without* controlling for each of the variables &am
 
 
 &lt;div class="figure"&gt;
-<div id="htmlwidget-8a979c87bbcc6acaaf55" style="width:100%;height:300px;" class="grViz html-widget"></div>
+<div id="htmlwidget-738f353dfb839acdebb2" style="width:100%;height:300px;" class="grViz html-widget"></div>
 <script>HTMLWidgets.pymChild = new pym.Child();HTMLWidgets.addPostRenderHandler(function(){
                                 setTimeout(function(){HTMLWidgets.pymChild.sendHeight();},100);
                             });</script>
-<script type="application/json" data-for="htmlwidget-8a979c87bbcc6acaaf55">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n  bgcolor=transparent\n  imagescale=both\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"ChancellorVisit\" [pos=\"0,0!\"]\n  \"CurrentPolitics\" [pos=\"0,2!\"]\n  \"TradeWithGermany\" [pos=\"4,0!\"]\n  \"Country\" [pos=\"4,2!\"]\n\n  \n  \"ChancellorVisit\" -> \"TradeWithGermany\"\n   \"CurrentPolitics\" ->  \"ChancellorVisit\"\n  \"CurrentPolitics\" -> \"TradeWithGermany\"\n   \"Country\" -> \"ChancellorVisit\"\n   \"Country\"  -> \"TradeWithGermany\"\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-738f353dfb839acdebb2">{"x":{"diagram":"digraph \"Causal Diagramm RDD\" {\n  layout=neato\n  fontname=\"Helvetica,Arial,sans-serif\"\n  bgcolor=transparent\n  imagescale=both\n  node [fontname=\"Helvetica,Arial,sans-serif\"]\n  edge [fontname=\"Helvetica,Arial,sans-serif\"]\n  node [shape=none];\n  \"ChancellorVisit\" [pos=\"0,0!\"]\n  \"CurrentPolitics\" [pos=\"0,2!\"]\n  \"TradeWithGermany\" [pos=\"4,0!\"]\n  \"Country\" [pos=\"4,2!\"]\n\n  \n  \"ChancellorVisit\" -> \"TradeWithGermany\"\n   \"CurrentPolitics\" ->  \"ChancellorVisit\"\n  \"CurrentPolitics\" -> \"TradeWithGermany\"\n   \"Country\" -> \"ChancellorVisit\"\n   \"Country\"  -> \"TradeWithGermany\"\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 &lt;p class="caption"&gt;4: Simplified causes of trade with Germany&lt;/p&gt;
 &lt;/div&gt;
 
@@ -629,7 +629,7 @@ There are two common approaches to use a fixed effects design when there is  a n
   
   at the very least we have multiple observations over time within individuals. E.g., if the model is
 `$$Y_{it}=\beta_i+\beta_1X_{it}+\epsilon_{it}$$`
-  it can be said that `\(\beta_1\)` has its own model equation,
+  it can be said that `\(\beta_i\)` has its own model equation,
 `$$\beta_i=\beta_0+\gamma_1Z_i+\mu_i$$`
 where `\(Z_i\)` is a set of individual-level variables that determine the individual effect and `\(\mu_i\)` is an error.
 
