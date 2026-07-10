@@ -580,11 +580,11 @@ A recent set of TV ads encourages people to exercise more. Exposure to the adver
 ]
 
 ---
-# IV estimation and treatment effects
+# IV estimation and treatment effects: LATE
 
 .vcenter[
 .blockquote[
-###Example: Effect of exercise on blood pressure &mdash; ctd.
+###Example: Effect of exercise on blood pressure; ctd.
 - 2SLS is used to determine the effect of exercise hours on blood pressure.
 
 - Jakeila responds the strongest to the ads, so the $-2$ effect of exercise that she gets will be more heavily weighted. Specifically, it gets the $.5$ weight she has on the effect of ads. Similarly, Kyle gets a weight of .25.
@@ -594,7 +594,7 @@ A recent set of TV ads encourages people to exercise more. Exposure to the adver
 
 
 ---
-# IV estimation and treatment effects
+# IV estimation and treatment effects: LATE
 
 .vcenter[
 .blockquote[
@@ -608,7 +608,7 @@ $$\frac{(-2)+(-8)+(-10)}{3} = -6.67$$
 ]]
 
 ---
-# IV estimation and treatment effects
+# IV estimation and treatment effects: LATE
 <br>
 
 **Some more terminology**
@@ -624,7 +624,7 @@ $$\frac{(-2)+(-8)+(-10)}{3} = -6.67$$
  - **Defiers:** Defiers are affected by the instrument in the opposite of the expected direction.
 
 ---
-# IV estimation and treatment effects
+# IV estimation and treatment effects: LATE
 <br>
 
 **Some more terminology**
@@ -639,7 +639,7 @@ $$\frac{(-2)+(-8)+(-10)}{3} = -6.67$$
 - If there is an instrument that has an effect on average, then it is advisable to think carefully about whether that effect is likely to be in the same direction for everyone!
 
 ---
-# IV estimation and treatment effects
+# IV estimation and treatment effects: LATE
 
 .vcenter[
 .blockquote[
@@ -653,7 +653,7 @@ $$\frac{(-2)+(-8)+(-10)}{3} = -6.67$$
 ]]
 
 ---
-# IV estimation and treatment effects
+# IV estimation and treatment effects: LATE
 
 .vcenter[
 .blockquote[
@@ -736,7 +736,7 @@ $\epsilon$ cannot be observed, hence the relationship between $Z$ and $\epsilon$
 - Run the second-stage model but include the instrument as a control, i.e., estimate
 $$Y = \beta_0 + \beta_1X + \beta_2Z + \epsilon$$
 
-- A nonzero coefficient on the instrument $Z$ suggests a violation of the validity assumption
+- It is sometimes argued a nonzero coefficient on the instrument Z suggests a violation of the validity assumption
 
 ---
 # Checking the IV assumptions

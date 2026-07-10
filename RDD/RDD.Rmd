@@ -973,7 +973,7 @@ widgetframe::frameableWidget(m)
 <br>
 IV divides the effect of the instrument on the outcome by the effect of the instrument on the endogenous/treatment variable.
 
-&rarr; The effect of being *above* the cutoff on the outcome is scaled but divided to account for the fact that being above the cutoff only leads to a partial increase in treatment rates.
+&rarr; The effect of being *above* the cutoff on the outcome is scaled to account for the fact that being above the cutoff only leads to a partial increase in treatment rates.
 
 ---
 # Fuzzy regression discontinuity
