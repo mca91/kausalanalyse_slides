@@ -556,7 +556,7 @@ Using assumptions and theory, construct statistical moments (means, variances, c
 
 - When the number of instruments is bigger than the number of treatment/endogenous variables, we say that the model is **overidentified**
 
-  **When the model is overidentified, 2SLS and GMM will diverge!**
+  **When the model is overidentified, 2SLS and GMM typically differ!**
 
 - GMM will have less sampling variation (and thus smaller standard errors) under heteroskedasticity than 2SLS, even if heteroskedasticity-robust standard errors are used
 

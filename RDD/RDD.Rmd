@@ -1180,7 +1180,7 @@ For this we inspect the distribution of the running variable around the cutoff:
 
 - Look for a significant discontinuity at the cutoff
 
-- Do graphical inspection of the density
+- Also do a graphical inspection of the density
 
 <br>
 **A big discontinuity is not a good sign. It implies manipulation.**
